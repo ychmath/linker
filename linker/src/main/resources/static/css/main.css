@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+a {
+    text-decoration-line: none;
+    color: black;
+}
+.logo_banner {
+    text-align: center;
+
+}
+.body{
+    text-align: center;
+}
+.nav {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+.ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+.logotop {
+    text-align: center;
+    margin: auto;
+}
+.text {
+    text-align:right;
+    margin: auto;
+}
+.mylogin {
+    text-align: right;
+    margin: auto;
+    list-style:none;
+    padding: 0%;    
+}
+.board_banner{
+   margin: auto;
+}
+.board_banner{
+list-style:none;
+padding: 0%;
+}
+.main_banner{
+  text-align: center;
+  font-size: 80px;
+ 
+}
+
+.lunch{
+  text-align: justify;
+  text-align-last: center;
+  -moz-text-align-last: left;
+  position: absolute;
+  top: 60%;
+  right: 80%;
+  margin: -50px 0  0 -50px;
+  font-size: 70px;
+}
+.dinner{
+  text-align: justify;
+  text-align-last: center;
+  -moz-text-align-last: right;
+  position: absolute;
+  top: 60%;
+  left: 80%;
+  margin: -50px  0 -50px;
+  font-size: 70px;
+}
+.profile{
+	 float: right;
+}
