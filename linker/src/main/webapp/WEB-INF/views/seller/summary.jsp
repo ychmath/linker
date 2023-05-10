@@ -38,7 +38,6 @@
 		// 매입 저장할 내역
 		var purchaseResult = [];
 		
-		
 		// 순수익
 		var netResult = [];
 
@@ -109,46 +108,34 @@
 				}
 			}	// option end
 		});	// chart end
-		
+
 		// 검색 버튼 클릭 시
 		$("#search").click(function() {
-		    /* chart.data.datasets.forEach((dataset) => {
-		        dataset.data.pop();
-		    }); */
-		    
+			// 매입/매출 기본값 저장
 			for(var i = 0; i < 12; i++){
 				saleResult[i] = 0;
 				purchaseResult[i] = 0;
 			}
+		    
+		    $.when(
+				$.getJSON("/getysResult", { targetYear : $('#targetYear').val() }, function(data){
+					$.each(data, function(index, obj){
+						saleResult[obj.month - 1] = obj.totalSale;
+					})
+				}),	//ysR
 
-			$.getJSON("/getysResult", { targetYear : $('#targetYear').val() }, function(data){
-				$.each(data, function(index, obj){
-					saleResult[obj.month - 1] = obj.totalSale;
-				})
-			})	//ysR
-			
-			$.getJSON("/getpResult", { targetYear : $('#targetYear').val() }, function(data){
-				$.each(data, function(index, obj){
-					purchaseResult[obj.month - 1] = obj.totalPurchase;
-				})
-				
+				$.getJSON("/getpResult", { targetYear : $('#targetYear').val() }, function(data){
+					$.each(data, function(index, obj){
+						purchaseResult[obj.month - 1] = obj.totalPurchase;
+					})
+				})	// getpR
+		    ).done(function () {
 				for(var i = 0; i < 12; i++){
 					netResult[i] = saleResult[i]-purchaseResult[i];
 				}
-			})	// getpR
-
-			
-			
-
-			
-			console.log(saleResult);
-			console.log(purchaseResult);
-
-			console.log(netResult);
-		    chart.update();
+		    	chart.update();
+		    	});	// done end
 		});	// click end
-		
-
 	});	// ready end
 </script>
 </body>
