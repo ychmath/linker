@@ -23,10 +23,11 @@ public class FinanceController {
 		return "seller/summary";
 	}
 	
-	@RequestMapping("/getYearResult")
+	@RequestMapping("/getysResult")
 	@ResponseBody
 	public String getYearlySale(@ModelAttribute("targetYear")int targetYear, Model m) {
-		m.addAttribute("targetDate", targetYear);
+		m.addAttribute("targetYear", targetYear);
+		
 		List<FinanceDto> list = service.yearlySale(targetYear);
 		m.addAttribute("ysResult", list);
 
@@ -36,6 +37,18 @@ public class FinanceController {
 		return ysResult;
 	}
 	
-	
+	@RequestMapping("/getpResult")
+	@ResponseBody
+	public String getYearlyPurchase(@ModelAttribute("targetYear")int targetYear, Model m) {
+		m.addAttribute("targetYear", targetYear);
+		
+		List<FinanceDto> list = service.yearlyPurchase(targetYear);
+		m.addAttribute("pResult", list);
+
+		Gson gson = new Gson();
+		String pResult = gson.toJson(list);
+
+		return pResult;
+	}
 	
 }

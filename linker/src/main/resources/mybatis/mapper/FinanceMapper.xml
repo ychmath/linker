@@ -5,19 +5,19 @@
 <mapper namespace="com.linker.finance.FinanceDao">
 	<!-- 연도 지정 후 월별 식재료 구매 금액 출력 -->
 	<select id="yearlyPurchase" parameterType="int" resultType="com.linker.finance.FinanceDto">
-		select concat(year(orderdate), '-', month(orderdate)) as 'yearlyTotal', sum(orderquantity * orderprice) as "totalPurchase"
+		select month(orderdate) as 'month', sum(orderquantity * orderprice) as "totalPurchase"
 		from ingredientorder
 		where year(orderdate) = #{targetYear}
-		group by yearlyTotal;
+		group by month;
 	</select>
 
 	<!-- 연도 지정 후 월별 티켓 판매 금액 출력 -->
 	<select id="yearlySale" parameterType="int" resultType="com.linker.finance.FinanceDto">
-		select concat(year(orderdate), '-', month(orderdate)) as 'yearlyTotal', sum(quantity * price) as 'totalSale'
+		select month(orderdate) as 'month', sum(quantity * price) as 'totalSale'
 		from ticketorder
 		inner join tickettype
 		on ticketorder.tickettypeid = tickettype.tickettypeid
 		where year(orderdate) = #{targetYear}
-		group by yearlyTotal;
+		group by month;
 	</select>
 </mapper>

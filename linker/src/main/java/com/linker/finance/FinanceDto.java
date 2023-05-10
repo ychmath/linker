@@ -8,5 +8,5 @@ public class FinanceDto {
 	private int totalSale;
 
 	private int targetYear;
-	private String yearlyTotal;
+	private int month;
 }
