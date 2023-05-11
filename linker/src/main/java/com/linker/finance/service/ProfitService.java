@@ -1,8 +1,10 @@
 package com.linker.finance.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.linker.finance.dao.ProfitDao;
 import com.linker.finance.dto.ProfitDto;
 
@@ -17,10 +19,6 @@ public class ProfitService {
 
     public List<ProfitDto> selectAll() {
         return dao.selectAll();
-    }
-
-    public List<ProfitDto> selectByDate(String date) {
-        return dao.selectByDate(date);
     }
 
     public int deleteById(int orderId) {
@@ -44,5 +42,12 @@ public class ProfitService {
 	public int addOrder(ProfitDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
+	
 	}
+
+	public List<ProfitDto> selectByDate(Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return dao.selectByDate(startDate, endDate);
+	}
+	
 }

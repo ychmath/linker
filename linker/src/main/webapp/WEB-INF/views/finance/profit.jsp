@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%String start_date = request.getParameter("start_date");
+String end_date = request.getParameter("end_date");%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>매출 내역</title>
 </head>
 <style>
 #B {
@@ -95,7 +100,8 @@ border-bottom: 1px solid #444444;
 </style>
 
 <body>
-<form:form>
+<%-- <form:form> --%>
+<form action="${pageContext.request.contextPath}/finance/filtered_data" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
@@ -128,28 +134,17 @@ border-bottom: 1px solid #444444;
 <label for="end-date-input"><a id="P">~</a></label>
 <input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  // 오늘 날짜 생성
-  const today = new Date().toISOString().split('T')[0];
-  // input 요소의 max 속성에 오늘 날짜 설정
-  document.getElementById('start-date-input').max = today;
-  document.getElementById('end-date-input').max = today;
-  // input 요소의 min 속성에 시작 날짜 설정
-  document.getElementById('end-date-input').min = document.getElementById('start-date-input').value;
-  // 시작 날짜가 변경되면 종료 날짜의 min 속성을 변경하여 시작 날짜 이전의 날짜를 선택하지 못하도록 함
-  document.getElementById('start-date-input').addEventListener('change', function() {
-    document.getElementById('end-date-input').min = this.value;
-  });
-</script>
-<button id="myButton">버튼</button>
+function search() {
+    var start_date = document.getElementById('start-date-input').value;
+    var end_date = document.getElementById('end-date-input').value;
 
-<script>
-  const button = document.getElementById('myButton');
-  button.addEventListener('click', function() {
-    alert('버튼이 클릭되었습니다!');
-  });
+    window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
 </script>
-    </th></tr>
+<button id="myButton" onclick="search()">검색 </button>
+
+   </tr>
    </table> <br>
   </div>
 	<div>
@@ -161,38 +156,20 @@ border-bottom: 1px solid #444444;
 		<th scope="col">총 가격</th>
 		<th scope="col">주문 일자</th>
 	</tr>
+	<c:forEach items="${plist}" var="profit">
 	<tr>
-		<td>202302286A1</td>
-		<td>A</td>
-		<td>32</td>
-		<td>192,000</td>
-		<td>2023-02-28</td>
+		<td>${profit.ticketorderid}</td>
+		<td>${profit.tickettypename}</td>
+		<td>${profit.quantity}</td>    
+		<td>${profit.price}</td>
+		<td><fmt:formatDate value="${profit.orderdate}" pattern="yyyy-MM-dd" /></td>
+
 	</tr>
-	<tr>
-		<td>202302216B1</td>
-		<td>B</td>
-		<td>26</td>
-		<td>182,000</td>
-		<td>2023-02-21</td>
-	</tr>
-	<tr>
-	<td>202302156B1</td>
-		<td>B</td>
-		<td>14</td>
-		<td>98,000</td>
-		<td>2023-02-15</td>
-	</tr>
-	<tr>
-	<td>202302096B1</td>
-		<td>A</td>
-		<td>21</td>
-		<td>126,000</td>
-		<td>2023-02-09</td>
-	</tr>
+	</c:forEach>
 	</table>
 	</div>
 </div>
-${plist }
- </form:form>
+
+ </form>
 </body>
 </html>
