@@ -40,7 +40,14 @@
 				<td><input type="text" name="chk_password" id="chk_password"
 					placeholder="비밀번호를 다시 입력해주세요." required></td>
 			</tr>
-
+	
+			<tr>
+				<td>권한</td>
+				<td><select name="role">
+					<option value="seller">판매자</option>
+					<option value="buyer">구매자</option>
+				</select></td>
+			
 			<tr>
 				<td>회사 이메일</td>
 				<td><input type="text" name="email" id="email" 

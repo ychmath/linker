@@ -14,15 +14,15 @@
 </head>
 <body>
 
-	<form action="post" id="writenotice" action="write">
+	<form method="post" id="writenotice" action="write">
 		<table border="1">
 			<tr>
 				<td>제목</td>
-				<td><input name="title" /></td>
+				<td><input name="title" id="title"/></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input name="writer" /></td>
+				<td><input name="userid" id="userid" value="${user.userid }" readonly/></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -31,11 +31,10 @@
 							placeholder="내용을 입력해주세요" style="width: 700px"></textarea>
 					</div></td>
 			</tr>
-
 			<tr>
 				<td colspan="2" align="right">
-					<!-- colspan: 셀을 가로로 합병 --> <input type="button" id="upload"
-					value="등록">
+					<!-- colspan: 셀을 가로로 합병 --> 
+					<input type="button" id="upload" value="등록">
 				</td>
 			</tr>
 		</table>

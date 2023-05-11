@@ -15,7 +15,7 @@ import com.linker.login.dto.LoginDto;
 @Mapper
 public interface LoginDao {
 
-	@Insert("insert into user values(#{userid}, #{password}, #{name}, #{email}, #{phone}, #{role}, now())")
+	@Insert("insert into user values(#{userid}, #{password}, #{name}, #{email}, #{phone}, #{role})")
 	public int insertUser(LoginDto dto);
 	
 	@Update("update user set password=#{password} where userid=#{userid}")

@@ -40,8 +40,8 @@ public class LoginController{
 	public String loginform() {
 		return "login/loginform";
 	}
-	
-	@PostMapping("/login")
+	 
+	@PostMapping("/login") //@PostMapping: 본문에서 데이터를 추출
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m) {
 	//@ModelAttribute("command"): "command"라는 이름으로 바인딩되는 폼 데이터를 객체에 자동 매핑해줌
 	//@Validated: LoginDto 객체의 값이 유효한지 검증. 만약 유효하지 않은 값이 포함되어 있다면 에러메시지가 "BindingResult error" 객체에 저장됨
@@ -67,42 +67,48 @@ public class LoginController{
 		}
 	}
 
-//--------------------------------------------------------------------------------------------------------------------------
-	
-	@GetMapping("/insert")
-	public String joinform() {
-		return "login/joinform";
-	}
-
-	@GetMapping("idCheck")
-	@ResponseBody
-	public String idCheck(String id) {
-		String checkid = service.idCheck(id);
-		return checkid; //text
-	}
-	
-	@PostMapping("/insert")
-	public String insert(LoginDto dto) {
-		service.insertUser(dto);
-		return "redirect:loginform";
-	}
-	
-	@GetMapping("/logout")
-	public String logout(SessionStatus status) {
-		status.setComplete();
-		return "redirect:/";
-	}
-	
 	@GetMapping("/update")
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
 		return "login/updateform";
 	}
 	
 	@PutMapping("/update")
+	//@PutMapping: 서버에 존재하는 리소스를 수정하기 위해 사용되는 메서드로, 요청 본문에 포함된 데이터를 해당 리소스로 업데이트하는 용도로 사용
 	public String update(@ModelAttribute("user") LoginDto dto) {
-		service.updateUser(dto);
+		service.updateUser(dto); //service 객체의 updateUser() 메서드를 호출하여 사용자 정보를 업데이트함
 		return "redirect:/main";
 	}
+	
+	@GetMapping("/insert")
+	public String joinform() {
+		return "login/joinform";
+	}
+	
+	@PostMapping("/insert")
+	public String insert(LoginDto dto) {
+		service.insertUser(dto);
+		return "redirect:/loginform";
+		
+		}
+
+	@GetMapping("idCheck")
+	@ResponseBody 
+	//@ResponseBody 를 사용하여, 클라이언트의 HTTP GET 요청에 대한 응답으로 문자열 데이터를 반환하는 방법을 보여주고 있음
+	public String idCheck(String id) {
+		String checkid = service.idCheck(id);
+		return checkid; //text
+	}
+	
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		/* SessionStatus: 세션 처리와 관련된 여러 메서드를 제공. 주로 로그아웃 처리나 세션 타임아웃 처리 등에 사용됨
+		 * setComplete(): 현재 요청에 대한 세션을 완료(complete)처리함. 즉, 세션에 저장된 데이터를 삭제하고, 세션을 종료함
+		 */
+		status.setComplete();
+		return "redirect:/";
+	}
+	
+//--------------------------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/delete")
 	public String deleteform(String result, Model m) {
