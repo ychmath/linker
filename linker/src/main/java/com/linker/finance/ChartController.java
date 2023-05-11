@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 @Controller
-public class FinanceController {
+public class ChartController {
 	@Autowired
-	FinanceService service;
+	ChartService service;
 
 	// view 경로 반환
 	@GetMapping("/profitChart")
 	public String viewChart() {
-		return "seller/summary";
+		return "chart/summary";
 	}
 	
 	@RequestMapping("/getysResult")
@@ -28,7 +28,7 @@ public class FinanceController {
 	public String getYearlySale(@ModelAttribute("targetYear")int targetYear, Model m) {
 		m.addAttribute("targetYear", targetYear);
 		
-		List<FinanceDto> list = service.yearlySale(targetYear);
+		List<ChartDto> list = service.yearlySale(targetYear);
 		m.addAttribute("ysResult", list);
 
 		Gson gson = new Gson();
@@ -42,7 +42,7 @@ public class FinanceController {
 	public String getYearlyPurchase(@ModelAttribute("targetYear")int targetYear, Model m) {
 		m.addAttribute("targetYear", targetYear);
 		
-		List<FinanceDto> list = service.yearlyPurchase(targetYear);
+		List<ChartDto> list = service.yearlyPurchase(targetYear);
 		m.addAttribute("pResult", list);
 
 		Gson gson = new Gson();

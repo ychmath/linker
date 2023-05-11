@@ -3,7 +3,7 @@ package com.linker.finance;
 import lombok.Data;
 
 @Data
-public class FinanceDto {
+public class ChartDto {
 	private int totalPurchase;
 	private int totalSale;
 
