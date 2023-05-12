@@ -90,6 +90,22 @@ td{
 			</tr>
 		</c:forEach>
 	</table>
+	<div id="page">
+		<c:if test="${begin > pageNum}">
+			<a href="list?p=${begin-1 }">[이전]</a>
+			<!-- '?'는 URL에서 쿼리 문자열을 나타내는 부분의 시작을 표시하는 데 사용되는 특수 문자 -->
+		</c:if>
+		<c:forEach begin="${begin }" end="${end }" var="i">
+			<a href="list?p=${i }">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="list?p=${end+1 }">[다음]</a>
+		</c:if>
+	</div>
+	
+	
+	
+	
 	
 	<div>
 		<a href="write">글쓰기</a>

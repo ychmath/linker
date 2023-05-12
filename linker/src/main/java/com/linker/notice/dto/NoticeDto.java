@@ -1,4 +1,4 @@
-package com.linker.board.dto;
+package com.linker.notice.dto;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import com.linker.login.dto.LoginDto;
 import lombok.Data;
 
 @Data
-public class BoardDto extends LoginDto{
+public class NoticeDto extends LoginDto{
 
 	private int noticepostid;
 	private String title;

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +37,11 @@ th{
 }
 
 a{
-	margin-left: 1040px;
+	margin-left: 10px auto;
+}
+
+td{
+	border: 1px solid black;
 }
 
 </style>
@@ -72,10 +78,20 @@ a{
 			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
+		<c:forEach items="${iList }" var="inquiry">
+		<tr>
+			<td>${inquiry.inquirypostid }</td>
+			<td><a href="content/${inquiry.inquirypostid }">${inquiry.title }</a></td>
+			<td>${inquiry.userid }</td>
+			<td><fmt:formatDate value="${inquiry.creationdate }" /></td>
+		</tr>
+		</c:forEach>
+		
+		
 	
 	</table>
 	
-	<div>
+	<div align="right">
 		<a href="write">글쓰기</a>
 	</div>
 

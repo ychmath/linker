@@ -13,16 +13,16 @@ table{
 </style>
 </head>
 <body>
-	<form action="post" id="writeinquiry" action="write">
+	<form method="post" id="writeinquiry" action="write">
 		<table border="1">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="title" /></td>
+				<td><input type="text" name="title" id="title" /></td>
 			</tr>
 			
 			<tr>
 				<td>작성자</td>
-				<td><input name="writer" /></td>
+				<td><input name="userid" id="userid" value="${user.userid }" readonly /></td>
 			</tr>
 			
 			<tr>
@@ -36,7 +36,8 @@ table{
 			</tr>
 			
 			<tr>
-			<td colspan="2" align="right"><input type="button" id="upload" value="등록"></td>
+			<td colspan="2" align="right">
+			<input type="button" id="upload" value="등록"></td>
 			</tr>
 			
 		</table>

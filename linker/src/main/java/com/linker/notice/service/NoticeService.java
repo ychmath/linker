@@ -1,4 +1,4 @@
-package com.linker.board.service;
+package com.linker.notice.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,20 +7,20 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.board.dao.BoardDao;
-import com.linker.board.dto.BoardDto;
+import com.linker.notice.dao.NoticeDao;
+import com.linker.notice.dto.NoticeDto;
 
 @Service
-public class BoardService {
+public class NoticeService {
 
 	@Autowired
-	BoardDao dao;
+	NoticeDao dao;
 	
-	public int insertNotice(BoardDto dto) {
+	public int insertNotice(NoticeDto dto) {
 		return dao.insertNotice(dto);
 	}
 	
-	public int updateNotice(BoardDto dto) {
+	public int updateNotice(NoticeDto dto) {
 		System.out.println(dto);
 		return dao.updateNotice(dto);
 	}
@@ -30,15 +30,20 @@ public class BoardService {
 		
 	}
 	
-	public List<BoardDto> noticeList(int start){
+	public List<NoticeDto> noticeList(int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.noticeList(m);
 	}
 	
-	public BoardDto	boardOne(int no) {
+	public NoticeDto boardOne(int no) {
 		return dao.boardOne(no);
 	}
 
+	public int count() {
+		return dao.count();
+	}
+	
+	
 }
