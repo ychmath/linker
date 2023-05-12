@@ -37,8 +37,10 @@ table{
 				<td colspan="2" align="right">
 				<c:if test="${user.userid == dto.userid }">
 				<a href="/inquiry/update/${dto.inquirypostid }">수정</a>
+				
 				</c:if>
 				</td>
+
 			</tr>
 	
 	
