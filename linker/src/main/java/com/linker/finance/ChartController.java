@@ -13,21 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 @Controller
-public class FinanceController {
+public class ChartController {
 	@Autowired
-	FinanceService service;
+	ChartService service;
 
 	// view 경로 반환
 	@GetMapping("/profitChart")
 	public String viewChart() {
-		return "seller/summary";
+		return "chart/summary";
 	}
 	
-	@RequestMapping("/getYearResult")
+	@RequestMapping("/getysResult")
 	@ResponseBody
 	public String getYearlySale(@ModelAttribute("targetYear")int targetYear, Model m) {
-		m.addAttribute("targetDate", targetYear);
-		List<FinanceDto> list = service.yearlySale(targetYear);
+		m.addAttribute("targetYear", targetYear);
+		
+		List<ChartDto> list = service.yearlySale(targetYear);
 		m.addAttribute("ysResult", list);
 
 		Gson gson = new Gson();
@@ -36,6 +37,18 @@ public class FinanceController {
 		return ysResult;
 	}
 	
-	
+	@RequestMapping("/getpResult")
+	@ResponseBody
+	public String getYearlyPurchase(@ModelAttribute("targetYear")int targetYear, Model m) {
+		m.addAttribute("targetYear", targetYear);
+		
+		List<ChartDto> list = service.yearlyPurchase(targetYear);
+		m.addAttribute("pResult", list);
+
+		Gson gson = new Gson();
+		String pResult = gson.toJson(list);
+
+		return pResult;
+	}
 	
 }

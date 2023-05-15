@@ -32,8 +32,26 @@
     <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+     <script>
+      function checkLoginStatus() {
+        const isLoggedIn = false;
+
+        const loginSignupButtons = document.querySelectorAll(
+          ".login-signup"
+        );
+        if (!isLoggedIn) {
+          loginSignupButtons.forEach((button) => {
+            button.style.display = "block";
+          });
+        } else {
+          loginSignupButtons.forEach((button) => {
+            button.style.display = "none";
+          });
+        }
+      }
+    </script>
   </head>
-  <body>
+  <body onload="checkLoginStatus()">
     <div class="fh5co-loader"></div>
     <div id="page">
       <nav class="fh5co-nav" role="navigation">
@@ -41,10 +59,8 @@
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
             <ul>
-              <c:if test="${user == null}">
-                <li class="login-signup"><a href="login.html">로그인</a></li>
-                <li class="login-signup"><a href="signup.html">회원가입</a></li>
-              </c:if>
+                <li class="login-signup"><a href="/loginform">로그인</a></li>
+                <li class="login-signup"><a href="/joinform">회원가입</a></li>
             </ul>
           </div>
           <div class="row">
@@ -60,6 +76,7 @@
                 <li><a href="notice.html">공지사항</a></li>
                 <li><a href="inquiry.html">문의사항</a></li>
                 <li><a href="food_table.html">식단표</a></li>
+                <li><a href="main">테스트</a>
               </ul>
             </div>
           </div>
@@ -68,7 +85,7 @@
       </nav>
 
       <div id="fh5co-slider" class="fh5co-section animate-box">
-        <div class="fh5co-cover" style="height: 50px"></div>
+        <div class="fh5co-cover" style="height: 200px"></div>
         <div class="container">
           <div class="row">
             <div class="col-md-6 animate-box">

@@ -80,7 +80,7 @@ public class LoginController{
 
 //--------------------------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/insert")
+	@GetMapping("/joinform")
 	public String joinform() {
 		return "Login/joinform";
 	}

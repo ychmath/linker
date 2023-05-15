@@ -11,6 +11,7 @@
     }
     </style>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
     <h1>회원 가입</h1>
     <form action="#" method="get" id="joinForm">
@@ -20,7 +21,7 @@
             <input type="text" name="name" id="name"
               placeholder="실명을 입력해주세요." required>
           </div>
-       
+  
           <div class="input-box">
             <span class="details">아이디</span>
             <input type="text" name="userid" id="userid" 

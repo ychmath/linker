@@ -3,10 +3,10 @@ package com.linker.finance;
 import lombok.Data;
 
 @Data
-public class FinanceDto {
+public class ChartDto {
 	private int totalPurchase;
 	private int totalSale;
 
 	private int targetYear;
-	private String yearlyTotal;
+	private int month;
 }
