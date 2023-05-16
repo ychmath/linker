@@ -10,12 +10,10 @@ import org.apache.ibatis.annotations.Update;
 
 import com.linker.login.dto.LoginDto;
 
-
-
 @Mapper
 public interface LoginDao {
 
-	@Insert("insert into user values(#{userid}, #{password}, #{name}, #{email}, #{phone}, #{role})")
+	@Insert("insert into user(userid, password, name, email, phone, role, signupdate) values(#{userid}, #{password}, #{name}, #{email}, #{phone}, #{role}, now())")
 	public int insertUser(LoginDto dto);
 	
 	@Update("update user set password=#{password} where userid=#{userid}")

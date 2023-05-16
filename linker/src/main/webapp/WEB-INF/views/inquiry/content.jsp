@@ -37,18 +37,40 @@ table{
 				<td colspan="2" align="right">
 				<c:if test="${user.userid == dto.userid }">
 				<a href="/inquiry/update/${dto.inquirypostid }">수정</a>
-				
+				<a id="${dto.inquirypostid }" href="#">삭제</a>
 				</c:if>
+				<a href="../inquiry">목록 이동</a>
 				</td>
-
 			</tr>
-	
-	
 	</table>
+	</div>
 	
+	<div>
+		<span>
+			<input type="button" value="답글쓰기" onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&title=${dto.title }&restep=${dto.restep }&relevel=${dto.relevel }'" />
+		</span>
+		<span>
+			<input type="button" value="목록" onclick="location.href='../inquiry'" />
+		</span>
 	
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		$("a[id]").click(function(){
+			let no = $(this).attr("id");
+			$.ajax({url: "/inquiry/delete",
+					data: "inquirypostid=" + no,
+					method: "delete"
+			}).done(function(){
+				location.href="/inquiry/inquiry";
+			})
+			return false; //하이퍼링크 이동x
+		})
+	})
 
+
+</script>
 
 
 </body>

@@ -30,15 +30,9 @@
 
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="password" id="password"
+				<td><input type="password" name="password" id="password"
 					placeholder="비밀번호를 6~20자 이내로 입력해주세요." required>
 					<div id="pw_msg"></div></td>
-			</tr>
-
-			<tr>
-				<td>비밀번호 확인</td>
-				<td><input type="text" name="chk_password" id="chk_password"
-					placeholder="비밀번호를 다시 입력해주세요." required></td>
 			</tr>
 	
 			<tr>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.notice.dao.NoticeDao">
+
+<select id="noticeListSearch" parameterType="map" resultType="com.linker.notice.dao.NoticeDao">
+		
+		select * from noticepost
+		<where>
+			<choose>
+				<when test="searchn == 0">
+				title like concat('%',#{search},'%')</when>
+				<when test="searchn == 1"> userid like concat('%',#{search},'%') </when>
+			</choose>
+		</where> 
+	 
+		order by creationdate desc limit #{start}, #{count}
+ 		
+	</select>
+	
+	<select id="countSearch" resultType="int" parameterType="map">
+		select count(*) from noticepost 
+		<where>
+			<choose>
+				<when test="searchn == 0">
+				title like concat('%',#{search},'%')</when>
+				<when test="searchn == 1"> userid like concat('%',#{search},'%') </when>
+			</choose>
+		</where> 
+	</select>
+
+</mapper>

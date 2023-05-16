@@ -32,12 +32,12 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-			<c:forEach items="${nList }" var="notice">
+			<c:forEach items="${iList }" var="inquiry">
 				<tr>
-					<td>${notice.noticepostid }</td>
-					<td><a href="content/${notice.noticepostid }">${notice.title }</a></td>
-					<td>${notice.userid }</td>
-					<td><fmt:formatDate value="${notice.creationdate }" dateStyle="short" /></td>
+					<td>${inquiry.inquirypostid }</td>
+					<td><a href="content/${inquiry.inquirypostid }">${inquiry.title }</a></td>
+					<td>${inquiry.userid }</td>
+					<td><fmt:formatDate value="${inquiry.creationdate }" dateStyle="short" /></td>
 				</tr>
 			</c:forEach>
 			</table>

@@ -14,7 +14,7 @@
 	}
 	
 #search{
-	margin-left: 860px;
+	margin-left: 680px;
 }
 
 table{
@@ -41,6 +41,14 @@ a{
 td{
 	border: 1px solid black;
 }
+
+#page{
+	text-align: center;
+}
+
+#write{
+	margin-left: 860px;
+}
 </style>
 </head>
 <body>
@@ -49,7 +57,7 @@ td{
 	</div>
 	
 	<div id="search">
-		<form action="action">
+		<form action="search">
 			<select name="searchn">
 				<option value="0">제목</option>
 				<option value="1">작성자</option>
@@ -68,6 +76,7 @@ td{
 		</tr>
 	</table>
 	
+	<c:if test="${count != 0 }">
 	<table>
 		<tr>
 			<th>게시글 번호</th>
@@ -92,22 +101,26 @@ td{
 	</table>
 	<div id="page">
 		<c:if test="${begin > pageNum}">
-			<a href="list?p=${begin-1 }">[이전]</a>
+			<a href="notice?p=${begin-1 }">[이전]</a>
 			<!-- '?'는 URL에서 쿼리 문자열을 나타내는 부분의 시작을 표시하는 데 사용되는 특수 문자 -->
 		</c:if>
 		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="list?p=${i }">${i }</a>
+			<a href="notice?p=${i }">${i }</a>
 		</c:forEach>
 		<c:if test="${end < totalPages }">
-			<a href="list?p=${end+1 }">[다음]</a>
+			<a href="notice?p=${end+1 }">[다음]</a>
 		</c:if>
 	</div>
+	</c:if>
+	<c:if test="${count == 0 }">
+	아직 입력한 글이 없습니다.
+	</c:if>
 	
 	
 	
 	
 	
-	<div>
+	<div id="write">
 		<a href="write">글쓰기</a>
 	</div>
 		

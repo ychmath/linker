@@ -48,6 +48,8 @@ table{
 				=> 이 링크는 클릭하면 현재 페이지의 위치를 유지한 채로 페이지의 맨 위로 스크롤 됨 
 			 -->
 		</c:if>
+		
+		<a href="../notice">목록 이동</a>
 		</td>
 	</tr>
 		
@@ -56,6 +58,24 @@ table{
 </table>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		$("a[id]").click(function(){ // a[id]: a 태그 중에서 'id' 속성을 가진 모든 요소들을 선택하는 것을 의미
+			let no = $(this).attr("id"); //삭제하려는 글번호. attr(): 선택된 요소의 속성 값을 가져오거나 설정하는 메소드
+			$.ajax({url: "/notice/delete",
+					data: "noticepostid=" + no,
+					method: "delete"
+			}).done(function(){
+				location.href="/notice/notice";
+			})
+			return false; //하이퍼링크 이동 x
+		}) //click
+	})
+
+
+</script>
+
 
 </body>
 </html>

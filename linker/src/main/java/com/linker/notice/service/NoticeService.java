@@ -45,5 +45,23 @@ public class NoticeService {
 		return dao.count();
 	}
 	
+	public List<NoticeDto> noticeListSearch(int searchn, String search, int start){
+		//int searchn: 검색 옵션(제목, 내용, 작성자 등)을 나타내는 변수
+		//String search: 검색어를 나타내는 변수
+		//int start: 검색 결과 리스트에서 출력할 시작 위치를 의미함
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("searchn", searchn);
+		m.put("search", search);
+		m.put("start", start);
+		m.put("count", 10);
+		return dao.noticeListSearch(m);
+	}
+	
+	public int countSearch(int searchn, String search) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("searchn", searchn);
+		m.put("search", search);
+		return dao.countSearch(m);
+	}
 	
 }

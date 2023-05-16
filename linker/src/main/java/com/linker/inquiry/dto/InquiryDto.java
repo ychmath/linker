@@ -13,6 +13,7 @@ public class InquiryDto extends LoginDto{
 	private String title;
 	private String content;
 	private Date creationdate;
+	private int readcount;
 	private int ref;
 	private int restep;
 	private int relevel;

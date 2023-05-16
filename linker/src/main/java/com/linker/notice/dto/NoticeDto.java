@@ -14,5 +14,4 @@ public class NoticeDto extends LoginDto{
 	private String content;
 	private Date creationdate;
 	private String name;
-
 }
