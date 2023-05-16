@@ -6,7 +6,7 @@
 	<!-- 게시글 작성 -->
 	<insert id="write" parameterType="com.linker.ingredient.MenuDto">
 		insert into menu(userID, title, content, creationDate)
-		values(#{userID}, #{title}, #{content}, #{creationDate})
+		values(#{userID}, #{title}, #{content}, now())
 	</insert>
 	<!-- 게시글 수정 -->
 	<update id="updateMenu" parameterType="com.linker.ingredient.MenuDto">
