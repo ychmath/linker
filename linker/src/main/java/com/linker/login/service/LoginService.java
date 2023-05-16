@@ -1,9 +1,13 @@
 package com.linker.login.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import com.linker.login.dao.LoginDao;
 import com.linker.login.dto.LoginDto;
@@ -44,5 +48,16 @@ public class LoginService {
 	public List<LoginDto> userInfo(){
 		return dao.userInfo();
 	}
+	public Map<String, String> validateHandling(BindingResult bindingResult) {
+	    Map<String, String> errorMap = new HashMap<>();
+
+	    //BindingResult 객체에서 발생한 에러들을 꺼내어, 필드와 관련된 에러 메시지를 저장합니다.
+	    for (FieldError error : bindingResult.getFieldErrors()) {
+	        errorMap.put(error.getField(), error.getDefaultMessage());
+	    }
+
+	    return errorMap;
+	}
+
 }
 

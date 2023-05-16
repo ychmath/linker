@@ -1,5 +1,7 @@
 package com.linker.login.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ import com.linker.login.dto.LoginDto;
 import com.linker.login.service.LoginService;
 
 
+import jakarta.validation.Valid;
+
+
 
 @Controller
 @SessionAttributes("user") //세션에 객체를 저장하기 위한 어노테이션
@@ -30,7 +35,10 @@ public class LoginController{
 	LoginService service;
 	
 	 @Autowired
-	    private LoginDao dao;
+	 private LoginDao dao;
+	 
+	 
+
 	
 	@ModelAttribute("user") 
 	//컨트롤러의 메서드에 적용하여 해당 메서드가 반환하는 객체를 모델에 자동으로 추가함
@@ -131,5 +139,25 @@ public class LoginController{
             return "redirect:/";
         }
     }
+	// 기존 'insert' 메서드에 대해 코드를 병합
+	@PostMapping("/auth/joinProc")
+	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
+
+	    if (bindingResult.hasErrors()) {
+	        model.addAttribute("userDto", dto);
+
+	        // 유효성 통과 못한 필드와 메시지를 핸들링. validateHandling 메서드가 필요합니다.
+	        // userService를 LoginService로 교체하면 기존 사용중인 LoginService를 사용할 수 있습니다.
+	        Map<String, String> validatorResult = service.validateHandling(bindingResult);
+	        for (String key : validatorResult.keySet()) {
+	            model.addAttribute(key, validatorResult.get(key));
+	        }
+
+	        return "Login/joinform";
+	    }
+	    service.insertUser(dto);
+	    return "redirect:/auth/login";
+	}
+
 	
 }
