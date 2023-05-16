@@ -181,7 +181,7 @@
 			if (calendarMonthStartDay <= calendarPos && calendarDay < calendarMonthLastDate) {
 				calendarDay++;
 				html += "<span";
-				if (options.showToday && calendarYear == today.getFullYear() && calendarMonth == today.getMonth() + 1
+				if (settings.showToday && calendarYear == today.getFullYear() && calendarMonth == today.getMonth() + 1
 					&& calendarDay == today.getDate()) {
 					html += " class=\"today\"";
 				} else {
@@ -287,7 +287,9 @@
 	
 	// 날짜 클릭
 	$(document).on("click", ".calendar table > tbody > tr > td", function(event){
-		// 이벤트가 부모 태그로 전파되는 것 방지
+		alert("날짜 클릭");
+		
+/* 		// 이벤트가 부모 태그로 전파되는 것 방지
 		event.stopPropagation();
 		
 		var eventTarget = event.target;
@@ -296,7 +298,7 @@
 		}
 		if ($(eventTarget).attr("data-date") != undefined) {
 			alert($(eventTarget).attr("data-date"));
-		}
+		} */
 	});
 </script>
 </body>
