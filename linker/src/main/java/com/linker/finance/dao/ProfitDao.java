@@ -2,6 +2,7 @@ package com.linker.finance.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,11 +14,15 @@ import com.linker.finance.dto.ProfitDto;
 public interface ProfitDao {
 	public int insert(ProfitDto dto);
 
-	@Select("select ticketorderid, tt.tickettypeid , tickettypename,quantity,orderdate, price * quantity as price from tickettype tt inner join ticketorder tto on tt.tickettypeid = tto.tickettypeid")
+	@Select("select ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC;")
 	public List<ProfitDto> selectAll();
 
-	@Select("select ticketorderid, tt.tickettypeid , tickettypename,quantity,orderdate, price * quantity as price from tickettype tt inner join ticketorder tto on tt.tickettypeid = tto.tickettypeid where orderdate >= #{startDate} AND orderdate <= #{endDate}")
-	public List<ProfitDto> selectByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	@Select("SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price\n"
+			+ "FROM tickettype tt\n"
+			+ "INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid\n"
+			+ "WHERE orderdate >= #{startDate} AND orderdate <= #{endDate}\n"
+			+ "ORDER BY orderdate DESC;")
+	public List<ProfitDto> selectByDate(Map<String, Date> map);
 
 	public int deleteById(int orderId);
 }

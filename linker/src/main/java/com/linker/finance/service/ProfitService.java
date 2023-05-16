@@ -1,7 +1,10 @@
 package com.linker.finance.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +50,11 @@ public class ProfitService {
 
 	public List<ProfitDto> selectByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
-		return dao.selectByDate(startDate, endDate);
+		Map<String , Date> map = new HashMap<>();
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		
+		return dao.selectByDate(map);
 	}
 	
 }

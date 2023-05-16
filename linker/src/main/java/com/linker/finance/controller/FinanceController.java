@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.linker.finance.dto.ProfitDto;
 import com.linker.finance.service.ProfitService;
 
@@ -56,15 +58,22 @@ public class FinanceController {
     	
     	return"";
     }
-    @RequestMapping(value = "/filtered_data", method = RequestMethod.GET)
+    @RequestMapping("/filtered_data")
+    @ResponseBody
     public String fetchFilteredData(
         @RequestParam("start-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
         @RequestParam("end-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
         Model model) {
 
       List<ProfitDto> filteredData = profitService.selectByDate(startDate, endDate);
-      model.addAttribute("plist", filteredData);
-      return "finance/profit"; // JSP 페이지 파일명을 입력하십시오
+      
+      Gson gson = new Gson();
+      String list = gson.toJson(filteredData);
+      
+      System.out.println(list);
+      
+      return list;
+     // return "finance/profit"; // JSP 페이지 파일명을 입력하십시오
     }
     
 }
