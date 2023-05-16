@@ -1,47 +1,53 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- 폼을 쉽게 생성하기 위한 태그 라이브러리를 사용하기 위한 선언문 -->
+<!-- form 태그 라이브러리를 사용하여 HTML 폼을 생성하고, 데이터를 전송하는 기능을 제공함 -->
+<!-- 폼 필드의 값을 설정하거나 검증하는 등의 기능을 손쉽게 처리할 수 있음 -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
+    <title>Document</title>
 </head>
 <body>
-    <body>
-       <div class = "header">
-        <h1><a href="index.html"><img src="img/Linker.png" alt="Linker"></a></h1>
-       </div>
-    </body>
-    <body>
-        <div class="container">
-            <!-- center-->
-            <form>
-                <fieldset>
-                    <h3>회원로그인</h3>
-                    <legend>회원 로그인</legend>
-                    <div>
-                      <tr>
-                        <td><input type = "text" name="id" placeholder="아이디">
-                        <form:errors path="id"></form:errors></td>
-                      </tr>
-                      <tr>
-                        <td><input type = "password" name="password" placeholder="비밀번호"></td>
-                        </tr>
-                        <input type="checkbox" checked id="chkID">
-                        <label for = "chkID">아이디 저장</label><br>
-                         <input type="checkbox" checked id ="chkIDjeo">
-                        <label for ="chkIDjeo">로그인 유지</label>
-                        <br><br>
-
-                        <button type="submit" class="btnLogin" value="로그인">로그인</button>
-                     <button type="button" onclick="location.href='insert' " class="btnJoin">회원가입</button>
+    <form:form action="login" method="post" modelAttribute="command">
+        <form:errors element="div" />
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login">
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" class="login__input" name="userid" placeholder="아이디">
                     </div>
-                </fieldset>
-                
-            </form>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" class="login__input"  name ="password" placeholder="비밀번호">
+                    </div>
+                    <button class="button login__submit" onclick="location.href='main' ">
+                        <span class="button__text">로그인</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                   		
+                </form>
+                <div class="social-login">
+                    <a href="joinform">회원가입</a>
+                    <h4>아이디 찾기</h4>
+                    <h4>비밀번호 찾기</h4>
+                </div>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
         </div>
-       
-    </body>
+    </div>
+</form:form>
+
 </body>
 </html>
