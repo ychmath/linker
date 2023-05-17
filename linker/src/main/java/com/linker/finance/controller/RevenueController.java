@@ -26,6 +26,7 @@ public class RevenueController {
 	public String getAllIngredient(Model m) {
 		
 		List<RevenueDto> list = revenueService.getAllIngredient();
+		System.out.println(list);
 		System.out.println(list.size()); //저장된 객체 확인 (잘 가져온다면 쓸 필요는 없다)
 		m.addAttribute("Ilist",list);
 		

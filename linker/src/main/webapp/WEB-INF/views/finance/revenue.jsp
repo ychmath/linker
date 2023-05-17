@@ -9,11 +9,123 @@ String end_date = request.getParameter("end_date");%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>지출 내역</title>
 </head>
+<style>
+#B {
+  width: 800px;
+  height: 400px; /* 수정된 높이값 */
+  border-top: 1px solid #444444;
+  padding: 10px;
+  text-align: center;
+  border-collapse: collapse;
+  display: block;
+  margin: 0 auto; 
+}
+#C{
+border-bottom: 1px solid #444444;
+    padding: 10px;
+}
+ table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    border-left: 1px solid #444444;
+    padding: 10px;
+  }
+
+  th{
+   background-color: #D9D9D9;
+  
+  }
+  td{
+  	text-align: center;
+  }
+  th:first-child, td:first-child {
+    border-left: none;
+  }
+#B > div {
+  width: 100%;
+
+  box-sizing: border-box; /* border와 padding을 포함한 크기를 지정합니다. */
+  float: left; /* 좌우 정렬을 위해 float 속성을 사용합니다. */
+}
+#B > div:first-child {
+  padding-right: 104px; /* 첫 번째 div 요소 오른쪽에 10px의 padding을 추가합니다. */
+}
+#B > div:last-child {
+  padding-left: 10px; /* 마지막 div 요소 왼쪽에 10px의 padding을 추가합니다. */
+}
+#B table {
+  width: 100%;
+  height: 100%;
+}
+.test_obj input[type="radio"] {
+        display: none;
+    }
+ 
+    .test_obj input[type="radio"] + span {
+        display: inline-block;
+/*         padding: 15px 10px;
+ */        border: 1px solid #dfdfdf;
+        background-color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+         width: 60px;
+  		height: 30px;
+  		float: left;
+        
+    }
+ 
+    .test_obj input[type="radio"]:checked + span {
+        background-color: #113a6b;
+        color: #ffffff;
+    }
+    #start-date-input{
+    	float:left;
+    }
+    #end-date-input{
+    	float:left;
+    }
+    
+    #P{
+     float:left;
+    }
+  	#myButton{
+  	float:left;
+  	}
+  	.resetButton{
+  	display: inline-block;
+  	background-color:#ffffff;
+  	padding: 2px 4px;
+  	border: 1px solid #ccc;
+  	cursor:pointer;
+  	margin-left: 10px;
+  	
+  	}
+  	.resetButton{
+  	display: inline-block;
+  	background-color: #ffffff;
+  	padding: 2px 4px;
+  	border: 1px soild #ccc;
+  	cursor: pointer;
+  	margin-left: 10px;
+  	}
+  	.resetButton:hover{
+  	background-color: #e0e0e0;
+  	}
+  	
+    
+</style>
 <body>
-<form>
-<div>
+<%-- <form:form> --%>
+<form action="${pageContext.request.contextPath}/finance/filtered_data" method="get">
+<div> <!--  id="B" --> 
+  <div> <!-- style="display:flex; align-items:center;" -->
+  
 <p><strong>지출 내역</strong><p><br>
 	<table id="data-table">
 		<tr>
@@ -51,32 +163,123 @@ function search(){
 	showSaledResult(start_date, end_date);
 }
 </script>
+<button type="button" id="myButton" onclick="search()">검색 </button>
+
 <script>
-	$(function(){
-		$("input[type='radio']").on("change", function(){
-			var dateRange = $(this).val();
-			var startDate = "";
-			var endDate ="";
+
+function resetSearch(){
+	
+	location.assign("${pageContext.request.contextPath}/revenue/ingredient");
+}
+$(function(){
+    $("input[type='radio'][name='date']").on("change", function(){
+        var dateRange =  $(this).val();
+        var startDate = "";
+        var endDate = "";
 			
-			switch (dateRange){
-				case "today":
-					sta
-			}
-			
-			
-		})
+			 switch (dateRange) {
+	          case "today":
+	            startDate = new Date();
+	            endDate = new Date();
+	            break;
+	          case "1month":
+	            startDate = new Date();
+	            startDate.setMonth(startDate.getMonth() - 1);
+	            endDate = new Date();
+	            break;
+	          case "3month":
+	            startDate = new Date();
+	            startDate.setMonth(startDate.getMonth() - 3);
+	            endDate = new Date();
+	            break;
+	          case "1year":
+	            startDate = new Date();
+	            startDate.setFullYear(startDate.getFullYear() - 1);
+	            endDate = new Date();
+	            break;
+	        }
+			 var startYear = startDate.getFullYear();
+		        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
+		        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
+		        var endYear = endDate.getFullYear();
+		        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
+		        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
+
+		        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
+		        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
+
+		        showSaledResult(startDateStr, endDateStr);
+		    });
+		});
 		
-		
-		
+	function showSaledResult(start, end) {
+		 $.ajax({
+		        url: "./filtered_data",
+		        data: {
+		            "start-date": start,
+		            "end-date": end
+		        },
+		        type: "GET",
+		        dataType:"json",
+		        success: function (data) {
+		            updateTableWithNewData(data);
+		        },
+		        error: function (error) {   
+		            console.log(error);
+		        }
+		    });
+		}
+	function updateTableWithNewData(data) {
+	    var table_data = '';
+	    //$.each(data, function (index, profit) {
+	    	
+	    	for (var i = 0; i < data.length; i++){
+	        let profit = data[i];
+	    	table_data += '<tr>';
+	        table_data += '<td>'+ revenue.orderid+'</td>';
+	        table_data += '<td>'+ revenue.ingredientname +'</td>';
+	        table_data += '<td>'+ revenue.price+'</td>';
+	        table_data += '<td>'+ revenue.orderdate +'</td>';
+	        table_data += "<td>"+ new Date(profit.orderdate).toISOString().split('T')[0] +"</td>";
+	        
+	        table_data += '</tr>';
+	    	}
+	    //});
+
+	    $("#saled").empty();
+	    $("#saled").append(table_data);
 	}
-
-
-
-</script>
+	</script>
+	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+	</tr>
 
 	
-	</table>
+	</table><br>
+</div>
+	<div>
+	<table>
+	<thead>
+		<tr>
+		<th scope="col">발주 번호</th>
+		<th scope="col">식자재 이름</th>
+		<th scope="col">총 가격</th>
+		<th scope="col">주문 일자</th>
+	
+	</tr>
+	</thead>
+	<tbody id = "saled">
+	<c:forEach items="${Ilist}" var="revanue">
+	<tr>
+		<td>${revanue.orderid}</td>
+		<td>${revanue.ingredientname}</td>
+		<td>${revanue.price}</td>    
+		<td><fmt:formatDate value="${revanue.orderdate}" pattern="yyyy-MM-dd" /></td>
 
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	</div>
 </div>
 
 
