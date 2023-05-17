@@ -40,14 +40,14 @@ a {
 			<a href="write">새 글 등록</a>
 		</div>
 
-		<c:if test="${count != 0 }">
+		<c:if test="${ count != 0 }">
 			<table>
 				<tr>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
 				</tr>
-				<c:forEach items="${menuList}" var="menu">
+				<c:forEach items="${ menuList }" var="menu">
 					<tr>
 						<td><a href ="content/${ menu.menuID }">${ menu.title }</a></td>
 						<td>${ menu.userID }</td>
