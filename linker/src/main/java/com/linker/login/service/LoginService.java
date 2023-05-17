@@ -59,5 +59,11 @@ public class LoginService {
 	    return errorMap;
 	}
 
+	public boolean checkPassword(String password) {
+		String userid = "";
+		String currentPassword = dao.getPassword(userid);
+		return password.equals(currentPassword);
+	}
+
 }
 

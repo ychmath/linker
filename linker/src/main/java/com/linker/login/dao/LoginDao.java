@@ -3,6 +3,7 @@ package com.linker.login.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.linker.login.dto.LoginDto;
 
@@ -32,5 +33,5 @@ public interface LoginDao {
 
 	public String emailCheck(String email);
 	
-	
+	public String getPassword(@Param("userid") String userid);
 }

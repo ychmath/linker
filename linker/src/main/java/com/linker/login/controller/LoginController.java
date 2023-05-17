@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.linker.login.dao.LoginDao;
 import com.linker.login.dto.LoginDto;
 import com.linker.login.service.LoginService;
-
 
 import jakarta.validation.Valid;
 
@@ -36,9 +36,6 @@ public class LoginController{
 	 @Autowired
 	 private LoginDao dao;
 	 
-	 
-
-	
 	@ModelAttribute("user") 
 	//컨트롤러의 메서드에 적용하여 해당 메서드가 반환하는 객체를 모델에 자동으로 추가함
 	//이를 통해 뷰에서 해당 객체에 접근하여 사용할 수 있음
@@ -87,7 +84,7 @@ public class LoginController{
 
 //--------------------------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/joinform")
+	@GetMapping("/insert")
 	public String joinform() {
 		return "Login/joinform";
 	}
@@ -113,7 +110,7 @@ public class LoginController{
 	
 	@GetMapping("/update")
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
-		return "Login/updateform";
+		return "Login/preupdateform";
 	}
 	
 	@PutMapping("/update")
@@ -157,6 +154,12 @@ public class LoginController{
 	    service.insertUser(dto);
 	    return "redirect:/auth/login";
 	}
-
 	
+	   @PostMapping("/check-password") 
+	    public boolean checkPassword(@RequestBody Map<String, String> body) { 
+	        String password = body.get("password"); 
+	        return service.checkPassword(password); 
+	    } 
+	    
+
 }
