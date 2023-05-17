@@ -41,7 +41,7 @@
 			</c:forEach>
 			</table>
 			
-			<div id="page">
+			<div id="page"> 
 				<c:if test="${begin > pageNum }">
 					<a href="search?p=${begin-1 }&search=${search }&searchn=${searchn}">[이전]</a>
 				</c:if>
