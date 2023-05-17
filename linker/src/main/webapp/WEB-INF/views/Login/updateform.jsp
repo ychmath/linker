@@ -29,6 +29,8 @@
 	<button id ="btn-update" class="btn-primary">회원수정 완료</button>
 	</form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	
+<script>
+
+</script>
 </body>
 </html>

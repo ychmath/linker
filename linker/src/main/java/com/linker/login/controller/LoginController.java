@@ -116,7 +116,7 @@ public class LoginController{
 		return "Login/updateform";
 	}
 	
-	@PutMapping("/update")
+	@PostMapping("/update")
 	public String update(@ModelAttribute("user") LoginDto dto) {
 		service.updateUser(dto);
 		return "redirect:/main";
