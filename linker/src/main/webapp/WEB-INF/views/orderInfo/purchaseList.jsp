@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>식권 구매 내역</title>
 </head>
 <body>
+
+
 
 </body>
 </html>

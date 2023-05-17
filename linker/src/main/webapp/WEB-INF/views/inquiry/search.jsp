@@ -15,7 +15,6 @@
 			<form action="search"> <!-- 검색어를 입력하고 검색을 수행하는 부분 -->
 				<select name="searchn"> <!-- select: 검색 조건을 선택하는 드롭다운 메뉴를 생성하는 부분 -->
 					<option value="0">제목</option>
-					<option value="1">내용</option>
 					<option value="2">작성자</option>
 				</select>
 					<input type="text" name="search" size="15" maxlength="50" />
@@ -27,10 +26,10 @@
 		<c:if test="${count != 0 }">
 			<table>
 				<tr>
+					<th>게시글 번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수</th>
 				</tr>
 			<c:forEach items="${iList }" var="inquiry">
 				<tr>

@@ -25,7 +25,7 @@ public class InquiryService {
 		if(dto.getRef()==0) { //제목글
 			//System.out.println(dto);
 			dao.insertInquiry(dto);
-			
+			dao.updateRef(dto.getInquirypostid());
 		}
 		else { //답글
 			dto.setRestep(dto.getRestep()+1);

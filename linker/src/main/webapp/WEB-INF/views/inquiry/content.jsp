@@ -47,7 +47,7 @@ table{
 	
 	<div>
 		<span>
-			<input type="button" value="답글쓰기" onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&title=${dto.title }&restep=${dto.restep }&relevel=${dto.relevel }'" />
+			<input type="button" value="답글쓰기" onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&ref=${dto.ref }&restep=${dto.restep }&relevel=${dto.relevel }'" />
 		</span>
 		<span>
 			<input type="button" value="목록" onclick="location.href='../inquiry'" />

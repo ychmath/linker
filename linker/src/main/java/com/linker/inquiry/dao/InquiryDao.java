@@ -39,7 +39,7 @@ public interface InquiryDao {
 	@Delete("delete from inquirypost where inquirypostid=#{inquirypostid}")
 	public int deleteInquiry(int inquirypostid);
 	
-	@Select("select * from inquirypost order by creationdate desc, inquirypostid desc, ref desc, restep asc limit #{start}, #{count} ")
+	@Select("select * from inquirypost order by ref desc, restep asc limit #{start}, #{count} ")
 	List<InquiryDto> inquiryList(Map<String, Object> m);
 	
 	@Select("select * from inquirypost where inquirypostid=#{inquirypostid}")

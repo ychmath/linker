@@ -15,9 +15,5 @@ public class TicketService {
 	public int buyTicket(TicketOrderDto dto) {
 		return dao.buyTicket(dto);
 	}
-	
-	public int total() {
-		return dao.total();
-	}
-	
+
 }

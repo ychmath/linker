@@ -14,6 +14,7 @@ table{
 </head>
 <body>
 	<form method="post" id="writeinquiry" action="write">
+			
 		<table border="1">
 			<tr>
 				<td>제목</td>

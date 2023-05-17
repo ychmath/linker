@@ -10,10 +10,17 @@
 	<div>
 	<form method="post" name="writeComm" id="writeComm">
 		<table>
+		
 			<tbody>
 				<tr>
 					<th>작성자</th>
-					<td><input type="text" name="userid" value="${user.userid }" readonly></td>
+					<td><input type="text" name="userid" value="${user.userid }" readonly>
+					
+					<input type="hidden" name="inquirypostid" value="${dto.inquirypostid}" />
+				<input type="hidden" name="ref" value="${dto.ref}" />
+				<input type="hidden" name="re_step" value="${dto.restep}" />
+				<input type="hidden" name="re_level" value="${dto.relevel}" />
+					</td>
 				</tr>
 				
 				<tr>

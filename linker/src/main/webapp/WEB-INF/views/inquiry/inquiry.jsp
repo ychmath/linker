@@ -82,7 +82,6 @@ td{
 	</table>
 
 
-	<c:if test="${count != 0}">
 	<table>
 		<tr>
 			<th>게시글 번호</th>
@@ -90,19 +89,19 @@ td{
 			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
-	</c:if>
+	
 	
 	<c:if test="${count > 0 }">
 		<c:forEach items="${iList }" var="inquiry">
 		<tr>
 			<td>
-				<c:out value="${start }" />
+				<c:out value="${start}" />
 				<!-- jsp 페이지 상에서 출력할 변수 값을 표시해주는 역할 -->
 				<c:set var="start" value="${start+1 }" />
 				<!-- 변수에 값을 할당할 때 사용하는 태그 -->
 			</td>
 					
-			<td><a href="content/${inquiry.inquirypostid }">${inquiry.title }
+			<td><a href="content/${inquiry.inquirypostid }">
 					<c:if test="${inquiry.relevel > 0 }">
 					<!-- 답변글이있으면 -->
 					<span class="icon">
@@ -111,6 +110,7 @@ td{
 					<!-- alt: 이미지가 표시되지 못한 경우에 이미지 대신 사용할 대체 텍스트를 정의하는 속성 -->
 					</span>
 					</c:if>
+					${inquiry.title }
 					<c:if test="${inquiry.readcount >= 20 }">
 					<span class="icon">
 					<img src="/img/hot.gif" alt="인기글" />

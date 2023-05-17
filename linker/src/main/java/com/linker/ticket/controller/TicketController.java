@@ -29,11 +29,4 @@ public class TicketController {
 		return "ticket/buyTicket";
 	}
 	
-	@GetMapping("/ticket/totalTicket")
-	public String total(Model m) {
-		service.total();
-		return "ticket/totalTicket";
-	}
-	
-	
 }

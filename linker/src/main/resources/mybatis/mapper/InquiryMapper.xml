@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.linker.inquiry.dao.InquiryDao">
 
-<select id="inquiryListSearch" parameterType="map" resultType="com.linker.inquiry.dao.InquiryDao">
+<select id="inquiryListSearch" parameterType="map" resultType="com.linker.inquiry.dto.InquiryDto">
 	
 	select * from inquirypost
 	<where>
@@ -26,11 +26,11 @@
 	select count(*) from inquirypost
 	<where>
 		<choose>
-			<when test="search == 0">
+			<when test="searchn == 0">
 				title like concat('%', #{search}, '%')
 			</when>
 			<when test="searchn == 1">
-				userid like concat('%', #{searchn), '%')
+				userid like concat('%', #{search}, '%')
 			</when>
 		</choose>
 	</where>

@@ -52,6 +52,7 @@ public class InquiryController {
 			if(end > totalPages) {
 				end = totalPages;
 			}
+			m.addAttribute("start",startRow+1);
 			m.addAttribute("pageNum", pageNum);
 			m.addAttribute("totalPages", totalPages);
 			m.addAttribute("begin", begin);
@@ -80,7 +81,7 @@ public class InquiryController {
 	@PostMapping("/inquiry/writeComm")
 	public String writecomm(InquiryDto dto) {
 		service.insertInquiry(dto);
-		return "inquiry/inquiry";
+		return "redirect:/inquiry/inquiry";
 	}
 	
 	@GetMapping("/inquiry/content/{inquirypostid}")
@@ -112,6 +113,7 @@ public class InquiryController {
 	
 	@GetMapping("/inquiry/search")
 	public String search(int searchn, String search, @RequestParam(name="p", defaultValue="1")int page, Model m) {
+		System.out.println();
 		int count = service.countSearch(searchn, search);
 		//searchn, search을 기준으로 검색한 결과의 총 개수를 조회
 		if(count > 0) {

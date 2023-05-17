@@ -3,9 +3,8 @@ package com.linker.ticket.dto;
 import lombok.Data;
 
 @Data
-public class TicketTypeDto {
+public class TicketTypeDto extends TicketOrderDto{
 
-	private int tickettypeid;
 	private String tickettypename;
 	private int price;
 	
