@@ -16,34 +16,19 @@ public class ProfitService {
     @Autowired
     ProfitDao dao;
 
-    public int insert(ProfitDto dto) {
-        return dao.insert(dto);
-    }
-
-    public List<ProfitDto> selectAll() {
-        return dao.selectAll();
-    }
-
-    public int deleteById(int orderId) {
-        return dao.deleteById(orderId);
-    }
-
 	public List<ProfitDto> getAllOrders() {
 	    return dao.selectAll();
 	}
 
 	public List<ProfitDto> getOrdersByDate(String date) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public int deleteOrderById(int orderId) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int addOrder(ProfitDto dto) {
-		// TODO Auto-generated method stub
 		return 0;
 	
 	}

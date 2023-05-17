@@ -12,7 +12,6 @@ import com.linker.finance.dto.ProfitDto;
 
 @Mapper
 public interface ProfitDao {
-	public int insert(ProfitDto dto);
 
 	@Select("select ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC;")
 	public List<ProfitDto> selectAll();
@@ -24,5 +23,4 @@ public interface ProfitDao {
 			+ "ORDER BY orderdate DESC;")
 	public List<ProfitDto> selectByDate(Map<String, Date> map);
 
-	public int deleteById(int orderId);
 }

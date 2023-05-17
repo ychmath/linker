@@ -17,17 +17,27 @@ public class TicketorderService {
 	TicketorderDao dao;
 
 	public List<TicketorderDto> getAllTicketorder() {
-		// TODO Auto-generated method stub
 		return dao.selectAll();
+	}
+	
+	public List<TicketorderDto> getOrdersByDate(String date) {
+		return null;
+	}
+
+	public int deleteOrderById(int orderId) {
+		return 0;
+	}
+
+	public int addOrder(TicketorderDto dto) {
+		return 0;
+	
 	}
 
 	public List<TicketorderDto> selectByDate(Date startDate, Date endDate) {
-		Map<String, Date> map = new HashMap<>();
+		Map<String , Date> map = new HashMap<>();
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);
 		
 		return dao.selectByDate(map);
 	}
-
-
 }

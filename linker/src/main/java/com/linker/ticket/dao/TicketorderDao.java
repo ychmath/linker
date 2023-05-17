@@ -12,10 +12,12 @@ import com.linker.ticket.dto.TicketorderDto;
 
 @Mapper
 public interface TicketorderDao {
-	@Select("SELECT ticketorder.tickettypeid, quantity, orderdate FROM ticketorder INNER JOIN tickettype ON ticketorder.tickettypeid = tickettype.tickettypeid;")
+	@Select("select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC;")
 	public List<TicketorderDto> selectAll();
 
-	@Select("SELECT ticketorder.tickettypeid, quantity, orderdate FROM ticketorder INNER JOIN tickettype ON ticketorder.tickettypeid = tickettype.tickettypeid where orderdate >= #{startDate} and orderdate <= #{endDate} order by orderdate DESC;")
+	@Select("select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid WHERE orderdate >= #{startDate} AND orderdate <= #{endDate} ORDER BY orderdate DESC;")
 	public List<TicketorderDto> selectByDate(Map<String,Date> map);
+	
+	public int deleteById(int orderId);
 }
 

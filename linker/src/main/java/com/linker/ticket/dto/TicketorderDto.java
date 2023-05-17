@@ -6,9 +6,12 @@ import lombok.Data;
 
 @Data
 public class TicketorderDto {
-	private String tickettypename;
-	private int quantity;
-	private Date orderdate;
 	
-
+	private int ticketorderid;
+	private Date orderdate;
+	private String tickettypename;
+	private int price;
+	private int quantity;
+	private int totalprice;
+	
 }

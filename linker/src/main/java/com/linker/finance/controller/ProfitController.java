@@ -17,50 +17,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.linker.finance.dto.RevenueDto;
-import com.linker.finance.service.RevenueService;
+import com.linker.finance.dto.ProfitDto;
+import com.linker.finance.service.ProfitService;
 
 @Controller
-@RequestMapping("/revenue")
-public class RevenueController {
+@RequestMapping("/finance")
+public class ProfitController {
 	@Autowired
-	private RevenueService revenueService;
+	private ProfitService profitService;
 
-	@GetMapping("/ingredient")
-	public String getAllIngredient(Model m) {
+	@GetMapping("/orders")
+	public String getAllOrders(Model m) { // model - 뷰에 전달될 데이터 view - 화면을 만들 jsp
 
-		List<RevenueDto> list = revenueService.getAllIngredient();
-		m.addAttribute("Ilist", list);
+		List<ProfitDto> list = profitService.getAllOrders();
+		System.out.println(list.size());
+		m.addAttribute("plist", list);
 
-		return "finance/revenue";
+		return "finance/profit";
 	}
 
-	@GetMapping("/ingredient/{date}")
-	public List<RevenueDto> getOrdersByDate(@PathVariable String date) {
-		return revenueService.getOrdersByDate(date);
+	@GetMapping("/orders/{date}")
+	public List<ProfitDto> getOrdersByDate(@PathVariable String date) {
+		return profitService.getOrdersByDate(date);
 	}
 
-	@PostMapping("/ingredient")
-	public int addOrder(@RequestBody RevenueDto dto) {
-		return revenueService.addOrder(dto);
+	@PostMapping("/orders")
+	public int addOrder(@RequestBody ProfitDto dto) {
+		return profitService.addOrder(dto);
 	}
 
-	@DeleteMapping("/ingredient/{orderId}")
+	@DeleteMapping("/orders/{orderId}")
 	public int deleteOrderById(@PathVariable int orderId) {
-		return revenueService.deleteOrderById(orderId);
+		return profitService.deleteOrderById(orderId);
 	}
 
-	public String selectAll(RevenueDto revenue) {
+	public String selectAll(ProfitDto profit) {
 
 		return "";
 	}
 
-	@RequestMapping("/filtered_data_i")
+	@RequestMapping("/filtered_data_o")
 	@ResponseBody
 	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
 
-		List<RevenueDto> filteredData = revenueService.selectByDate(startDate, endDate);
+		List<ProfitDto> filteredData = profitService.selectByDate(startDate, endDate);
 
 		Gson gson = new Gson();
 		String list = gson.toJson(filteredData);

@@ -122,7 +122,7 @@ border-bottom: 1px solid #444444;
 
 <body>
 <%-- <form:form> --%>
-<form action="${pageContext.request.contextPath}/finance/filtered_data" method="get">
+<form action="${pageContext.request.contextPath}/finance/filtered_data_o" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
@@ -221,7 +221,7 @@ $(function(){
 
 function showSaledResult(start, end) {
 	 $.ajax({
-	        url: "./filtered_data",
+	        url: "./filtered_data_o",
 	        data: {
 	            "start-date": start,
 	            "end-date": end
