@@ -1,47 +1,46 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+        <style>
+      ul {
+          display: flex;
+          list-style-type: none;
+          gap: 15px;
+      }
+    </style>
     <title>로그인</title>
-    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <body>
-       <div class = "header">
-        <h1><a href="index.html"><img src="img/Linker.png" alt="Linker"></a></h1>
-       </div>
-    </body>
-    <body>
-        <div class="container">
-            <!-- center-->
-            <form>
-                <fieldset>
-                    <h3>회원로그인</h3>
-                    <legend>회원 로그인</legend>
-                    <div>
-                      <tr>
-                        <td><input type = "text" name="id" placeholder="아이디">
-                        <form:errors path="id"></form:errors></td>
-                      </tr>
-                      <tr>
-                        <td><input type = "password" name="password" placeholder="비밀번호"></td>
-                        </tr>
-                        <input type="checkbox" checked id="chkID">
-                        <label for = "chkID">아이디 저장</label><br>
-                         <input type="checkbox" checked id ="chkIDjeo">
-                        <label for ="chkIDjeo">로그인 유지</label>
-                        <br><br>
-
-                        <button type="submit" class="btnLogin" value="로그인">로그인</button>
-                     <button type="button" onclick="location.href='insert' " class="btnJoin">회원가입</button>
+    <form:form action="login" method="post" modelAttribute="command">
+        <form:errors element="div" />
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login">
+                    <div class="login__field">
+                        <input type="text" class="login__input" name="userid" placeholder="아이디">
                     </div>
-                </fieldset>
-                
-            </form>
+                    <div class="login__field">
+                        <input type="password" class="login__input"  name ="password" placeholder="비밀번호">
+                    </div>
+                    <button class="submit" onclick="location.href='main' ">
+                        <span class="button__text">로그인</span>
+                    </button>
+                   		
+                </form>
+                <ul>
+                    <li><a href="joinform">회원가입</a></li>
+                     <li><a href="">아이디 찾기</a></li>
+                    <li> <a href="">비밀번호 찾기</a></li>
+                  </ul>
+            </div>
         </div>
-       
-    </body>
+    </div>
+</form:form>
+
 </body>
 </html>

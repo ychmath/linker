@@ -17,6 +17,6 @@ public class LinkerApplication {
 	        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
 	        return hiddenHttpMethodFilter;
 	    }
-	
+
 }
   
