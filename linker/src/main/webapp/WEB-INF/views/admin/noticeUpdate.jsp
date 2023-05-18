@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 수정</title>
+<title>공지사항 작성</title>
 </head>
 <body>
 

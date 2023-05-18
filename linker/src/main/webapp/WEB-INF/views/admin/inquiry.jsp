@@ -65,7 +65,7 @@ a {
 				</div>
 			</c:if>
 		</div>
-		<a href="/admin">목록으로 돌아가기</a>
+		<a href="/admin">관리자 페이지로 돌아가기</a>
 	</div>
 </body>
 </html>

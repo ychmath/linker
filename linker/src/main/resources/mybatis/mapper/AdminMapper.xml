@@ -31,11 +31,11 @@
 		delete from user where userid = #{userid}
 	</delete>
 	<!-- 문의사항 게시글 삭제 -->
-	<delete id="deleteInquiry">
+	<delete id="deleteInquiry" parameterType="int">
 		delete from inquirypost where inquirypostid = #{inquirypostid}
 	</delete>
 	<!-- 공지사항 게시글 삭제 -->
-	<delete id="deleteNotice">
+	<delete id="deleteNotice" parameterType="int">
 		delete from noticepost where noticepostid = #{noticepostid}
 	</delete>
 

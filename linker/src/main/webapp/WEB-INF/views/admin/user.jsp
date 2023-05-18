@@ -49,7 +49,7 @@ a {
 							<td>${ user.phone }</td>
 							<td>${ user.role }</td>
 							<td><fmt:formatDate value="${ user.signupdate }" dateStyle="short"/></td>
-							<td><a id="delete" href="/admin/delete/${ user.userid }" >삭제</a></td>
+							<td><a id="delete" href="/admin/user/delete/${ user.userid }" >삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -69,7 +69,7 @@ a {
 				</div>
 			</c:if>
 		</div>
-		<a href="/admin">목록으로 돌아가기</a>
+		<a href="/admin">관리자 페이지로 돌아가기</a>
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -82,7 +82,7 @@ a {
 			var userid = splitUrl[arr-1];
 			
 			$.ajax({
-				url: "/admin/delete/" + userid,
+				url: "/admin/user/delete/" + userid,
 				method: "delete",
 				data:{"userid":userid}
 			}).done(function(result){
