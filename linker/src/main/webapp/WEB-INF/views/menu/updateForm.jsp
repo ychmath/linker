@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	$(function(){
+
 		var ajax_data = [];
 		
 		// make div editable > start
@@ -19,7 +20,7 @@
 			event.preventDefault();
 			
 			// make div editable
-	    		$(this).closest("div").attr("contenteditable", "true");
+	    	$(this).closest("div").attr("contenteditable", "true");
 			// add bg css
 			$(this).addClass("bg-warning").css("padding", "5px");
 			
@@ -59,7 +60,7 @@
 		$("#updateform").submit();
 		
 		});//click
-	});	// ready endu
+	});	// ready end
 </script>
 
 <form method="post" id="updateform" action="/menu/update/${ dto.menuID }" >

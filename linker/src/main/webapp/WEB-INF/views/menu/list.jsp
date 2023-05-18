@@ -40,7 +40,6 @@ a {
 		<div align="right">
 			<a href="write">새 글 등록</a>
 		</div>
-
 		<c:if test="${ count != 0 }">
 			<table>
 				<tr>
@@ -64,7 +63,7 @@ a {
 					<a href="list?p=${i}">${i}</a>
 				</c:forEach>
 				<c:if test="${end < totalPages }">
-					<a href="list?p=${end+1}">[다음]</a>
+					<a href="list?p=${ end+1 }">[다음]</a>
 				</c:if>
 			</div>
 

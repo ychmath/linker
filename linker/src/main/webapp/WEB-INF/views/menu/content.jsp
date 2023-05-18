@@ -11,15 +11,29 @@
 </head>
 <body>
 <table border="1">
-	<tr><td>제목</td><td>${dto.title}</td>
-	<tr><td>작성자</td><td>${dto.userID}</td>
-	<tr><td>내용</td><td>${ dto.content }</td>
-	<tr><td>등록일</td><td><fmt:formatDate value="${dto.creationDate}" dateStyle="long"/></td>
-	<tr><td colspan="2" align="right">
-	<a href="/menu/update/${ dto.menuID }">글 수정</a>
-	<a id="delete" href="/menu/delete/${dto.menuID}">글 삭제</a>
-	<a href="../list">목록 이동</a> 
-	</td></tr>
+	<tr>
+		<td>제목</td>
+		<td>${ dto.title }</td>
+	</tr>
+	<tr>
+		<td>작성자</td>
+		<td>${ dto.userID }</td>
+	</tr>
+	<tr>
+		<td>내용</td>
+		<td>${ dto.content }</td>
+	</tr>
+	<tr>
+		<td>등록일</td>
+		<td><fmt:formatDate value="${ dto.creationDate }" dateStyle="long"/></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+			<a href="/menu/update/${ dto.menuID }">글 수정</a>
+			<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
+			<a href="../list">목록 이동</a> 
+		</td>
+	</tr>
 </table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

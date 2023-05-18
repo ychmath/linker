@@ -42,24 +42,25 @@ $(function(){
 	}
 	
 	// create data table > start
-	var tbl = "";
+	var tbl = "";	// 테이블을 저장할 변수 선언
+	
 	tbl += "<table class=\'table table-hover'\ id=\'myTable'\>";
 	
 	// crate table header > start
-	tbl += "<thead>";
-	tbl += "<tr>";
-	tbl += "<th>시간</th>";
-	tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-	tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-	tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-	tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-	tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-	tbl += "</tr>";
-	tbl += "</thead>";
+		tbl += "<thead>";
+			tbl += "<tr>";
+				tbl += "<th>시간</th>";
+				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+			tbl += "</tr>";
+		tbl += "</thead>";
 	// create table > header > end
-	
+
 	// create table body > start
-	tbl += "<tbody>";
+		tbl += "<tbody>";
 	// create table body rows > start
 	$.each(ajax_data, function(index, val){
 		// database row id
@@ -67,20 +68,18 @@ $(function(){
 		
 		// looping through ajax row data
 		tbl += "<tr row_id=\'" + row_id + "'\>";
-		tbl += "<td><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
-		tbl += "<td><div class=\'row_data'\ edit_type=\'click'\' col_name=\'line1'\>" + val["line1"] + "</div></td>";
-		tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line2'\>" + val["line2"] + "</div></td>";
-		tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line3'\>" + val["line3"] + "</div></td>";
-		tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line4'\>" + val["line4"] + "</div></td>";
-		tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line5'\>" + val["line5"] + "</div></td>";
-		
+			tbl += "<td><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\' col_name=\'line1'\>" + val["line1"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line2'\>" + val["line2"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line3'\>" + val["line3"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line4'\>" + val["line4"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line5'\>" + val["line5"] + "</div></td>";
 		tbl += "</tr>";
 	});
-	// create table body rows > end
-	
-	tbl += "</tbody>";
+
+	// create table body rows > end	
+		tbl += "</tbody>";
 	// create table body > end
-	
 	tbl += "</table>";
 	// create data table > end
 	
@@ -91,12 +90,12 @@ $(function(){
 	$(document).on("click", ".row_data", function(event){
 
 		event.preventDefault();
-		
+
 		// make div editable
 		$(this).closest("div").attr("contenteditable", "true");
 		// add bg css
 		$(this).addClass("bg-warning").css("padding", "5px");
-		
+
 		$(this).focus();
 		
 	});
@@ -109,14 +108,15 @@ $(function(){
 		var tbl_row = $(this).closest('tr');
 		
 		tbl_row.find(".row_data")
-		.removeAttr("edit_type", "click")
-		.removeClass("bg-warning")
-		.css("padding", "")
+			.removeAttr("edit_type", "click")
+			.removeClass("bg-warning")
+			.css("padding", "")
 
 		var row_id = tbl_row.attr('row_id');
-		
+
 		//--->get row data > start
 		var arr = {}; 
+
 		tbl_row.find('.row_data').each(function(index, val) 
 		{   
 			var col_name = $(this).attr('col_name');  
@@ -127,12 +127,14 @@ $(function(){
 
 		//use the "arr"	object for your ajax call
 		$.extend(arr, {row_id:row_id});
-		
+	
 		var content = document.getElementById("table");
 		// console.log(table.outerHTML);
 		$("#content").val(table.outerHTML);
 		$("#content").attr("disabled", false);
+
 		$("#writeform").submit();
+
 	});
 	
 });	// ready end
