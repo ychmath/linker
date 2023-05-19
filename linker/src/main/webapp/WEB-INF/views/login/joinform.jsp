@@ -141,6 +141,12 @@
       };
 
       $(function () {
+    	  $("#userid, #password, #chk_password, #email, #phone2, #phone3").on(
+    			    "focus",
+    			    function () {
+    			      $(this).next(".error").html("");
+    			    }
+    			  );
         $("#id_check").click(function () {
           let id = $("#userid").val();
           if (!validateUserId(id)) {
@@ -201,7 +207,7 @@
           // 비밀번호 검증
           if (!validatePassword($("#password").val())) {
             $("#pw_msg").html(
-              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자 중 2가지 이상 조합이어야 합니다."
+              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자로 구성되어야 합니다."
             );
             return false;
           } else {
@@ -232,7 +238,7 @@
           let phone3 = $("#phone3").val();
           let phone = phone1 + "-" + phone2 + "-" + phone3;
           if (!validatePhoneNumber(phone)) {
-            $("#phone_msg").html("전화번호 형식이 올바르지 않습니다");
+            $("#phone_msg").html("전화번호 형식이 올바르지 않습니다. 3자리 - 3 or 4자리 - 4자리의 형식으로 적어주세요.");
             return false;
           } else {
             $("#phone_msg").html(""); // 조건이 맞으면 메시지를 삭제합니다.

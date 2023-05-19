@@ -7,8 +7,7 @@
 		parameterType="com.linker.login.dto.LoginDto">
 		insert into user
 		values(#{userid}, #{password}, #{name},
-		#{email}, #{phone}, #{role},
-		#{signupdate})
+		#{email}, #{phone}, #{role}, now())
 	</insert>
 	<update id="updateUser"
 		parameterType="com.linker.login.dto.LoginDto">
@@ -41,12 +40,14 @@
 		resultType="String">
 		select email from user where email=#{email}
 	</select>
+	
 	<select id="findId" resultType="String">
 		SELECT USERNAME
 		FROM BM_USER
 		WHERE EMAIL = #{email }
 	</select>
-	<select id="getPassword" parameterType="String" resultType="String">
-	select password from user where userid = #{userid}
-	</select>
+	
+	<select id="findUserById" parameterType="string" resultType="com.linker.login.dto.LoginDto">
+        SELECT * FROM uses WHERE user_id = #{userid}
+    </select>
 </mapper>

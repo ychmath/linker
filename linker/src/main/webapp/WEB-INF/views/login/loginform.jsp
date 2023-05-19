@@ -30,12 +30,12 @@
                     <button class="submit" onclick="location.href='main' ">
                         <span class="button__text">로그인</span>
                     </button>
-                   		
-                </form>
+                    </form>
+                    
                 <ul>
-                    <li><a href="joinform">회원가입</a></li>
-                     <li><a href="">아이디 찾기</a></li>
-                    <li> <a href="">비밀번호 찾기</a></li>
+                    <li><a href="/joinform">회원가입</a></li>
+                    <li><a href="">아이디 찾기</a></li>
+                    <li><a href="">비밀번호 찾기</a></li>
                   </ul>
             </div>
         </div>
