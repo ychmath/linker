@@ -24,6 +24,6 @@ public interface LoginDao {
 	List<LoginDto> userInfo();
 
 	public String emailCheck(String email);
-	
-	public LoginDto getUserById(String userid);
+
+	public LoginDto findByUserId(String userid);
 }

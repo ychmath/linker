@@ -38,9 +38,8 @@
 		update user set password=#{password} where
 		userid=#{userid}
 	</update>
-
-	<select id="getUserById" parameterType="String"
-		resultType="com.linker.login.dto.LoginDto">
-		select password from user where userid = #{userid}
-	</select>
+	
+    <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
+        select * from user where userid = #{userid}
+    </select>
 </mapper>

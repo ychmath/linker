@@ -13,7 +13,6 @@ import com.linker.login.dao.LoginDao;
 import com.linker.login.dto.LoginDto;
 
 
-
 @Service
 public class LoginService {
 	
@@ -31,15 +30,7 @@ public class LoginService {
 	public int updateUser(LoginDto dto) {
 		return dao.updateUser(dto);
 	}
-	
-	public LoginDto getUserById(String userid) {
-        return dao.getUserById(userid);
-    }
 
-    public Boolean checkCurrentPassword(String userid, String currentPassword) {
-    	LoginDto user = getUserById(userid);
-        return user != null && user.getPassword().equals(currentPassword);
-    }
 	public int deleteUser(String formpw, LoginDto dto) {
 		String pw = dto.getPassword();
 		if(pw.equals(formpw)) {
@@ -66,10 +57,9 @@ public class LoginService {
 
 	    return errorMap;
 	}
-
-	public boolean verifyCurrentPassword(String userid, String currentPassword) {
-		return false;
+	public boolean checkPassword(String userid, String currentPassword) {
+		LoginDto user = dao.findByUserId(userid);
+		return user != null && user.getPassword().equals(currentPassword);
 	}
-
 }
 
