@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.linker.login.dao.LoginDao;
 import com.linker.login.dto.LoginDto;
@@ -129,7 +130,7 @@ public class LoginController {
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
 		return "login/updateform";
 	}
-	
+
 	@PutMapping("/update")
 	public String update(@ModelAttribute("user") LoginDto dto) {
 		service.updateUser(dto);
@@ -153,4 +154,20 @@ public class LoginController {
 		}
 	}
 
+	@GetMapping("/checkcurrentpassword")
+	public String checkCurrentPassword() {
+		return "login/preupdateform";
+	}
+
+	@PostMapping("/checkcurrentpassword")
+	public String verifyCurrentPassword(@RequestParam("userid") String userid,
+			@RequestParam("password") String password, RedirectAttributes redirectAttributes) {
+		if (service.checkCurrentPassword(userid, password)) {
+			redirectAttributes.addAttribute("userid", userid);
+			return "login/updateform";
+		} else {
+			redirectAttributes.addFlashAttribute("errorMessage", "현재 비밀번호가 올바르지 않습니다.");
+			return "redirect:/check-current-password";
+		}
+	}
 }

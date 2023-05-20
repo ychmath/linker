@@ -32,6 +32,14 @@ public class LoginService {
 		return dao.updateUser(dto);
 	}
 	
+	public LoginDto getUserById(String userid) {
+        return dao.getUserById(userid);
+    }
+
+    public Boolean checkCurrentPassword(String userid, String currentPassword) {
+    	LoginDto user = getUserById(userid);
+        return user != null && user.getPassword().equals(currentPassword);
+    }
 	public int deleteUser(String formpw, LoginDto dto) {
 		String pw = dto.getPassword();
 		if(pw.equals(formpw)) {

@@ -8,7 +8,7 @@
 <body>
 	<h3><a href="update"><i class="bi bi-person-fill"></i>${user.userid}</a>님이 로그인하셨습니다.</h3>
 	
-	<a href="update">회원 정보 수정</a>
+	<a href="/check-current-password">회원 정보 수정</a>
 	<a href="delete">회원 탈퇴</a>
 	<a href="logout">로그아웃</a>
 	<a href="/notice/notice">공지사항</a>
