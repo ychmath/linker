@@ -51,13 +51,20 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m) {
-		// @ModelAttribute("command"): "command"라는 이름으로 바인딩되는 폼 데이터를 객체에 자동 매핑해줌
-		// @Validated: LoginDto 객체의 값이 유효한지 검증. 만약 유효하지 않은 값이 포함되어 있다면 에러메시지가
-		// "BindingResult error" 객체에 저장됨
-		// @Model: View로 데이터를 전달할 때 사용되는 객체
 		LoginDto resultDto = service.login(dto); // service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
-		if (resultDto == null) { // 'error' 객체에 로그인 실패 메시지를 추가
-			return "login/loginform";
+		if (error.hasErrors() || resultDto == null) {
+			
+			m.addAttribute("inputUserId", dto.getUserid());
+			
+	        if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
+	            m.addAttribute("useridError", "아이디를 입력해주세요.");
+	        }
+	        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+	            m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
+	        } else if (resultDto == null) {
+	            m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
+	        }
+	        return "login/loginform";
 		} else {
 			m.addAttribute("user", resultDto); // model 객체에 "user" 이름으로 LoginDto 객체를 저장
 		}
@@ -129,7 +136,7 @@ public class LoginController {
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
 		return "login/updateform";
 	}
-	
+
 	@PutMapping("/update")
 	public String update(@ModelAttribute("user") LoginDto dto) {
 		service.updateUser(dto);
@@ -152,5 +159,20 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
-
+	
+	@GetMapping("/checkPassword")
+	public String preUpdateForm() {
+		return "login/preupdateform";
+	}
+	
+	@PostMapping("/checkPassword")
+	public String checkPassword(@RequestParam("currentPassword") String currentPassword, 
+			@ModelAttribute("user") LoginDto user, Model model) {
+		boolean isPasswordCorrect = service.checkPassword(user.getUserid(), currentPassword);
+		if (isPasswordCorrect) {
+			return "redirect:/update";
+		}
+		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
+		return "login/preupdateform";
+	}
 }
