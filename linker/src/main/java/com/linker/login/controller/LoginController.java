@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.linker.login.dao.LoginDao;
 import com.linker.login.dto.LoginDto;
 import com.linker.login.service.LoginService;
 
@@ -30,9 +29,6 @@ public class LoginController {
 
 	@Autowired
 	LoginService service;
-
-	@Autowired
-	private LoginDao dao;
 
 	@ModelAttribute("user")
 	public LoginDto getDto() {

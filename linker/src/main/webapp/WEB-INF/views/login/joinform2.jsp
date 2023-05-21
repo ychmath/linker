@@ -8,7 +8,12 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
 #input, #result {
@@ -155,21 +160,136 @@
 		</div>
 	</form>
 
-	<!-- 필수 약관 버튼 클릭 시 출력되는 모달 -->
-	<div class="modal fade" id="mandatoryModal1" tabindex="-1"
-		role="dialog" aria-labelledby="mandatoryModal1Label"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<!-- 필수 약관 모달 -->
+	<div class="modal" id="mandatoryModal1">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="mandatoryModal1Label">(필수) 이용 약관
-						동의</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<h5 class="modal-title">(필수) 이용 약관 동의</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">Your mandatory terms 1 content...</div>
+				<div class="modal-body"
+					style="max-height: 400px; overflow-y: scroll;">
+					<h1>이용 약관</h1>
+					<h2>제 1 조 (목적)</h2>
+					<p>본 이용 약관은 Linker(이하 "회사")가 운영하는 www.linker.com(이하 "사이트")에서
+						제공하는 식권 구매 및 식자재 관리 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및
+						책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+
+					<h2>제 2 조 (용어의 정의)</h2>
+					<p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+					<ol>
+						<li>"회원"은 회사와 이용계약을 체결하고 이용자 아이디(ID)를 부여 받아 사이트의 정보를 지속적으로
+							제공받으며 회사가 제공하는 서비스를 지속적으로 이용할 수 있는 사이트 이용자를 말합니다.</li>
+						<li>"비회원"은 회원에 가입하지 않고 회사가 제공하는 서비스를 사용하는 사이트 이용자를 말합니다.</li>
+					</ol>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="mandatoryModal2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">(필수) 개인 정보 수집 및 이용 동의</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body"
+					style="max-height: 400px; overflow-y: scroll;">
+					<h3>개인정보 수집목적 및 이용목적</h3>
+					<p>
+						<strong>가. 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산</strong>
+					</p>
+					<ul>
+						<li>콘텐츠 제공 , 구매 및 요금 결제 , 물품 배송 또는 청구지 등 발송 , 금융거래 본인 인증 및 금융
+							서비스</li>
+					</ul>
+					<p>
+						<strong>나. 회원 관리</strong>
+					</p>
+					<ul>
+						<li>회원제 서비스 이용에 따른 본인 확인 , 개인 식별 , 불량회원의 부정 이용 방지와 비인가 사용 방지
+							, 가입 의사 확인 , 연령확인 , 만 14세 미만 아동 개인정보 수집 시 법정 대리인 동의 여부 확인, 불만처리 등
+							민원처리 , 고지 사항 전달</li>
+					</ul>
+					<h4>수집하는 개인정보 항목</h4>
+					<p>이름 , 로그인 ID , 비밀번호 , 이메일 , 14세 미만 가입자의 경우 법정대리인의 정보</p>
+
+					<h5>개인정보의 보유기간 및 이용기간</h5>
+					<p>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 다음의
+						정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.</p>
+					<ol>
+						<li><strong>가. 회사 내부 방침에 의한 정보 보유 사유</strong>
+							<ul>
+								<li>부정거래 방지 및 쇼핑몰 운영방침에 따른 보관 : 10년</li>
+							</ul></li>
+						<li><strong>나. 관련 법령에 의한 정보보유 사유</strong>
+							<ol>
+								<li>계약 또는 청약철회 등에 관한 기록
+									<ul>
+										<li>보존 이유 : 전자상거래 등에서의 소비자 보호에 관한 법률</li>
+										<li>보존 기간 : 5년</li>
+									</ul>
+								</li>
+								<li>대금 결제 및 재화 등의 공급에 관한 기록
+									<ul>
+										<li>보존 이유: 전자상거래 등에서의 소비자보호에 관한 법률</li>
+										<li>보존 기간 : 5년</li>
+									</ul>
+								</li>
+								<li>소비자 불만 또는 분쟁처리에 관한 기록
+									<ul>
+										<li>보존 이유 : 전자상거래 등에서의 소비자 보호에 관한 법률</li>
+										<li>보존 기간 : 3년</li>
+									</ul>
+								</li>
+								<li>로그 기록
+									<ul>
+										<li>보존이유: 통신비밀보호법</li>
+										<li>보존기간 : 3개월</li>
+									</ul>
+								</li>
+							</ol></li>
+					</ol>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 선택 약관 모달 -->
+	<div class="modal" id="optionalModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">(선택) 개인 정보 수집 및 이용 동의</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body"
+					style="max-height: 400px; overflow-y: scroll;">---- 여기에 선택 약관
+					1 내용을 입력하세요. ----</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="optionalModal2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">(선택) Linker 정보 수신 동의</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body"
+					style="max-height: 400px; overflow-y: scroll;">---- 여기에 선택 약관
+					2 내용을 입력하세요. ----</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 				</div>
@@ -177,74 +297,6 @@
 		</div>
 	</div>
 
-	<!-- 필수 약관 버튼 클릭 시 출력되는 모달 -->
-	<div class="modal fade" id="mandatoryModal2" tabindex="-1"
-		role="dialog" aria-labelledby="mandatoryModal1Label"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="mandatoryModal2Label">(필수) 개인 정보
-						수집 및 이용 동의</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Your mandatory terms 2 content...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 선택 약관 버튼 클릭 시 출력되는 모달 -->
-	<div class="modal fade" id="optionalModal1" tabindex="-1" role="dialog"
-		aria-labelledby="optionalModal1Label" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="optionalModal1Label">(선택) 개인 정보 수집
-						및 이용 동의</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Your optional terms 1 content...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 선택 약관 버튼 클릭 시 출력되는 모달 -->
-	<div class="modal fade" id="optionalModal2" tabindex="-1" role="dialog"
-		aria-labelledby="optionalModal1Label" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="optionalModal2Label">(선택) Linker
-						정보 수신 동의</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">Your optional terms 2 content...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
       const validateEmail = (email) =>
@@ -261,20 +313,17 @@
 
       $(function () {
  	  
-    	// 처음에는 구매자 옵션이 선택되어 있으므로 요청 메시지 입력창을 숨깁니다.
-    	  $("#approval_request").hide();
-
-    	// 역할 변경 이벤트 리스너를 추가합니다.
+    	  // 역할에 따른 가입 버튼 명칭 변경
     	  $("input[name='role']").change(function () {
-    	    if ($("#seller").is(":checked")) {
-    	      $("#approval_request").show();
-    	      $("#registerButton").val("승인 요청");
-    	    } else {
-    	      $("#approval_request").hide();
-    	      $("#registerButton").val("가입 하기");
-    	    }
-    	  });
+    		    if ($("#seller").is(":checked")) {
+    		      $("#approval_request").show();
+    		    } else {
+    		      $("#approval_request").hide();
+    		    }
+    		  });
 
+    	    
+    	  
     	  $("#userid, #password, #chk_password, #email, #phone2, #phone3").on(
     			    "focus",
     			    function () {
@@ -378,6 +427,7 @@
 	        var parentDiv = $(this).parent();
 	        var title = parentDiv.data("title");
 	        var content = parentDiv.data("content");
+	        showModal(title, content);
 	      });
 	    }
 	  
