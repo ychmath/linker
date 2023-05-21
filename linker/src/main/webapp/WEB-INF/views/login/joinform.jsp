@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>회원 가입</title>
 
 <link rel="stylesheet"
@@ -10,7 +11,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.bundle.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -311,16 +312,8 @@
       };
 
       $(function () {
-    	  
-    	   $("#optionalTerms2").on("change", function() {
-               if ($(this).is(":checked")) {
-                   $("#optionalTerms3, #optionalTerms4").prop("checked", true);
-               } else {
-                   $("#optionalTerms3, #optionalTerms4").prop("checked", false);
-               }
-           });
-    	  
-    	  
+ 	  
+    	  // 역할에 따른 가입 버튼 명칭 변경
     	  $("input[name='role']").change(function () {
     		    if ($("#seller").is(":checked")) {
     		      $("#approval_request").show();
@@ -329,43 +322,7 @@
     		    }
     		  });
 
-    	    function checkMandatoryTerms() {
-    	        var allMandatoryTermsChecked = true;
-    	        $("input[name='mandatoryTerms']").each(function () {
-    	            if (!this.checked) {
-    	                allMandatoryTermsChecked = false;
-    	                return false;
-    	            }
-    	        });
-    	        return allMandatoryTermsChecked;
-    	    }
-
-    	    // 처음에 '가입 완료' 버튼 비활성화
-    	    $('#registerButton').prop('disabled', true);
-
-    	    // 필수 약관 동의에 따른 회원가입 버튼 활성화 처리
-    	    $("input[name='mandatoryTerms']").on("change", function () {
-    	        if (checkMandatoryTerms()) {
-    	            // 모든 필수 약관에 동의하면 가입 버튼 활성화
-    	            $("#registerButton").prop("disabled", false);
-    	        } else {
-    	            // 필수 약관 중 하나라도 동의하지 않으면 가입 버튼 비활성화
-    	            $("#registerButton").prop("disabled", true);
-    	        }
-    	    });
-
-    	    // 필수 약관과 선택 약관 팝업을 관리하는 함수입니다.
-    	    function showTermsPopup(elementClass, buttonSelector) {
-    	      $(buttonSelector).on("click", function () {
-    	        var parentDiv = $(this).parent();
-    	        var title = parentDiv.data("title");
-    	        var content = parentDiv.data("content");
-    	        showModal(title, content);
-    	      });
-    	    }
-    	  
-    	    showTermsPopup(".mandatory", "button.mandatoryTermsBtn");
-    	    showTermsPopup(".optional", "button.optionalTermsBtn");
+    	    
     	  
     	  $("#userid, #password, #chk_password, #email, #phone2, #phone3").on(
     			    "focus",
@@ -439,7 +396,52 @@
             // 필수 약관 체크 이벤트를 강제로 발생하여 회원가입 버튼 활성화
             $('input[type=checkbox][name=mandatoryTerms]').change();
         });
-        
+        function checkMandatoryTerms() {
+	        var allMandatoryTermsChecked = true;
+	        $("input[name='mandatoryTerms']").each(function () {
+	            if (!this.checked) {
+	                allMandatoryTermsChecked = false;
+	                return false;
+	            }
+	        });
+	        return allMandatoryTermsChecked;
+	    }
+
+	    // 처음에 '가입 완료' 버튼 비활성화
+	    $('#registerButton').prop('disabled', true);
+
+	    // 필수 약관 동의에 따른 회원가입 버튼 활성화 처리
+	    $("input[name='mandatoryTerms']").on("change", function () {
+	        if (checkMandatoryTerms()) {
+	            // 모든 필수 약관에 동의하면 가입 버튼 활성화
+	            $("#registerButton").prop("disabled", false);
+	        } else {
+	            // 필수 약관 중 하나라도 동의하지 않으면 가입 버튼 비활성화
+	            $("#registerButton").prop("disabled", true);
+	        }
+	    });
+
+	    // 필수 약관과 선택 약관 팝업을 관리하는 함수입니다.
+	    function showTermsPopup(elementClass, buttonSelector) {
+	      $(buttonSelector).on("click", function () {
+	        var parentDiv = $(this).parent();
+	        var title = parentDiv.data("title");
+	        var content = parentDiv.data("content");
+	        showModal(title, content);
+	      });
+	    }
+	  
+	    showTermsPopup(".mandatory", "button.mandatoryTermsBtn");
+	    showTermsPopup(".optional", "button.optionalTermsBtn");
+	    
+  	  
+ 	   $("#optionalTerms2").on("change", function() {
+            if ($(this).is(":checked")) {
+                $("#optionalTerms3, #optionalTerms4").prop("checked", true);
+            } else {
+                $("#optionalTerms3, #optionalTerms4").prop("checked", false);
+            }
+        });
         
         $("#joinForm").submit(function () {
           // 비밀번호 검증

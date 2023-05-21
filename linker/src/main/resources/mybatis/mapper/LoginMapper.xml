@@ -28,11 +28,6 @@
 		role from user
 	</select>
 
-	<select id="emailCheck" parameterType="String"
-		resultType="String">
-		select email from user where email=#{email}
-	</select>
-
 	<update id="updateUser"
 		parameterType="com.linker.login.dto.LoginDto">
 		update user set password=#{password} where
@@ -42,4 +37,8 @@
     <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
         select * from user where userid = #{userid}
     </select>
+    
+    <select id="findId" parameterType="com.linker.login.dto.LoginDto" resultType="String">
+  	select userid from user where name = #{name} AND email = #{email}
+	</select>
 </mapper>

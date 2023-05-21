@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -36,11 +35,7 @@ public class LoginController {
 	private LoginDao dao;
 
 	@ModelAttribute("user")
-	// 컨트롤러의 메서드에 적용하여 해당 메서드가 반환하는 객체를 모델에 자동으로 추가함
-	// 이를 통해 뷰에서 해당 객체에 접근하여 사용할 수 있음
 	public LoginDto getDto() {
-		// getDto() 메서드가 LoginDto 객체를 생성하여 "user"라는 이름으로 모델에 추가함
-		// 따라서 뷰에서는 "user"라는 이름으로 LoginDto 객체에 접근하여 값을 가져올 수 있음
 		return new LoginDto();
 	}
 
@@ -70,13 +65,6 @@ public class LoginController {
 		}
 		return "redirect:/main";
 
-	}
-
-	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public String emailCheck(String email) {
-		String result = dao.emailCheck(email);
-		return result; // 이미 존재하는 이메일이 있으면 해당 이메일 반환, 없으면 null 반환
 	}
 
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
@@ -119,13 +107,13 @@ public class LoginController {
 		return "redirect:/auth/login";
 	}
 
-	@GetMapping("idCheck")
+	@GetMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(String id) {
 		String checkid = service.idCheck(id);
 		return checkid; // text
 	}
-
+	
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
@@ -174,5 +162,17 @@ public class LoginController {
 		}
 		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
 		return "login/preupdateform";
+	}
+	
+	@GetMapping("/find-id")
+	public String findIdForm() {
+	  return "login/findidform";
+	}
+	
+	@PostMapping("/find-id")
+	public String findId(LoginDto dto, Model model) {
+	  String userid = service.findId(dto);
+	  model.addAttribute("userid", userid);
+	  return "login/findidresultform";
 	}
 }

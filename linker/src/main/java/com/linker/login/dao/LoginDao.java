@@ -18,12 +18,12 @@ public interface LoginDao {
 	public int deleteUser(String userid);
 	
 	public String idCheck(String userid);
-
+	
 	public LoginDto login(LoginDto dto);
 	
 	List<LoginDto> userInfo();
 
-	public String emailCheck(String email);
-
 	public LoginDto findByUserId(String userid);
+	
+	public String findId(LoginDto dto);
 }

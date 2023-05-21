@@ -61,5 +61,10 @@ public class LoginService {
 		LoginDto user = dao.findByUserId(userid);
 		return user != null && user.getPassword().equals(currentPassword);
 	}
+	
+	public String findId(LoginDto dto) {
+		  String userid = dao.findId(dto);
+		  return userid;
+		}
 }
 
