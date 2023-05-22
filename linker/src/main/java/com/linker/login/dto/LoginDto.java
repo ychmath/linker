@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class LoginDto {
-	
 
 	private String name;
 	private String userid;
@@ -15,5 +14,5 @@ public class LoginDto {
 	private String phone;
 	private String role;
 	private Date signupdate;
-	
+
 }

@@ -44,18 +44,18 @@ public class LoginController {
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m) {
 		LoginDto resultDto = service.login(dto); // service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
 		if (error.hasErrors() || resultDto == null) {
-			
+
 			m.addAttribute("inputUserId", dto.getUserid());
-			
-	        if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
-	            m.addAttribute("useridError", "아이디를 입력해주세요.");
-	        }
-	        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
-	            m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
-	        } else if (resultDto == null) {
-	            m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
-	        }
-	        return "login/loginform";
+
+			if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
+				m.addAttribute("useridError", "아이디를 입력해주세요.");
+			}
+			if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+				m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
+			} else if (resultDto == null) {
+				m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
+			}
+			return "login/loginform";
 		} else {
 			m.addAttribute("user", resultDto); // model 객체에 "user" 이름으로 LoginDto 객체를 저장
 		}
@@ -109,7 +109,7 @@ public class LoginController {
 		String checkid = service.idCheck(id);
 		return checkid; // text
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
@@ -143,14 +143,14 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
-	
+
 	@GetMapping("/checkPassword")
 	public String preUpdateForm() {
 		return "login/preupdateform";
 	}
-	
+
 	@PostMapping("/checkPassword")
-	public String checkPassword(@RequestParam("currentPassword") String currentPassword, 
+	public String checkPassword(@RequestParam("currentPassword") String currentPassword,
 			@ModelAttribute("user") LoginDto user, Model model) {
 		boolean isPasswordCorrect = service.checkPassword(user.getUserid(), currentPassword);
 		if (isPasswordCorrect) {
@@ -159,16 +159,16 @@ public class LoginController {
 		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
 		return "login/preupdateform";
 	}
-	
+
 	@GetMapping("/find-id")
 	public String findIdForm() {
-	  return "login/findidform";
+		return "login/findidform";
 	}
-	
+
 	@PostMapping("/find-id")
 	public String findId(LoginDto dto, Model model) {
-	  String userid = service.findId(dto);
-	  model.addAttribute("userid", userid);
-	  return "login/findidresultform";
+		String userid = service.findId(dto);
+		model.addAttribute("userid", userid);
+		return "login/findidresultform";
 	}
 }
