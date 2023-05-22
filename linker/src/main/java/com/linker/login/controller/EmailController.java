@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.linker.login.dto.FindpwDto;
 import com.linker.login.service.EmailService;
-import com.linker.login.service.FindpwService;
 import com.linker.login.vo.EmailVO;
 
 @RestController
@@ -16,8 +14,6 @@ public class EmailController {
 
 	@Autowired
 	private EmailService emailService;
-	@Autowired
-	private FindpwService findpwService;
 
 	@RequestMapping("/send")
 	public String[] sendMail(String emailAddress) throws Exception {
@@ -29,56 +25,25 @@ public class EmailController {
 		String subject = "Email 제목";
 
 		String number = makeRandom();
-
-		String content = "인증 번호는 " + number + "입니다.";
-
+		
+		String content = "인증 번호는 "+number+"입니다.";
+		
 		email.setReceiver(receiver);
 		email.setSubject(subject);
 		email.setContent(content);
 
 		Boolean result = emailService.sendMail(email);
 
-		return new String[] { number, result.toString() };
+		return new String[] {number, result.toString()};
 
 	}
-
-	@RequestMapping("/sendfindpw")
-	public String[] sendfindpwMail(String emailAddress, String userid) throws Exception {
-
-		// select 이메일 확인
-		FindpwDto dto = findpwService.selectAll(emailAddress, userid);
-		if (dto != null) {
-			
-			EmailVO email = new EmailVO();
-
-			String receiver = emailAddress; // Receiver.
-
-			String subject = "Email 제목";
-
-			String number = makeRandom();
-
-			String content = "인증 번호는 " + number + "입니다.";
-
-			email.setReceiver(receiver);
-			email.setSubject(subject);
-			email.setContent(content);
-
-			Boolean result = emailService.sendMail(email);
-
-			return new String[] { number, result.toString() };
-		} else {
-			return new String[] { "0", new Boolean(false).toString() };
-
-		}
-	}
-
 	private String makeRandom() {
 		Random r = new Random();
 		String number = "";
-		for (int i = 0; i < 6; i++) {
+		for(int i = 0;i < 6; i++) {
 			number += r.nextInt(10);
 		}
-		System.out.println("number:" + number);
+		System.out.println("number:"+number);
 		return number;
 	}
 

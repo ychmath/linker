@@ -1,25 +1,52 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html>  
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>회원 가입</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"/>
+	 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
     <style>
       #input,
       #result {
         display: none;
       }
+
       .error {
         color: red;
         font-size: 0.8em;
       }
     </style>
+    
   </head>
+  
   <body>
-    <h1>회원 가입</h1>
+    <h3>회원 가입</h3>
     <form action="joinform" method="post" id="joinForm">
       <div class="user-details">
         <table>
+          <tr>
+            <td>회원 유형</td>
+            <td>
+              <input
+                type="radio"
+                id="buyer"
+                name="role"
+                value="buyer"
+                checked
+              />
+              <label for="buyer">구매자</label>
+              <input type="radio" id="seller" name="role" value="seller" />
+              <label for="seller">판매자</label>
+            </td>
+          </tr>
           <tr>
             <td>이름</td>
             <td>
@@ -28,6 +55,7 @@
                 name="name"
                 id="name"
                 placeholder="실명"
+                autocomplete="name"
                 required
               />
               <div id="name_msg"></div>
@@ -75,13 +103,14 @@
             </td>
           </tr>
           <tr>
-            <td>회사 이메일</td>
+            <td>이메일</td>
             <td>
               <input
                 type="email"
                 name="email"
                 id="email"
-                placeholder="회사 이메일"
+                placeholder="이메일"
+                autocomplete="name"
                 required
               />
               <input
@@ -119,14 +148,136 @@
               <div id="phone_msg" class="error"></div>
             </td>
           </tr>
+          <tr id="approval_request" style="display: none">
+            <td>승인 요청</td>
+            <td>
+              <textarea
+                name="request_message"
+                placeholder="승인 요청 메시지를 입력해주세요."
+              ></textarea>
+            </td>
+          </tr>
           <tr>
-            <td colspan="2"><input type="submit" value="가입" /></td>
+            <td colspan="2">
+              <div id="terms">
+                <h4>약관 동의</h4>
+
+                <!-- 모든 약관에 동의하는 버튼 -->
+                <button type="button" id="agreeAllButton">
+                  내용을 확인했으며 모든 약관에 동의합니다.
+                </button>
+
+                <!-- 필수 약관 -->
+                <h5>필수 약관</h5>
+                <div class="mandatory">
+                  <input
+                    type="checkbox"
+                    id="mandatoryTerms1"
+                    name="mandatoryTerms"
+                  />
+                  <label for="mandatoryTerms1">(필수) 이용 약관 동의</label>
+                  <button
+                    type="button"
+                    class="btn btn-primary mandatoryTermsBtn"
+                    data-toggle="modal"
+                    data-target="#mandatoryModal1"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div class="mandatory">
+                  <input
+                    type="checkbox"
+                    id="mandatoryTerms2"
+                    name="mandatoryTerms"
+                  />
+                  <label for="mandatoryTerms2"
+                    >(필수) 개인 정보 수집 및 이용 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary mandatoryTermsBtn"
+                    data-toggle="modal"
+                    data-target="#mandatoryModal2"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
+
+                <!-- 선택 약관 -->
+                <h5>선택 약관</h5>
+                <div class="optional">
+                  <input
+                    type="checkbox"
+                    id="optionalTerms1"
+                    name="optionalTerms"
+                  />
+                  <label for="optionalTerms1"
+                    >(선택) 개인 정보 수집 및 이용 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary optionalTermsBtn"
+                    data-toggle="modal"
+                    data-target="#optionalModal1"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div class="optional">
+                  <input
+                    type="checkbox"
+                    id="optionalTerms2"
+                    name="optionalTerms"
+                  />
+                  <label for="optionalTerms2"
+                    >(선택) Linker 정보 수신 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary optionalTermsBtn"
+                    data-toggle="modal"
+                    data-target="#optionalModal2"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                  <div style="margin-left: 24px">
+                    <input
+                      type="checkbox"
+                      id="optionalTerms3"
+                      name="optionalTerms"
+                    />
+                    <label for="optionalTerms3">(선택) SMS 수신 동의</label>
+                  </div>
+                  <div style="margin-left: 24px">
+                    <input
+                      type="checkbox"
+                      id="optionalTerms4"
+                      name="optionalTerms"
+                    />
+                    <label for="optionalTerms4">(선택) 이메일 수신 동의</label>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" id="registerButton" value="가입 하기" />
+            </td>
           </tr>
         </table>
       </div>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       const validateEmail = (email) =>
         /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-_]+)+$/.test(email);
@@ -141,6 +292,24 @@
       };
 
       $(function () {
+        // 역할에 따른 가입 버튼 명칭 변경
+        $("input[name='role']").change(function () {
+          if ($("#seller").is(":checked")) {
+            $("#approval_request").show();
+          } else {
+            $("#approval_request").hide();
+          }
+        });
+
+        $("#userid, #password, #chk_password, #email, #phone2, #phone3").on(
+          "focus",
+          function () {
+            $(this).next(".error").html("");
+          }
+        );
+
+        $("#registerButton").prop("disabled", true);
+
         $("#id_check").click(function () {
           let id = $("#userid").val();
           if (!validateUserId(id)) {
@@ -197,11 +366,63 @@
           }
         });
 
+        // "모두 동의" 버튼 클릭 시 모든 체크박스 체크
+        $("#agreeAllButton").on("click", function () {
+          $("input[type=checkbox][name=mandatoryTerms]").prop("checked", true);
+          $("input[type=checkbox][name=optionalTerms]").prop("checked", true);
+          // 필수 약관 체크 이벤트를 강제로 발생하여 회원가입 버튼 활성화
+          $("input[type=checkbox][name=mandatoryTerms]").change();
+        });
+        function checkMandatoryTerms() {
+          var allMandatoryTermsChecked = true;
+          $("input[name='mandatoryTerms']").each(function () {
+            if (!this.checked) {
+              allMandatoryTermsChecked = false;
+              return false;
+            }
+          });
+          return allMandatoryTermsChecked;
+        }
+
+        // 처음에 '가입 완료' 버튼 비활성화
+        $("#registerButton").prop("disabled", true);
+
+        // 필수 약관 동의에 따른 회원가입 버튼 활성화 처리
+        $("input[name='mandatoryTerms']").on("change", function () {
+          if (checkMandatoryTerms()) {
+            // 모든 필수 약관에 동의하면 가입 버튼 활성화
+            $("#registerButton").prop("disabled", false);
+          } else {
+            // 필수 약관 중 하나라도 동의하지 않으면 가입 버튼 비활성화
+            $("#registerButton").prop("disabled", true);
+          }
+        });
+
+        // 필수 약관과 선택 약관 팝업을 관리하는 함수입니다.
+        function showTermsPopup(elementClass, buttonSelector) {
+          $(buttonSelector).on("click", function () {
+            var parentDiv = $(this).parent();
+            var title = parentDiv.data("title");
+            var content = parentDiv.data("content");
+          });
+        }
+
+        showTermsPopup(".mandatory", "button.mandatoryTermsBtn");
+        showTermsPopup(".optional", "button.optionalTermsBtn");
+
+        $("#optionalTerms2").on("change", function () {
+          if ($(this).is(":checked")) {
+            $("#optionalTerms3, #optionalTerms4").prop("checked", true);
+          } else {
+            $("#optionalTerms3, #optionalTerms4").prop("checked", false);
+          }
+        });
+
         $("#joinForm").submit(function () {
           // 비밀번호 검증
           if (!validatePassword($("#password").val())) {
             $("#pw_msg").html(
-              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자 중 2가지 이상 조합이어야 합니다."
+              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자로 구성되어야 합니다."
             );
             return false;
           } else {
@@ -232,7 +453,9 @@
           let phone3 = $("#phone3").val();
           let phone = phone1 + "-" + phone2 + "-" + phone3;
           if (!validatePhoneNumber(phone)) {
-            $("#phone_msg").html("전화번호 형식이 올바르지 않습니다");
+            $("#phone_msg").html(
+              "전화번호 형식이 올바르지 않습니다. 3자리 - 3 or 4자리 - 4자리의 형식으로 적어주세요."
+            );
             return false;
           } else {
             $("#phone_msg").html(""); // 조건이 맞으면 메시지를 삭제합니다.
@@ -256,5 +479,6 @@
         });
       }); //ready
     </script>
+   
   </body>
 </html>

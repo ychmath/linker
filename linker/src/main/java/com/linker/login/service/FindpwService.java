@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.linker.login.dao.FindpwDao;
+import com.linker.login.dto.EmailDto;
 import com.linker.login.dto.FindpwDto;
-import com.linker.login.dto.MailDto;
 
 import ch.qos.logback.classic.Logger;
 import jakarta.mail.MessagingException;
@@ -32,9 +32,9 @@ public class FindpwService {
 
 	
 	// 메일 내용을 생성하고 임시 비밀번호로 회원 비밀번호를 변경 
-    public MailDto createMailAndChangePassword(String email) {
+    public EmailDto createMailAndChangePassword(String email) {
         String str = getTempPassword();
-        MailDto dto = new MailDto();
+        EmailDto dto = new EmailDto();
         dto.setAddress(email);
         dto.setTitle("Cocolo 임시비밀번호 안내 이메일 입니다.");
         dto.setMessage("안녕하세요. Cocolo 임시비밀번호 안내 관련 이메일 입니다." + " 회원님의 임시 비밀번호는 "
