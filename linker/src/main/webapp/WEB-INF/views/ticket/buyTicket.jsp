@@ -15,7 +15,7 @@
 <body>
 	<h1>식권 구매</h1>
 	
-	<form method="post" action="/orderinfo/purchaseList">
+	<form method="post" id="buyTicket" action="/ticket/ticketlist">
 	<div>
 	<table>
 	
@@ -26,7 +26,7 @@
 		
 		<tr>
 			<td>식권 종류</td>
-			<td><select id="ticketType" name="ticketType">
+			<td><select id="tickettype" name="tickettype">
 				<option id="a" value="6000">A</option>
 				<option id="b" value="7000">B</option>
 				</select></td>
@@ -116,7 +116,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 	
-		$("#ticketType").change(function(){
+		$("#kakaopay").click(function(){
+			$("#buyTicket").submit();
+		})
+	
+		$("#tickettype").change(function(){
 			if($(this).val() == '6000'){
 				$("#picA").show();
 				$("#picB").hide();
@@ -128,7 +132,7 @@
 	
 	
  	 	//select태그와 span태그를 가져옴 
-		const ticketTypeSelect = document.getElementById("ticketType");
+		const ticketTypeSelect = document.getElementById("tickettype");
 		//const: 상수 값 
 		const quantitySelect = document.getElementById("quantity");
 		const totalPriceSpan = document.getElementById("totalPrice");
@@ -162,7 +166,7 @@
 		}
 		
 		$("#add").click(function(){	
-			let a = $("#ticketType option:selected").text(); //option:selected=> 선택된 것
+			let a = $("#tickettype option:selected").text(); //option:selected=> 선택된 것
 			const quantitySelectPrice = parseInt(quantitySelect.value);
 			var A = $("#A").text();
 			var B = $("#B").text();
