@@ -1,56 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.login.dao.LoginDao">
-	<insert id="insertUser"
-		parameterType="com.linker.login.dto.LoginDto">
-		insert into user
-		values(#{userid}, #{password}, #{name},
-		#{email}, #{phone}, #{role},
-		#{signupdate})
-	</insert>
-	<update id="updateUser"
-		parameterType="com.linker.login.dto.LoginDto">
-		update user set password=#{password} where
-		userid=#{userid}
-	</update>
-
-	<delete id="deleteUser" parameterType="String">
-		delete from user where
-		userid=#{userid}
-	</delete>
-
-	<select id="idCheck" parameterType="String" resultType="String">
-		select
-		userid from user where userid=#{userid}
-	</select>
-
-	<select id="login" parameterType="com.linker.login.dto.LoginDto"
-		resultType="com.linker.login.dto.LoginDto">
-		select * from user where userid=#{userid} and
-		password=#{password}
-	</select>
-
-	<select id="userInfo" resultType="com.linker.login.dto.LoginDto">
-		select userid, name, email,
-		role from user
-	</select>
-
-	<select id="emailCheck" parameterType="String"
-		resultType="String">
-		select email from user where email=#{email}
-	</select>
-	<select id="findId" resultType="String">
-		SELECT USERNAME
-		FROM BM_USER
-		WHERE EMAIL = #{email }
-	</select>
-	<select id="getPassword" parameterType="String" resultType="String">
-	select password from user where userid = #{userid}
-	</select>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.linker.login.dao.LoginDao">
@@ -95,5 +42,4 @@
     <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
         select * from user where userid = #{userid}
     </select>
->>>>>>> refs/remotes/origin/main
 </mapper>

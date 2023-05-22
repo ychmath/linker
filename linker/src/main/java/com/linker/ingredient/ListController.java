@@ -1,6 +1,6 @@
 package com.linker.ingredient;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +47,6 @@ public class ListController {
 		return "list/ingredientList";
 	}
 	
-	@GetMapping("ingredient/searchbyname")
-	public String nameSearchForm() {
-		return "list/searchByName";
-	}
-	
 	@GetMapping("ingredient/searchbyname/result")
 	public String nameSearchResult(@RequestParam(name = "p", defaultValue = "1") int page,
 			Model m, String name) {
@@ -84,11 +79,6 @@ public class ListController {
 		m.addAttribute("count", resultCount);
 		
 		return "list/searchNameResult";
-	}
-	
-	@GetMapping("ingredient/searchbydate")
-	public String dateSearchForm() {
-		return "list/searchByDate";
 	}
 	
 	@GetMapping("ingredient/searchbydate/result")

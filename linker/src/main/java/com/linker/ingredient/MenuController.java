@@ -15,35 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// import com.linker.login.dto.LoginDto;
-
-/*import java.util.List;
-
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.linker.login.dto.LoginDto;*/
-
 @Controller
 public class MenuController {
  
 	  @Autowired
 	  MenuService service;
-	  
-		/*
-		 * @ModelAttribute("user") public LoginDto getUser() { return new LoginDto(); }
-		 * 
-		 * @GetMapping("/menu/write")
-		 * 
-		 * @ModelAttribute("user") LoginDto dto public String writeMenu() { return
-		 * "menu/write"; }
-		 */
 
 	  @GetMapping("/menu/write")
 	  public String writeForm() {
