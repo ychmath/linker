@@ -14,5 +14,10 @@
 	<a href="/notice/notice">공지사항</a>
 	<a href="/inquiry/inquiry">문의사항</a>
 	
+	<!-- 권한 따라 출력할 메뉴들 -->
+	<hr>
+	<a href="ingredient/main">식자재 관리</a>
+	<a href="/admin">관리자 페이지</a>
+	<a href="/profitChart">재무 관리 차트</a>
 </body>
 </html>
