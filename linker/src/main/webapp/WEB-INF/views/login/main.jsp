@@ -5,7 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>${user.userid}님이 로그인하셨습니다.</h3>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3><a href="update"><i class="bi bi-person-fill"></i>${user.userid}</a>님이 로그인하셨습니다.</h3>
 	
 	<a href="update">회원 정보 수정</a>
 	<a href="delete">회원 탈퇴</a>

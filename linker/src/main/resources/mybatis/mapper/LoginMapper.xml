@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.login.dao.LoginDao">
+
+	<select id="emailCheck" parameterType="String"
+		resultType="String">
+		select email from user where email=#{email}
+	</select>
+
+    <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
+        select * from user where userid = #{userid}
+    </select>
+</mapper>

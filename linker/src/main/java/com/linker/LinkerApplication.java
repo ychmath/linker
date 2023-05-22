@@ -11,10 +11,15 @@ public class LinkerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LinkerApplication.class, args);
 	}
-
-	@Bean
+@Bean
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
 	return new HiddenHttpMethodFilter();
 	//UnderBar형식 지원
 }
+
+	public HiddenHttpMethodFilter httpMethodFilter() {
+		HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+		return hiddenHttpMethodFilter;
+	}
+
 }
