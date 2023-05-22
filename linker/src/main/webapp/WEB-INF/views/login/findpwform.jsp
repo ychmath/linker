@@ -17,7 +17,7 @@
   </head>
   <body>
     <h1>비밀번호 찾기</h1>
-    <form action="findpwform" method="post" id="findpwform">
+    <form id="findpwform">
       <div class="user-details">
         <table>
           <tr>
@@ -63,61 +63,61 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2"><input type="submit" value="비밀번호 찾기" /></td>
+            <td colspan="2"><input type="button" id="submit" value="비밀번호 찾기" /></td>
           </tr>
         </table>
       </div>
     </form>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-      $(function () {
-    	  
-    	  let emailVerificationClicked = false;
-          let num = "";
-          
-          $("#mail_ck").click(function () {
-           
-            let email = $("#email").val();
-            let userid = $("#userid").val();
-            $.ajax({
-              url: "/sendfindpw",
-              data: "emailAddress=" + email +"&userid="+userid,
-              dataType: "json",
-            }).done(function (data) {
-              if (eval(data[1])) {
-                num = data[0];
-                alert("메일이 전송되었습니다. 인증번호를 입력하세요.");
-                $("#input,#result").css("display", "block");
-              }else{
-            	  alert("입력하신 메일이 맞지 않습니다.");
-              }
-            });
-          });
-          $("#ck_b").click(function () {
-              let ck_num = $("#ck_num").val();
-              if (ck_num == num) {
-                $("#result").html("인증이 확인되었습니다.");
-                $("#result").append("<input type='hidden' id='ck' value='1'>");
-                // 이메일 인증 성공 시, 값을 1로 변경
-                $("#email_verified").val("1");
-              } else {
-                $("#result").html("인증 실패했습니다. 다시 확인하세요.");
-              }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(function () {
 
-              });
-          //이메일 인증 클릭 여부 확인
-          $("#findpwform").submit(function () {
-              if (!emailVerificationClicked) {
-                  $("#email_msg").html("이메일 인증을 진행해 주세요.");
-                  return false;
-                }
-                // 이메일 인증 검증 코드 추가
-                if ($("#email_verified").val() !== "1") {
-                  $("#result").html("이메일 인증이 필요합니다.");
-                  return false;
-                }
+        let emailVerificationClicked = false;
+        let num = "";
+
+        $("#mail_ck").click(function () {
+
+          let email = $("#email").val();
+          let userid = $("#userid").val();
+          $.ajax({
+            url: "/sendfindpw",
+            data: "emailAddress=" + email +"&userid="+userid,
+            dataType: "json",
+          }).done(function (data) {
+            if (eval(data[1])) {
+              num = data[0];
+              alert("메일이 전송되었습니다. 인증번호를 입력하세요.");
+              $("#input,#result").css("display", "block");
+            }else{
+              alert("입력하신 메일이 맞지 않습니다.");
+            }
           });
-      });
-      </script>
-  </body>
+        });
+        $("#ck_b").click(function () {
+            let ck_num = $("#ck_num").val();
+            if (ck_num == num) {
+              $("#result").html("인증이 확인되었습니다.");
+              $("#result").append("<input type='hidden' id='ck' value='1'>");
+              // 이메일 인증 성공 시, 값을 1로 변경
+              $("#email_verified").val("1");
+            } else {
+              $("#result").html("인증 실패했습니다. 다시 확인하세요.");
+            }
+
+            });
+        //이메일 인증 클릭 여부 확인
+        $("#submit").click(function () {
+            if (!emailVerificationClicked) {
+                $("#email_msg").html("이메일 인증을 진행해 주세요.");
+                return false;
+              }
+              // 이메일 인증 검증 코드 추가
+              if ($("#email_verified").val() !== "1") {
+                $("#result").html("이메일 인증이 필요합니다.");
+                return false;
+              }
+        });
+    });
+    </script>
+</body>
 </html>

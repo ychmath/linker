@@ -34,11 +34,5 @@
 		userid=#{userid}
 	</update>
 	
-    <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
-        select * from user where userid = #{userid}
-    </select>
-    
-    <select id="findId" parameterType="com.linker.login.dto.LoginDto" resultType="String">
-  	select userid from user where name = #{name} AND email = #{email}
-	</select>
+   
 </mapper>

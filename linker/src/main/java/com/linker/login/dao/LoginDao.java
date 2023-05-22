@@ -20,8 +20,4 @@ public interface LoginDao {
 	public LoginDto login(LoginDto dto);
 
 	List<LoginDto> userInfo();
-
-	public LoginDto findByUserId(String userid);
-
-	public String findId(LoginDto dto);
 }

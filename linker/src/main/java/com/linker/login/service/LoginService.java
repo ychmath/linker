@@ -58,14 +58,4 @@ public class LoginService {
 
 		return errorMap;
 	}
-
-	public boolean checkPassword(String userid, String currentPassword) {
-		LoginDto user = dao.findByUserId(userid);
-		return user != null && user.getPassword().equals(currentPassword);
-	}
-
-	public String findId(LoginDto dto) {
-		String userid = dao.findId(dto);
-		return userid;
-	}
 }

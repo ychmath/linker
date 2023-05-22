@@ -66,7 +66,7 @@ public class LoginController {
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
 	public String main(@ModelAttribute("user") LoginDto dto) {
 		if (dto.getUserid() != null) {
-			return "/main";
+			return "main";
 		} else {
 			return "login/loginform";
 		}
@@ -144,31 +144,4 @@ public class LoginController {
 		}
 	}
 
-	@GetMapping("/checkPassword")
-	public String preUpdateForm() {
-		return "login/preupdateform";
-	}
-
-	@PostMapping("/checkPassword")
-	public String checkPassword(@RequestParam("currentPassword") String currentPassword,
-			@ModelAttribute("user") LoginDto user, Model model) {
-		boolean isPasswordCorrect = service.checkPassword(user.getUserid(), currentPassword);
-		if (isPasswordCorrect) {
-			return "redirect:/update";
-		}
-		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
-		return "login/preupdateform";
-	}
-
-	@GetMapping("/find-id")
-	public String findIdForm() {
-		return "login/findidform";
-	}
-
-	@PostMapping("/find-id")
-	public String findId(LoginDto dto, Model model) {
-		String userid = service.findId(dto);
-		model.addAttribute("userid", userid);
-		return "login/findidresultform";
-	}
 }

@@ -40,7 +40,7 @@ ul {
 					<ul>
 						<li><a href="/joinform">회원가입</a></li>
 						<li><a href="/find-id">아이디 찾기</a></li>
-						<li><a href="">비밀번호 찾기</a></li>
+						<li><a href="/findpw">비밀번호 찾기</a></li>
 					</ul>
 				</div>
 			</div>
