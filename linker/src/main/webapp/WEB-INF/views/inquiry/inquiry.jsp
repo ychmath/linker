@@ -76,7 +76,7 @@ td{
 
 	<table>
 		<tr>
-			<th id="notice">공지사항</th>
+			<th id="notice" onclick="location.href='../notice/notice'">공지사항</th>
 			<th>문의사항</th>
 		</tr>
 	</table>

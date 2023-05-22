@@ -26,7 +26,7 @@ public interface NoticeDao {
 	@Select("select * from noticepost where noticepostid=#{noticepostid}")
 	public NoticeDto boardOne(int noticepostid);
 	
-	@Select("select * from noticepost order by creationdate desc, noticepostid desc limit #{start}, #{count}")
+	@Select("select * from noticepost order by noticepostid desc limit #{start}, #{count}")
 	List<NoticeDto> noticeList(Map<String, Object>m);
 	/* Map은 키-값 쌍으로 데이터를 관리하는 자료구조
 	 * 키(key)로 문자열(String)을, 값(value)으로는 임의의 객체(Object)를 가질 수 있음

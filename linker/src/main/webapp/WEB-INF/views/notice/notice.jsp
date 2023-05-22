@@ -68,15 +68,13 @@ td{
 	
 	</div>
 	
-	
 	<table>
 		<tr>
 			<th>공지사항</th>
-			<th id="inquiry">문의사항</th>
+			<th id="inquiry" onclick="location.href='../inquiry/inquiry'">문의사항</th>
 		</tr>
 	</table>
 	
-	<c:if test="${count != 0 }">
 	<table>
 		<tr>
 			<th>게시글 번호</th>
@@ -111,7 +109,6 @@ td{
 			<a href="notice?p=${end+1 }">[다음]</a>
 		</c:if>
 	</div>
-	</c:if>
 	<c:if test="${count == 0 }">
 	아직 입력한 글이 없습니다.
 	</c:if>
