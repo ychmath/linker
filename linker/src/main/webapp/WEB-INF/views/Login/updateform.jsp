@@ -47,11 +47,11 @@
         $(selector).html(message);
       };
       $(function () {
-      $("#updateform").submit(function () {
+        $("#updateform").submit(function () {
           // 비밀번호 검증
           if (!validatePassword($("#password").val())) {
             $("#pw_msg").html(
-              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자 중 2가지 이상 조합이어야 합니다."
+              "비밀번호는 6~20자 이내로 영문대소문자/숫자/특수문자로 구성되어야 합니다."
             );
             return false;
           } else {
@@ -65,7 +65,7 @@
           } else {
             $("#chk_pw_msg").html(""); // 조건이 맞으면 메시지를 삭제합니다.
           }
-      });
+        });
       });
     </script>
 </body>
