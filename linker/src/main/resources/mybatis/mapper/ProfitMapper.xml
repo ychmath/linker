@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.finance.dao">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="com.linker.finance.dao.ProfitDao">
+	<select id="selectAll"
+		resultType="com.linker.finance.dto.ProfitDto">
+		SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate,
+		price * quantity AS price
+		FROM tickettype tt
+		INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid
+		ORDER BY orderdate DESC;
+	</select>
 
-
-
-	</mapper>
+	<select id="selectByDate"
+		resultType="com.linker.finance.dto.ProfitDto"
+		parameterType="java.util.Map">
+       <![CDATA[
+        SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price
+        FROM tickettype tt
+        INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid
+        WHERE orderdate >= #{map.startDate} AND orderdate <= #{map.endDate}
+        ORDER BY orderdate DESC;
+        ]]>
+	</select>
+</mapper>

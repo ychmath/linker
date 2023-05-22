@@ -30,7 +30,6 @@ public class ProfitService {
 
 	public int addOrder(ProfitDto dto) {
 		return 0;
-	
 	}
 
 	public List<ProfitDto> selectByDate(Date startDate, Date endDate) {

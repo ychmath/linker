@@ -161,7 +161,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/find-id")
-	public String findIdForm() {
+	public String findIdForm() { 
 		return "login/findidform";
 	}
 

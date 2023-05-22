@@ -13,6 +13,7 @@
 	<a href="logout">로그아웃</a>
 	<a href="/notice/notice">공지사항</a>
 	<a href="/inquiry/inquiry">문의사항</a>
+	<a href="/finance
 	
 </body>
 </html>
