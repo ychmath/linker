@@ -63,7 +63,7 @@
 			
 		<tr>
 			<td>합계</td>
-			<td><span id="totalPrice">6000</span>원</td>
+			<td><span id="price">6000</span>원</td>
 		</tr>
 		
 		
@@ -83,7 +83,7 @@
 		
 		<tr>
 			<td>총합계</td>
-			<td><span id="totalPrice2">0</span>원</td>
+			<td><span id="totalprice">0</span>원</td>
 		</tr>
 		
 	</table>
@@ -135,7 +135,7 @@
 		const ticketTypeSelect = document.getElementById("tickettype");
 		//const: 상수 값 
 		const quantitySelect = document.getElementById("quantity");
-		const totalPriceSpan = document.getElementById("totalPrice");
+		const totalPriceSpan = document.getElementById("price");
 	
 		function calculateTotalPrice(){
 			const ticketTypePrice = parseInt(ticketTypeSelect.value);
@@ -197,7 +197,7 @@
 			}
 				
 			function calculateTotalPrice3() {
-				 const totalPrice2Span = document.getElementById("totalPrice2");
+				 const totalPrice2Span = document.getElementById("totalprice");
 				  
 				  let aPrice = $("#calculateATotalPrice2").text();
 				  let bPrice = $("#calculateBTotalPrice2").text();
@@ -246,10 +246,10 @@
 			})
 
  			function updateTotalPrice3(amount){
-				const $totalPrice2 = parseInt($("#totalPrice2").text());
+				const $totalPrice2 = parseInt($("#totalprice").text());
 				//alert($totalPrice2)
 				const totalAmount = $totalPrice2 - amount;
-				$("#totalPrice2").text(totalAmount.toString());
+				$("#totalprice").text(totalAmount.toString());
 			} 
 	</script>
 	
