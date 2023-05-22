@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.ingredient.ListDao">
+<mapper namespace="com.linker.ingredient.dao.ListDao">
 	<!-- 식자재 추가 -->
-	<insert id="addIngredient" parameterType="com.linker.ingredient.ListDto">
+	<insert id="addIngredient" parameterType="com.linker.ingredient.dto.ListDto">
 		insert ingredient values(#{ingredientname}, #{unit}, #{exp})
 	</insert>
 	<!-- 식자재 수정 -->
-	<update id="updateIngredient" parameterType="com.linker.ingredient.ListDto">
+	<update id="updateIngredient" parameterType="com.linker.ingredient.dto.ListDto">
 		update ingredient set ingredientname = #{ingredientname}, unit = #{unit}, exp = #{exp}
 		where ingredientid = #{ingredientid}
 	</update>
@@ -17,7 +17,7 @@
 		delete from ingredient where ingredientid = #{ingredientid}
 	</delete>
 	<!-- 식자재 목록 조회 -->
-	<select id="getIngredient" parameterType="map" resultType="com.linker.ingredient.ListDto">
+	<select id="getIngredient" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
 		select * from ingredient limit #{start}, #{count}
 	</select>
 	<!-- 리스트 개수 조회 -->
@@ -25,7 +25,7 @@
 		select count(*) from ingredient
 	</select>
 	<!-- 식자재 이름으로 조회 -->
-	<select id="getIngredientByName" parameterType="map" resultType="com.linker.ingredient.ListDto">
+	<select id="getIngredientByName" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
 		select * from ingredient
 		where ingredientname like concat('%', #{name}, '%')
 		order by ingredientname
@@ -37,7 +37,7 @@
 		where ingredientname like concat('%', #{name}, '%')
 	</select>
 	<!-- 식자재 유통기한 조회 -->
-	<select id="getIngredientByExp" parameterType="map" resultType="com.linker.ingredient.ListDto">
+	<select id="getIngredientByExp" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
 		select * from ingredient
 		where exp between #{startDay} and #{endDay}
 		order by exp

@@ -1,4 +1,4 @@
-package com.linker.admin;
+package com.linker.admin.controller;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.linker.admin.dto.AdminDto;
+import com.linker.admin.service.AdminService;
 
 @Controller
 public class AdminController {

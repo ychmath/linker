@@ -1,4 +1,4 @@
-package com.linker.finance;
+package com.linker.finance.dto;
 
 import lombok.Data;
 

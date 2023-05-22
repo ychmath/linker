@@ -1,4 +1,4 @@
-package com.linker.ingredient;
+package com.linker.ingredient.controller;
 
 import java.util.List;
 
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.linker.ingredient.dto.MenuDto;
+import com.linker.ingredient.service.MenuService;
 
 @Controller
 public class MenuController {

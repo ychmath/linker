@@ -1,4 +1,4 @@
-package com.linker.admin;
+package com.linker.admin.dto;
 
 import java.util.Date;
 

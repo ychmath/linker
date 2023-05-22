@@ -1,4 +1,4 @@
-package com.linker.ingredient;
+package com.linker.ingredient.dto;
 
 import java.util.Date;
 

@@ -2,26 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.admin.AdminDao">
+<mapper namespace="com.linker.admin.dao.AdminDao">
 	<!-- 회원 승인 -->
 	<!-- 공지사항 게시글 작성 -->
-	<insert id="writeNotice" parameterType="com.linker.admin.AdminDto">
+	<insert id="writeNotice" parameterType="com.linker.admin.dto.AdminDto">
 		insert into noticepost(userid, title, content, creationdate)
 		values(#{userid}, #{title}, #{content}, now())
 	</insert>
 
 	<!-- 회원 정보 수정 -->
-	<update id="updateUser" parameterType="com.linker.admin.AdminDto">
+	<update id="updateUser" parameterType="com.linker.admin.dto.AdminDto">
 		update user set password = #{password}, name = #{name}, phone = #{phone}
 		where userid = #{userid}
 	</update>
 	<!-- 문의사항 게시글 수정 -->
-	<update id="updateInquiry" parameterType="com.linker.admin.AdminDto">
+	<update id="updateInquiry" parameterType="com.linker.admin.dto.AdminDto">
 		update inquirypost set title = #{title}, content = #{content}
 		where inquirypostid = #{inquirypostid}
 	</update>
 	<!-- 공지사항 게시글 수정 -->
-	<update id="updateNotice" parameterType="com.linker.admin.AdminDto">
+	<update id="updateNotice" parameterType="com.linker.admin.dto.AdminDto">
 		update noticepost set title = #{title}, content = #{content}
 		where inquirypostid = #{inquirypostid}
 	</update>
@@ -44,11 +44,11 @@
 		select count(*) from user
 	</select>
 	<!-- 선택한 회원 가져오기 -->
-	<select id="getUserInfo" parameterType="String" resultType="com.linker.admin.AdminDto">
+	<select id="getUserInfo" parameterType="String" resultType="com.linker.admin.dto.AdminDto">
 		select * from user where userid = #{userid}
 	</select>
 	<!-- 회원 리스트 가져오기 -->
-	<select id="userList" parameterType="map" resultType="com.linker.admin.AdminDto">
+	<select id="userList" parameterType="map" resultType="com.linker.admin.dto.AdminDto">
 		select * from user order by signupdate desc limit #{start}, #{count}
 	</select>
 	<!-- 문의사항 게시글 수 가져오기 -->
@@ -56,11 +56,11 @@
 		select count(*) from inquirypost
 	</select>
 	<!-- 선택한 문의사항 게시글 가져오기 -->
-	<select id="getInquiry" parameterType="int" resultType="com.linker.admin.AdminDto">
+	<select id="getInquiry" parameterType="int" resultType="com.linker.admin.dto.AdminDto">
 		select * from inquirypost where inquirypostid = #{inquirypostid}
 	</select>
 	<!-- 문의사항 게시글 목록 가져오기 -->
-	<select id="inquiryList" parameterType="map" resultType="com.linker.admin.AdminDto">
+	<select id="inquiryList" parameterType="map" resultType="com.linker.admin.dto.AdminDto">
 		select * from inquirypost order by creationdate desc limit #{start}, #{count}
 	</select>
 	<!-- 공지사항 게시글 수 가져오기 -->
@@ -68,11 +68,11 @@
 		select count(*) from noticepost
 	</select>
 	<!-- 선택한 공지사항 게시글 가져오기 -->
-	<select id="getNotice" parameterType="int" resultType="com.linker.admin.AdminDto">
+	<select id="getNotice" parameterType="int" resultType="com.linker.admin.dto.AdminDto">
 		select * from noticepost where noticepostid = #{noticepostid}
 	</select>
 	<!-- 공지사항 게시글 목록 가져오기 -->
-	<select id="noticeList" parameterType="map" resultType="com.linker.admin.AdminDto">
+	<select id="noticeList" parameterType="map" resultType="com.linker.admin.dto.AdminDto">
 		select * from noticepost order by creationdate desc limit #{start}, #{count}
 	</select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.linker.ingredient;
+package com.linker.ingredient.controller;
 
 import java.sql.Date;
 import java.util.List;
@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.linker.ingredient.dto.ListDto;
+import com.linker.ingredient.service.ListService;
 
 @Controller
 public class ListController {

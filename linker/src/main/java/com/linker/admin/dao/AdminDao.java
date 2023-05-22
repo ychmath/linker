@@ -1,9 +1,11 @@
-package com.linker.admin;
+package com.linker.admin.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.linker.admin.dto.AdminDto;
 
 @Mapper
 public interface AdminDao {

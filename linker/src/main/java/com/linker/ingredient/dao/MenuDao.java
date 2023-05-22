@@ -1,9 +1,11 @@
-package com.linker.ingredient;
+package com.linker.ingredient.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.linker.ingredient.dto.MenuDto;
 
 @Mapper
 public interface MenuDao {

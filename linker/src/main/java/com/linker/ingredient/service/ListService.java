@@ -1,4 +1,4 @@
-package com.linker.ingredient;
+package com.linker.ingredient.service;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.linker.ingredient.dao.ListDao;
+import com.linker.ingredient.dto.ListDto;
 
 @Service
 public class ListService {

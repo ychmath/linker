@@ -1,4 +1,4 @@
-package com.linker.finance;
+package com.linker.finance.controller;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.linker.finance.dto.ChartDto;
+import com.linker.finance.service.ChartService;
 
 @Controller
 public class ChartController {

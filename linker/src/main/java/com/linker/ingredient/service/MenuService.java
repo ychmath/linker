@@ -1,4 +1,4 @@
-package com.linker.ingredient;
+package com.linker.ingredient.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.linker.ingredient.dao.MenuDao;
+import com.linker.ingredient.dto.MenuDto;
 
 @Service
 public class MenuService {

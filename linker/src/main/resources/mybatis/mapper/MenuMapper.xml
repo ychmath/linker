@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.ingredient.MenuDao">
+<mapper namespace="com.linker.ingredient.dao.MenuDao">
 	<!-- 게시글 작성 -->
-	<insert id="write" parameterType="com.linker.ingredient.MenuDto">
+	<insert id="write" parameterType="com.linker.ingredient.dto.MenuDto">
 		insert into menu(userID, title, content, creationDate)
 		values(#{userID}, #{title}, #{content}, now())
 	</insert>
 	<!-- 게시글 수정 -->
-	<update id="updateMenu" parameterType="com.linker.ingredient.MenuDto">
+	<update id="updateMenu" parameterType="com.linker.ingredient.dto.MenuDto">
 		update menu set title = #{title}, content = #{content}
 		where menuID = #{menuID}
 	</update>
@@ -18,7 +18,7 @@
 		delete from menu where menuID = #{menuID}
 	</delete>
 	<!-- 게시글 목록 가져오기 -->
-	<select id="menuList" parameterType="map" resultType="com.linker.ingredient.MenuDto">
+	<select id="menuList" parameterType="map" resultType="com.linker.ingredient.dto.MenuDto">
 		select * from menu order by creationDate desc limit #{start}, #{count}
 	</select>
 	<!-- 게시글 전부 가져오기 -->
@@ -26,7 +26,7 @@
 		select count(*) from menu
 	</select>
 	<!-- 선택한 메뉴 게시글 가져오기 -->
-	<select id="menuOne" parameterType="int" resultType="com.linker.ingredient.MenuDto">
+	<select id="menuOne" parameterType="int" resultType="com.linker.ingredient.dto.MenuDto">
 		select * from menu where menuID = #{menuID}
 	</select>
 </mapper>

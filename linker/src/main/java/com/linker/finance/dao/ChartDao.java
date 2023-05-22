@@ -1,8 +1,10 @@
-package com.linker.finance;
+package com.linker.finance.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.linker.finance.dto.ChartDto;
 
 @Mapper
 public interface ChartDao {
