@@ -32,7 +32,7 @@ public class TicketorderController {
 		List<TicketorderDto> list = ticketorderService.getAllTicketorder();
 		m.addAttribute("tlist", list);
 		
-		return "ticketorder/ticket";
+		return "ticket/ticketorder";
 	}
 	
 	@GetMapping("/ticket/{date}")

@@ -66,7 +66,7 @@ public class LoginController {
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
 	public String main(@ModelAttribute("user") LoginDto dto) {
 		if (dto.getUserid() != null) {
-			return "login/main";
+			return "/main";
 		} else {
 			return "login/loginform";
 		}

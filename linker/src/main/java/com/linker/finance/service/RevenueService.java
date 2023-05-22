@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.linker.finance.dao.RevenueDao;
-import com.linker.finance.dto.ProfitDto;
 import com.linker.finance.dto.RevenueDto;
 
 @Service

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,18 +14,18 @@
 	rel="stylesheet" />
 
 <!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css" />
+<link rel="stylesheet" href="/css/animate.css" />
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="css/icomoon.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="/css/bootstrap.css" />
 <!-- Flexslider  -->
-<link rel="stylesheet" href="css/flexslider.css" />
+<link rel="stylesheet" href="/css/flexslider.css" />
 <!-- Theme style  -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 
 <!-- Modernizr JS -->
-<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
@@ -73,10 +74,13 @@
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
 							<li class="active"><a href="index.html">홈</a></li>
-							<li><a href="notice.html">공지사항</a></li>
-							<li><a href="inquiry.html">문의사항</a></li>
+							<li><a href="/notice.html">공지사항</a></li>
+							<li><a href="/inquiry.html">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
-							<li><a href="main">테스트</a>
+							<li><a href="/finance/orders">매출</a></li>
+							<li><a href="/revenue/ingredient">지출</a></li>
+							<li><a href="/ticketorder/ticket">식권구매</a></li>
+							<li><a href="/profitChart">차트</a>
 						</ul>
 					</div>
 				</div>
@@ -174,19 +178,20 @@
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
 
+
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="/js/jquery.waypoints.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.stellar.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
 	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
+	<script src="/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
-	<script src="js/main.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
