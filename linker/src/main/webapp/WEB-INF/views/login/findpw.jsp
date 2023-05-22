@@ -101,7 +101,20 @@
               } else {
                 $("#result").html("인증 실패했습니다. 다시 확인하세요.");
               }
-            });
+
+              });
+          
+          $("#findpw").submit(function () {
+              if (!emailVerificationClicked) {
+                  $("#email_msg").html("이메일 인증을 진행해 주세요.");
+                  return false;
+                }
+                // 이메일 인증 검증 코드 추가
+                if ($("#email_verified").val() !== "1") {
+                  $("#result").html("이메일 인증이 필요합니다.");
+                  return false;
+                }
+          });
       });
       </script>
   </body>

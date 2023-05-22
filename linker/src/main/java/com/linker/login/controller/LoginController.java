@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -47,7 +49,7 @@ public class LoginController{
 	
 	@GetMapping("/loginform")
 	public String loginform() {
-		return "Login/loginform";
+		return "login/loginform";
 	}
 	
 	@PostMapping("/login")
@@ -56,13 +58,24 @@ public class LoginController{
 	//@Validated: LoginDto 객체의 값이 유효한지 검증. 만약 유효하지 않은 값이 포함되어 있다면 에러메시지가 "BindingResult error" 객체에 저장됨
 	//@Model: View로 데이터를 전달할 때 사용되는 객체
 		LoginDto resultDto = service.login(dto); //service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
-		if(resultDto == null) { //'error' 객체에 로그인 실패 메시지를 추가
-			return "Login/loginform";
-		}else {
-			m.addAttribute("user", resultDto); //model 객체에 "user" 이름으로 LoginDto 객체를 저장 
+		if (error.hasErrors() || resultDto == null) {
+			
+			m.addAttribute("inputUserId", dto.getUserid());
+			
+	        if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
+	            m.addAttribute("useridError", "아이디를 입력해주세요.");
+	        }
+	        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+	            m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
+	        } else if (resultDto == null) {
+	            m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
+	        }
+	        return "login/loginform";
+		} else {
+			m.addAttribute("user", resultDto); // model 객체에 "user" 이름으로 LoginDto 객체를 저장
 		}
 		return "redirect:/main";
-		
+
 	}
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
     @ResponseBody
@@ -75,91 +88,109 @@ public class LoginController{
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
 	public String main(@ModelAttribute("user") LoginDto dto) {
 		if(dto.getUserid() != null) {
-			return "Login/main";
+			return "login/main";
 		// "/main" 경로로 GET 요청이 왔을 때, 현재 로그인되어 있는 사용자의 정보를 보여주는 메인 페이지로 이동하는 기능을 수행
 		}else {
-			return "Login/loginform";
+			return "login/loginform";
 		}
 	}
 
 //--------------------------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/insert")
+	@GetMapping("/joinform")
 	public String joinform() {
-		return "Login/joinform";
+		return "login/joinform";
+	}
+
+	@PostMapping("/joinform")
+	public String insert(LoginDto dto, @RequestParam("phone1") String phone1, @RequestParam("phone2") String phone2,
+			@RequestParam("phone3") String phone3) {
+		String phone = phone1 + "-" + phone2 + "-" + phone3;
+		dto.setPhone(phone);
+		service.insertUser(dto);
+		return "redirect:loginform";
+	}
+
+	@PostMapping("/auth/joinProc")
+	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("userDto", dto);
+
+			Map<String, String> validatorResult = service.validateHandling(bindingResult);
+			for (String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+
+			return "login/joinform";
+		}
+		service.insertUser(dto);
+		return "redirect:/auth/login";
 	}
 
 	@GetMapping("idCheck")
 	@ResponseBody
 	public String idCheck(String id) {
 		String checkid = service.idCheck(id);
-		return checkid; //text
+		return checkid; // text
 	}
-	
-	@PostMapping("/insert")
-	public String insert(LoginDto dto) {
-		service.insertUser(dto);
-		return "redirect:loginform";
-	}
-	
+
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/update")
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
-		return "Login/preupdateform";
+		return "login/updateform";
 	}
-	
+
 	@PutMapping("/update")
 	public String update(@ModelAttribute("user") LoginDto dto) {
 		service.updateUser(dto);
 		return "redirect:/main";
 	}
-	
+
 	@GetMapping("/delete")
 	public String deleteform(String result, Model m) {
 		m.addAttribute("result", result);
-		return "Login/deleteform";
+		return "login/deleteform";
+	}
+
+	@DeleteMapping("/delete")
+	public String delete(String formpw, @ModelAttribute("user") LoginDto dto, SessionStatus status) {
+		int i = service.deleteUser(formpw, dto);
+		if (i == 0) {
+			return "redirect:/delete?result=false";
+		} else {
+			status.setComplete();
+			return "redirect:/";
+		}
 	}
 	
-	@PostMapping("/delete")
-    public String delete(String formpw, @ModelAttribute("user") LoginDto dto, SessionStatus status) {
-        int i = service.deleteUser(formpw, dto);
-        if(i == 0) {
-            return "redirect:/delete?result=false";
-        }else {
-            status.setComplete();
-            return "redirect:/";
-        }
+	@GetMapping("/checkPassword")
+	public String preUpdateForm() {
+		return "login/preupdateform";
+	}
+	
+	@PostMapping("/checkPassword")
+	public String checkPassword(@RequestParam("currentPassword") String currentPassword, 
+			@ModelAttribute("user") LoginDto user, Model model) {
+		boolean isPasswordCorrect = service.checkPassword(user.getUserid(), currentPassword);
+		if (isPasswordCorrect) {
+			return "redirect:/update";
+		}
+		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
+		return "login/preupdateform";
+	}
+	
+    @GetMapping("/findpw")
+    public String findpwform() {
+    	return "login/findpw";
     }
-	// 기존 'insert' 메서드에 대해 코드를 병합
-	@PostMapping("/auth/joinProc")
-	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
-
-	    if (bindingResult.hasErrors()) {
-	        model.addAttribute("userDto", dto);
-
-	        // 유효성 통과 못한 필드와 메시지를 핸들링. validateHandling 메서드가 필요합니다.
-	        // userService를 LoginService로 교체하면 기존 사용중인 LoginService를 사용할 수 있습니다.
-	        Map<String, String> validatorResult = service.validateHandling(bindingResult);
-	        for (String key : validatorResult.keySet()) {
-	            model.addAttribute(key, validatorResult.get(key));
-	        }
-
-	        return "Login/joinform";
-	    }
-	    service.insertUser(dto);
-	    return "redirect:/auth/login";
-	}
-	
-	   @PostMapping("/check-password") 
-	    public boolean checkPassword(@RequestBody Map<String, String> body) { 
-	        String password = body.get("password"); 
-	        return service.checkPassword(password); 
-	    } 
-	    
-
+    
+	/*
+	 * @PostMapping("/findpw") public
+	 */
 }

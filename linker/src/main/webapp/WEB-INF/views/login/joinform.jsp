@@ -17,7 +17,7 @@
   </head>
   <body>
     <h1>회원 가입</h1>
-    <form action="insert" method="post" id="joinForm">
+    <form action="joinform" method="post" id="joinForm">
       <div class="user-details">
         <table>
           <tr>

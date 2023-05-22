@@ -33,9 +33,10 @@
                    		
                 </form>
                 <ul>
+                	<li><a href="login"></a></li>
                     <li><a href="joinform">회원가입</a></li>
                      <li><a href="">아이디 찾기</a></li>
-                    <li> <a href="/findpsw">비밀번호 찾기</a></li>
+                    <li> <a href="/findpw">비밀번호 찾기</a></li>
                   </ul>
             </div>
         </div>

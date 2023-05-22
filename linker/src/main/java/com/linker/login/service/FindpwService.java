@@ -5,11 +5,14 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.linker.login.dao.FindpwDao;
 import com.linker.login.dto.FindpwDto;
 import com.linker.login.dto.MailDto;
 
+import ch.qos.logback.classic.Logger;
 import jakarta.mail.MessagingException;
 @Service("findpswService")
 public class FindpwService {
@@ -26,17 +29,7 @@ public class FindpwService {
 	   return	dao.selectAll(dto);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// 메일 내용을 생성하고 임시 비밀번호로 회원 비밀번호를 변경 
     public MailDto createMailAndChangePassword(String email) {
@@ -71,12 +64,15 @@ public class FindpwService {
             str += charSet[idx];
         }
         return str;
-    }
+    
     // 메일보내기
     
-
+    
+    
     //비밀번호 변경
     
-   
+    }
 
-}
+   
+	}
+
