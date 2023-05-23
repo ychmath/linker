@@ -2,14 +2,12 @@ package com.linker.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.linker.login.dto.EmailDto;
 import com.linker.login.dto.LoginDto;
 import com.linker.login.service.FindService;
 
@@ -47,5 +45,22 @@ public class FindController {
 		return "login/findidresultform";
 	}
 
+	@GetMapping("/findpw")
+	public String findPwForm() {
+	    return "login/findpwform";
+	}
 
+	@PostMapping("/findpw")
+	public String findPw(@RequestParam("userid") String userid, @RequestParam("email") String email, Model model) {
+	    String newPassword = service.findPassword(userid, email);
+
+	    if (newPassword != null) {
+	        model.addAttribute("message", "임시 비밀번호가 발급되었습니다. 이메일을 확인해주세요.");
+	        model.addAttribute("success", true);
+	    } else {
+	        model.addAttribute("message", "해당 계정으로 가입된 아이디와 이메일이 없습니다. 다시 입력해주세요.");
+	        model.addAttribute("success", false);
+	    }
+	    return "login/findpwform";
+	}
 }
