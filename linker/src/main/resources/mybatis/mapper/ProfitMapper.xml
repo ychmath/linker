@@ -14,12 +14,11 @@
 	<select id="selectByDate"
 		resultType="com.linker.finance.dto.ProfitDto"
 		parameterType="java.util.Map">
-       <![CDATA[
         SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price
         FROM tickettype tt
         INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid
-        WHERE orderdate >= #{map.startDate} AND orderdate <= #{map.endDate}
+        WHERE orderdate between #{startDate} AND #{endDate}
         ORDER BY orderdate DESC;
-        ]]>
+        
 	</select>
 </mapper>

@@ -132,21 +132,21 @@ border-bottom: 1px solid #444444;
         <th id="C">날짜</th>
       <td id="I">
    <label class="test_obj">
-    <input type="radio" name="date" value="today">
+    <input type="radio" id="today" name="date" value="today">
     <span>오늘</span>
 </label>
  
 <label class="test_obj">
-    <input type="radio" name="date" value="1month">
+    <input type="radio" id="1month" name="date" value="1month">
     <span>1개월</span>
 </label>
  
 <label class="test_obj">
-    <input type="radio" name="date" value="3month">
+    <input type="radio" id="3month"name="date" value="3month">
     <span>3개월</span>
 </label>
 <label class="test_obj">
-    <input type="radio" name="date" value="1year">
+    <input type="radio" id="1year" name="date" value="1year">
     <span>1년</span>
 </label>
  <label for="start-date-input"></label>
@@ -175,6 +175,8 @@ function resetSearch(){
 	location.assign("${pageContext.request.contextPath}/finance/orders");
 
 }
+
+
 
 $(function(){
     $("input[type='radio'][name='date']").on("change", function(){

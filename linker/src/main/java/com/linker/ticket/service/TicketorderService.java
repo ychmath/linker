@@ -20,8 +20,13 @@ public class TicketorderService {
 		return dao.selectAll();
 	}
 	
-	public List<TicketorderDto> getOrdersByDate(String date) {
-		return null;
+	public List<TicketorderDto> getOrdersByDate(Date startDate, Date endDate) {
+		Map<String , Date> map = new HashMap<>();
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		
+		
+		return dao.selectByDate(map);
 	}
 
 	public int deleteOrderById(int orderId) {

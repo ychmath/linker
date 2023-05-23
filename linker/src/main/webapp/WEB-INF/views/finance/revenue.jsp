@@ -126,7 +126,7 @@ border-bottom: 1px solid #444444;
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
-  <p><strong>매출 내역</strong></p><br>
+  <p><strong>지출 내역</strong></p><br>
     <table id="data-table">
       <tr>
         <th id="C">날짜</th>
@@ -178,6 +178,7 @@ function resetSearch(){
 
 $(function(){
     $("input[type='radio'][name='date']").on("change", function(){
+    	alert("test");
         var dateRange =  $(this).val();
         var startDate = "";
         var endDate = "";

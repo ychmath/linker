@@ -36,8 +36,8 @@ public class TicketorderController {
 	}
 	
 	@GetMapping("/ticket/{date}")
-	public List<TicketorderDto> getOrdersByDate(@PathVariable String date) {
-		return ticketorderService.getOrdersByDate(date);
+	public List<TicketorderDto> getOrdersByDate(@PathVariable Date startdate,Date endDate) {
+		return ticketorderService.getOrdersByDate(startdate, endDate);
 	}
 
 	@PostMapping("/ticket")

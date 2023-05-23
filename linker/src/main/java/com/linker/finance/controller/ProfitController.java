@@ -60,9 +60,7 @@ public class ProfitController {
 	@ResponseBody
 	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
-
 		List<ProfitDto> filteredData = profitService.selectByDate(startDate, endDate);
-
 		Gson gson = new Gson();
 		String list = gson.toJson(filteredData);
 
