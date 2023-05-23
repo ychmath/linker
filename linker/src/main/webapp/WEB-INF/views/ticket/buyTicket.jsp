@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,6 @@
 <body>
 	<h1>식권 구매</h1>
 	
-	<form method="post" id="buyTicket" action="/ticket/ticketlist">
 	<div>
 	<table>
 	
@@ -56,18 +55,13 @@
 				<option>19</option>
 				<option>20</option>
 				</select>개</td>
-
 		</tr>
-			
-		
-			
+
 		<tr>
 			<td>합계</td>
 			<td><span id="price">6000</span>원</td>
 		</tr>
-		
-		
-		
+
 		<tr>
 			<td><input type="button" id="add" value="추가"></td>
 		</tr>
@@ -85,10 +79,23 @@
 			<td>총합계</td>
 			<td><span id="totalprice">0</span>원</td>
 		</tr>
+			
+		
 		
 	</table>
 	</div>
+		<form method="get" id="buyTicket" action="/ticket/buyTicket2" name="form">
+		<c:forEach items="${ids}" var="ticketid" varStatus="status">
+<!-- 			tickettype/quantity -->
+		<input type="hidden" name="ticketOrderDto[${status.index}].tickettype" value="${ticketid}">
+		<input type="hidden" name="ticketOrderDto[${status.index}].quantity" value="0" id="${ticketid}">
+		
+		
+		</c:forEach>
+		
+		
 		<button id="kakaopay"><img src="/img/kakaopay.png"></button>
+		</form>
 		
 		<p>----------------------------------------------------------------------------------------------------</p>
 		
@@ -111,13 +118,28 @@
 					</tr>
 				</table>
 			</div>
-	</form>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 	
 		$("#kakaopay").click(function(){
+			
+			var A = $("#A").text();
+			var B = $("#B").text();
+			
+			if(A == "" && B == ""){
+				alert("구매하실 식권을 1가지 이상 선택하세요.");
+				return false;
+			}else{
+			if(A){
+				$("#1").val($("#A > span:nth-child(2)").text());
+			}
+			if(B){
+				$("#2").val($("#B > span:nth-child(2)").text());
+			}
+				
 			$("#buyTicket").submit();
+			}
 		})
 	
 		$("#tickettype").change(function(){
@@ -178,8 +200,8 @@
 					alert("삭제하고 다시 추가해주세요.")
 				}
 				else{
-				$("#A").append("<span class='p'> "+a+"</span>");
-				$("#A").append("<span class='p'> "+quantitySelectPrice+"개</span>");
+				$("#A").append("<span class='p'>"+a+"</span>");
+				$("#A").append(" <span class='p'>"+quantitySelectPrice+"</span>개");
 				$("#A").append("<span class='p' id='calculateATotalPrice2'> "+calculateTotalPrice2()+"원</span>");
 				deleteBtn.show();
 				}
@@ -190,7 +212,7 @@
 				}
 				else{
 				$("#B").append("<span class='p'> "+a+"</span>");
-				$("#B").append("<span class='p'> "+quantitySelectPrice+"개</span>");
+				$("#B").append("<span class='p'> "+quantitySelectPrice+"</span>개");
 				$("#B").append("<span class='p' id='calculateBTotalPrice2'> "+calculateTotalPrice2()+"원</span>");
 				deleteBtn2.show();
 				}

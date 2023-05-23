@@ -281,7 +281,7 @@ function showSaledResult(start, end) {
 		<td>${ticket.ticketorderid}</td>
 		<td><fmt:formatDate value="${ticket.orderdate}" pattern="yyyy-MM-dd" /></td>
 		<td>${ticket.tickettypename}</td>
-		<td>${ticket.price}</td>    
+		<td>${ticket.price}</td>
 		<td>${ticket.quantity}</td>
 		<td>${ticket.totalprice}</td>
 	</tr>

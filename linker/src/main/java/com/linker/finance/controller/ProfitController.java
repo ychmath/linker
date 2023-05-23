@@ -21,7 +21,7 @@ import com.linker.finance.dto.ProfitDto;
 import com.linker.finance.service.ProfitService;
 
 @Controller
-@RequestMapping("/finance")
+//@RequestMapping("/finance")
 public class ProfitController {
 	@Autowired
 	private ProfitService profitService;
@@ -68,5 +68,13 @@ public class ProfitController {
 
 		return list;
 	}
-
+//	---------------------------------------------------------------
+	
+	@GetMapping("/finance/profit")
+	public String profit() {
+		return "finance/profit";
+	}
+	
+	
+	
 }

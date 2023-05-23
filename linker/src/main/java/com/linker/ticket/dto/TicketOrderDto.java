@@ -1,13 +1,10 @@
 package com.linker.ticket.dto;
 
 import java.util.Date;
-
-import com.linker.login.dto.LoginDto;
-
-import lombok.Data;
+import lombok.*;
 
 @Data
-public class TicketOrderDto extends LoginDto{
+public class TicketOrderDto{
 	
 	private int ticketorderid;
 	private Date orderdate;
@@ -15,5 +12,6 @@ public class TicketOrderDto extends LoginDto{
 	private int price;
 	private int quantity;
 	private int totalprice;
+	private String userid;
 	
 }

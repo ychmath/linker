@@ -1,5 +1,7 @@
 package com.linker.ticket.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.linker.login.dto.LoginDto;
 import com.linker.ticket.dto.TicketOrderDto;
+import com.linker.ticket.dto.TicketOrderDtoList;
 import com.linker.ticket.service.TicketOrderService;
 
 	@SessionAttributes("user")
@@ -30,10 +33,9 @@ import com.linker.ticket.service.TicketOrderService;
 		@Autowired
 		private TicketOrderService service;
 		
-		
 		@ModelAttribute("user")
-		public TicketOrderDto getDto() {
-			return new TicketOrderDto();
+		public LoginDto getDto() {
+			return new LoginDto();
 		}
 		
 		@GetMapping("/ticket")
@@ -73,14 +75,30 @@ import com.linker.ticket.service.TicketOrderService;
 			return list;
 		}
 		
-		@GetMapping("/ticket/buyTicket")
-		public String buyTicket() {
+//		-----------------------------------------------------------------------------------------------------------------------------
+		
+		@GetMapping("/ticket/buyTicket1")
+		public String buyTicket(Model m) {
+			//
+			List<Integer> idList = Arrays.asList(1,2);//select tickettypeid from tickettype;
+			m.addAttribute("ids", idList);
 			return "ticket/buyTicket";
 		}
 
-		@PostMapping("/ticket/ticketlist")
-		public String buyTicket(@ModelAttribute("user") LoginDto userid, TicketOrderDto dto) {
-		service.buyTicket(dto);
-		return "redirect:/main";
+		@GetMapping("/ticket/buyTicket2")
+		public String buyTicket(@ModelAttribute("user")LoginDto userid, TicketOrderDtoList orders) {
+		List<TicketOrderDto> orderList = orders.getTicketOrderDto();
+		
+		for(TicketOrderDto dto : orderList) {
+			if(dto.getQuantity() != 0) {
+			dto.setUserid(userid.getUserid());
+			service.buyTicket(dto);
+			}
 		}
+			
+		//dto.setUserid(user.getUserid());
+		//service.buyTicket(dto);
+		return "redirect:/ticket/buyTicket1";
+		}
+		
 }

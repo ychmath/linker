@@ -18,7 +18,7 @@
 	<a href="/inquiry/inquiry">문의사항</a>
 	<a href="/ticket/buyTicket">식권 구매</a>
 	<a href="/ticket/ticketlist">식권 구매 내역</a>
-	<a href="/finance/profit">profit</a>
+	<a href="/finance/profit">매출 내역</a>
 	<a href="/finance/revenue">revenue</a>
 	
 	
