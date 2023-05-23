@@ -126,15 +126,16 @@ border-bottom: 1px solid #444444;
 <form action="${pageContext.request.contextPath}/finance/filtered_data_tu" method="get">
 <div>
 	<div>
-		<p><strong>식권 사용 내역</strong></p><br>
-		<table id="data-table">
-			<tr>
-				<th id="C">사용 일자</th>
+<p><strong>식권 사용 내역</strong></p><br>
+	<table id="data-table">
+		<tr>
+			<th id="C">사용 일자</th>
 			<td id="I">
-		<label class="test_odj">
+	<label class="test_obj">
 		<input type="radio" name="date" value="today">
 		<span>오늘</span>
 		</label>
+		
 		<label class="test_obj">
     <input type="radio" name="date" value="1month">
     <span>1개월</span>
@@ -168,6 +169,7 @@ border-bottom: 1px solid #444444;
 
 	<script>
 	function resetSearch(){
+		
 		location.assign("${pageContext.request.contextPath}/ticketuse/ticketu");
 	}
 	$(function(){
@@ -269,18 +271,14 @@ border-bottom: 1px solid #444444;
 	<tbody id="saled">
 	<c:forEach items="${tulist}" var="ticketu">
 		<tr>
-			<td>${ }
+			<td>${ticketu.userid}</td>
+			<td>${ticketu.quantity}</td>
+		<td><fmt:formatDate value="${ticketu.usedate}" pattern="yyyy-MM-dd" /></td>
+		</tr>
+			
 	
 	</c:forEach>
-	
-		
-		
-		
-		
-		
-		</tbody>
-		</thead>
-	
+		</tbody>	
 	</table>
 	
 	</div>
