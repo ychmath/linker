@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.linker.finance.dao.RevenueDao">
-    <select id="selectAll" resultType="com.linker.finance.dto.RevenueDto">
+<mapper namespace="com.linker.finance.dao.ExpenditureDao">
+    <select id="selectAll" resultType="com.linker.finance.dto.ExpenditureDto">
         SELECT orderid, ingredientname, orderquantity * orderprice AS price, orderdate
         FROM ingredientorder
         INNER JOIN ingredient ON ingredient.ingredientid = ingredientorder.ingredientid
     </select>
     
-    <select id="selectByDate" resultType="com.linker.finance.dto.RevenueDto" parameterType="java.util.Map">
+    <select id="selectByDate" resultType="com.linker.finance.dto.ExpenditureDto" parameterType="java.util.Map">
         <![CDATA[ 
         SELECT orderid, ingredientname, orderquantity * orderprice AS price, orderdate
         FROM ingredientorder

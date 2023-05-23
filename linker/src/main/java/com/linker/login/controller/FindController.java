@@ -1,8 +1,8 @@
 package com.linker.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.linker.login.dto.EmailDto;
 import com.linker.login.dto.LoginDto;
 import com.linker.login.service.FindService;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 @Controller
 public class FindController {
@@ -49,5 +46,6 @@ public class FindController {
 		model.addAttribute("userid", userid);
 		return "login/findidresultform";
 	}
+
 
 }

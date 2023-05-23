@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.linker.finance.dao.ProfitDao">
+<mapper namespace="com.linker.finance.dao.SalesDao">
 	<select id="selectAll"
-		resultType="com.linker.finance.dto.ProfitDto">
+		resultType="com.linker.finance.dto.SalesDto">
 		SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate,
 		price * quantity AS price
 		FROM tickettype tt
@@ -12,7 +12,7 @@
 	</select>
 
 	<select id="selectByDate"
-		resultType="com.linker.finance.dto.ProfitDto"
+		resultType="com.linker.finance.dto.SalesDto"
 		parameterType="java.util.Map">
        <![CDATA[
         SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price

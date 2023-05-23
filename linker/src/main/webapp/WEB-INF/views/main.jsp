@@ -77,8 +77,8 @@
 							<li><a href="/notice.html">공지사항</a></li>
 							<li><a href="/inquiry.html">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
-							<li><a href="/finance/orders">매출</a></li>
-							<li><a href="/revenue/ingredient">지출</a></li>
+							<li><a href="/finance/sales">매출</a></li>
+							<li><a href="/finance/expenditure">지출</a></li>
 							<li><a href="/ticketorder/ticket">식권구매</a></li>
 							<li><a href="/profitChart">차트</a>
 						</ul>

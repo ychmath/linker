@@ -8,19 +8,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.finance.dao.RevenueDao;
-import com.linker.finance.dto.RevenueDto;
+import com.linker.finance.dao.ExpenditureDao;
+import com.linker.finance.dto.ExpenditureDto;
 
 @Service
-public class RevenueService {
+public class ExpenditureService {
 	@Autowired
-	RevenueDao dao;
+	ExpenditureDao dao;
 
-	public List<RevenueDto> getAllIngredient() {
+	public List<ExpenditureDto> getAllIngredient() {
 	    return dao.selectAll();
 	}
 
-	public List<RevenueDto> getOrdersByDate(String date) {
+	public List<ExpenditureDto> getOrdersByDate(String date) {
 		return null;
 	}
 
@@ -28,12 +28,12 @@ public class RevenueService {
 		return 0;
 	}
 
-	public int addOrder(RevenueDto dto) {
+	public int addOrder(ExpenditureDto dto) {
 		return 0;
 	
 	}
 
-	public List<RevenueDto> selectByDate(Date startDate, Date endDate) {
+	public List<ExpenditureDto> selectByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		Map<String , Date> map = new HashMap<>();
 		map.put("startDate", startDate);

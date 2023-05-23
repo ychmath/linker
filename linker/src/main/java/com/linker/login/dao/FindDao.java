@@ -3,6 +3,8 @@ package com.linker.login.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linker.login.dto.LoginDto;
 
@@ -18,4 +20,5 @@ public interface FindDao {
 
 	@Update("update user set password=#{password} where userid=#{userid}")
 	public String updatePw(LoginDto dto);
+	
 }

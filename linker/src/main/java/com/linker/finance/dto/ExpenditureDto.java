@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class RevenueDto {
+public class ExpenditureDto {
 	private int orderid;
 	private String ingredientname;
 	private int price;

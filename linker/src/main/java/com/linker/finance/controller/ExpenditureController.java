@@ -17,50 +17,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.linker.finance.dto.RevenueDto;
-import com.linker.finance.service.RevenueService;
+import com.linker.finance.dto.ExpenditureDto;
+import com.linker.finance.service.ExpenditureService;
 
 @Controller
-@RequestMapping("/revenue")
-public class RevenueController {
+@RequestMapping("/finance")
+public class ExpenditureController {
 	@Autowired
-	private RevenueService revenueService;
+	private ExpenditureService eService;
 
-	@GetMapping("/ingredient")
+	@GetMapping("/expenditure")
 	public String getAllIngredient(Model m) {
 
-		List<RevenueDto> list = revenueService.getAllIngredient();
-		m.addAttribute("Ilist", list);
+		List<ExpenditureDto> list = eService.getAllIngredient();
+		m.addAttribute("elist", list);
 
-		return "finance/revenue";
+		return "finance/expenditure";
 	}
 
-	@GetMapping("/ingredient/{date}")
-	public List<RevenueDto> getOrdersByDate(@PathVariable String date) {
-		return revenueService.getOrdersByDate(date);
+	@GetMapping("/expenditure/{date}")
+	public List<ExpenditureDto> getOrdersByDate(@PathVariable String date) {
+		return eService.getOrdersByDate(date);
 	}
 
-	@PostMapping("/ingredient")
-	public int addOrder(@RequestBody RevenueDto dto) {
-		return revenueService.addOrder(dto);
+	@PostMapping("/expenditure")
+	public int addOrder(@RequestBody ExpenditureDto dto) {
+		return eService.addOrder(dto);
 	}
 
-	@DeleteMapping("/ingredient/{orderId}")
+	@DeleteMapping("/expenditure/{orderId}")
 	public int deleteOrderById(@PathVariable int orderId) {
-		return revenueService.deleteOrderById(orderId);
+		return eService.deleteOrderById(orderId);
 	}
 
-	public String selectAll(RevenueDto revenue) {
+	public String selectAll(ExpenditureDto expenditure) {
 
 		return "";
 	}
 
-	@RequestMapping("/filtered_data_i")
+	@RequestMapping("/filtered_data_ex")
 	@ResponseBody
 	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
 
-		List<RevenueDto> filteredData = revenueService.selectByDate(startDate, endDate);
+		List<ExpenditureDto> filteredData = eService.selectByDate(startDate, endDate);
 
 		Gson gson = new Gson();
 		String list = gson.toJson(filteredData);

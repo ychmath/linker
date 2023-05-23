@@ -8,8 +8,7 @@ String end_date = request.getParameter("end_date");%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>지출 내역</title>
+<title>매출 내역</title>
 </head>
 <style>
 #B {
@@ -120,13 +119,14 @@ border-bottom: 1px solid #444444;
   	
     
 </style>
+
 <body>
 <%-- <form:form> --%>
-<form action="${pageContext.request.contextPath}/finance/filtered_data_i" method="get">
+<form action="${pageContext.request.contextPath}/finance/filtered_data_sa" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
-  <p><strong>지출 내역</strong></p><br>
+  <p><strong>매출 내역</strong></p><br>
     <table id="data-table">
       <tr>
         <th id="C">날짜</th>
@@ -172,7 +172,7 @@ function search() {
 
 function resetSearch(){
 	
-	location.assign("${pageContext.request.contextPath}/revenue/ingredient");
+	location.assign("${pageContext.request.contextPath}/finance/sales");
 
 }
 
@@ -181,45 +181,47 @@ $(function(){
         var dateRange =  $(this).val();
         var startDate = "";
         var endDate = "";
-			
-			 switch (dateRange) {
-	          case "today":
-	            startDate = new Date();
-	            endDate = new Date();
-	            break;
-	          case "1month":
-	            startDate = new Date();
-	            startDate.setMonth(startDate.getMonth() - 1);
-	            endDate = new Date();
-	            break;
-	          case "3month":
-	            startDate = new Date();
-	            startDate.setMonth(startDate.getMonth() - 3);
-	            endDate = new Date();
-	            break;
-	          case "1year":
-	            startDate = new Date();
-	            startDate.setFullYear(startDate.getFullYear() - 1);
-	            endDate = new Date();
-	            break;
-	        }
-			 var startYear = startDate.getFullYear();
-		        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
-		        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
-		        var endYear = endDate.getFullYear();
-		        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
-		        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
 
-		        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
-		        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
+        // dateRange에 따라 startDate와 endDate값을 설정합니다.
+        switch (dateRange) {
+          case "today":
+            startDate = new Date();
+            endDate = new Date();
+            break;
+          case "1month":
+            startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - 1);
+            endDate = new Date();
+            break;
+          case "3month":
+            startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - 3);
+            endDate = new Date();
+            break;
+          case "1year":
+            startDate = new Date();
+            startDate.setFullYear(startDate.getFullYear() - 1);
+            endDate = new Date();
+            break;
+        }
 
-		        showSaledResult(startDateStr, endDateStr);
-		    });
-		});
-		
+        var startYear = startDate.getFullYear();
+        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
+        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
+        var endYear = endDate.getFullYear();
+        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
+        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
+
+        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
+        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
+
+        showSaledResult(startDateStr, endDateStr);
+    });
+});
+
 function showSaledResult(start, end) {
 	 $.ajax({
-	        url: "./filtered_data_i",
+	        url: "./filtered_data_sa",
 	        data: {
 	            "start-date": start,
 	            "end-date": end
@@ -234,19 +236,19 @@ function showSaledResult(start, end) {
 	        }
 	    });
 	}
-	
-	
+
 	function updateTableWithNewData(data) {
 	    var table_data = '';
-	    //$.each(data, function (index, profit) {
+	    //$.each(data, function (index, sales) {
 	    	
 	    	for (var i = 0; i < data.length; i++){
-	        let revenue = data[i];
+	        let sales = data[i];
 	    	table_data += '<tr>';
-	        table_data += '<td>'+ revenue.orderid+'</td>';
-	        table_data += '<td>'+ revenue.ingredientname +'</td>';
-	        table_data += '<td>'+ revenue.price+'</td>';
-	        table_data += "<td>"+ new Date(revenue.orderdate).toISOString().split('T')[0] +"</td>";
+	        table_data += '<td>'+ sales.ticketorderid+'</td>';
+	        table_data += '<td>'+ sales.tickettypename +'</td>';
+	        table_data += '<td>'+ sales.quantity+'</td>';
+	        table_data += '<td>'+ sales.price +'</td>';
+	        table_data += "<td>"+ new Date(sales.orderdate).toISOString().split('T')[0] +"</td>";
 	        
 	        table_data += '</tr>';
 	    	}
@@ -257,29 +259,29 @@ function showSaledResult(start, end) {
 	}
 	</script>
 	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-	</tr>
-
 	
-	</table><br>
-</div>
+   </tr>
+   </table> <br>
+  </div>
 	<div>
 	<table>
 	<thead>
 		<tr>
-		<th scope="col">발주 번호</th>
-		<th scope="col">식자재 이름</th>
+		<th scope="col">식권주문ID</th>
+		<th scope="col">식권종류</th>
+		<th scope="col">수량</th>
 		<th scope="col">총 가격</th>
 		<th scope="col">주문 일자</th>
-	
 	</tr>
 	</thead>
 	<tbody id = "saled">
-	<c:forEach items="${Ilist}" var="revenue">
+	<c:forEach items="${slist}" var="sales">
 	<tr>
-		<td>${revenue.orderid}</td>
-		<td>${revenue.ingredientname}</td>
-		<td>${revenue.price}</td>    
-		<td><fmt:formatDate value="${revenue.orderdate}" pattern="yyyy-MM-dd" /></td>
+		<td>${sales.ticketorderid}</td>
+		<td>${sales.tickettypename}</td>
+		<td>${sales.quantity}</td>    
+		<td>${sales.price}</td>
+		<td><fmt:formatDate value="${sales.orderdate}" pattern="yyyy-MM-dd" /></td>
 
 	</tr>
 	</c:forEach>
@@ -288,9 +290,6 @@ function showSaledResult(start, end) {
 	</div>
 </div>
 
-
-
-
-</form>
+ </form>
 </body>
 </html>

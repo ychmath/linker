@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ProfitDto{
+public class SalesDto{
     private int ticketorderid;
     private String tickettypename;
     private int quantity;
