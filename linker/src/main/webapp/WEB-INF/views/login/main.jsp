@@ -21,6 +21,5 @@
 	<a href="/finance/profit">매출 내역</a>
 	<a href="/finance/revenue">revenue</a>
 	
-	
 </body>
 </html>

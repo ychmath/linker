@@ -13,7 +13,8 @@ import com.linker.finance.dto.ProfitDto;
 
 @Service
 public class ProfitService {
-    @Autowired
+    
+	@Autowired
     ProfitDao dao;
 
 	public List<ProfitDto> getAllOrders() {
@@ -43,3 +44,4 @@ public class ProfitService {
 	}
 	
 }
+

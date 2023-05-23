@@ -8,7 +8,7 @@ String end_date = request.getParameter("end_date");%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>매출 내역</title>
+<title>식권 구매 내역</title>
 </head>
 <style>
 #B {
@@ -122,11 +122,11 @@ border-bottom: 1px solid #444444;
 
 <body>
 <%-- <form:form> --%>
-<form action="${pageContext.request.contextPath}/finance/filtered_data_o" method="get">
+<form action="${pageContext.request.contextPath}/finance/filtered_data_t" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
-  <p><strong>매출 내역</strong></p><br>
+  <p><strong>식권 구매 내역</strong></p><br>
     <table id="data-table">
       <tr>
         <th id="C">날짜</th>
@@ -172,7 +172,7 @@ function search() {
 
 function resetSearch(){
 	
-	location.assign("${pageContext.request.contextPath}/finance/orders");
+	location.assign("${pageContext.request.contextPath}/ticketorder/ticket");
 
 }
 
@@ -221,7 +221,7 @@ $(function(){
 
 function showSaledResult(start, end) {
 	 $.ajax({
-	        url: "./filtered_data_o",
+	        url: "./filtered_data_t",
 	        data: {
 	            "start-date": start,
 	            "end-date": end
@@ -239,17 +239,17 @@ function showSaledResult(start, end) {
 
 	function updateTableWithNewData(data) {
 	    var table_data = '';
-	    //$.each(data, function (index, profit) {
+	    //$.each(data, function (index, ticket) {
 	    	
 	    	for (var i = 0; i < data.length; i++){
-	        let profit = data[i];
+	        let ticket = data[i];
 	    	table_data += '<tr>';
-	        table_data += '<td>'+ profit.ticketorderid+'</td>';
-	        table_data += '<td>'+ profit.tickettypename +'</td>';
-	        table_data += '<td>'+ profit.quantity+'</td>';
-	        table_data += '<td>'+ profit.price +'</td>';
-	        table_data += "<td>"+ new Date(profit.orderdate).toISOString().split('T')[0] +"</td>";
-	        
+	        table_data += '<td>'+ ticket.ticketorderid+'</td>';
+	        table_data += "<td>"+ new Date(ticket.orderdate).toISOString().split('T')[0] +"</td>";
+	        table_data += '<td>'+ ticket.tickettypename +'</td>';
+	        table_data += '<td>'+ ticket.price+'</td>';
+	        table_data += '<td>'+ ticket.quantity +'</td>';
+	        table_data += '<td>'+ ticket.totalprice +'</td>';
 	        table_data += '</tr>';
 	    	}
 	    //});
@@ -267,22 +267,23 @@ function showSaledResult(start, end) {
 	<table>
 	<thead>
 		<tr>
-		<th scope="col">식권주문ID</th>
-		<th scope="col">식권종류</th>
+		<th scope="col">식권 구매 번호</th>
+		<th scope="col">구매 일자</th>
+		<th scope="col">식권 종류</th>
+		<th scope="col">식권 가격</th>
 		<th scope="col">수량</th>
-		<th scope="col">총 가격</th>
-		<th scope="col">주문 일자</th>
+		<th scope="col">결제 금액</th>
 	</tr>
 	</thead>
 	<tbody id = "saled">
-	<c:forEach items="${plist}" var="profit">
+	<c:forEach items="${tlist}" var="ticket">
 	<tr>
-		<td>${profit.ticketorderid}</td>
-		<td>${profit.tickettypename}</td>
-		<td>${profit.quantity}</td>    
-		<td>${profit.price}</td>
-		<td><fmt:formatDate value="${profit.orderdate}" pattern="yyyy-MM-dd" /></td>
-
+		<td>${ticket.ticketorderid}</td>
+		<td><fmt:formatDate value="${ticket.orderdate}" pattern="yyyy-MM-dd" /></td>
+		<td>${ticket.tickettypename}</td>
+		<td>${ticket.price}</td>    
+		<td>${ticket.quantity}</td>
+		<td>${ticket.totalprice}</td>
 	</tr>
 	</c:forEach>
 	</tbody>

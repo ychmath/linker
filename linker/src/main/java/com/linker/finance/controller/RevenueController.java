@@ -21,6 +21,7 @@ import com.linker.finance.dto.RevenueDto;
 import com.linker.finance.service.RevenueService;
 
 @Controller
+
 //@RequestMapping("/revenue")
 public class RevenueController {
 	@Autowired
@@ -74,8 +75,5 @@ public class RevenueController {
 	public String revenue() {
 		return "finance/revenue";
 	}
-	
-	
-	
 
 }

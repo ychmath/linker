@@ -16,11 +16,11 @@ public interface LoginDao {
 
 
 	@Insert("insert into user(userid, password, name, email, phone, role, signupdate) values(#{userid}, #{password}, #{name}, #{email}, #{phone}, #{role}, now())")
-
 	public int insertUser(LoginDto dto);
 	
 	@Update("update user set password=#{password} where userid=#{userid}")
 	public int updateUser(LoginDto dto);
+
 	
 	@Delete("delete from user where userid=#{userid}")
 	public int deleteUser(String id);
@@ -34,7 +34,10 @@ public interface LoginDao {
 	@Select("select userid, name, email, role from user")
 	List<LoginDto> userInfo();
 
-	public String emailCheck(String email);
-
 	public LoginDto findByUserId(String userid);
+
+	public String findId(LoginDto dto);
+	
+	@Select("select email from user where email=#{email}")
+	public String emailCheck(String email);
 }

@@ -84,7 +84,7 @@
 		
 	</table>
 	</div>
-		<form method="get" id="buyTicket" action="/ticket/buyTicket2" name="form">
+		<form method="get" id="buyTicket" action="/ticket/buyTicket1" name="form">
 		<c:forEach items="${ids}" var="ticketid" varStatus="status">
 <!-- 			tickettype/quantity -->
 		<input type="hidden" name="ticketOrderDto[${status.index}].tickettype" value="${ticketid}">

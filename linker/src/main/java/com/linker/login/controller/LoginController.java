@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -31,19 +30,19 @@ public class LoginController {
 
 	@Autowired
 	LoginService service;
+
 	private LoginDao dao;
+
 
 	@ModelAttribute("user")
 	// 컨트롤러의 메서드에 적용하여 해당 메서드가 반환하는 객체를 모델에 자동으로 추가함
 	// 이를 통해 뷰에서 해당 객체에 접근하여 사용할 수 있음
-
 	public LoginDto getDto() {
 	//getDto() 메서드가 LoginDto 객체를 생성하여 "user"라는 이름으로 모델에 추가함
 	//따라서 뷰에서는 "user"라는 이름으로 LoginDto 객체에 접근하여 값을 가져올 수 있음
-
-		// getDto() 메서드가 LoginDto 객체를 생성하여 "user"라는 이름으로 모델에 추가함
-		// 따라서 뷰에서는 "user"라는 이름으로 LoginDto 객체에 접근하여 값을 가져올 수 있음
-		return new LoginDto();
+	// getDto() 메서드가 LoginDto 객체를 생성하여 "user"라는 이름으로 모델에 추가함
+	// 따라서 뷰에서는 "user"라는 이름으로 LoginDto 객체에 접근하여 값을 가져올 수 있음
+			return new LoginDto();
 	}
 	
 	@GetMapping("/loginform")
@@ -86,30 +85,23 @@ public class LoginController {
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m) {
 		LoginDto resultDto = service.login(dto); // service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
 		if (error.hasErrors() || resultDto == null) {
-			
+
 			m.addAttribute("inputUserId", dto.getUserid());
-			
-	        if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
-	            m.addAttribute("useridError", "아이디를 입력해주세요.");
-	        }
-	        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
-	            m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
-	        } else if (resultDto == null) {
-	            m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
-	        }
-	        return "login/loginform";
+
+			if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
+				m.addAttribute("useridError", "아이디를 입력해주세요.");
+			}
+			if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+				m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
+			} else if (resultDto == null) {
+				m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
+			}
+			return "login/loginform";
 		} else {
 			m.addAttribute("user", resultDto); // model 객체에 "user" 이름으로 LoginDto 객체를 저장
 		}
 		return "redirect:/main";
 
-	}
-
-	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public String emailCheck(String email) {
-		String result = dao.emailCheck(email);
-		return result; // 이미 존재하는 이메일이 있으면 해당 이메일 반환, 없으면 null 반환
 	}
 
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
@@ -147,9 +139,8 @@ public class LoginController {
 		
 		}
 
-	@GetMapping("idCheck")
-	@ResponseBody 
-	//@ResponseBody 를 사용하여, 클라이언트의 HTTP GET 요청에 대한 응답으로 문자열 데이터를 반환하는 방법을 보여주고 있음
+	@GetMapping("/idCheck")
+	@ResponseBody
 	public String idCheck(String id) {
 		String checkid = service.idCheck(id);
 		return checkid; //text
@@ -172,8 +163,6 @@ public class LoginController {
 
 	}
 
-
-
 	@DeleteMapping("/delete")
 	public String delete(String formpw, @ModelAttribute("user") LoginDto dto, SessionStatus status) {
 		int i = service.deleteUser(formpw, dto);
@@ -191,9 +180,9 @@ public class LoginController {
 	public String preUpdateForm() {
 		return "login/preupdateform";
 	}
-	
+
 	@PostMapping("/checkPassword")
-	public String checkPassword(@RequestParam("currentPassword") String currentPassword, 
+	public String checkPassword(@RequestParam("currentPassword") String currentPassword,
 			@ModelAttribute("user") LoginDto user, Model model) {
 		boolean isPasswordCorrect = service.checkPassword(user.getUserid(), currentPassword);
 		if (isPasswordCorrect) {
@@ -201,6 +190,18 @@ public class LoginController {
 		}
 		model.addAttribute("errorMessage", "현재 비밀번호가 일치하지 않습니다.");
 		return "login/preupdateform";
+	}
+
+	@GetMapping("/find-id")
+	public String findIdForm() { 
+		return "login/findidform";
+	}
+
+	@PostMapping("/find-id")
+	public String findId(LoginDto dto, Model model) {
+		String userid = service.findId(dto);
+		model.addAttribute("userid", userid);
+		return "login/findidresultform";
 	}
 
 }

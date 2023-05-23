@@ -15,6 +15,8 @@ public interface TicketOrderDao {
 
 	@Insert("insert into ticketorder(ticketorderid, userid, tickettype, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettype}, #{quantity}, now())")
 	public int buyTicket(TicketOrderDto dto);
+	
+	@Select("select  ")
 
 //	------------------------------------------------------------------------------------------------------------
 	
