@@ -19,19 +19,19 @@
     />
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="css/icomoon.css" />
+    <link rel="stylesheet" href="/css/icomoon.css" />
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
     <!-- Flexslider  -->
-    <link rel="stylesheet" href="css/flexslider.css" />
+    <link rel="stylesheet" href="/css/flexslider.css" />
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
     <!-- Modernizr JS -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="/js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
@@ -43,34 +43,40 @@
 <div class="fh5co-loader"></div>
 <div id="page">
 <nav class="fh5co-nav" role="navigation">
-        <!-- <div class="top-menu"> -->
+	<!-- <div class="top-menu"> -->
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
+          	<span id="role" style="display: none;">${ user.role }</span>
             <ul>
-              <c:if test="${user == null}">
-                <li class="login-signup"><a href="login.html">로그인</a></li>
-                <li class="login-signup"><a href="signup.html">회원가입</a></li>
-              </c:if>
+              	<c:if test="${ user == null }">
+                	<li class="login-signup"><a href="/loginform">로그인</a></li>
+                	<li class="login-signup"><a href="/signupform">회원가입</a></li>
+             	</c:if>
+              	<c:if test="${ user != null }">
+              		<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
+              		<li class="logout"><a href="/logout">로그아웃</a></li>
+              	</c:if>
             </ul>
           </div>
           <div class="row">
             <div class="col-xs-12 text-center logo-wrap">
               <div id="fh5co-logo">
-                <a href="/index.html">Linker<span>.</span></a>
+                <a href="/main">Linker<span>.</span></a>
               </div>
             </div>
 
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
-                <li><a href="/index.html">홈</a></li>
+                <li><a href="/main">홈</a></li>
                 <li><a href="notice.html">공지사항</a></li>
                 <li><a href="inquiry.html">문의사항</a></li>
                 <li><a href="/menu/list">식단표</a></li>
               </ul>
             </div>
+
           </div>
         </div>
-        <!-- </div> -->
+    <!-- </div> -->
       </nav>
 
  	<div class="fh5co-cover" style="height: 200px"></div>
@@ -83,7 +89,7 @@
 		<div>
 		<form id="searchYear">
 			<h4 style="color: white;">재무 관리</h4>
-			<p>*최근 3년간의 결과만 조회 가능합니다.</p><br>
+			<p style="color: white;">*최근 3년간의 결과만 조회 가능합니다.</p><br>
 			<select name="targetYear" id="targetYear" style="color: black;"></select>
 			<button type="button" id="search" style="color: black;">검색</button>
 		</form>
@@ -106,7 +112,7 @@
                   >&copy; 2023 Soldesk Project. All Rights Reserved.</small>
                 <small class="block"
                   >Designed by
-                  <a href="index.html" target="_blank">Linker</a></small
+                  <a href="/main" target="_blank">Linker</a></small
                 >
               </p>
             </div>
@@ -117,10 +123,18 @@
 
 <script>
 	$(function(){
-
+		// 권한 가져오기
+		var role = $("#role").text();
+		
+		// 열람 권한이 없다면 페이지 이동.
+		if (role != 'seller') {
+			alert("열람 권한이 없는 페이지입니다.");
+			location.href = "/main";
+		}
+		
 		// 검색할 년도 지정: 최대 3년간 지정 가능
-		let year = new Date().getFullYear();
-		let startyear = year - 3;
+		var year = new Date().getFullYear();
+		var startyear = year - 3;
 		
 		for (i = year; i > startyear; i--){
 			// 최근 년도부터 3년간 지정한 결과를 option 태그로 선택할 수 있도록 지정.
@@ -247,18 +261,18 @@
 </script>
 
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <!-- jQuery Easing -->
-    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
     <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- Waypoints -->
-    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
     <!-- Waypoints -->
-    <script src="js/jquery.stellar.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
     <!-- Flexslider -->
-    <script src="js/jquery.flexslider-min.js"></script>
+    <script src="/js/jquery.flexslider-min.js"></script>
     <!-- Main -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

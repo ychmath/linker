@@ -34,27 +34,44 @@
 <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-<script>
-      function checkLoginStatus() {
-        const isLoggedIn = false;
-
-        const loginSignupButtons = document.querySelectorAll(
-          ".login-signup"
-        );
-        if (!isLoggedIn) {
-          loginSignupButtons.forEach((button) => {
-            button.style.display = "block";
-          });
-        } else {
-          loginSignupButtons.forEach((button) => {
-            button.style.display = "none";
-          });
-        }
-      }
-    </script>
 <style>
-	.orange{
+	.content {
+		width: 100%;
+		align-self: center;
+		align-content: stretch;
+	}
+	.menu {
+		width: 100%;
+		border: 1px solid gray;
+		border-collapse: collapse;
+		margin-top: 30px;
+	}
+	.write {
+		width: 100%;
+		align-self: flex-end;
+		text-align: right;		
+	}
+	.table-hover {
+		color: black;
+	}
+	.menu {
+		border-bottom: 1px solid gray;
+	}
+	.title {
+		width: 700px;
 		color: white;
+		margin-top: 30px;
+	}
+	.pageController {
+		width: 100%;
+		text-align: center;
+	}
+	.orange {
+		color: white;
+	}
+	#myTable {
+		width: 100%;
+		table-layout: fixed;
 	}
 </style>
 </head>
@@ -62,6 +79,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
+	// 권한 가져오기
+	var role = $("#role").text();
+	
+	// 열람 권한이 없다면 페이지 이동.
+	if (role == 'buyer') {
+		alert("열람 권한이 없는 페이지입니다.");
+		location.href = "/main";
+	}
+	
 	// ajax row data
 	var ajax_data = [
 		{tname:"조식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"},
@@ -82,7 +108,8 @@ $(function(){
 	
 	tbl += "<table class=\'table table-hover'\ id=\'myTable'\>";
 	
-	// crate table header > start
+	for (var i = 0; i < 2; i++) {
+		// crate table header > start
 		tbl += "<thead>";
 			tbl += "<tr>";
 				tbl += "<th>시간</th>";
@@ -104,7 +131,7 @@ $(function(){
 		
 		// looping through ajax row data
 		tbl += "<tr row_id=\'" + row_id + "'\>";
-			tbl += "<td><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
+			tbl += "<td class=\'tname'\><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
 			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\' col_name=\'line1'\>" + val["line1"] + "</div></td>";
 			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line2'\>" + val["line2"] + "</div></td>";
 			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line3'\>" + val["line3"] + "</div></td>";
@@ -115,6 +142,7 @@ $(function(){
 
 	// create table body rows > end	
 		tbl += "</tbody>";
+	}
 	// create table body > end
 	tbl += "</table>";
 	// create data table > end
@@ -146,7 +174,7 @@ $(function(){
 		tbl_row.find(".row_data")
 			.removeAttr("edit_type", "click")
 			.removeClass("bg-warning")
-			.css("padding", "")
+			.css("padding", "");
 
 		var row_id = tbl_row.attr('row_id');
 
@@ -181,6 +209,7 @@ $(function(){
         <!-- <div class="top-menu"> -->
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
+            <span id="role" style="display: none;">${ user.role }</span>
             <ul>
               <c:if test="${user == null}">
                 <li class="login-signup"><a href="login.html">로그인</a></li>
@@ -191,13 +220,13 @@ $(function(){
           <div class="row">
             <div class="col-xs-12 text-center logo-wrap">
               <div id="fh5co-logo">
-                <a href="/index.html">Linker<span>.</span></a>
+                <a href="/main">Linker<span>.</span></a>
               </div>
             </div>
 
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
-                <li><a href="/index.html">홈</a></li>
+                <li><a href="/main">홈</a></li>
                 <li><a href="notice.html">공지사항</a></li>
                 <li><a href="inquiry.html">문의사항</a></li>
                 <li class="active"><a href="/menu/list">식단표</a></li>
@@ -211,9 +240,7 @@ $(function(){
  	<div class="fh5co-cover" style="height: 200px"></div>
       
       <div id="fh5co-about" class="fh5co-section">
- 
-      <div class="fh5co-cover" style="height: 50px"></div>
-   
+    
         <div class="container">
 			<form method="post" id="writeform" action="write">
 				<table border="1" style="color:black;">
@@ -252,7 +279,7 @@ $(function(){
                   >&copy; 2023 Soldesk Project. All Rights Reserved.</small>
                 <small class="block"
                   >Designed by
-                  <a href="index.html" target="_blank">Linker</a></small
+                  <a href="/main" target="_blank">Linker</a></small
                 >
               </p>
             </div>
