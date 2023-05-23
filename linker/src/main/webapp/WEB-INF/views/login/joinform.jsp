@@ -367,6 +367,7 @@
     	    showTermsPopup(".mandatory", "button.mandatoryTermsBtn");
     	    showTermsPopup(".optional", "button.optionalTermsBtn");
     	  
+    	    // 해당 입력 칸 아래 오류 메시지 설정
     	  $("#userid, #password, #chk_password, #email, #phone2, #phone3").on(
     			    "focus",
     			    function () {
@@ -398,30 +399,52 @@
 
         let emailVerificationClicked = false;
         let num = "";
+
+        // 이메일 중복 확인 함수
+        function checkEmail(email) {
+          return new Promise(function (resolve, reject) {
+            $.ajax({ url: "/emailCheck", data: "email=" + email, datatype: "text" })
+              .done(function (data) {
+                if (data == "") {
+                  resolve();
+                } else {
+                  reject();
+                }
+              });
+          });
+        }
+
         $("#mail_ck").click(function () {
           emailVerificationClicked = true;
           let email = $("#email").val();
+
           if (!validateEmail(email)) {
-            $("#email_msg").html(
-              "이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요"
-            );
+            $("#email_msg").html("이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요");
             return false;
           }
-          $.ajax({
-            url: "/send",
-            data: "emailAddress=" + email,
-            dataType: "json",
-          }).done(function (data) {
-            if (eval(data[1])) {
-              num = data[0];
-              alert("메일이 전송되었습니다. 인증번호를 입력하세요.");
-              $("#input,#result").css("display", "block");
-            }
-          });
+
+          checkEmail(email)
+            .then(function () {
+              $.ajax({
+                url: "/send",
+                data: "emailAddress=" + email,
+                dataType: "json",
+              }).done(function (data) {
+                if (eval(data[1])) {
+                  num = data[0];
+                  alert("메일이 전송되었습니다. 인증번호를 입력하세요.");
+                  $("#input,#result").css("display", "block");
+                }
+              });
+            })
+            .catch(function () {
+              $("#email_msg").html("이미 사용중인 이메일 입니다.");
+            });
         });
 
         $("#ck_b").click(function () {
           let ck_num = $("#ck_num").val();
+          
           if (ck_num == num) {
             $("#result").html("인증이 확인되었습니다.");
             $("#result").append("<input type='hidden' id='ck' value='1'>");
