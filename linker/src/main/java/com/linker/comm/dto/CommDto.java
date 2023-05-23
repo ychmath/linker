@@ -1,11 +1,10 @@
 package com.linker.comm.dto;
 
-import com.linker.login.dto.LoginDto;
 
 import lombok.Data;
 
 @Data
-public class CommDto extends LoginDto{
+public class CommDto{
 
 	private int ref;
 	private int restep;

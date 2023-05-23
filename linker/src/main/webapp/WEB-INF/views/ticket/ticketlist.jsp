@@ -166,7 +166,7 @@ function search() {
 }
 
 </script>
-<button type="button" id="myButton" onclick="search()">검색 </button>
+<button type="button" id="myButton" onclick="search()">검색</button>
 
 <script>
 
@@ -276,14 +276,14 @@ function showSaledResult(start, end) {
 	</tr>
 	</thead>
 	<tbody id = "saled">
-	<c:forEach items="${tlist}" var="ticket">
+	<c:forEach items="${plist}" var="purchase">
 	<tr>
-		<td>${ticket.ticketorderid}</td>
-		<td><fmt:formatDate value="${ticket.orderdate}" pattern="yyyy-MM-dd" /></td>
-		<td>${ticket.tickettypename}</td>
-		<td>${ticket.price}</td>
-		<td>${ticket.quantity}</td>
-		<td>${ticket.totalprice}</td>
+		<td>${purchase.ticketorderid}</td>
+		<td><fmt:formatDate value="${purchase.orderdate}" pattern="yyyy-MM-dd" /></td>
+		<td>${purchase.tickettype}</td>
+		<td>${purchase.price}</td>
+		<td>${purchase.quantity}</td>
+		<td>${purchase.totalprice}</td>
 	</tr>
 	</c:forEach>
 	</tbody>

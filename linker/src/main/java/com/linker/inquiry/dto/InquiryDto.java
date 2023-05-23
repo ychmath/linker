@@ -7,7 +7,7 @@ import com.linker.login.dto.LoginDto;
 import lombok.Data;
 
 @Data
-public class InquiryDto extends LoginDto{
+public class InquiryDto{
 
 	private int inquirypostid;
 	private String title;
@@ -17,6 +17,7 @@ public class InquiryDto extends LoginDto{
 	private int ref;
 	private int restep;
 	private int relevel;
+	private String userid;
 	
 	
 }

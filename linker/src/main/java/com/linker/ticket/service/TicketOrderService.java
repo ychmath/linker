@@ -13,21 +13,25 @@ import com.linker.ticket.dto.TicketOrderDto;
 
 @Service
 public class TicketOrderService {
-	
 	@Autowired
 	TicketOrderDao dao;
 
-	public List<TicketOrderDto> getAllTicketOrder() {
+	public int buyTicket(TicketOrderDto dto) {
+		return dao.buyTicket(dto);
+	}
+	
+	public List<TicketOrderDto> selectAll(){
 		return dao.selectAll();
 	}
 	
-	public List<TicketOrderDto> getOrdersByDate(Date startDate, Date endDate) {
-		Map<String , Date> map = new HashMap<>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-		
-		
-		return dao.selectByDate(map);
+//	------------------------------------------------------
+	
+//	public List<TicketOrderDto> getAllTicketorder() {
+//		return dao.selectAll();
+//	}
+	
+	public List<TicketOrderDto> getOrdersByDate(String date) {
+		return null;
 	}
 
 	public int deleteOrderById(int orderId) {

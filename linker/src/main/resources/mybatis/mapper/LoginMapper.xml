@@ -1,55 +1,13 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.linker.login.dao.LoginDao">
 
-<!-- 	<select id="emailCheck" parameterType="String"
+	<select id="emailCheck" parameterType="String"
 		resultType="String">
 		select email from user where email=#{email}
 	</select>
- -->
+
     <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
         select * from user where userid = #{userid}
     </select>
-
-	<!-- <insert id="insertUser"
-		parameterType="com.linker.login.dto.LoginDto">
-		insert into user values(#{userid}, #{password}, #{name},
-		#{email}, #{phone}, #{role}, now())
-	</insert>
-
-	<delete id="deleteUser" parameterType="String">
-		delete from user where
-		userid=#{userid}
-	</delete>
-
-	<select id="idCheck" parameterType="String" resultType="String">
-		select
-		userid from user where userid=#{userid}
-	</select>
-
-	<select id="login" parameterType="com.linker.login.dto.LoginDto"
-		resultType="com.linker.login.dto.LoginDto">
-		select * from user where userid=#{userid} and
-		password=#{password}
-	</select>
-
-	<select id="userInfo" resultType="com.linker.login.dto.LoginDto">
-		select userid, name, email,
-		role from user
-	</select>
-
-	<update id="updateUser"
-		parameterType="com.linker.login.dto.LoginDto">
-		update user set password=#{password} where
-		userid=#{userid}
-	</update> -->
-	
-    <select id="findByUserId" resultType="com.linker.login.dto.LoginDto">
-        select * from user where userid = #{userid}
-    </select>
-    
-    <select id="findId" parameterType="com.linker.login.dto.LoginDto" resultType="String">
-  	select userid from user where name = #{name} AND email = #{email}
-	</select>
 </mapper>
