@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.login.dao.FindDao">
+
+	<select id="findByUserId"
+		resultType="com.linker.login.dto.LoginDto">
+		select * from user where userid = #{userid}
+	</select>
+
+	<select id="findId"
+		parameterType="com.linker.login.dto.LoginDto" resultType="String">
+		select userid
+		from user where name = #{name} AND email = #{email}
+	</select>
+
+	<select id="findByUsername" parameterType="String"
+		resultType="com.linker.login.dto.LoginDto">
+		SELECT * FROM user WHERE userid = #{userid}
+	</select>
+
+	<update id="updateUserPassword"
+		parameterType="com.linker.login.dto.LoginDto">
+		UPDATE user SET password = #{password} WHERE userid = #{userid}
+	</update>
+
+</mapper>

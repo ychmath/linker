@@ -1,0 +1,18 @@
+package com.linker.finance.dao;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.linker.finance.dto.SalesDto;
+
+@Mapper
+public interface SalesDao {
+
+	public List<SalesDto> selectAll();
+
+	public List<SalesDto> selectByDate(Map<String, Date> map);
+
+}

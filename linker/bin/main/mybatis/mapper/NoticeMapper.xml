@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.board.dao.NoticeDao">
+
+	<insert id="insertNotice"
+		parameterType="com.linker.board.dto.NoticeDto">
+		INSERT INTO noticepost(noticepostid, userid, title,
+		content, creationdate)
+		VALUES (#{noticepostid}, #{userid}, #{title},
+		#{content}, NOW())
+	</insert>
+
+	<update id="updateNotice"
+		parameterType="com.linker.board.dto.NoticeDto">
+		UPDATE noticepost
+		SET title=#{title}, content=#{content}
+		WHERE noticepostid=#{noticepostid}
+	</update>
+
+	<delete id="deleteNotice">
+		DELETE FROM noticepost WHERE
+		noticepostid=#{noticepostid}
+	</delete>
+
+	<select id="boardOne"
+		resultType="com.linker.board.dto.NoticeDto">
+		SELECT * FROM noticepost WHERE noticepostid=#{noticepostid}
+	</select>
+
+	<select id="noticeList" parameterType="map" resultType="com.linker.board.dto.NoticeDto">
+		SELECT * FROM noticepost ORDER
+		BY noticepostid DESC LIMIT #{start}, #{count}
+	</select>
+
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM noticepost
+	</select>
+
+	<select id="noticeListSearch" parameterType="map"
+		resultType="com.linker.board.dto.NoticeDto">
+
+		select * from noticepost
+		<where>
+			<choose>
+				<when test="searchn == 0">
+					title like concat('%',#{search},'%')</when>
+				<when test="searchn == 1"> userid like concat('%',#{search},'%') </when>
+			</choose>
+		</where>
+
+		order by creationdate desc limit #{start}, #{count}
+
+	</select>
+
+	<select id="countSearch" parameterType="map" resultType="int" >
+		select count(*) from noticepost
+		<where>
+			<choose>
+				<when test="searchn == 0">
+					title like concat('%',#{search},'%')</when>
+				<when test="searchn == 1"> userid like concat('%',#{search},'%') </when>
+			</choose>
+		</where>
+	</select>
+
+</mapper>
