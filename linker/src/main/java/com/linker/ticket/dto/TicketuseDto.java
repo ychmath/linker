@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class TicketuseDto {
-	private int tickettypeid;
+	private char tickettypename;
 	private int quantity;
-	private Date orderdate;
+	private Date usedate;
 }

@@ -151,20 +151,26 @@ th:first-child, td:first-child {
 				<table id="data-table">
 					<tr>
 						<th id="C">날짜</th>
-						<td id="I"><label class="test_obj"> <input
-								type="radio" name="date" value="today"> <span>오늘</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1month"> <span>1개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="3month"> <span>3개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1year"> <span>1년</span>
-						</label> <label for="start-date-input"></label> <input type="date"
-							id="start-date-input" name="start-date" min="2021-01-01" max=""
-							value="" required> <label for="end-date-input"><a
-								id="P">~</a></label> <input type="date" id="end-date-input"
-							name="end-date" min="" max="" value="" required> <script
-								src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <script>
+						<td id="I">
+						<label class="test_obj"> 
+						<input type="radio" name="date" value="today"> <span>오늘</span>
+						</label> 
+						<label class="test_obj"> 
+						<input type="radio" name="date" value="1month"> <span>1개월</span>
+						</label>
+						<label class="test_obj"> 
+						<input type="radio" name="date" value="3month"> <span>3개월</span>
+						</label> 
+						<label class="test_obj"> <input type="radio" name="date" value="1year"> <span>1년</span>
+						</label> 
+						<label for="start-date-input">
+						</label> 
+						<input type="date" id="start-date-input" name="start-date" min="2021-01-01" max="" value="" required> 
+						<label for="end-date-input"><a id="P">~</a>
+						</label> 
+						<input type="date" id="end-date-input" name="end-date" min="" max="" value="" required> 
+							<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+							<script>
 									function search() {
 										var start_date = document
 												.getElementById('start-date-input').value;
@@ -292,15 +298,16 @@ th:first-child, td:first-child {
 									for (var i = 0; i < data.length; i++) {
 										let expenditure = data[i];
 										table_data += '<tr>';
-										table_data += '<td>' + expenditure.orderid
-												+ '</td>';
+										table_data += '<td>'
+												+ expenditure.orderid + '</td>';
 										table_data += '<td>'
 												+ expenditure.ingredientname
 												+ '</td>';
-										table_data += '<td>' + expenditure.price
-												+ '</td>';
+										table_data += '<td>'
+												+ expenditure.price + '</td>';
 										table_data += "<td>"
-												+ new Date(expenditure.orderdate)
+												+ new Date(
+														expenditure.orderdate)
 														.toISOString().split(
 																'T')[0]
 												+ "</td>";
@@ -315,8 +322,6 @@ th:first-child, td:first-child {
 							</script>
 							<button type="button" class="resetButton" onclick="resetSearch()">X</button>
 					</tr>
-
-
 				</table>
 				<br>
 			</div>
@@ -339,17 +344,12 @@ th:first-child, td:first-child {
 								<td>${expenditure.price}</td>
 								<td><fmt:formatDate value="${expenditure.orderdate}"
 										pattern="yyyy-MM-dd" /></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
-
-
-
-
 	</form>
 </body>
 </html>

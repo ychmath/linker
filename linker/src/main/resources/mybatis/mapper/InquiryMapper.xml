@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.board.dao.InquiryDao">
+
+<insert id="insertInquiry" parameterType="com.linker.board.dto.InquiryDto" useGeneratedKeys="true" keyProperty="inquirypostid">
+    INSERT INTO inquirypost(userid, title, content, creationdate, ref, restep, relevel)
+    VALUES (#{userid}, #{title}, #{content}, NOW(), #{ref}, #{restep}, #{relevel})
+</insert>
+
+<update id="updateInquiry" parameterType="com.linker.board.dto.InquiryDto">
+    UPDATE inquirypost
+    SET title=#{title}, content=#{content}
+    WHERE inquirypostid=#{inquirypostid}
+</update>
+
+<update id="updateRef" parameterType="int">
+    UPDATE inquirypost SET ref = #{inquirypostid} WHERE inquirypostid=#{inquirypostid}
+</update>
+
+<update id="updateStep" parameterType="com.linker.board.dto.InquiryDto">
+    UPDATE inquirypost SET restep = restep + 1 WHERE ref = #{ref} AND restep > #{restep}
+</update>
+
+<update id="updateReadcount" parameterType="int">
+    UPDATE inquirypost SET readcount = readcount + 1 WHERE inquirypostid = #{inquirypostid}
+</update>
+
+<delete id="deleteInquiry" parameterType="int">
+    DELETE FROM inquirypost WHERE inquirypostid=#{inquirypostid}
+</delete>
+
+<select id="inquiryList" resultType="com.linker.board.dto.InquiryDto">
+    SELECT * FROM inquirypost ORDER BY ref DESC, restep ASC LIMIT #{start}, #{count}
+</select>
+
+<select id="inquiryOne" resultType="com.linker.board.dto.InquiryDto">
+    SELECT * FROM inquirypost WHERE inquirypostid=#{inquirypostid}
+</select>
+
+<select id="count" resultType="int">
+    SELECT COUNT(*) FROM inquirypost
+</select>
+
+
+<select id="inquiryListSearch" parameterType="map" resultType="com.linker.board.dto.InquiryDto">
+	select * from inquirypost
+	<where>
+		<choose>
+			<when test="searchn == 0">
+				title like concat('%', #{search}, '%')
+			</when>
+			<when test="searchn == 1">
+				userid like concat('%', #{search}, '%')
+			</when>
+		</choose>
+	</where>
+		order by creationdate desc limit #{start}, #{count}
+
+</select>
+
+<select id="countSearch" resultType="int" parameterType="map">
+	
+	select count(*) from inquirypost
+	<where>
+		<choose>
+			<when test="searchn == 0">
+				title like concat('%', #{search}, '%')
+			</when>
+			<when test="searchn == 1">
+				userid like concat('%', #{search}, '%')
+			</when>
+		</choose>
+	</where>
+</select>
+
+</mapper>

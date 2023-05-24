@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.linker.ticket.dao.TicketuseDao">
+<select id="selectAll" resultType="com.linker.ticket.dto.TicketuseDto">
+select usedate, tickettypename, quantity from ticketuse inner join tickettype on tickettype.tickettypeid = ticketuse.tickettypeid;
+</select>
+
+<select id="selectByDate" resultType="com.linker.ticket.dto.TicketuseDto" parameterType="map">
+<![CDATA[
+select usedate, tickettypename, quantity from ticketuse inner join tickettype on tickettype.tickettypeid = ticketuse.tickettypeid WHERE usedate between #{startDate} AND #{endDate} ORDER BY usedate DESC;
+]]>
+
+</select>
+
+</mapper>

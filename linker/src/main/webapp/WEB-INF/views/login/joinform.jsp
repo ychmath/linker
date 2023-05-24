@@ -2,177 +2,287 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>회원 가입</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회원 가입</title>
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-	crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
 
-<style>
-#input, #result {
-	display: none;
-}
+    <style>
+      #input,
+      #result {
+        display: none;
+      }
 
-.error {
-	color: red;
-	font-size: 0.8em;
-}
-</style>
+      .error {
+        color: red;
+        font-size: 0.8em;
+      }
+    </style>
+  </head>
 
-</head>
+  <body>
+    <h3>회원 가입</h3>
+    <form action="joinform" method="post" id="joinForm">
+      <div class="user-details">
+        <table>
+          <tr>
+            <td>회원 유형</td>
+            <td>
+              <input
+                type="radio"
+                id="buyer"
+                name="role"
+                value="buyer"
+                checked
+              />
+              <label for="buyer">구매자</label>
+              <input type="radio" id="seller" name="role" value="seller" />
+              <label for="seller">판매자</label>
+            </td>
+          </tr>
+          <tr>
+            <td>이름</td>
+            <td>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="실명"
+                autocomplete="name"
+                required
+              />
+              <div id="name_msg"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>아이디</td>
+            <td>
+              <input
+                type="text"
+                name="userid"
+                id="userid"
+                placeholder="아이디"
+                required
+              />
+              <input type="button" id="id_check" value="중복 확인" />
+              <div id="id_msg" class="error"></div>
+              <input type="hidden" id="id_ck" value="" />
+            </td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="비밀번호"
+                required
+              />
+              <div id="pw_msg" class="error"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td>
+              <input
+                type="password"
+                name="chk_password"
+                id="chk_password"
+                placeholder="비밀번호 재입력"
+                required
+              />
+              <div id="chk_pw_msg" class="error"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>이메일</td>
+            <td>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="이메일"
+                autocomplete="name"
+                required
+              />
+              <input
+                type="hidden"
+                name="email_verified"
+                id="email_verified"
+                value="0"
+              />
+              <input type="button" id="mail_ck" value="이메일 인증" />
+              <div id="emailresult"></div>
+              <div id="email_msg" class="error"></div>
+              <input type="hidden" id="ck" value="" />
 
-<body>
-	<h3>회원 가입</h3>
-	<form action="joinform" method="post" id="joinForm">
-		<div class="user-details">
-			<table>
-				<tr>
-					<td>회원 유형</td>
-					<td><input type="radio" id="buyer" name="role" value="buyer"
-						checked /> <label for="buyer">구매자</label> <input
-						type="radio" id="seller" name="role" value="seller" /> <label
-						for="seller">판매자</label></td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td><input type="text" name="name" id="name" placeholder="실명"
-						autocomplete="name" required />
-						<div id="name_msg"></div></td>
-				</tr>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="userid" id="userid"
-						placeholder="아이디" required /> <input type="button"
-						id="id_check" value="중복 확인" />
-						<div id="id_msg" class="error"></div> <input type="hidden"
-						id="id_ck" value="" /></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="password" id="password"
-						placeholder="비밀번호" required />
-						<div id="pw_msg" class="error"></div></td>
-				</tr>
-				<tr>
-					<td>비밀번호 확인</td>
-					<td><input type="password" name="chk_password"
-						id="chk_password" placeholder="비밀번호 재입력" required />
-						<div id="chk_pw_msg" class="error"></div></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="email" name="email" id="email"
-						placeholder="이메일" autocomplete="name" required />
-						<input type="hidden" name="email_verified" id="email_verified"
-						value="0" /> <input type="button" id="mail_ck"
-						value="이메일 인증" />
-						<div id="emailresult"></div>
-						<div id="email_msg" class="error"></div> <input type="hidden"
-						id="ck" value="" />
+              <div id="input">
+                <input id="ck_num" />
+                <input type="button" id="ck_b" value="인증 확인" />
+              </div>
+              <div id="result" class="error"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>휴대폰 번호</td>
+            <td>
+              <select id="phone1" name="phone1">
+                <option value="">-선택-</option>
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+                <option value="018">018</option>
+                <option value="019">019</option>
+              </select>
+              - <input type="text" id="phone2" name="phone2" /> -
+              <input type="text" id="phone3" name="phone3" />
+              <div id="phone_msg" class="error"></div>
+            </td>
+          </tr>
+          <tr id="approval_request" style="display: none">
+            <td>승인 요청</td>
+            <td>
+              <textarea
+                name="request_message"
+                placeholder="승인 요청 메시지를 입력해주세요."
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div id="terms">
+                <h4>약관 동의</h4>
 
-						<div id="input">
-							<input id="ck_num" /> <input type="button" id="ck_b"
-								value="인증 확인" />
-						</div>
-						<div id="result" class="error"></div></td>
-				</tr>
-				<tr>
-					<td>휴대폰 번호</td>
-					<td><select id="phone1" name="phone1">
-							<option value="">-선택-</option>
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-					</select> - <input type="text" id="phone2" name="phone2" /> - <input
-						type="text" id="phone3" name="phone3" />
-						<div id="phone_msg" class="error"></div></td>
-				</tr>
-				<tr id="approval_request" style="display: none">
-					<td>승인 요청</td>
-					<td><textarea name="request_message"
-							placeholder="승인 요청 메시지를 입력해주세요."></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<div id="terms">
-							<h4>약관 동의</h4>
+                <!-- 모든 약관에 동의하는 버튼 -->
+                <button type="button" id="agreeAllButton">
+                  내용을 확인했으며 모든 약관에 동의합니다.
+                </button>
 
-							<!-- 모든 약관에 동의하는 버튼 -->
-							<button type="button" id="agreeAllButton">내용을 확인했으며 모든
-								약관에 동의합니다.</button>
+                <!-- 필수 약관 -->
+                <h5>필수 약관</h5>
+                <div class="mandatory">
+                  <input
+                    type="checkbox"
+                    id="mandatoryTerms1"
+                    name="mandatoryTerms"
+                  />
+                  <label for="mandatoryTerms1">(필수) 이용 약관 동의</label>
+                  <button
+                    type="button"
+                    class="btn btn-primary mandatoryTermsBtn"
+                    data-toggle="modal"
+                    data-target="#mandatoryModal1"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div class="mandatory">
+                  <input
+                    type="checkbox"
+                    id="mandatoryTerms2"
+                    name="mandatoryTerms"
+                  />
+                  <label for="mandatoryTerms2"
+                    >(필수) 개인 정보 수집 및 이용 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary mandatoryTermsBtn"
+                    data-toggle="modal"
+                    data-target="#mandatoryModal2"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
 
-							<!-- 필수 약관 -->
-							<h5>필수 약관</h5>
-							<div class="mandatory">
-								<input type="checkbox" id="mandatoryTerms1"
-									name="mandatoryTerms" /> <label
-									for="mandatoryTerms1">(필수) 이용 약관 동의</label>
-								<button type="button" class="btn btn-primary mandatoryTermsBtn"
-									data-toggle="modal" data-target="#mandatoryModal1"
-									data-backdrop="static" data-keyboard="false">
-									&gt;</button>
-							</div>
-							<div class="mandatory">
-								<input type="checkbox" id="mandatoryTerms2"
-									name="mandatoryTerms" /> <label
-									for="mandatoryTerms2">(필수) 개인 정보
-									수집 및 이용 동의</label>
-								<button type="button" class="btn btn-primary mandatoryTermsBtn"
-									data-toggle="modal" data-target="#mandatoryModal2"
-									data-backdrop="static" data-keyboard="false">
-									&gt;</button>
-							</div>
+                <!-- 선택 약관 -->
+                <h5>선택 약관</h5>
+                <div class="optional">
+                  <input
+                    type="checkbox"
+                    id="optionalTerms1"
+                    name="optionalTerms"
+                  />
+                  <label for="optionalTerms1"
+                    >(선택) 개인 정보 수집 및 이용 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary optionalTermsBtn"
+                    data-toggle="modal"
+                    data-target="#optionalModal1"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div class="optional">
+                  <input
+                    type="checkbox"
+                    id="optionalTerms2"
+                    name="optionalTerms"
+                  />
+                  <label for="optionalTerms2"
+                    >(선택) Linker 정보 수신 동의</label
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-primary optionalTermsBtn"
+                    data-toggle="modal"
+                    data-target="#optionalModal2"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                  >
+                    &gt;
+                  </button>
+                  <div style="margin-left: 24px">
+                    <input
+                      type="checkbox"
+                      id="optionalTerms3"
+                      name="optionalTerms"
+                    />
+                    <label for="optionalTerms3">(선택) SMS 수신 동의</label>
+                  </div>
+                  <div style="margin-left: 24px">
+                    <input
+                      type="checkbox"
+                      id="optionalTerms4"
+                      name="optionalTerms"
+                    />
+                    <label for="optionalTerms4">(선택) 이메일 수신 동의</label>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" id="registerButton" value="가입 하기" />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
 
-							<!-- 선택 약관 -->
-							<h5>선택 약관</h5>
-							<div class="optional">
-								<input type="checkbox" id="optionalTerms1" name="optionalTerms" />
-								<label for="optionalTerms1">(선택)
-									개인 정보 수집 및 이용 동의</label>
-								<button type="button" class="btn btn-primary optionalTermsBtn"
-									data-toggle="modal" data-target="#optionalModal1"
-									data-backdrop="static" data-keyboard="false">
-									&gt;</button>
-							</div>
-							<div class="optional">
-								<input type="checkbox" id="optionalTerms2" name="optionalTerms" />
-								<label for="optionalTerms2">(선택)
-									Linker 정보 수신 동의</label>
-								<button type="button" class="btn btn-primary optionalTermsBtn"
-									data-toggle="modal" data-target="#optionalModal2"
-									data-backdrop="static" data-keyboard="false">
-									&gt;</button>
-								<div style="margin-left: 24px">
-									<input type="checkbox" id="optionalTerms3" name="optionalTerms" />
-									<label for="optionalTerms3">(선택) SMS 수신 동의</label>
-								</div>
-								<div style="margin-left: 24px">
-									<input type="checkbox" id="optionalTerms4" name="optionalTerms" />
-									<label for="optionalTerms4">(선택) 이메일 수신 동의</label>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" id="registerButton"
-						value="가입 하기" /></td>
-				</tr>
-			</table>
-		</div>
-	</form>
-
-	<script>
+    <script>
       const validateEmail = (email) =>
         /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-_]+)+$/.test(email);
       const validatePhoneNumber = (phone) =>
@@ -230,14 +340,17 @@
         // 이메일 중복 확인 함수
         function checkEmail(email) {
           return new Promise(function (resolve, reject) {
-            $.ajax({ url: "/emailCheck", data: "email=" + email, datatype: "text" })
-              .done(function (data) {
-                if (data == "") {
-                  resolve();
-                } else {
-                  reject();
-                }
-              });
+            $.ajax({
+              url: "/emailCheck",
+              data: "email=" + email,
+              datatype: "text",
+            }).done(function (data) {
+              if (data == "") {
+                resolve();
+              } else {
+                reject();
+              }
+            });
           });
         }
 
@@ -246,7 +359,9 @@
           let email = $("#email").val();
 
           if (!validateEmail(email)) {
-            $("#email_msg").html("이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요");
+            $("#email_msg").html(
+              "이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요"
+            );
             return false;
           }
 
@@ -271,7 +386,7 @@
 
         $("#ck_b").click(function () {
           let ck_num = $("#ck_num").val();
-          
+
           if (ck_num == num) {
             $("#result").html("인증이 확인되었습니다.");
             $("#result").append("<input type='hidden' id='ck' value='1'>");
@@ -395,6 +510,5 @@
         });
       }); //ready
     </script>
-
-</body>
+  </body>
 </html>

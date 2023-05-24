@@ -6,7 +6,7 @@
 		select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC
 </select>
 
-<select id="selectByDate">
+<select id="selectByDate" resultType="com.linker.finance.dto.ExpenditureDto" parameterType="map">
 	<![CDATA[
 	select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid WHERE orderdate >= #{startDate} AND orderdate <= #{endDate} ORDER BY orderdate DESC
 ]]>
