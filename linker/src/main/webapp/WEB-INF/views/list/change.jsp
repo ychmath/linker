@@ -45,13 +45,14 @@
 		margin-top: 30px;
 		text-align: center;
 		color: white;
+		table-layout: fixed;
 	}
 	th {
 		text-align: center;
 		border-bottom: 1px solid gray;
 	}
 	.searchController {
-		width: 700px;
+		width: 100%;
 		margin-left: 100px;
 		color: black;
 	}
@@ -61,7 +62,7 @@
 		margin-top: 30px;
 	}
 	.pageController {
-		width: 100%;
+		width: 500px;
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
@@ -138,15 +139,18 @@
 						</form>
 					</div>
 				<div class="content">
+					<form>
 					<c:if test="${ count != 0 }">
-						<table class="IngredientList">
+						<table class="IngredientList" id="IngredientList">
 							<tr>
+								<th style="width: 5%;"></th>
 								<th>식자재명</th>
 								<th>단위</th>
 								<th>유통기한</th>
 							</tr>
 							<c:forEach items="${ ingredientList }" var="ingredient">
-							<tr>
+							<tr class="ingredientlist">
+								<td><input type="checkbox" name="checkList" id="checkList" value="${ ingredient.ingredientid }"></td>
 								<td>${ ingredient.ingredientname }</td>
 								<td>${ ingredient.unit }</td>
 								<td>${ ingredient.exp }</td>
@@ -154,9 +158,7 @@
 							</c:forEach>
 						</table>
 						<div>
-							<input type="button" id="addIngredient" value="식자재 추가" style="color: black;"/>
-							<input type="button" id="updateIngredient" value="목록 수정 / 삭제"
-							onclick="location.href='change';" style="color: black;"/>
+							<input type="button" id="delete" value="선택한 식자재 삭제" style="color: black;"/>
 						</div>
 						<div class="pageController">
 							<c:if test="${ begin > end }">
@@ -170,11 +172,8 @@
 							</c:if>
 						</div>
 					</c:if>
-					<c:if test="${ count == 0 }">
-						입력된 식자재가 존재하지 않습니다.
-						<input type="button" id="addIngredient" value="식자재 추가" style="color: black;"/>
-					</c:if>
-				</div>	<%-- main > content end --%>
+					</form>
+					</div>	<%-- main > content end --%>
 				</div>	<%-- main > container end --%>
 			</div>	<%-- main end --%>
 
@@ -198,42 +197,45 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
-	
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$("#search-name").click(function(){
+		$("#delete").click(function(){
+			$("input:checkbox[name='checkList']").each(function(index){
+				if($(this).is(":checked") == true){
+					var target = $(this).val();
+					
+					alert("선택된 목록:" + target);
+					return false;
+/* 					$.ajax({
+						url: "/ingredient/delete" + target,
+						method: "delete",
+						data:{ingredientid:target}
+					}).done(function(result){
+						alert("삭제가 완료되었습니다.");
+						location.replace(result);
+					});	// ajax end
+					return false; */
+				} else {
+					alert("선택된 목록이 없습니다.");
+					return false;
+				}
+			});	// each end
 			
-			let name = $("#name").val();
-						
-			if (!name || name.replace(/\s+/g, "") == "") {
-				alert("검색값을 입력해 주세요.");
-				$("#name").focus();
-				return false;
-			}
 			
-			$("#searchByName").submit();
-
-		});	// search click end
-
-		$("#search-date").click(function(){
-
-			let startDay = $("#startDay").val();
-			let endDay = $("#endDay").val();
-
-			if (!startDay || !endDay || endDay < startDay) {
-				alert("올바른 날짜값을 입력해 주세요.");
-				$("#startDay").focus();
-				return false;
-			}
-
-			$("#searchByDate").submit();
-
-		});	// search click end
-		
-	});	// ready end
+/* 			$.ajax({
+				url: "/ingredient/delete/" + ${ dto.menuID },
+				method: "delete",
+				data:{menuID:menuID}
+			}).done(function(result){
+				alert("삭제가 완료되었습니다.");
+				location.replace(result);
+			});
+			return false; */
+		});
+	});
 </script>
-	
 
 	<!-- jQuery -->
 	<script src="/js/jquery.min.js"></script>
@@ -249,7 +251,6 @@
 	<script src="/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="/js/main.js"></script>
-	
 
 </body>
 </html>
