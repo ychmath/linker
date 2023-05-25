@@ -5,7 +5,7 @@
 <mapper namespace="com.linker.ingredient.dao.ListDao">
 	<!-- 식자재 추가 -->
 	<insert id="addIngredient" parameterType="com.linker.ingredient.dto.ListDto">
-		insert ingredient values(#{ingredientname}, #{unit}, #{exp})
+		insert into ingredient(ingredientname, unit, exp) values (#{ingredientname}, #{unit}, #{exp})
 	</insert>
 	<!-- 식자재 수정 -->
 	<update id="updateIngredient" parameterType="com.linker.ingredient.dto.ListDto">
@@ -23,6 +23,11 @@
 	<!-- 리스트 개수 조회 -->
 	<select id="ingredientCount" resultType="int">
 		select count(*) from ingredient
+	</select>
+	<!-- 선택한 리스트 정보 가져오기 -->
+	<select id="getIngredientByID" parameterType="int" resultType="com.linker.ingredient.dto.ListDto">
+		select * from ingredient
+		where ingredientid = #{ingredientid}
 	</select>
 	<!-- 식자재 이름으로 조회 -->
 	<select id="getIngredientByName" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">

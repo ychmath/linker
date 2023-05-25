@@ -107,16 +107,20 @@
 				<div class="row">
 					<div class="col-xs-12 text-center logo-wrap">
 						<div id="fh5co-logo">
-							<a href="/index.html">Linker<span>.</span></a>
+							<a href="/main">Linker<span>.</span></a>
 						</div>
 					</div>
 
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
-							<li class="active"><a href="index.html">홈</a></li>
+							<li><a href="/main">홈</a></li>
 							<li><a href="/notice/notice">공지사항</a></li>
 							<li><a href="/inquiry/inquiry">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
+							<li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>
 				</div>
@@ -129,7 +133,7 @@
 			<div class="main">
 				<div class="container">
 					<div class="searchController">
-						<h1><a class="title" href="/ingredient/main">식자재 목록</a></h1>
+						<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
 						<form id="searchByName" action="/ingredient/searchbyname/result" method="get"
 						 style="display: inline-block;">
 							<p style="color: white;"><b>이름별 검색</b></p>

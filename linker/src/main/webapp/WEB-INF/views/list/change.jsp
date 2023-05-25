@@ -114,7 +114,7 @@
 							<li><a href="/menu/list">식단표</a></li>
 			                <li><a href="/finance/sales">매출</a></li>
                 			<li><a href="/finance/expenditure">지출</a></li>
-                			<li><a href="/ingredient/main">식자재 관리</a></li>
+                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
                 			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>
@@ -127,18 +127,26 @@
 			<div class="fh5co-cover" style="height: 200px"></div>
 			<div class="main">
 				<div class="container">
-					<h1><a class="title" href="/ingredient/main">식자재 목록</a></h1>
+					<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
 					<div class="listController">
-						<form id="addIngredient" action="" method="get">
-							<p style="color: white;"><b>식자재 추가</b></p>
+						<p style="color: white;"><b>식자재 추가</b></p>
+						<form id="addIngredient" action="/ingredient/insert" method="post">
 							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname">
-							<span style="color: white;">단위:&nbsp; &nbsp;</span><input name="unit">
-							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp"><br>
-							<input class="button" type="button" value="식자재 등록">
+							<span style="color: white;">단위:&nbsp; &nbsp;</span>
+								<select name="unit">
+									<option value="KG">KG</option>
+									<option value="G">G</option>
+									<option value="LB">LB</option>
+									<option value="OZ">OZ</option>
+								</select>
+							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp" type="date"><br>
+						<div>
+							<input type="button" id="add" class="button" value="식자재 등록" style="color: black;"/>
+						</div>
 						</form>
 					</div>
 				<div class="content">
-					<form>
+					<form id="deleteIngredient">
 					<c:if test="${ count != 0 }">
 						<table class="IngredientList" id="IngredientList">
 							<tr>
@@ -149,7 +157,7 @@
 							</tr>
 							<c:forEach items="${ ingredientList }" var="ingredient">
 							<tr class="ingredientlist">
-								<td><input type="checkbox" name="checkList" id="checkList" value="${ ingredient.ingredientid }"></td>
+								<td><input type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }"></td>
 								<td>${ ingredient.ingredientname }</td>
 								<td>${ ingredient.unit }</td>
 								<td>${ ingredient.exp }</td>
@@ -161,13 +169,13 @@
 						</div>
 						<div class="pageController">
 							<c:if test="${ begin > end }">
-								<a href="ingredientList?p=${ begin-1 }">[이전]</a>
+								<a href="change?p=${ begin-1 }">[이전]</a>
 							</c:if>
 							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="ingredientList?p=${ i }">${ i }</a>
+								<a href="change?p=${ i }">${ i }</a>
 							</c:forEach>
 							<c:if test="${ end < totalPages }">
-								<a href="ingredientList?p=${ end + 1 }">[다음]</a>
+								<a href="change?p=${ end + 1 }">[다음]</a>
 							</c:if>
 						</div>
 					</c:if>
@@ -199,33 +207,29 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(function(){
-		$("#delete").click(function() {
-			 
-			
-			
-			
-/* 			$("input:checkbox[name='checkList']").each(function(index){
-				if($(this).is(":checked") == true){
-					var target = $(this).val();
+	$(function() {
+		$("#delete").on("click", function(){
+			// 체크박스에 체크된 식자재 id 번호 값 찾기
+			$(".checkList:checked").each(function(i, item) {
+				// target에 id값 저장
+				var target = item.value;
+				
+				$.ajax({
+					url: "/ingredient/delete/" + target,
+					method: "delete",
+					data:{'ingredientid':target}
+				}).done(function(result){
 					
-					alert("선택된 목록:" + target);
-					return false;
-/* 					$.ajax({
-						url: "/ingredient/delete" + target,
-						method: "delete",
-						data:{ingredientid:target}
-					}).done(function(result){
-						alert("삭제가 완료되었습니다.");
-						location.replace(result);
-					});	// ajax end
-					return false; */
-				} else {
-					alert("선택된 목록이 없습니다.");
-					return false;
-				}
-			});	// each end */
-
+				});				
+			});	// each end
+			
+			alert("삭제가 완료되었습니다.");
+			location.replace("/ingredient/change");
+		});
+		
+		$("#add").on("click", function(){
+			alert("등록이 완료되었습니다.");
+			$("#addIngredient").submit();
 		});
 	});
 </script>

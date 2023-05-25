@@ -52,6 +52,8 @@
 		width: 100%;
 		align-self: flex-start;
 		color: black;
+		border: 1px solid gray;
+		padding: 15px;
 	}
 	.title {
 		width: 700px;
@@ -67,6 +69,10 @@
 	.content {
 		width: 100%;
 		align-content: center;
+	}
+	button{
+		color: black;
+		margin: 3px;
 	}
 </style>
 </head>
@@ -108,7 +114,7 @@
 							<li><a href="/menu/list">식단표</a></li>
 							<li><a href="/finance/sales">매출</a></li>
                 			<li><a href="/finance/expenditure">지출</a></li>
-                			<li><a href="/ingredient/main">식자재 관리</a></li>
+                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
                 			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>
@@ -121,8 +127,8 @@
 			<div class="fh5co-cover" style="height: 200px"></div>
 			<div class="main">
 				<div class="container">
+					<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
 					<div class="searchController">
-						<h1><a class="title" href="/ingredient/main">식자재 목록</a></h1>
 						<form id="searchByName" action="/ingredient/searchbyname/result" method="get"
 						 style="display: inline-block;">
 							<p style="color: white;"><b>이름별 검색</b></p>
@@ -132,7 +138,7 @@
 						<form id="searchByDate" action="/ingredient/searchbydate/result" method="get"
 						 style="display: inline-block;">
 							<p style="color: white;"><b>유통기한별 검색</b></p>
-							<input type="date" class="exp" name="startDay" id="startDay"> - <input type="date" class="exp" name="endDay" id="endDay">
+							<input type="date" class="exp" name="startDay" id="startDay"> <span style="color: white">-</span> <input type="date" class="exp" name="endDay" id="endDay">
 							<input type="button" id="search-date" value="검색">
 						</form>
 					</div>
@@ -143,18 +149,19 @@
 								<th>식자재명</th>
 								<th>단위</th>
 								<th>유통기한</th>
+								<th style="width: 10%;"> </th>
 							</tr>
 							<c:forEach items="${ ingredientList }" var="ingredient">
 							<tr>
 								<td>${ ingredient.ingredientname }</td>
 								<td>${ ingredient.unit }</td>
 								<td>${ ingredient.exp }</td>
+								<td><button class="update" value="${ ingredient.ingredientid }">수정</button></td>
 							</tr>
 							</c:forEach>
 						</table>
 						<div>
-							<input type="button" id="addIngredient" value="식자재 추가" style="color: black;"/>
-							<input type="button" id="updateIngredient" value="목록 수정 / 삭제"
+							<input type="button" id="changeIngredient" value="목록 추가 / 삭제"
 							onclick="location.href='change';" style="color: black;"/>
 						</div>
 						<div class="pageController">
@@ -171,7 +178,8 @@
 					</c:if>
 					<c:if test="${ count == 0 }">
 						입력된 식자재가 존재하지 않습니다.
-						<input type="button" id="addIngredient" value="식자재 추가" style="color: black;"/>
+							<input type="button" id="changeIngredient" value="목록 추가 / 삭제"
+							onclick="location.href='change';" style="color: black;"/>
 					</c:if>
 				</div>	<%-- main > content end --%>
 				</div>	<%-- main > container end --%>
@@ -231,6 +239,16 @@
 		});	// search click end
 		
 	});	// ready end
+	
+	$(".update").click(function() {
+		
+		var targetid = $(this).val();
+		
+	    var _left = Math.ceil(( window.screen.width - 500 )/2);
+	    var _top = Math.ceil(( window.screen.height - 600 )/2); 
+	    
+		window.open('update/' + targetid, '식자재 수정하기', 'top=' + _top + ', left=' + _left + ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+	});	// update click end
 </script>
 	
 

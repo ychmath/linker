@@ -6,8 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.linker.ingredient.dto.ListDto;
 import com.linker.ingredient.service.ListService;
@@ -17,9 +22,10 @@ public class ListController {
 	@Autowired
 	ListService service;
 	
-	@GetMapping("ingredient/main")
+	@GetMapping("ingredient/ingredientList")
 	public String ingredientListMain(@RequestParam(name = "p", defaultValue = "1") int page,
 			Model m) {
+
 		int count = service.ingredientCount();
 		
 		if (count > 0) {
@@ -29,7 +35,7 @@ public class ListController {
 			List<ListDto> ingredientList = service.getIngredient(startRow);
 			
 			m.addAttribute("ingredientList", ingredientList);
-			
+
 			  int pageNum = 5;
 			  int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
 			  int begin = (page - 1) / pageNum * pageNum + 1;
@@ -38,7 +44,7 @@ public class ListController {
 			  if (end > totalPages) {
 				  end = totalPages;
 			  }
-			  
+
 			  m.addAttribute("begin", begin);
 			  m.addAttribute("end", end);
 			  m.addAttribute("pageNum", pageNum);
@@ -148,5 +154,33 @@ public class ListController {
 
 		return "list/change";
 	}
+	
+	  @DeleteMapping("/ingredient/delete/{ingredientid}")
+	  @ResponseBody
+	  public void deleteIngredient(@PathVariable int ingredientid) { 
+		  service.deleteIngredient(ingredientid);
+
+	  }
+	  
+	  @PostMapping("/ingredient/insert")
+	  public String addIngredient(ListDto newList) {
+		  service.addIngredient(newList);
+		  return "redirect:/ingredient/change";
+	  }
+	  
+	  @GetMapping("/ingredient/update/{ingredientid}")
+	  public String updateListForm(@PathVariable int ingredientid, Model m) {
+		  ListDto dto = service.getIngredientByID(ingredientid);
+		  m.addAttribute("dto", dto);
+		  return "list/updateListForm";
+	  }
+	  
+	  @PutMapping("/ingredient/update/{ingredientid}")
+	  public String updateIngredient(@PathVariable int ingredientid, ListDto dto,
+			  Model m) {
+		  service.updateIngredient(dto);
+
+		  return "redirect:/ingredient/ingredientList";
+	  }
 
 }

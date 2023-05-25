@@ -73,8 +73,8 @@
                 <li><a href="/menu/list">식단표</a></li>
                 <li><a href="/finance/sales">매출</a></li>
                 <li><a href="/finance/expenditure">지출</a></li>
-                <li><a href="/ingredient/main">식자재 관리</a></li>
-                <li><a href="/profitChart">차트</a></li>
+                <li><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                <li class="active"><a href="/profitChart">차트</a></li>
               </ul>
             </div>
 
