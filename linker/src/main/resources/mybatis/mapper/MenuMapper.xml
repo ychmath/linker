@@ -19,7 +19,7 @@
 	</delete>
 	<!-- 게시글 목록 가져오기 -->
 	<select id="menuList" parameterType="map" resultType="com.linker.ingredient.dto.MenuDto">
-		select * from menu order by creationDate desc limit #{start}, #{count}
+		select * from menu order by menuid desc limit #{start}, #{count}
 	</select>
 	<!-- 게시글 전부 가져오기 -->
 	<select id="count" resultType="int">

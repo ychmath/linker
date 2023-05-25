@@ -34,14 +34,10 @@
     <![endif]-->
 <style>
 	.content {
-		width: 700px;
-		margin-left: auto;
-		margin-right: auto;
+		width: 100%;
 	}
 	.IngredientList {
-		width: 1000px;
-		margin-left: auto;
-		margin-right: auto;
+		width: 100%;
 		border: 1px solid gray;
 		border-collapse: collapse;
 		margin-top: 30px;
@@ -53,8 +49,8 @@
 		border-bottom: 1px solid gray;
 	}
 	.searchController {
-		width: 700px;
-		margin-left: 100px;
+		width: 100%;
+		align-self: flex-start;
 		color: black;
 	}
 	.title {
@@ -69,9 +65,7 @@
 		text-align: center;
 	}
 	.content {
-		width: 1500px;
-		margin-left: auto;
-		margin-right: auto;
+		width: 100%;
 		align-content: center;
 	}
 </style>
@@ -120,10 +114,13 @@
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
 							<li class="active"><a href="index.html">홈</a></li>
-							<li><a href="/notice.html">공지사항</a></li>
-							<li><a href="/inquiry.html">문의사항</a></li>
+							<li><a href="/notice/notice">공지사항</a></li>
+							<li><a href="/inquiry/inquiry">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
-							<li><a href="/main">테스트</a>
+							<li><a href="/finance/sales">매출</a></li>
+               		 		<li><a href="/finance/expenditure">지출</a></li>
+                			<li><a href="/ticketorder/ticket">식권구매</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>
 				</div>

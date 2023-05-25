@@ -68,9 +68,13 @@
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
                 <li><a href="/main">홈</a></li>
-                <li><a href="notice.html">공지사항</a></li>
-                <li><a href="inquiry.html">문의사항</a></li>
+                <li><a href="/notice/notice">공지사항</a></li>
+                <li><a href="/inquiry/inquiry">문의사항</a></li>
                 <li><a href="/menu/list">식단표</a></li>
+                <li><a href="/finance/sales">매출</a></li>
+                <li><a href="/finance/expenditure">지출</a></li>
+                <li><a href="/ingredient/main">식자재 관리</a></li>
+                <li><a href="/profitChart">차트</a></li>
               </ul>
             </div>
 
@@ -112,7 +116,7 @@
                   >&copy; 2023 Soldesk Project. All Rights Reserved.</small>
                 <small class="block"
                   >Designed by
-                  <a href="/main" target="_blank">Linker</a></small
+                  <a href="http://freehtml5.co/" target="_blank">Linker</a></small
                 >
               </p>
             </div>

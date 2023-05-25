@@ -35,8 +35,6 @@
 <style>
 	.content {
 		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
 	}
 	.IngredientList {
 		width: 100%;
@@ -51,10 +49,12 @@
 		text-align: center;
 		border-bottom: 1px solid gray;
 	}
-	.searchController {
+	.listController {
 		width: 100%;
-		margin-left: 100px;
+		align-self: flex-start;
 		color: black;
+		padding: 20px;
+		border: 1px solid gray;
 	}
 	.title {
 		width: 700px;
@@ -69,9 +69,10 @@
 	}
 	.content {
 		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
 		align-content: center;
+	}
+	.button {
+		margin-top: 10px;
 	}
 </style>
 </head>
@@ -108,10 +109,13 @@
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
 							<li><a href="/main">홈</a></li>
-							<li><a href="/notice.html">공지사항</a></li>
-							<li><a href="/inquiry.html">문의사항</a></li>
+							<li><a href="/notice/notice">공지사항</a></li>
+							<li><a href="/inquiry/inquiry">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
-							<li><a href="/main">테스트</a>
+			                <li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li><a href="/ingredient/main">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>
 				</div>
@@ -123,19 +127,14 @@
 			<div class="fh5co-cover" style="height: 200px"></div>
 			<div class="main">
 				<div class="container">
-					<div class="searchController">
-						<h1><a class="title" href="/ingredient/main">식자재 목록</a></h1>
-						<form id="searchByName" action="/ingredient/searchbyname/result" method="get"
-						 style="display: inline-block;">
-							<p style="color: white;"><b>이름별 검색</b></p>
-							<input type="search" name="name" id="name">
-							<input type="button" id="search-name" value="검색">
-						</form>
-						<form id="searchByDate" action="/ingredient/searchbydate/result" method="get"
-						 style="display: inline-block;">
-							<p style="color: white;"><b>유통기한별 검색</b></p>
-							<input type="date" class="exp" name="startDay" id="startDay"> - <input type="date" class="exp" name="endDay" id="endDay">
-							<input type="button" id="search-date" value="검색">
+					<h1><a class="title" href="/ingredient/main">식자재 목록</a></h1>
+					<div class="listController">
+						<form id="addIngredient" action="" method="get">
+							<p style="color: white;"><b>식자재 추가</b></p>
+							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname">
+							<span style="color: white;">단위:&nbsp; &nbsp;</span><input name="unit">
+							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp"><br>
+							<input class="button" type="button" value="식자재 등록">
 						</form>
 					</div>
 				<div class="content">
@@ -158,7 +157,7 @@
 							</c:forEach>
 						</table>
 						<div>
-							<input type="button" id="delete" value="선택한 식자재 삭제" style="color: black;"/>
+							<input type="button" id="delete" class="button" value="선택한 식자재 삭제" style="color: black;"/>
 						</div>
 						<div class="pageController">
 							<c:if test="${ begin > end }">
@@ -201,8 +200,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$("#delete").click(function(){
-			$("input:checkbox[name='checkList']").each(function(index){
+		$("#delete").click(function() {
+			
+			
+/* 			$("input:checkbox[name='checkList']").each(function(index){
 				if($(this).is(":checked") == true){
 					var target = $(this).val();
 					
@@ -221,18 +222,8 @@
 					alert("선택된 목록이 없습니다.");
 					return false;
 				}
-			});	// each end
-			
-			
-/* 			$.ajax({
-				url: "/ingredient/delete/" + ${ dto.menuID },
-				method: "delete",
-				data:{menuID:menuID}
-			}).done(function(result){
-				alert("삭제가 완료되었습니다.");
-				location.replace(result);
-			});
-			return false; */
+			});	// each end */
+
 		});
 	});
 </script>
