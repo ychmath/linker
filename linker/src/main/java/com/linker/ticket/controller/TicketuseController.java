@@ -22,11 +22,11 @@ import com.linker.ticket.dto.TicketuseDto;
 import com.linker.ticket.service.TicketuseService;
 
 @Controller
-@RequestMapping("/ticketuse")
+//@RequestMapping("/ticketuse")
 public class TicketuseController {
 
 	@Autowired
-	private TicketuseService tuService;
+	private TicketuseService tuService; 
 
 	@GetMapping("/ticketu")
 	public String getAllTicketuse(Model m) {
@@ -38,34 +38,48 @@ public class TicketuseController {
 	}
 
 	@GetMapping("/ticketu/{date}")
-	public List<TicketuseDto> getUseByDate(@PathVariable String date) {
-		return TicketuseService.getUseByDate(date);
+	public List<TicketuseDto> getUsedByDate(@PathVariable Date startdate, Date endDate) {
+		return tuService.getUsedByDate(startdate, endDate);
 	}
 
 	@PostMapping("/ticketu")
 	public int addUse(@RequestBody TicketuseDto dto) {
-		return TicketuseService.addUse(dto);
+		return tuService.addUse(dto);
 	}
+
 	@DeleteMapping("/ticket/{tickettypename}")
 	public int deleteOrderById(@PathVariable int tickettypename) {
-		return TicketuseService.deleteOrderById(tickettypename);
+		return tuService.deleteOrderById(tickettypename);
 	}
 
 	public String selectAll(TicketuseDto ticketu) {
 		return "";
 	}
-	
+
 	@RequestMapping("/filtered_data_u")
 	@ResponseBody
-	public String fetchFilteredData(
-			@RequestParam("start-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
-			@RequestParam("end-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
-			Model model) {
-		List<TicketuseDto> filterData = tuService.selectByDate(startDate,endDate);
-		
+	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
+		List<TicketuseDto> filterData = tuService.selectByDate(startDate, endDate);
+
 		Gson gson = new Gson();
 		String list = gson.toJson(filterData);
 		return list;
 	}
-
-}
+	
+	@GetMapping("/useticket")
+	public String useTicketForm(){
+		return "ticket/ticketuseform";
+	}
+	
+	@PostMapping("/useticket")
+	public String useTicket(String tickettypename,String phone) {
+		return "redirect:/"; 
+	}
+	@PostMapping("/tiketuse/use")
+	@ResponseBody
+	public String useTicketVerified(
+	@RequestParam("tickettypename") String tickettypename,		) {
+		
+	}
+} 

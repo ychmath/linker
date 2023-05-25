@@ -82,6 +82,7 @@
                 <li><a href="/finance/expenditure">지출</a></li>
                 <li><a href="/ticketorder/ticket">식권구매</a></li>
                 <li><a href="/profitChart">차트</a></li>
+                <li><a href="/useticket">식권사용</a>
               </ul>
             </div>
           </div>

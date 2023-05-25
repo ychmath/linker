@@ -11,6 +11,8 @@ import com.linker.ticket.dto.TicketuseDto;
   
 	 List<TicketuseDto> selectByDate(Map<String, Date> map);
   
+	/* public interface TicketUseMapper{ */
+		 public int updateTicketQuantityByPhone(String phone);
+	 }
   
-  }
  

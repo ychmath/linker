@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.linker.ticket.dao.TicketuseDao;
+import com.linker.ticket.dto.TicketorderDto;
 import com.linker.ticket.dto.TicketuseDto;
+
 @Service
 public class TicketuseService {
-	
+
 	@Autowired
 	TicketuseDao dao;
 
@@ -20,37 +22,39 @@ public class TicketuseService {
 		return dao.selectAll();
 	}
 
-	public List<TicketuseDto> getUseByDate(Date startDate, Date endDate) {
+	public List<TicketuseDto> getUsedByDate(Date startDate, Date endDate) {
 		Map<String , Date> map = new HashMap<>();
 		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		
 		
 		return dao.selectByDate(map);
 	}
 
-	public static int addUse(TicketuseDto dto) {
+	public  int addUse(TicketuseDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public static int deleteOrderById(int tickettypename) {
+	public  int deleteOrderById(int tickettypename) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public List<TicketuseDto> selectByDate(Date startDate, Date endDate) {
-		Map<String , Date> map = new HashMap<>();
+		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
-		map.put("endDate", endDate);		
-		
+		map.put("endDate", endDate);
+
 		return dao.selectByDate(map);
 	}
 
-	public static List<TicketuseDto> getUseByDate(String date) {
+	public boolean updateTicketUseByPhoneNumber(String ticketType, Integer selectedQuantity, String phoneNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
-
-	
-	
+	  public int decrementTicketQuantityByPhone(String phone) {
+		    return dao.updateTicketQuantityByPhone(phone);
+		  }
 
 }

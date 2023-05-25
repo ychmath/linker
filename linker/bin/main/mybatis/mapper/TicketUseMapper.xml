@@ -13,4 +13,11 @@ select usedate, tickettypename, quantity from ticketuse inner join tickettype on
 
 </select>
 
+<update id="updateTicketQuantityByPhone" parameterType="string">
+  UPDATE tickethold
+  SET quantity = quantity - 1
+  WHERE userid = (SELECT userid FROM user WHERE phone = #{phone})
+</update>
+
+
 </mapper>
