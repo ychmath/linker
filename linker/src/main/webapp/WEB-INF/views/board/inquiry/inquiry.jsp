@@ -6,78 +6,32 @@
 <html>
 <head>
 <title>문의사항</title>
-<style>
-#inquiry{
-	margin-left: auto;
-	margin-right: auto;
-	width: 700px;
-}
-
-#search{
-	margin-left: 680px;
-}
-
-table{
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#notice{
-	background-color: white;
-}
-
-th{
-	border: 1px solid black;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: gray;
-}
-
-a{
-	margin-left: 10px auto;
-}
-
-td{
-	border: 1px solid black;
-}
-
-#page{
-	text-align: center;
-}
-
-#write{
-	margin-left: 860px;
-}
-
-</style>
-
+<link rel="stylesheet" type="text/css" href="../css/user/inquiry.css">
 </head>
 <body>
 	<div id="inquiry">
-		<h1>문의사항</h1>
+		<h1 align="center">문의사항</h1>
 	</div>
 
-	<div id="search">
-		<form action="search">
-			<select name="searchn">
+	<div id="search" class="table-spacing ">
+		<form action="search" >
+			<select name="searchn" id="searchn">
 				<option value="0">제목</option>
 				<option value="1">작성자</option>
 			</select>
-			<input type="text" name="search" size="15" maxlength="40" />
-			<input type="submit" value="검색" />
+		<input type="text" id="search_text" name="search" size="15"
+				maxlength="40" /> <input type="submit" id="search_btn"
+				name="search_btn" value="검색" />
 		</form>
 	</div>
 
-	<table>
+	<table class="table-spacing table-center">
 		<tr>
-			<th id="notice" onclick="location.href='../notice/notice'">공지사항</th>
-			<th>문의사항</th>
+			<th class="custom-button" onclick="location.href='../notice/notice'">공지사항</th>
+			<th id="inquiry" class="custom-button" onclick="location.href='../inquiry/inquiry'">
+				문의사항</th>
 		</tr>
 	</table>
-
 
 	<table>
 		<tr>
@@ -121,7 +75,7 @@ td{
 	</table>
 	</c:if>
 	
-	<div id="page"><!-- 페이지 번호 -->
+	<div class="center-align" id="page " align="center"><!-- 페이지 번호 -->
 		<c:if test="${begin > pageNum}">
 			<a href="inquiry?p=${begin - 1 }">[이전]
 		</c:if>	
@@ -134,7 +88,8 @@ td{
 			</div>
 
 	<div id="write">
-		<a href="write">글쓰기</a>
+		<input type="button" id="write" value="글쓰기"
+			onclick="location.href='write'" />
 	</div>
 
 </body>

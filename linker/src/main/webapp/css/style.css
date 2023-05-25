@@ -11,85 +11,90 @@
 *
 * ======================================================= */
 body {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.3);
-  background: #000 url(../images/broken_noise.png) repeat;
+  font-family: "Cormorant Garamond", Georgia, serif; /* 폰트 패밀리 설정 */
+  font-weight: 400; /* 기본 폰트 두께 설정 */
+  font-size: 18px; /* 기본 폰트 크기 설정 */
+  line-height: 1.7; /* 줄 간격 설정 */
+  color: rgba(255, 255, 255, 0.3); /* 텍스트 색상 설정 */
+  background: #000 url(/img/broken_noise.png) repeat; /* 배경색 설정 및 배경 이미지 적용 */
 }
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   body {
-    background: #000 url(../images/broken_noise.png) repeat;
+    /* 고해상도 디스플레이 기기를 위한 배경 이미지 설정 */
+    background: #000 url(/img/broken_noise.png) repeat; 
   }
 }
 
 #page {
-  position: relative;
-  overflow-x: hidden;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
+  position: relative; /* 페이지의 위치를 상대 위치로 설정 */
+  overflow-x: hidden; /* x축으로의 스크롤 방지 */
+  width: 100%; /* 페이지 너비를 100%로 설정 */
+  height: 100%; /* 페이지 높이를 100%로 설정 */
+  -webkit-transition: 0.5s; /* 웹킷 기반 브라우저를 위한 전환 속도 설정 */
+  -o-transition: 0.5s; /* 오페라 브라우저를 위한 전환 속도 설정 */
+  transition: 0.5s; /* 모든 브라우저를 위한 전환 속도 설정 */
 }
+
 .offcanvas #page {
-  overflow: hidden;
-  position: absolute;
+  overflow: hidden; /* 확장 메뉴가 열렸을 때 스크롤 방지 */
+  position: absolute; /* 페이지를 절대 위치로 설정 */
 }
+
 .offcanvas #page:after {
-  -webkit-transition: 2s;
-  -o-transition: 2s;
-  transition: 2s;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 101;
-  background: rgba(0, 0, 0, 0.7);
-  content: "";
+  -webkit-transition: 2s; /* 웹킷 기반 브라우저를 위한 전환 속도 설정 */
+  -o-transition: 2s; /* 오페라 브라우저를 위한 전환 속도 설정 */
+  transition: 2s; /* 모든 브라우저를 위한 전환 속도 설정 */
+  position: absolute; /* 주변의 반투명 레이어를 절대 위치로 설정 */
+  top: 0; /* 상위 위치값을 0으로 설정 */
+  right: 0; /* 오른쪽 위치값을 0으로 설정 */
+  bottom: 0; /* 하단 위치값을 0으로 설정 */
+  left: 0; /* 왼쪽 위치값을 0으로 설정 */
+  z-index: 101; /* 레이어의 zIndex 값을 설정하여 다른 요소들 위로 올림 */
+  background: rgba(0, 0, 0, 0.7); /* 배경색을 반투명 검정색으로 설정 */
+  content: ""; /* 빈 내용. 가상 요소의 경우 필요함 */
 }
 
 a {
-  color: #ea272d;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
+  color: #ea272d; /* 링크의 기본 색상 설정 */
+  -webkit-transition: 0.5s; /* 웹킷 기반 브라우저를 위한 전환 속도 설정 */
+  -o-transition: 0.5s; /* 오페라 브라우저를 위한 전환 속도 설정 */
+  transition: 0.5s; /* 모든 브라우저를 위한 전환 속도 설정 */
 }
+
 a:hover, a:active, a:focus {
-  color: #ea272d;
-  outline: none;
-  text-decoration: none;
+  color: #ea272d; /* 링크에 마우스를 올린 상태일 때의 색상 설정 */
+  outline: none; /* 선택 시 외곽선이 나타나지 않도록 설정 */
+  text-decoration: none; /* 링크에 밑줄을 없애주는 스타일 설정 */
 }
 
 p {
-  margin-bottom: 30px;
-  font-style: 18px;
+  margin-bottom: 30px; /* 단락 하단에 마진 설정 */
+  font-size: 18px; /* 단락 폰트 크기 설정 */
 }
 
 h1, h2, h3, h4, h5, h6, figure {
-  color: #000;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 400;
-  margin: 0 0 20px 0;
+  color: #000; /* 텍스트 색상을 검은색으로 설정 */
+  font-family: "Cormorant Garamond", Georgia, serif; /* 폰트 패밀리 설정 */
+  font-weight: 400; /* 폰트 두께 설정 */
+  margin: 0 0 20px 0; /* 제목 요소의 상하단 마진 값을 설정 */
 }
 
+/* 웹브라우저별 텍스트 선택 시 배경색 및 글자색 설정 */
 ::-webkit-selection {
-  color: #fff;
-  background: #ea272d;
+  color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+  background: #ea272d; /* 배경색을 설정 */
 }
 
 ::-moz-selection {
-  color: #fff;
-  background: #ea272d;
+  color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+  background: #ea272d; /* 배경색을 설정 */
 }
 
 ::selection {
-  color: #fff;
-  background: #ea272d;
+  color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+  background: #ea272d; /* 배경색을 설정 */
 }
-
 .fh5co-nav {
   position: fixed;
   width: 100%;
@@ -109,12 +114,12 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 .fh5co-nav.scrolled {
-  background: #000 url(../images/broken_noise.png) repeat;
+  background: #000 url(/img/broken_noise.png) repeat;
   top: -82px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .fh5co-nav.scrolled {
-    background: #000 url(../images/broken_noise.png) repeat;
+    background: #000 url(/img/broken_noise.png) repeat;
   }
 }
 @media screen and (max-width: 480px) {
@@ -607,7 +612,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 #fh5co-slider-wrwap {
   height: 500px !important;
-  background: url(../images/loader.gif) no-repeat center center;
+  background: url(/img/loader.gif) no-repeat center center;
 }
 #fh5co-slider-wrwap .btn {
   font-size: 24px;
