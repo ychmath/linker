@@ -201,6 +201,8 @@
 <script>
 	$(function(){
 		$("#delete").click(function() {
+			 
+			
 			
 			
 /* 			$("input:checkbox[name='checkList']").each(function(index){
