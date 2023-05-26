@@ -104,10 +104,9 @@
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
 							<li><a href="/main">홈</a></li>
-							<li><a href="/notice.html">공지사항</a></li>
-							<li><a href="/inquiry.html">문의사항</a></li>
+							<li><a href="/notice/notice">공지사항</a></li>
+							<li><a href="/inquiry/inquiry">문의사항</a></li>
 							<li class="active"><a href="/menu/list">식단표</a></li>
-							<li><a href="/main">테스트</a>
 						</ul>
 					</div>	<%-- menu wrap end --%>
 				</div>	<%-- row end --%>
@@ -116,8 +115,6 @@
 		</nav>
 
 		<div id="fh5co-slider" class="fh5co-section animate-box">
-			<div class="fh5co-cover" style="height: 200px"></div>
-
 			<div class="main">
 				<div class="container">
 					<div class="content">
