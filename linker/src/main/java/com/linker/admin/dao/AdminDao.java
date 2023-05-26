@@ -10,10 +10,13 @@ import com.linker.admin.dto.AdminDto;
 @Mapper
 public interface AdminDao {
 	// 회원 승인
-	int grantUser(int userid);
+	int grantUser(String userid);
 	
 	// 승인 대상 회원 가져오기
-	List<AdminDto> getTempSeller(String role);
+	List<AdminDto> getTempSeller();
+	
+	// 승인 대상 회원 수 가져오기
+	int tempCount();
 	
 	// 공지사항 게시글 작성
 	int writeNotice(AdminDto dto);

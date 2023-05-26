@@ -23,7 +23,12 @@
 			<a href="/admin/user" style="text-decoration:none">회원 관리</a>
 			<a href="/admin/notice" style="text-decoration:none" >문의사항 관리</a>
 			<a href="/admin/inquiry" style="text-decoration:none" >공지사항 관리</a>
-			<a href ="/"">홈으로 돌아가기</a>
+			<a href ="/">홈으로 돌아가기</a>
+		</div>
+		<div class="noticeTemp">
+			<c:if test="${ tempCount !=0 }">
+				<a href="/admin/user/approve"><b>${ tempCount }명의 사용자가 승인 대기중입니다.</b></a>
+			</c:if>
 		</div>
 		<div class="userList">
 			<p><b>최근 가입한 사용자</b></p>

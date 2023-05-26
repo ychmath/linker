@@ -24,7 +24,7 @@
 		where inquirypostid = #{inquirypostid}
 	</update>
 	<!-- 회원 승인 -->
-	<update id="grantUser" parameterType="int">
+	<update id="grantUser" parameterType="String">
 		update user set role = 'seller'
 		where userid = #{userid}
 	</update>
@@ -43,8 +43,12 @@
 	</delete>
 
 	<!-- 승인 대상 회원 목록 가져오기 -->
-	<select id="getTempSeller" parameterType="String">
+	<select id="getTempSeller" resultType="com.linker.admin.dto.AdminDto">
 		select * from user where role = 'seller_t'
+	</select>
+	<!-- 승인 대상 회원 수 가져오기 -->
+	<select id="tempCount" resultType="int">
+		select count(*) from user where role = 'seller_t'
 	</select>
 	<!-- 회원 수 가져오기 -->
 	<select id="userCount" resultType="int">
