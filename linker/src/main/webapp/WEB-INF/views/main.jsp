@@ -68,7 +68,7 @@
           <div class="row">
             <div class="col-xs-12 text-center logo-wrap">
               <div id="fh5co-logo">
-                <a href="index.html">Linker<span>.</span></a>
+                <a href="/main">Linker<span>.</span></a>
               </div>
             </div>
 
