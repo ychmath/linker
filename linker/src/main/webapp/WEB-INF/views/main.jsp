@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html >
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,13 +68,13 @@
           <div class="row">
             <div class="col-xs-12 text-center logo-wrap">
               <div id="fh5co-logo">
-                <a href="/main">Linker<span>.</span></a>
+                <a href="/">Linker<span>.</span></a>
               </div>
             </div>
 
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
-                <li class="active"><a href="index.html">홈</a></li>
+                <li class="active"><a href="/">홈</a></li>
                 <li><a href="/notice/notice">공지사항</a></li>
                 <li><a href="/inquiry/inquiry">문의사항</a></li>
                 <li><a href="/menu/list">식단표</a></li>
@@ -103,7 +103,7 @@
               <aside id="fh5co-slider-wrwap">
                 <div class="flexslider">
                   <ul class="slides">
-                    <li style="background-image: url(images/gallery_7.jpeg)">
+                    <li style="background-image: url(/img/gallery_7.jpeg)">
                       <div class="overlay-gradient"></div>
                       <div class="container-fluid">
                         <div class="row">
@@ -120,7 +120,7 @@
                         </div>
                       </div>
                     </li>
-                    <li style="background-image: url(images/gallery_6.jpeg)">
+                    <li style="background-image: url(/img/gallery_6.jpeg)">
                       <div class="overlay-gradient"></div>
                       <div class="container-fluid">
                         <div class="row">
@@ -137,7 +137,7 @@
                         </div>
                       </div>
                     </li>
-                    <li style="background-image: url(images/gallery_5.jpeg)">
+                    <li style="background-image: url(/img/gallery_5.jpeg)">
                       <div class="overlay-gradient"></div>
                       <div class="container-fluid">
                         <div class="row">
