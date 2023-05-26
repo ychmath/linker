@@ -23,6 +23,9 @@ public interface ListDao {
 	
 	// 식자재 목록 개수 가져오기
 	int ingredientCount();
+	
+	// 식자재 ID 가져오기
+	ListDto getIngredientByID(int ingredientid);
 
 	// 식자재 이름으로 조회
 	List<ListDto> getIngredientByName(Map<String, Object> m);

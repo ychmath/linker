@@ -18,17 +18,22 @@ public class ListService {
 	
 	// 식자재 추가
 	public int addIngredient(ListDto dto) {
-		return dao.updateIngredient(dto);
+		return dao.addIngredient(dto);
 	}
 
 	// 식자재 수정
 	public int updateIngredient(ListDto dto) {
-		return updateIngredient(dto);
+		return dao.updateIngredient(dto);
 	}
 
 	// 식자재 삭제
 	public int deleteIngredient(int ingredientid) {
 		return dao.deleteIngredient(ingredientid);
+	}
+	
+	// 식자재 가져오기
+	public ListDto getIngredientByID(int ingredientid) {
+		return dao.getIngredientByID(ingredientid);
 	}
 
 	// 식자재 목록 조회

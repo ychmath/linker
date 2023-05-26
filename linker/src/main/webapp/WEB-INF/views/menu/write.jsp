@@ -210,12 +210,16 @@ $(function(){
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
             <span id="role" style="display: none;">${ user.role }</span>
-            <ul>
-              <c:if test="${user == null}">
-                <li class="login-signup"><a href="login.html">로그인</a></li>
-                <li class="login-signup"><a href="signup.html">회원가입</a></li>
-              </c:if>
-            </ul>
+            	<ul>
+            		<c:if test="${ user == null }">
+           				<li class="login-signup"><a href="/loginform">로그인</a></li>
+                		<li class="login-signup"><a href="/joinform">회원가입</a></li>
+              		</c:if>
+              		<c:if test="${ user != null }">
+    					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
+        				<li class="logout"><a href="/logout">로그아웃</a></li>
+              		</c:if>
+            	</ul>
           </div>
           <div class="row">
             <div class="col-xs-12 text-center logo-wrap">
@@ -227,8 +231,9 @@ $(function(){
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
                 <li><a href="/main">홈</a></li>
-                <li><a href="notice.html">공지사항</a></li>
-                <li><a href="inquiry.html">문의사항</a></li>
+				<li><a href="/notice/notice">공지사항</a></li>
+				<li><a href="/inquiry/inquiry">문의사항</a></li>
+				<li><a href="/menu/list">식단표</a></li>
                 <li class="active"><a href="/menu/list">식단표</a></li>
               </ul>
             </div>
@@ -279,7 +284,7 @@ $(function(){
                   >&copy; 2023 Soldesk Project. All Rights Reserved.</small>
                 <small class="block"
                   >Designed by
-                  <a href="/main" target="_blank">Linker</a></small
+                  <a href="http://freehtml5.co/" target="_blank">Linker</a></small
                 >
               </p>
             </div>

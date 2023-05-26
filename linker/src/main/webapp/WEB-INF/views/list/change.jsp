@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Linker</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +23,6 @@
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <!-- Flexslider  -->
 <link rel="stylesheet" href="/css/flexslider.css" />
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="/css/style.css" />
 
@@ -37,25 +35,26 @@
 <style>
 	.content {
 		width: 100%;
-		align-self: center;
-		align-content: stretch;
 	}
-	.menu {
+	.IngredientList {
 		width: 100%;
 		border: 1px solid gray;
 		border-collapse: collapse;
 		margin-top: 30px;
+		text-align: center;
+		color: white;
+		table-layout: fixed;
 	}
-	.write {
-		width: 100%;
-		align-self: flex-end;
-		text-align: right;		
-	}
-	.table-hover {
-		color: black;
-	}
-	.menu {
+	th {
+		text-align: center;
 		border-bottom: 1px solid gray;
+	}
+	.listController {
+		width: 100%;
+		align-self: flex-start;
+		color: black;
+		padding: 20px;
+		border: 1px solid gray;
 	}
 	.title {
 		width: 700px;
@@ -63,77 +62,22 @@
 		margin-top: 30px;
 	}
 	.pageController {
-		width: 100%;
+		width: 500px;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 	}
-	.orange {
-		color: white;
-	}
-	#myTable {
+	.content {
 		width: 100%;
-		table-layout: fixed;
+		align-content: center;
+	}
+	.button {
+		margin-top: 10px;
 	}
 </style>
 </head>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	$(function(){
-		// 권한 가져오기
-		var role = $("#role").text();
-		
-		// 열람 권한이 없다면 페이지 이동.
-		if (role == 'buyer') {
-			alert("열람 권한이 없는 페이지입니다.");
-			location.href = "/main";
-		}
-		
-		var ajax_data = [];
-		
-		// make div editable > start
-		$(document).on("click", ".row_data", function(event){
-			event.preventDefault();
-			
-			// make div editable
-	    		$(this).closest("div").attr("contenteditable", "true");
-			// add bg css
-			$(this).addClass("bg-warning").css("padding", "5px");
-			
-			$(this).focus();
-			
-		});//on 
-		// make div editable > end
-		
-		$("#save").click(function(event){
-			event.preventDefault();
-			
-			$("div").removeClass("bg-warning");
-			$("div").removeAttr("contenteditable");
-			
-			//--->get row data > start
-			var arr = {}; 
-			var tbl_row = $(this).closest('tr');
-			var row_id = tbl_row.attr('row_id');
-			tbl_row.find('.row_data').each(function(index, val) 
-			{   
-				var col_name = $(this).attr("col_name");  
-				var col_val  =  $(this).html();
-				arr[col_name] = col_val;
-			});
-			//--->get row data > end
-			//use the "arr"	object for your ajax call
-			$.extend(arr, {row_id:row_id});
-			
-			var content = document.getElementById("table");
-
-			$("#content").val(table.outerHTML);
-			$("#content").attr("disabled", false);
-
-		$("#updateform").submit();
-		
-		});//click
-	});	// ready end
-</script>
+<body>
 	<div class="fh5co-cover" style="height: 200px"></div>
 	<div class="fh5co-loader"></div>
 	<div id="page">
@@ -142,20 +86,19 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 text-right menu-1 menu-wrap">
-					  	<span id="role" style="display: none;">${ user.role }</span>
         				<ul>
               				<c:if test="${ user == null }">
                 				<li class="login-signup"><a href="/loginform">로그인</a></li>
                 				<li class="login-signup"><a href="/joinform">회원가입</a></li>
               				</c:if>
-              				<c:if test="${ user != null }">
+               				<c:if test="${ user != null }">
               					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
               					<li class="logout"><a href="/logout">로그아웃</a></li>
               				</c:if>
             			</ul>
-					</div>	<%-- menu wrap end --%>
-				</div>	<%-- row end --%>
-					
+					</div>
+					</div>
+
 				<div class="row">
 					<div class="col-xs-12 text-center logo-wrap">
 						<div id="fh5co-logo">
@@ -168,45 +111,75 @@
 							<li><a href="/main">홈</a></li>
 							<li><a href="/notice/notice">공지사항</a></li>
 							<li><a href="/inquiry/inquiry">문의사항</a></li>
-							<li class="active"><a href="/menu/list">식단표</a></li>
+							<li><a href="/menu/list">식단표</a></li>
+			                <li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
-					</div>	<%-- menu wrap end --%>
-				</div>	<%-- row end --%>
+					</div>
+				</div>
 			</div>
 			<!-- </div> -->
 		</nav>
 
 		<div id="fh5co-slider" class="fh5co-section animate-box">
 			<div class="fh5co-cover" style="height: 200px"></div>
-
 			<div class="main">
 				<div class="container">
-					<div class="content">
-						<form method="post" id="updateform" action="/menu/update/${ dto.menuID }">
-							<input type="hidden" name="_method" value="put"/>
-							<table border="1" style="color:black;">
-								<tr>
-									<td class="orange">제목</td>
-									<td><input name="title" style="background-color: inherit; color: white;" value="${ dto.title }"/></td>
-								</tr>
-								<tr>
-									<td class="orange">작성자</td>
-									<td><input name="userID" style="background-color: inherit; color: white;" value="${ dto.userID }" readonly></td>
-								</tr>
-								<tr>
-									<td class="orange">내용</td>
-									<td>
-										<input name="content" id="content" disabled style="display: none;"/>
-										${ dto.content }
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" align="center">
-										<input type="button" id="save" value="글 수정 완료" style="margin-left: auto;">
-									</td>
-								</tr>
-							</table>
+					<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
+					<div class="listController">
+						<p style="color: white;"><b>식자재 추가</b></p>
+						<form id="addIngredient" action="/ingredient/insert" method="post">
+							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname">
+							<span style="color: white;">단위:&nbsp; &nbsp;</span>
+								<select name="unit">
+									<option value="KG">KG</option>
+									<option value="G">G</option>
+									<option value="LB">LB</option>
+									<option value="OZ">OZ</option>
+								</select>
+							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp" type="date"><br>
+						<div>
+							<input type="button" id="add" class="button" value="식자재 등록" style="color: black;"/>
+						</div>
 						</form>
+					</div>
+				<div class="content">
+					<form id="deleteIngredient">
+					<c:if test="${ count != 0 }">
+						<table class="IngredientList" id="IngredientList">
+							<tr>
+								<th style="width: 5%;"></th>
+								<th>식자재명</th>
+								<th>단위</th>
+								<th>유통기한</th>
+							</tr>
+							<c:forEach items="${ ingredientList }" var="ingredient">
+							<tr class="ingredientlist">
+								<td><input type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }"></td>
+								<td>${ ingredient.ingredientname }</td>
+								<td>${ ingredient.unit }</td>
+								<td>${ ingredient.exp }</td>
+							</tr>
+							</c:forEach>
+						</table>
+						<div>
+							<input type="button" id="delete" class="button" value="선택한 식자재 삭제" style="color: black;"/>
+						</div>
+						<div class="pageController">
+							<c:if test="${ begin > end }">
+								<a href="change?p=${ begin-1 }">[이전]</a>
+							</c:if>
+							<c:forEach begin="${ begin }" end="${ end }" var="i">
+								<a href="change?p=${ i }">${ i }</a>
+							</c:forEach>
+							<c:if test="${ end < totalPages }">
+								<a href="change?p=${ end + 1 }">[다음]</a>
+							</c:if>
+						</div>
+					</c:if>
+					</form>
 					</div>	<%-- main > content end --%>
 				</div>	<%-- main > container end --%>
 			</div>	<%-- main end --%>
@@ -231,6 +204,35 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function() {
+		$("#delete").on("click", function(){
+			// 체크박스에 체크된 식자재 id 번호 값 찾기
+			$(".checkList:checked").each(function(i, item) {
+				// target에 id값 저장
+				var target = item.value;
+				
+				$.ajax({
+					url: "/ingredient/delete/" + target,
+					method: "delete",
+					data:{'ingredientid':target}
+				}).done(function(result){
+					
+				});				
+			});	// each end
+			
+			alert("삭제가 완료되었습니다.");
+			location.replace("/ingredient/change");
+		});
+		
+		$("#add").on("click", function(){
+			alert("등록이 완료되었습니다.");
+			$("#addIngredient").submit();
+		});
+	});
+</script>
 
 	<!-- jQuery -->
 	<script src="/js/jquery.min.js"></script>
