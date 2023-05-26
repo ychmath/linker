@@ -74,6 +74,7 @@
 		color: black;
 		margin: 3px;
 	}
+
 </style>
 </head>
 <body>
@@ -135,6 +136,7 @@
 							<input type="search" name="name" id="name">
 							<input type="button" id="search-name" value="검색">
 						</form>
+						&nbsp; &nbsp;
 						<form id="searchByDate" action="/ingredient/searchbydate/result" method="get"
 						 style="display: inline-block;">
 							<p style="color: white;"><b>유통기한별 검색</b></p>
@@ -144,13 +146,16 @@
 					</div>
 				<div class="content">
 					<c:if test="${ count != 0 }">
-						<table class="IngredientList">
+						<table class="IngredientList" id="IngredientList">
+							<thead>
 							<tr>
 								<th>식자재명</th>
 								<th>단위</th>
 								<th>유통기한</th>
 								<th style="width: 10%;"> </th>
 							</tr>
+							</thead>
+							<tbody>
 							<c:forEach items="${ ingredientList }" var="ingredient">
 							<tr>
 								<td>${ ingredient.ingredientname }</td>
@@ -159,6 +164,7 @@
 								<td><button class="update" value="${ ingredient.ingredientid }">수정</button></td>
 							</tr>
 							</c:forEach>
+							</tbody>
 						</table>
 						<div>
 							<input type="button" id="changeIngredient" value="목록 추가 / 삭제"
@@ -207,8 +213,13 @@
 	</div>
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js
+
+
+
+"></script>
 <script>
-	$(function(){
+	$(function(){		
 		$("#search-name").click(function(){
 			
 			let name = $("#name").val();
@@ -237,7 +248,7 @@
 			$("#searchByDate").submit();
 
 		});	// search click end
-		
+				
 	});	// ready end
 	
 	$(".update").click(function() {
@@ -249,9 +260,8 @@
 	    
 		window.open('update/' + targetid, '식자재 수정하기', 'top=' + _top + ', left=' + _left + ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
 	});	// update click end
-</script>
 	
-
+</script>
 	<!-- jQuery -->
 	<script src="/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->

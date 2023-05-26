@@ -33,7 +33,7 @@
 						<td>${ temp.userid }</td>
 						<td>${ temp.phone }</td>
 						<td>${ temp.email }</td>
-						<td>${ temp.signupdate }</td>
+						<td><fmt:formatDate value="${ temp.signupdate }" dateStyle="short"></fmt:formatDate></td>
 						<td><button type="button" class="approve" id="${ temp.userid }">승인</button></td>
 					</tr>
 				</c:forEach>
@@ -46,22 +46,28 @@
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	$(function(){
+	$(function() {
 		$(".approve").on("click", function(){
-
+			// id값으로 각각의 userid를 저장하고, 다시 변수로 가져온다.
 			var userid = $(this).attr("id");
-			
+
+			// id가 tempList인 form의 action을 지정한다.
 			$("#tempList").attr("action", "/admin/user/approve/" + userid);
-			
+
+			// 전달할 input 태그의 value값을 가져온 userid로 지정한다.
 			$("input[name=userid]").attr("value", userid);
-			
+
+			// 사용자 승인 여부를 alert 창으로 확인
 			if(confirm("해당 사용자를 승인하시겠습니까?") == true) {
 				alert("사용자 승인이 완료되었습니다.");
+
 				$("#tempList").submit();
+
 			} else {
 				alert("사용자 승인이 취소되었습니다.");
 			}
 		});	// approve click end
+
 	});	// ready end
 </script>
 </body>

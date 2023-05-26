@@ -89,35 +89,29 @@ $(function(){
 	}
 	
 	// ajax row data
+	// 테이블에 넣어 둘 기본값을 정한다.
 	var ajax_data = [
 		{tname:"조식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"},
 		{tname:"중식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"},
 		{tname:"석식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"}
 	]
 	
-	// create HTML table
-	var random_id = function(){
-		var id_num = Math.random().toString(9).substr(2,3);
-		var id_str = Math.random().toString(36).substr(2);
-		
-		return id_num + id_str;
-	}
-	
+	// create HTML table	
 	// create data table > start
 	var tbl = "";	// 테이블을 저장할 변수 선언
 	
 	tbl += "<table class=\'table table-hover'\ id=\'myTable'\>";
 	
+	// 반복문으로 테이블 2개 생성
 	for (var i = 0; i < 2; i++) {
 		// crate table header > start
 		tbl += "<thead>";
 			tbl += "<tr>";
 				tbl += "<th>시간</th>";
-				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
-				tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				// 총 5일치가 한 줄이 되므로 <th> 태그 5번 반복
+				for(let i = 0; i < 5; i++) {
+					tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+				}
 			tbl += "</tr>";
 		tbl += "</thead>";
 	// create table > header > end
@@ -126,77 +120,54 @@ $(function(){
 		tbl += "<tbody>";
 	// create table body rows > start
 	$.each(ajax_data, function(index, val){
-		// database row id
-		var row_id = random_id();
-		
 		// looping through ajax row data
-		tbl += "<tr row_id=\'" + row_id + "'\>";
+		// 지정해 둔 배열만큼 열과 행을 만든다.
+		tbl += "<tr>";
 			tbl += "<td class=\'tname'\><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
-			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\' col_name=\'line1'\>" + val["line1"] + "</div></td>";
-			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line2'\>" + val["line2"] + "</div></td>";
-			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line3'\>" + val["line3"] + "</div></td>";
-			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line4'\>" + val["line4"] + "</div></td>";
-			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\ col_name=\'line5'\>" + val["line5"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\'>" + val["line1"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\>" + val["line2"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\>" + val["line3"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\>" + val["line4"] + "</div></td>";
+			tbl += "<td><div class=\'row_data'\ edit_type=\'click'\>" + val["line5"] + "</div></td>";
 		tbl += "</tr>";
 	});
-
 	// create table body rows > end	
 		tbl += "</tbody>";
 	}
 	// create table body > end
 	tbl += "</table>";
 	// create data table > end
-	
-	// out put table data
-	$(document).find(".tbl_user_data").html(tbl);
-	
+
 	// make div editable > start
-	$(document).on("click", ".row_data", function(event){
-
-		event.preventDefault();
-
-		// make div editable
+	// 클래스가 row_data인 경우 click했을 경우 이벤트가 발생한다.
+	$(document).on("click", ".row_data", function(){
+		// 클릭한 row_data 자식 div 클래스에 contenteditable 속성을 true로 지정
 		$(this).closest("div").attr("contenteditable", "true");
 		// add bg css
 		$(this).addClass("bg-warning").css("padding", "5px");
 
 		$(this).focus();
-		
+	
 	});
 	// make div editable > end
 	
+	// 테이블 객체를 tbl_user_data 위치에 html 전달
+	$(document).find(".tbl_user_data").html(tbl);
+
 	$("#save").click(function(event){
-
+		// 클릭했을 경우 바로 submit하지 않고 정지
 		event.preventDefault();
-		
-		var tbl_row = $(this).closest('tr');
-		
-		tbl_row.find(".row_data")
-			.removeAttr("edit_type", "click")
-			.removeClass("bg-warning")
-			.css("padding", "");
 
-		var row_id = tbl_row.attr('row_id');
+		// 수정 가능 여부, css 여부 삭제
+		$("div").removeClass("bg-warning");
+		$("div").removeAttr("contenteditable");
 
-		//--->get row data > start
-		var arr = {}; 
-
-		tbl_row.find('.row_data').each(function(index, val) 
-		{   
-			var col_name = $(this).attr('col_name');  
-			var col_val  =  $(this).html();
-			arr[col_name] = col_val;
-		});
-		//--->get row data > end
-
-		//use the "arr"	object for your ajax call
-		$.extend(arr, {row_id:row_id});
-	
-		var content = document.getElementById("table");
-		// console.log(table.outerHTML);
+		// 전송할 content에 수정된 table의 html을 가져온다.
 		$("#content").val(table.outerHTML);
+		// disabled였던 content를 false로 바꾸면서 전송 가능하도록 한다.
 		$("#content").attr("disabled", false);
 
+		// 폼 submit
 		$("#writeform").submit();
 
 	});
@@ -209,6 +180,7 @@ $(function(){
         <!-- <div class="top-menu"> -->
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
+          	<!-- 로그인한 유저의 권한을 저장하는 span 태그 -->
             <span id="role" style="display: none;">${ user.role }</span>
             	<ul>
             		<c:if test="${ user == null }">
@@ -231,10 +203,13 @@ $(function(){
             <div class="col-xs-12 text-left menu-1 menu-wrap">
               <ul>
                 <li><a href="/main">홈</a></li>
-				<li><a href="/notice/notice">공지사항</a></li>
-				<li><a href="/inquiry/inquiry">문의사항</a></li>
-				<li><a href="/menu/list">식단표</a></li>
+                <li><a href="/notice/notice">공지사항</a></li>
+                <li><a href="/inquiry/inquiry">문의사항</a></li>
                 <li class="active"><a href="/menu/list">식단표</a></li>
+                <li><a href="/finance/sales">매출</a></li>
+                <li><a href="/finance/expenditure">지출</a></li>
+                <li><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                <li><a href="/profitChart">차트</a></li>
               </ul>
             </div>
           </div>
@@ -260,6 +235,7 @@ $(function(){
 					<tr>
 						<td class="orange">내용</td>
 						<td>
+							<!-- 아래 content에 table 내용이 들어갑니다. -->
 							<input name="content" id="content" disabled style="display: none;"/>
 							<div class="panel panel-default" id="table">
 								<div class="panel-heading"><b>식단표</b></div>

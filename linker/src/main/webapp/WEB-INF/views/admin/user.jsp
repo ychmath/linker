@@ -68,12 +68,12 @@
 			// 회원 id 가져오기
 			var userid = $(this).attr("id");
 			
+			// ajax 데이터를 delete 전달
 			$.ajax({
 				url: "/admin/user/delete/" + userid,
 				method: "delete",
 				data:{"userid":userid}
 			}).done(function(result){
-				
 				alert("사용자 삭제가 완료되었습니다.");
 				location.replace(result);
 				
