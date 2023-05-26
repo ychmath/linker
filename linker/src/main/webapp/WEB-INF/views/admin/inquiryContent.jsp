@@ -24,9 +24,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$("#delete").click(function(){
+		$("#delete").click(function() {
+			// 현재 대상 게시물의 id값을 가져온다.
 			var inquirypostid = ${ dto.inquirypostid };
 
+			// ajax로 delete
 			$.ajax({
 				url:"/admin/inquiry/delete/" + inquirypostid,
 				method:"delete",

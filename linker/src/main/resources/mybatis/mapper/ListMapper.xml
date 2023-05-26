@@ -18,7 +18,9 @@
 	</delete>
 	<!-- 식자재 목록 조회 -->
 	<select id="getIngredient" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
-		select * from ingredient limit #{start}, #{count}
+		select * from ingredient
+		order by exp, ingredientname
+		limit #{start}, #{count}
 	</select>
 	<!-- 리스트 개수 조회 -->
 	<select id="ingredientCount" resultType="int">
@@ -33,7 +35,7 @@
 	<select id="getIngredientByName" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
 		select * from ingredient
 		where ingredientname like concat('%', #{name}, '%')
-		order by ingredientname
+		order by exp, ingredientname
 		limit #{start}, #{count}
 	</select>
 	<!-- 조회된 개수 조회 -->
@@ -45,7 +47,7 @@
 	<select id="getIngredientByExp" parameterType="map" resultType="com.linker.ingredient.dto.ListDto">
 		select * from ingredient
 		where exp between #{startDay} and #{endDay}
-		order by exp
+		order by exp, ingredientname
 		limit #{start}, #{count}
 	</select>
 	<!-- 조회된 유통기한 개수 조회 -->

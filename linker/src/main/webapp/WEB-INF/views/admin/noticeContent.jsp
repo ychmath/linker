@@ -31,9 +31,12 @@
 				url:"/admin/notice/delete/" + noticepostid,
 				method:"delete",
 				data:{"noticepostid":noticepostid}
+			
 			}).done(function(result){
+				
 				alert("삭제가 완료되었습니다.");
 				location.replace(result);
+				
 			});	// ajax end
 
 			return false;

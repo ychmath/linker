@@ -87,15 +87,12 @@
 			alert("열람 권한이 없는 페이지입니다.");
 			location.href = "/main";
 		}
-		
-		var ajax_data = [];
-		
+
 		// make div editable > start
-		$(document).on("click", ".row_data", function(event){
-			event.preventDefault();
-			
+		$(document).on("click", ".row_data", function(){			
+			// 기존 table html 코드에 클릭하면 수정할 수 있는 기능 추가
 			// make div editable
-	    		$(this).closest("div").attr("contenteditable", "true");
+	    	$(this).closest("div").attr("contenteditable", "true");
 			// add bg css
 			$(this).addClass("bg-warning").css("padding", "5px");
 			
@@ -105,33 +102,23 @@
 		// make div editable > end
 		
 		$("#save").click(function(event){
+			// 바로 submit하지 않도록 설정ㄴ
 			event.preventDefault();
 			
+			// 수정 가능 여부 / css 삭제
 			$("div").removeClass("bg-warning");
 			$("div").removeAttr("contenteditable");
 			
-			//--->get row data > start
-			var arr = {}; 
-			var tbl_row = $(this).closest('tr');
-			var row_id = tbl_row.attr('row_id');
-			tbl_row.find('.row_data').each(function(index, val) 
-			{   
-				var col_name = $(this).attr("col_name");  
-				var col_val  =  $(this).html();
-				arr[col_name] = col_val;
-			});
-			//--->get row data > end
-			//use the "arr"	object for your ajax call
-			$.extend(arr, {row_id:row_id});
-			
-			var content = document.getElementById("table");
-
+			// content에 table html 코드 저장
 			$("#content").val(table.outerHTML);
+			// content의 disabled를 false로 넣어 전송 가능하게 변경
 			$("#content").attr("disabled", false);
 
-		$("#updateform").submit();
+			// 전송
+			$("#updateform").submit();
 		
 		});//click
+
 	});	// ready end
 </script>
 	<div class="fh5co-cover" style="height: 200px"></div>
@@ -165,10 +152,14 @@
 
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
-							<li><a href="/main">홈</a></li>
-							<li><a href="/notice/notice">공지사항</a></li>
-							<li><a href="/inquiry/inquiry">문의사항</a></li>
-							<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/main">홈</a></li>
+                			<li><a href="/notice/notice">공지사항</a></li>
+                			<li><a href="/inquiry/inquiry">문의사항</a></li>
+                			<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>	<%-- menu wrap end --%>
 				</div>	<%-- row end --%>
@@ -196,6 +187,7 @@
 								<tr>
 									<td class="orange">내용</td>
 									<td>
+									<!-- 아래 content input 태그에 html 코드가 들어갑니다. -->
 										<input name="content" id="content" disabled style="display: none;"/>
 										${ dto.content }
 									</td>
