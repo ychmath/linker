@@ -47,7 +47,7 @@
                 checked
               />
               <label for="buyer">구매자</label>
-              <input type="radio" id="seller" name="role" value="seller" />
+              <input type="radio" id="seller" name="role" value="seller_t" />
               <label for="seller">판매자</label>
             </td>
           </tr>

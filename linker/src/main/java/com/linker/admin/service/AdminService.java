@@ -16,6 +16,14 @@ public class AdminService {
 	AdminDao dao;
 
 	// 회원 승인
+	public int grantUser(int userid) {
+		return dao.grantUser(userid);
+	}
+	
+	// 승인 대상 목록 가져오기
+	public List<AdminDto> getTempSeller(String role) {
+		return dao.getTempSeller(role);
+	}
 
 	// 공지사항 게시글 작성
 	public int writeNotice(AdminDto dto) {

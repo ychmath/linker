@@ -49,7 +49,7 @@ a {
 						</tr>
 					</c:forEach>
 				</table>
-				<div id="page">
+				<div id="pageController">
 					<c:if test="${ begin > pageNum }">
 						<a href="inquiry?p=${ begin - i }">이전</a>
 					</c:if>
@@ -66,6 +66,7 @@ a {
 			</c:if>
 		</div>
 		<a href="/admin">관리자 페이지로 돌아가기</a>
+		<a href="/main">홈페이지로 돌아가기</a>
 	</div>
 </body>
 </html>

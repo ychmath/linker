@@ -49,7 +49,8 @@ a {
 							<td>${ user.phone }</td>
 							<td>${ user.role }</td>
 							<td><fmt:formatDate value="${ user.signupdate }" dateStyle="short"/></td>
-							<td><a id="delete" href="/admin/user/delete/${ user.userid }" >삭제</a></td>
+							<%-- a 태그의 id값을 userid 값으로 가져온다. --%>
+							<td><a class="delete" href="/admin/user/delete/${ user.userid }" id=${ user.userid } >삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -74,12 +75,9 @@ a {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	$(function(){
-		$("#delete").click(function(){
+		$(".delete").click(function(){
 			// 회원 id 가져오기
-			var getUrl = $(this).attr('href');
-			var splitUrl = getUrl.split("/");
-			var arr = splitUrl.length;
-			var userid = splitUrl[arr-1];
+			var userid = $(this).attr("id");
 			
 			$.ajax({
 				url: "/admin/user/delete/" + userid,
