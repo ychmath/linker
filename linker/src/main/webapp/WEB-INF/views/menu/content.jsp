@@ -109,10 +109,14 @@
 
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
-							<li><a href="/main">홈</a></li>
-							<li><a href="/notice/notice">공지사항</a></li>
-							<li><a href="/inquiry/inquiry">문의사항</a></li>
-							<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/main">홈</a></li>
+                			<li><a href="/notice/notice">공지사항</a></li>
+                			<li><a href="/inquiry/inquiry">문의사항</a></li>
+                			<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>	<%-- menu wrap end --%>
 				</div>	<%-- row end --%>
@@ -142,6 +146,7 @@
 								</tr>
 								<tr>
 									<td colspan="2" align="right">
+									<!-- 작성자의 id와 현재 게시글의 id가 같을 경우 -->
 									<c:if test="${ dto.userID == user.userid }">
 										<a href="/menu/update/${ dto.menuID }">글 수정</a>
 										<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>

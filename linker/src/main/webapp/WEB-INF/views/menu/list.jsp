@@ -103,10 +103,14 @@
 
 					<div class="col-xs-12 text-left menu-1 menu-wrap">
 						<ul>
-							<li><a href="/main">홈</a></li>
-							<li><a href="/notice/notice">공지사항</a></li>
-							<li><a href="/inquiry/inquiry">문의사항</a></li>
-							<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/main">홈</a></li>
+                			<li><a href="/notice/notice">공지사항</a></li>
+                			<li><a href="/inquiry/inquiry">문의사항</a></li>
+                			<li class="active"><a href="/menu/list">식단표</a></li>
+                			<li><a href="/finance/sales">매출</a></li>
+                			<li><a href="/finance/expenditure">지출</a></li>
+                			<li><a href="/ingredient/ingredientList">식자재 관리</a></li>
+                			<li><a href="/profitChart">차트</a></li>
 						</ul>
 					</div>	<%-- menu wrap end --%>
 				</div>	<%-- row end --%>
@@ -119,6 +123,7 @@
 				<div class="container">
 					<div class="content">
 						<h1 class="title">식단표 목록</h1>
+						<!-- 현재 로그인한 user의 role 값이 seller인 경우 글 등록 가능 -->
 						<c:if test="${ user.role == 'seller' }">
 						<div class="write" align="right">
 							<a href="write">새 글 등록</a>

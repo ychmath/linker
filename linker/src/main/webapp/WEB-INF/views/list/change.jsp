@@ -131,15 +131,15 @@
 					<div class="listController">
 						<p style="color: white;"><b>식자재 추가</b></p>
 						<form id="addIngredient" action="/ingredient/insert" method="post">
-							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname">
+							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname" required>
 							<span style="color: white;">단위:&nbsp; &nbsp;</span>
-								<select name="unit">
+								<select name="unit" required>
 									<option value="KG">KG</option>
 									<option value="G">G</option>
 									<option value="LB">LB</option>
 									<option value="OZ">OZ</option>
 								</select>
-							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp" type="date"><br>
+							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp" type="date" required><br>
 						<div>
 							<input type="button" id="add" class="button" value="식자재 등록" style="color: black;"/>
 						</div>
@@ -227,9 +227,19 @@
 			location.replace("/ingredient/change");
 		});
 		
-		$("#add").on("click", function(){
-			alert("등록이 완료되었습니다.");
-			$("#addIngredient").submit();
+		$("#add").on("click", function(event) {
+			// 바로 전송 차단
+			event.preventDefault;
+			
+			// 하나라도 값이 입력되지 않은 경우
+			if (!$("input[name='ingredientname']").val() || !$("select[name='unit']").val() || !$("input[name='exp']").val()){
+				// submit 하지 않고 alert 출력
+				alert("필수 항목을 전부 입력해 주십시오.");
+			} else {
+				// 전부 입력했다면 submit
+				alert("등록이 완료되었습니다.");
+				$("#addIngredient").submit();
+			}
 		});
 	});
 </script>

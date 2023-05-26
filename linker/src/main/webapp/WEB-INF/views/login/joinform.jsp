@@ -142,7 +142,7 @@
 								<span class="member-type">회원 유형</span> <input type="radio"
 									id="buyer" name="role" value="buyer" checked /> <label
 									for="buyer">구매자</label> <input type="radio" id="seller"
-									name="role" value="seller" /> <label for="seller">판매자</label>
+									name="role" value="seller_t" /> <label for="seller">판매자</label>
 							</div>
 							<div class="info" id="info__id">
 								<input type="text" name="name" id="name" placeholder="이름"
