@@ -7,29 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
-<style>
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
+<link rel="stylesheet" type="text/css" href="../css/admin/adminnotice.css">
 
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
-</style>
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 
 </script>
-	<div class="title">
+	<div class="title" align="center">
 		<h1>공지사항 관리</h1>
 	</div>
 	<div class="content">
@@ -49,15 +35,15 @@ a {
 						</tr>
 					</c:forEach>
 				</table>
-				<div id="page">
+				<div id="page" align="center">
 					<c:if test="${ begin > pageNum }">
-						<a href="notice?p=${ begin - i }">이전</a>
+						<a href="notice?p=${ begin - i }" style="text-decoration:none">이전</a>
 					</c:if>
 					<c:forEach begin="${ begin }" end="${ end }" var="i">
-						<a href="notice?p=${ i }">${ i }</a>
-					</c:forEach>
+						<a href="notice?p=${ i }" style="text-decoration:none">${ i }</a>
+					</c:forEach> 
 					<c:if test="${ end < totalPages }">
-						<a href="notice?p=${ end + 1 }">[다음]</a>
+						<a href="notice?p=${ end + 1 }" style="text-decoration:none">[다음]</a>
 					</c:if>
 					<c:if test="${ noticeCount == 0 }">
 						게시물이 존재하지 않습니다.
@@ -65,7 +51,9 @@ a {
 				</div>
 			</c:if>
 		</div>
-		<a href="/admin">관리자 페이지로 돌아가기</a>
+		<p align="center">
+		<a href="/admin" style="text-decoration:none">관리자 페이지로 돌아가기</a>
+		</p>
 	</div>
 </body>
 </html>
