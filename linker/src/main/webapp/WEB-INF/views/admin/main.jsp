@@ -7,32 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<link rel="stylesheet" type="text/css" href="../css/admin/adminmain.css">
 <style>
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
-
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
+  .menu {
+    padding: auto;;   /* 왼쪽 간격을 조절합니다. 원하는 값으로 지정할 수 있습니다. */
+  }
 </style>
 </head>
 <body>
 	<div class="title">
-		<h1>관리자 페이지</h1>
+		<h1 align="center">관리자 페이지</h1>
 	</div>
 	<div class="main">
-		<div class="menu">
-			<a href="/admin/user">회원 관리</a>
-			<a href="/admin/inquiry">문의사항 관리</a>
-			<a href="/admin/notice">공지사항 관리</a>
+		<div class="menu"  align="center">
+			<a href="/admin/user" style="text-decoration:none">회원 관리</a>
+			<a href="/admin/notice" style="text-decoration:none" >문의사항 관리</a>
+			<a href="/admin/inquiry" style="text-decoration:none" >공지사항 관리</a>
+			<a href ="/"">홈으로 돌아가기</a>
 		</div>
 		<div class="userList">
 			<p><b>최근 가입한 사용자</b></p>

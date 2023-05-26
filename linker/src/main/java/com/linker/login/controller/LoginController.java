@@ -78,13 +78,12 @@ public class LoginController {
 	}
 
 	@PostMapping("/joinform")
-	public String insert(LoginDto dto, @RequestParam("phone1") String phone1, @RequestParam("phone2") String phone2,
-			@RequestParam("phone3") String phone3) {
-		String phone = phone1 + "-" + phone2 + "-" + phone3;
-		dto.setPhone(phone);
-		service.insertUser(dto);
-		return "redirect:loginform";
+	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
+	    dto.setPhone(phone);
+	    service.insertUser(dto);
+	    return "redirect:loginform";
 	}
+
 
 	@PostMapping("/auth/joinProc")
 	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
