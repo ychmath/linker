@@ -43,20 +43,26 @@
 		</tr>
 		
 		<c:forEach items="${nList }" var="notice">
-			<!-- "items" 속성에는 반복할 컬렉션 또는 배열을 지정함
-			"var" 속성에는 현재 반복 항목을 참조할 변수명을 지정함 
-			"${nList}: 모덜에 저장된 nList라는 속성을 참조함. nList는 반복할 컬렉션이나 배열을 의미함
-			notice라는 변수로 참조하여 사용할 수 있는 반복문을 나타냄
-		 -->
+    <!-- 이 태그는 "forEach" 루프를 사용하여 nList에 있는 아이템들을 반복합니다
+    "items" 속성에는 반복할 컬렉션 또는 배열을 지정합니다. 여기서는 "${nList}"를 지정했습니다.
+    "var" 속성에는 현재 반복 항목을 참조할 변수명을 지정합니다. 여기서는 "notice"를 사용합니다.
+    "${nList}"는 모델에 저장된 nList 속성을 참조합니다. nList는 반복할 컬렉션이나 배열을 의미합니다.
+    "notice" 변수로 참조합니다. 이는 반복문 내에서 사용할 수 있는 변수입니다.
+     -->
 
-			<tr>
-				<td>${notice.noticepostid}</td>
-				<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
-				<td>${notice.userid }</td>
-				<td><fmt:formatDate value="${notice.creationdate }"
-						dateStyle="short" /></td>
-			</tr>
-		</c:forEach>
+    <tr>
+        <td>${notice.noticepostid}</td>
+        <!-- 'noticepostid'를 가져와서 테이블의 첫 번째 셀에 표시합니다. -->
+        <td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
+        <!-- 제목을 가져와서 하이퍼링크로 표시하고, 클릭 시 content/noticepostid 페이지로 연결합니다. -->
+        <td>${notice.userid }</td>
+        <!-- 사용자 ID를 가져와서 테이블의 세 번째 셀에 표시합니다. -->
+        <td><fmt:formatDate value="${notice.creationdate }"
+                dateStyle="short" /></td>
+        <!-- 'creationdate'를 가져와서 "short" 형식으로 날짜를 표시하는 태그입니다. -->
+    </tr>
+</c:forEach>
+
 	</table>
 	<div class="center-align" id="page " align="center">
 		<c:if test="${begin > pageNum}">

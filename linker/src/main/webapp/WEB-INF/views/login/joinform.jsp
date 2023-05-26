@@ -25,17 +25,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	    <!-- Animate.css -->
-    <link rel="stylesheet" href="/css/animate.css" />
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="/css/icomoon.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="/css/flexslider.css" />
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="/css/style.css" />
-	
+
   <style>
                 #input,
                 #result {

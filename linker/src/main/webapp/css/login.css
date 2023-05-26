@@ -1,57 +1,63 @@
 /* COMMON */
+/* 스타일을 설정할 'body' 태그 내용입니다. */
 body {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.4;
-    font-family: 'Montserrat', 'Pretendard', sans-serif;
-  }
-  
-  button {
-    background-color: #000000;
-    color: #f8f8f8;
-    cursor: pointer;
-    border: none;
-    box-sizing: border-box;
-    font-weight: 400;
-    font-family: 'Montserrat', 'Pretendard', sans-serif;
-    transition: .1s;
-  }
-  
-  button:focus-visible {
-    outline: 0px solid;
-    background-color: #000000;
-  }
-  
-  button:hover {
-    outline: 0px solid;
-    background-color: #000000;
-  }
-  
-  /* box shape input field */
-  .box {
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-    padding: 5px 0 5px 15px;
-    border-radius: 4px;
-    border: 1px solid #d9d6d6;
-    color: #383838;
-    font-weight: 400;
-    font-family: 'Montserrat', 'Pretendard', sans-serif;
-    margin-bottom: 10px;
-  }
-  
-  .box::placeholder {
-    color: #a0a0a0;
-  }
-  
-  .box:focus {
-    outline: 1px solid #665ae870;
-  }
+    position: relative;  /* body의 위치조정 방법을 설정합니다. 'relative'로 설정하여 상대적 위치로 지정할 수 있습니다. */
+    height: 100vh;  /* body의 높이를 뷰포트 높이의 100%로 설정합니다. */
+    min-height: 600px;  /* body의 최소 높이를 600픽셀로 설정합니다. */
+    color: #ffffff;  /* body 내용의 글씨 색상을 흰색(16진수 표기: #ffffff)으로 설정합니다. */
+    font-size: 15px;  /* body 내용의 글자 크기를 15픽셀로 설정합니다. */
+    font-weight: 400;  /* body 내용의 글자 굵기를 400으로 설정합니다. */
+    line-height: 1.4;  /* body 내용의 줄 간격을 1.4로 설정합니다. */
+    font-family: 'Montserrat', 'Pretendard', sans-serif;  /* body 내용의 글꼴을 Montserrat, Pretendard, 기본 sans-serif 순서로 설정합니다. */
+}
+
+/* 스타일을 설정할 'button' 태그 내용입니다. */
+button {
+    background-color: #000000;  /* 버튼의 배경색을 검정색(16진수 표기: #000000)으로 설정합니다. */
+    color: #f8f8f8;  /* 버튼의 글씨 색상을 밝은 회색(16진수 표기: #f8f8f8)으로 설정합니다. */
+    cursor: pointer;  /* 마우스 커서가 버튼 위에 올라왔을 때 포인터 모양으로 바뀌게 설정합니다. */
+    border: none;  /* 버튼의 테두리를 없애줍니다. */
+    box-sizing: border-box;  /* 패딩과 테두리가 요소의 크기에 포함되도록 설정합니다. */
+    font-weight: 400;  /* 버튼 내용의 글자 굵기를 400으로 설정합니다. */
+    font-family: 'Montserrat', 'Pretendard', sans-serif;  /* 버튼 내용의 글꼴을 Montserrat, Pretendard, 기본 sans-serif 순서로 설정합니다. */
+    transition: .1s;  /* 버튼에서 다른 스타일로 바뀔 때의 전환 효과를 0.1초로 설정합니다. */
+}
+
+/* 버튼이 포커스 됐을 때 스타일입니다. */
+button:focus-visible {
+    outline: 0px solid;  /* 버튼이 포커스 됐을 때 표시되는 외곽선을 없앱니다. */
+    background-color: #000000;  /* 버튼이 포커스 됐을 때 배경색을 검정색으로 유지합니다. */
+}
+
+/* 버튼 위로 마우스 호버했을 때의 스타일입니다. */
+button:hover {
+    outline: 0px solid;  /* 버튼 위로 마우스 호버했을 때 외곽선을 없앱니다. */
+    background-color: #000000;  /* 버튼 위로 마우스 호버했을 때 배경색을 검정색으로 유지합니다. */
+}
+
+/* box 모양의 입력 필드 공통 스타일입니다. */
+.box {
+    width: 100%;  /* 입력 필드 너비를 100%로 설정합니다. */
+    height: 50px;  /* 입력 필드 높이를 50픽셀로 설정합니다. */
+    box-sizing: border-box;  /* 패딩과 테두리가 요소의 크기에 포함되도록 설정합니다. */
+    padding: 5px 0 5px 15px;  /* 입력 필드의 내부 여백을 상단 5픽셀, 우측 0픽셀, 하단 5픽셀, 좌측 15픽셀로 설정합니다. */
+    border-radius: 4px;  /* 입력 필드 모서리를 둥글게 처리합니다. (각 모서리의 반경: 4픽셀) */
+    border: 1px solid #d9d6d6;  /* 입력 필드 테두리를 1픽셀, 회색(16진수 표기: #d9d6d6)로 설정합니다. */
+    color: #383838;  /* 입력 필드 내용의 색상을 어두운 회색(16진수 표기: #383838)으로 설정합니다. */
+    font-weight: 400;  /* 입력 필드 내용의 글자 굵기를 400으로 설정합니다. */
+    font-family: 'Montserrat', 'Pretendard', sans-serif;  /* 입력 필드 내용의 글꼴을 Montserrat, Pretendard, 기본 sans-serif 순서로 설정합니다. */
+    margin-bottom: 10px;  /* 입력 필드 아래쪽 여백을 10픽셀로 설정합니다. */
+}
+
+/* 입력 필드 내용의 'placeholder' 스타일입니다. */
+.box::placeholder {
+    color: #a0a0a0;  /* 입력 필드의 'placeholder' 색상을 중간 회색(16진수 표기: #a0a0a0)으로 설정합니다. */
+}
+
+/* 입력 필드에 포커스 됐을 때 스타일입니다. */
+.box:focus {
+    outline: 1px solid #665ae870;  /* 입력 필드가 포커스 됐을 때 외곽선을 1픽셀 회색(16진수 표기: #665ae870)로 설정합니다. */
+}
   
   /* CONTAINER */
   .container {
@@ -160,7 +166,7 @@ body {
   }
   
   /* MOBILE */
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 250px) {
     body {
       min-height: 780px;
       background-color: #ffffff;
