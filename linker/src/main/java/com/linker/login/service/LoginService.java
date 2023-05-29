@@ -1,7 +1,6 @@
 package com.linker.login.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +41,6 @@ public class LoginService {
 
 	public LoginDto login(LoginDto dto) { // LoginDto는 로그인 시 사용자의 정보를 담고 있는 클래스. 데이터 전송을 위한 객체
 		return dao.login(dto);
-	}
-
-	public List<LoginDto> userInfo() {
-		return dao.userInfo();
 	}
 
 	public Map<String, String> validateHandling(BindingResult bindingResult) {

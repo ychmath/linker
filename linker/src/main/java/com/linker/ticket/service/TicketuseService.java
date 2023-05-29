@@ -17,30 +17,32 @@ public class TicketuseService {
 
 	@Autowired
 	TicketuseDao dao;
-
+	
+	//전체 티켓 사용 내역 조히
 	public List<TicketuseDto> getAllTicketuse() {
 		return dao.selectAll();
 	}
-
+	
+	// 특정 날짜의 사용된 식권 조회
 	public List<TicketuseDto> getUsedByDate(Date startDate, Date endDate) {
-		Map<String , Date> map = new HashMap<>();
+		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);
-		
-		
+
 		return dao.selectByDate(map);
 	}
-
-	public  int addUse(TicketuseDto dto) {
+	
+	//식권 사용 추가 메서드
+	public int addUse(TicketuseDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public  int deleteOrderById(int tickettypename) {
+	//식권 타입별 식권 주문 삭제
+	public int deleteOrderById(int tickettypename) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	public List<TicketuseDto> selectByDate(Date startDate, Date endDate) {
 		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
@@ -49,12 +51,5 @@ public class TicketuseService {
 		return dao.selectByDate(map);
 	}
 
-	public boolean updateTicketUseByPhoneNumber(String ticketType, Integer selectedQuantity, String phoneNumber) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	  public int decrementTicketQuantityByPhone(String phone) {
-		    return dao.updateTicketQuantityByPhone(phone);
-		  }
 
 }
