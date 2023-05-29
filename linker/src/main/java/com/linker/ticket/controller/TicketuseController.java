@@ -17,18 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.linker.ticket.dto.TicketorderDto;
 import com.linker.ticket.dto.TicketuseDto;
 import com.linker.ticket.service.TicketuseService;
 
 @Controller
-@RequestMapping("/ticketuse")
 public class TicketuseController {
 
 	@Autowired
-	private TicketuseService tuService;
-
-	@GetMapping("/ticketu")
+	private TicketuseService tuService; 
+ 
+	@GetMapping("/ticketu")  //전체 식권 사용 내역 조회
 	public String getAllTicketuse(Model m) {
 
 		List<TicketuseDto> list = tuService.getAllTicketuse();
@@ -37,32 +35,28 @@ public class TicketuseController {
 		return "ticketuse/ticketu";
 	}
 
-	@GetMapping("/ticketu/{date}")
-	public List<TicketuseDto> getUseByDate(@PathVariable String date) {
-		return TicketuseService.getUseByDate(date);
+	@GetMapping("/ticketu/{date}") //특정 날짜의 사용된 티켓 조회
+	public List<TicketuseDto> getUsedByDate(@PathVariable Date startdate, Date endDate) {
+		return tuService.getUsedByDate(startdate, endDate);
 	}
 
-	@PostMapping("/ticketu")
+	@PostMapping("/ticketu") //식권 사용 추가 메서드
 	public int addUse(@RequestBody TicketuseDto dto) {
-		return TicketuseService.addUse(dto);
-	}
-	@DeleteMapping("/ticket/{tickettypename}")
-	public int deleteOrderById(@PathVariable int tickettypename) {
-		return TicketuseService.deleteOrderById(tickettypename);
+		return tuService.addUse(dto);
 	}
 
-	public String selectAll(TicketuseDto ticketu) {
-		return "";
+	@DeleteMapping("/ticket/{tickettypename}") //식권 타입별 식권 주문 삭제
+	public int deleteOrderById(@PathVariable int tickettypename) {
+		return tuService.deleteOrderById(tickettypename);
 	}
-	
+
+	//필터링된 식권 사용 내역 조회(특정 기간 내)
 	@RequestMapping("/filtered_data_u")
 	@ResponseBody
-	public String fetchFilteredData(
-			@RequestParam("start-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
-			@RequestParam("end-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
-			Model model) {
-		List<TicketuseDto> filterData = tuService.selectByDate(startDate,endDate);
-		
+	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
+		List<TicketuseDto> filterData = tuService.selectByDate(startDate, endDate);
+
 		Gson gson = new Gson();
 		String list = gson.toJson(filterData);
 		return list;
