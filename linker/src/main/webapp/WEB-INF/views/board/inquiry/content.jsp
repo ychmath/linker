@@ -30,48 +30,58 @@
                     <div id="container">
                         <div class="pt-1">
                             <input type="button" name="title" id="title" value="제목: ${dto.title}"
-                              style="border-radius:5px; width:100%; padding:5px;" readonly>
-                          </div>
-                            <tr>
-                                <td>작성자</td>
-                                <td>${dto.userid }</td>
-                            </tr>
-                            <tr>
-                                <td>내용</td>
-                                <td>${dto.content }</td>
-                            </tr>
-                            <tr>
-                                <td>작성일</td>
-                                <td>
-                                    <fmt:formatDate value="${dto.creationdate }" />
-                                </td>
-                            </tr>
+                                style="border-radius: 5px; width: 100%; padding: 5px;" readonly>
+                        </div>
+                        <tr>
+                            <td>작성자</td>
+                            <td>${dto.userid }</td>
+                        </tr>
+                        <tr>
+                            <td>내용</td>
+                            <td>${dto.content }</td>
+                        </tr>
+                        <tr>
+                            <td>작성일</td>
+                            <td>
+                                <fmt:formatDate value="${dto.creationdate }" />
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td colspan="2" align="right">
-                                    <c:if test="${user.userid == dto.userid }">
-                                        <a href="/inquiry/update/${dto.inquirypostid }">수정</a>
-                                        <a id="${dto.inquirypostid }" href="#">삭제</a>
-                                    </c:if>
-                                    <a href="../inquiry">목록 이동</a>
-                                </td>
-                            </tr>
-                        
+                        <tr>
+                            <td colspan="2" align="right">
+                                <c:if test="${user.userid == dto.userid }">
+                                    <a href="/inquiry/update/${dto.inquirypostid }">수정</a>
+                                    <a id="${dto.inquirypostid }" href="#">삭제</a>
+                                </c:if> <a href="../inquiry">목록 이동</a>
+                            </td>
+                        </tr>
+
                     </div>
                 </form>
 
                 <div>
-                    <span>
-                        <input type="button" value="답글쓰기"
+                    <span> <span id="role" style="display: none;">${ user.role }</span>
+
+                        <input type="button" id="replyButton" value="답글쓰기" style="display: none;"
                             onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&ref=${dto.ref }&restep=${dto.restep }&relevel=${dto.relevel }'" />
                     </span>
-                    <span>
-                        <input type="button" value="목록" onclick="location.href='../inquiry'" />
+                    <span> <input type="button" value="목록" onclick="location.href='../inquiry'" />
                     </span>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                     $(function () {
+                        // 권한 가져오기
+                        var role = $("#role").text();
+
+                        // 답글쓰기 버튼이 admin, seller 권한에만 보이게 함
+                        if (role == 'admin' || role == 'seller') {
+                            $("#replyButton").show();
+                        } else {
+                            $("#replyButton").hide();
+                        }
+
+                        // 해당하는 태그를 여기에 넣습니다.
                         $("a[id]").click(function () {
                             let no = $(this).attr("id");
                             $.ajax({
@@ -79,10 +89,11 @@
                                 data: "inquirypostid=" + no,
                                 method: "delete",
                             }).done(function () {
-                                location.href = "/inquiry/inquiry";
+                                location.href = "../inquiry";
                             });
                             return false; //하이퍼링크 이동x
                         });
+
                     });
                 </script>
             </body>

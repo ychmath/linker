@@ -1,25 +1,47 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>문의사항</title>
 <link rel="stylesheet" type="text/css" href="../css/user/inquiry.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
-<body>
-	<div id="inquiry">
-		<h1 align="center">문의사항</h1>
-	</div>
 
+<body>
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="index.html"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<a href="/" class="nav-item nav-link active">Home</a> <a
+					href="/notice/notice" class="nav-item nav-link">공지사항</a> <a
+					href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a> <a
+					href="/menu/list" class="nav-item nav-link">식단표</a> <a
+					href="/loginform" class="nav-item nav-link">로그인</a> <a
+					href="/joinform" class="nav-item nav-link">회원가입</a>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar End -->
 	<div id="search" class="table-spacing ">
-		<form action="search" >
+		<form action="search">
 			<select name="searchn" id="searchn">
 				<option value="0">제목</option>
 				<option value="1">작성자</option>
-			</select>
-		<input type="text" id="search_text" name="search" size="15"
+			</select> <input type="text" id="search_text" name="search" size="15"
 				maxlength="40" /> <input type="submit" id="search_btn"
 				name="search_btn" value="검색" />
 		</form>
@@ -28,8 +50,8 @@
 	<table class="table-spacing table-center">
 		<tr>
 			<th class="custom-button" onclick="location.href='../notice/notice'">공지사항</th>
-			<th id="inquiry" class="custom-button" onclick="location.href='../inquiry/inquiry'">
-				문의사항</th>
+			<th id="inquiry" class="custom-button"
+				onclick="location.href='../inquiry/inquiry'">문의사항</th>
 		</tr>
 	</table>
 
@@ -59,11 +81,9 @@
                     <c:if test="${inquiry.relevel > 0 }">
                     <!-- 답변글이 있는 경우(relevel 값이 0보다 클 경우), 다음 내용을 실행합니다. -->
 
-                        <span class="icon">
-                        <img src="/img/level.gif" width="${inquiry.relevel * 10 }">
+                        <span class="icon">                       
                         <!-- relevel 값에 10을 곱한 결과에 따라 이미지의 너비를 조절합니다. -->
-
-                        <img src="/img/re.gif" alt="답변" />
+                       <i class="bi bi-arrow-return-right"  width="${inquiry.relevel * 10 }" alt="답변" /></i>
                         <!-- alt 속성은 이미지가 표시되지 못할 경우 이미지 대신 사용할 대체 텍스트를 정의합니다. -->
                         </span>
                     </c:if>
@@ -90,17 +110,18 @@
 </table>
 </c:if>
 
-	<div class="center-align" id="page " align="center"><!-- 페이지 번호 -->
+	<div class="center-align" id="page " align="center">
+		<!-- 페이지 번호 -->
 		<c:if test="${begin > pageNum}">
-			<a href="inquiry?p=${begin - 1 }">[이전]
-		</c:if>	
+			<a href="inquiry?p=${begin - 1 }">[이전] 
+		</c:if>
 		<c:forEach begin="${begin }" end="${end }" var="i">
 			<a href="inquiry?p=${i }">${i }</a>
 		</c:forEach>
 		<c:if test="${end < totalPages }">
 			<a href="inquiry?p=${end+1}">[다음]</a>
 		</c:if>
-			</div>
+	</div>
 
 	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
@@ -108,4 +129,5 @@
 	</div>
 
 </body>
+
 </html>
