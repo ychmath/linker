@@ -6,34 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Linker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link
-	href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700"
-	rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Satisfy"
-	rel="stylesheet" />
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="/css/animate.css" />
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="/css/icomoon.css" />
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="/css/bootstrap.css" />
-<!-- Flexslider  -->
-<link rel="stylesheet" href="/css/flexslider.css" />
-
-<!-- Theme style  -->
-<link rel="stylesheet" href="/css/style.css" />
-
-<!-- Modernizr JS -->
-<script src="/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
 <style>
 	.content {
 		width: 100%;
@@ -51,9 +24,6 @@
 		align-self: flex-end;
 		text-align: right;		
 	}
-	.table-hover {
-		color: black;
-	}
 	.menu {
 		border-bottom: 1px solid gray;
 	}
@@ -65,9 +35,6 @@
 	.pageController {
 		width: 100%;
 		text-align: center;
-	}
-	.orange {
-		color: white;
 	}
 	#myTable {
 		width: 100%;
@@ -81,10 +48,17 @@
 	$(function(){
 		// 권한 가져오기
 		var role = $("#role").text();
-		
+
 		// 열람 권한이 없다면 페이지 이동.
-		if (role == 'buyer') {
+		if (!(role == 'seller' || role == 'admin')) {
 			alert("열람 권한이 없는 페이지입니다.");
+			location.href = "/main";
+		}
+
+		var writer = $("#userID");
+
+		if (writer != $("#userid").text()) {
+			alert("수정 권한이 없습니다.");
 			location.href = "/main";
 		}
 
@@ -102,7 +76,7 @@
 		// make div editable > end
 		
 		$("#save").click(function(event){
-			// 바로 submit하지 않도록 설정ㄴ
+			// 바로 submit하지 않도록 설정
 			event.preventDefault();
 			
 			// 수정 가능 여부 / css 삭제
@@ -130,13 +104,13 @@
 				<div class="row">
 					<div class="col-xs-12 text-right menu-1 menu-wrap">
 					  	<span id="role" style="display: none;">${ user.role }</span>
-        				<ul>
-              				<c:if test="${ user == null }">
-                				<li class="login-signup"><a href="/loginform">로그인</a></li>
-                				<li class="login-signup"><a href="/joinform">회원가입</a></li>
+        				<ul class="userStatus">
+              				<c:if test="${ user.userid == null }">
+                				<li class="login"><a href="/loginform">로그인</a></li>
+                				<li class="signup"><a href="/joinform">회원가입</a></li>
               				</c:if>
               				<c:if test="${ user != null }">
-              					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
+              					<li class="myinfo"><span id="userid">${ user.userid }</span> 회원님 환영합니다!</li>
               					<li class="logout"><a href="/logout">로그아웃</a></li>
               				</c:if>
             			</ul>
@@ -156,10 +130,12 @@
                 			<li><a href="/notice/notice">공지사항</a></li>
                 			<li><a href="/inquiry/inquiry">문의사항</a></li>
                 			<li class="active"><a href="/menu/list">식단표</a></li>
+             		<c:if test="${ user.role == 'seller' }">
                 			<li><a href="/finance/sales">매출</a></li>
                 			<li><a href="/finance/expenditure">지출</a></li>
                 			<li><a href="/ingredient/ingredientList">식자재 관리</a></li>
                 			<li><a href="/profitChart">차트</a></li>
+       				</c:if>
 						</ul>
 					</div>	<%-- menu wrap end --%>
 				</div>	<%-- row end --%>
@@ -178,11 +154,11 @@
 							<table border="1" style="color:black;">
 								<tr>
 									<td class="orange">제목</td>
-									<td><input name="title" style="background-color: inherit; color: white;" value="${ dto.title }"/></td>
+									<td><input name="title" style="background-color: inherit;" value="${ dto.title }"/></td>
 								</tr>
 								<tr>
 									<td class="orange">작성자</td>
-									<td><input name="userID" style="background-color: inherit; color: white;" value="${ dto.userID }" readonly></td>
+									<td><input id="userID" name="userID" style="background-color: inherit;" value="${ dto.userID }" readonly></td>
 								</tr>
 								<tr>
 									<td class="orange">내용</td>
@@ -223,21 +199,5 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
-
-	<!-- jQuery -->
-	<script src="/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="/js/jquery.waypoints.min.js"></script>
-	<!-- Waypoints -->
-	<script src="/js/jquery.stellar.min.js"></script>
-	<!-- Flexslider -->
-	<script src="/js/jquery.flexslider-min.js"></script>
-	<!-- Main -->
-	<script src="/js/main.js"></script>
-
 </body>
 </html>
