@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +29,12 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 
+	// 서버 시작시 처음으로 나타나는 페이지
+	@GetMapping("/")
+	public String redirecToMain() {
+		return "main";
+	}
+
 	@ModelAttribute("user")
 	public LoginDto getDto() {
 		return new LoginDto();
@@ -40,29 +45,20 @@ public class LoginController {
 		return "login/loginform";
 	}
 
+	// 로그인
 	@PostMapping("/login")
-	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m) {
+	public String login(@ModelAttribute("command") @Valid LoginDto dto, BindingResult error, Model m) {
 		LoginDto resultDto = service.login(dto); // service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
-		if (error.hasErrors() || resultDto == null) {
-
-			m.addAttribute("inputUserId", dto.getUserid());
-
-			if (dto.getUserid() == null || dto.getUserid().isEmpty()) {
-				m.addAttribute("useridError", "아이디를 입력해주세요.");
-			}
-			if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
-				m.addAttribute("passwordError", "비밀번호를 입력해주세요.");
-			} else if (resultDto == null) {
-				m.addAttribute("passwordError", "아이디나 비밀번호가 일치하지 않습니다.");
-			}
+		if (resultDto == null) {
+			m.addAttribute("loginError","아이디나 비밀번호가 틀렸습니다.");
 			return "login/loginform";
-		} else {
-			m.addAttribute("user", resultDto); // model 객체에 "user" 이름으로 LoginDto 객체를 저장
+		} else {// 로그인 성공
+			m.addAttribute("user", resultDto);
 		}
 		return "redirect:/main";
-
 	}
 
+	// 메인 페이지 이동
 	@RequestMapping("/main") // "/main" 경로로 들어오는 요청을 이 메소드에서 처리할 수 있도록 지정해주는 것
 	public String main(@ModelAttribute("user") LoginDto dto) {
 		if (dto.getUserid() != null) {
@@ -77,16 +73,9 @@ public class LoginController {
 		return "login/joinform";
 	}
 
-	@PostMapping("/joinform")
-	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
-	    dto.setPhone(phone);
-	    service.insertUser(dto);
-	    return "redirect:loginform";
-	}
-
-
-	@PostMapping("/auth/joinProc")
-	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
+	// 회원가입 처리
+	@PostMapping("/join")
+	public String joinProc(@Valid LoginDto dto, @RequestParam("phone") String phone, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userDto", dto);
@@ -95,13 +84,14 @@ public class LoginController {
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
-
 			return "login/joinform";
 		}
+		dto.setPhone(phone);
 		service.insertUser(dto);
-		return "redirect:/auth/login";
+		return "redirect:loginform";
 	}
 
+	// 아이디 중복체크
 	@GetMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(String id) {
@@ -109,6 +99,7 @@ public class LoginController {
 		return checkid; // text
 	}
 
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
@@ -120,9 +111,11 @@ public class LoginController {
 		return "login/updateform";
 	}
 
+	// 회원정보 수정 처리
 	@PutMapping("/update")
-	public String update(@ModelAttribute("user") LoginDto dto) {
+	public String update(@ModelAttribute("user") LoginDto dto, SessionStatus status) {
 		service.updateUser(dto);
+		status.setComplete();
 		return "redirect:/main";
 	}
 
@@ -132,6 +125,7 @@ public class LoginController {
 		return "login/deleteform";
 	}
 
+	// 탈퇴 처리
 	@DeleteMapping("/delete")
 	public String delete(String formpw, @ModelAttribute("user") LoginDto dto, SessionStatus status) {
 		int i = service.deleteUser(formpw, dto);
@@ -142,5 +136,4 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
-
 }

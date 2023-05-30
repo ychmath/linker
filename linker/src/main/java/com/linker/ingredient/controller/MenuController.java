@@ -24,17 +24,20 @@ public class MenuController {
 	  @Autowired
 	  MenuService service;
 
+	  // 입력 폼 반환
 	  @GetMapping("/menu/write")
 	  public String writeForm() {
 		  return "menu/write";
 	  }
 	  
+	  // 게시글 입력
 	  @PostMapping("/menu/write")
 	  public String write(MenuDto dto) {
 		  service.write(dto);
 		  return "redirect:/menu/list"; 
 	  }
 
+	  // 게시글 목록 가져오기
 	  @RequestMapping("/menu/list")
 	  public String menuList(@RequestParam(name = "p", defaultValue = "1") int page, Model m) { // 글이 있는지 체크 
 		  int count = service.count();
@@ -69,6 +72,7 @@ public class MenuController {
 
 	  }
 	  
+	  // 클릭한 게시글 가져오기
 	  @GetMapping("menu/content/{menuID}")
 	  public String content(@PathVariable int menuID, Model m) { 
 		  MenuDto dto = service.menuOne(menuID);
@@ -76,6 +80,7 @@ public class MenuController {
 		  return "menu/content";
 		  }
 	  
+	  // 수정 대상 게시글 가져오기 / 수정 폼 반환
 	  @GetMapping("menu/update/{menuID}")
 	  public String updateForm(@PathVariable int menuID, Model m) { 
 		  MenuDto dto = service.menuOne(menuID);
@@ -84,12 +89,14 @@ public class MenuController {
 		  
 	  }
 	  
+	  // 대상 게시글 수정
 	  @PutMapping("/menu/update/{menuID}")
 	  public String update(@PathVariable int menuID, MenuDto dto) {
 		  service.updateMenu(dto);
 		  return "redirect:/menu/content/{menuID}"; 
 	  }
 	  
+	  // 게시글 삭제
 	  @DeleteMapping("/menu/delete/{menuID}")
 	  @ResponseBody
 	  public String deleteMenu(@PathVariable int menuID) { 

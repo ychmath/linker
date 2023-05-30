@@ -12,7 +12,6 @@
       <label for="currentPassword">비밀번호</label>
       <input type="password" name="currentPassword" required />
       <input type="submit" value="확인" />
-
       <% if (request.getAttribute("errorMessage") != null) { %>
       <p style="color: red">
         <%=request.getAttribute("errorMessage")%> <% } %>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,20 +23,26 @@ public class AdminController {
 	// 경로 return, 대시보드 정보 가져오기
 	@GetMapping("/admin")
 	public String adminPage(Model m) {
+		
 		// 각 리스트 수
 		int userCount = service.userCount();
 		int inquiryCount = service.inquiryCount();
 		int noticeCount = service.noticeCount();
 		
+		// 대기 중인 회원 수
+		int tempCount = service.tempCount();
+		
 		// 가져 올 최신 목록
 		List<AdminDto> userList = service.userList(0);
 		List<AdminDto> inquiryList = service.inquiryList(0);
 		List<AdminDto> noticeList = service.noticeList(0);
-		
+				
 		// model 저장
 		m.addAttribute("userCount", userCount);
 		m.addAttribute("inquiryCount", inquiryCount);
 		m.addAttribute("noticeCount", noticeCount);
+		
+		m.addAttribute("tempCount", tempCount);
 		
 		m.addAttribute("userList", userList);
 		m.addAttribute("inquiryList", inquiryList);
@@ -77,6 +84,21 @@ public class AdminController {
 		
 		return "admin/user";
 
+	}
+	
+	// 사용자 승인 폼
+	@GetMapping("/admin/user/approve")
+	public String approveSellerList(Model m) {
+		List<AdminDto> tempList = service.getTempSeller();
+		m.addAttribute("tempList", tempList);
+		return "/admin/approveList";
+	}
+	
+	// 승인
+	@PutMapping("/admin/user/approve/{userid}")
+	public String approveSeller(@PathVariable String userid) {
+		service.grantUser(userid);
+		return "redirect:/admin/user";
 	}
 
 	// 사용자 삭제

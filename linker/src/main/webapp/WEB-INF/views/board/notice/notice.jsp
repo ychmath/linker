@@ -2,85 +2,384 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="../css/user/notice.css">
-<title>공지사항</title>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Linker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head>
-<body>
-	<div id="notice">
-		<h1 align="center">공지사항</h1>
-	</div>
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../css/flexslider.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
+	<!-- Modernizr JS -->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
 
-	<div id="search" class="table-spacing ">
-		<form action="search">
-			<select name="searchn" id="searchn">
-				<option value="0">제목</option>
-				<option value="1">작성자</option>
-			</select> <input type="text" id="search_text" name="search" size="15"
-				maxlength="40" /> <input type="submit" id="search_btn"
-				name="search_btn" value="검색" />
-		</form>
-	</div>
-
-	<table class="table-spacing table-center">
-
-		<tr>
-			<th class="custom-button" onclick="location.href='../notice/notice'">공지사항</th>
-			<th id="inquiry" class="custom-button" onclick="location.href='../inquiry/inquiry'">
-				문의사항</th>
-		</tr>
-	</table>
-
-	<table>
-		<tr>
-			<th>게시글 번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
+	</head>
+	<body>
 		
-		<c:forEach items="${nList }" var="notice">
-    <!-- 이 태그는 "forEach" 루프를 사용하여 nList에 있는 아이템들을 반복합니다
-    "items" 속성에는 반복할 컬렉션 또는 배열을 지정합니다. 여기서는 "${nList}"를 지정했습니다.
-    "var" 속성에는 현재 반복 항목을 참조할 변수명을 지정합니다. 여기서는 "notice"를 사용합니다.
-    "${nList}"는 모델에 저장된 nList 속성을 참조합니다. nList는 반복할 컬렉션이나 배열을 의미합니다.
-    "notice" 변수로 참조합니다. 이는 반복문 내에서 사용할 수 있는 변수입니다.
-     -->
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+		<!-- <div class="top-menu"> -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-center logo-wrap">
+						<div id="fh5co-logo"><a href="index.html">Linker<span>.</span></a></div>
+					</div>
+					<div class="col-xs-12 text-center menu-1 menu-wrap">
+						<ul style="display: flex; justify-content: space-between;">
+							<li><a href="/">홈</a></li>
+							<li class="active"><a href="/notice/notice">공지사항</a></li>
+							<li><a href="/inquiry/inquiry">문의사항</a></li>
+							<li><a href="/menu/list">식단표</a></li>
 
-    <tr>
-        <td>${notice.noticepostid}</td>
-        <!-- 'noticepostid'를 가져와서 테이블의 첫 번째 셀에 표시합니다. -->
-        <td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
-        <!-- 제목을 가져와서 하이퍼링크로 표시하고, 클릭 시 content/noticepostid 페이지로 연결합니다. -->
-        <td>${notice.userid }</td>
-        <!-- 사용자 ID를 가져와서 테이블의 세 번째 셀에 표시합니다. -->
-        <td><fmt:formatDate value="${notice.creationdate }"
-                dateStyle="short" /></td>
-        <!-- 'creationdate'를 가져와서 "short" 형식으로 날짜를 표시하는 태그입니다. -->
-    </tr>
-</c:forEach>
+							<li style="margin-left: auto;"><a href="/loginform">로그인</a></li>
+							<li><a href="/joinform">회원가입</a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		<!-- </div> -->
+	</nav>
 
-	</table>
-	<div class="center-align" id="page " align="center">
-		<c:if test="${begin > pageNum}">
-			<a href="notice?p=${begin-1 }">[이전]</a>
-			<!-- '?'는 URL에서 쿼리 문자열을 나타내는 부분의 시작을 표시하는 데 사용되는 특수 문자 -->
-		</c:if>
-		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="notice?p=${i }">${i }</a>
-		</c:forEach>
-		<c:if test="${end < totalPages }">
-			<a href="notice?p=${end+1 }">[다음]</a>
-		</c:if>
+	<header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image: url(../images/hero_1.jpeg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="display-t js-fullheight">
+						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+							<h1>공지사항</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="fh5co-about" class="fh5co-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-pull-4 img-wrap animate-box" data-animate-effect="fadeInLeft">
+					<img src="images/hero_1.jpeg" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+				</div>
+				<div class="col-md-5 col-md-push-1 animate-box">
+					<div class="section-heading">
+						<h2>The Restaurant</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae neque quisquam at deserunt ab praesentium architecto tempore saepe animi voluptatem molestias, eveniet aut laudantium alias, laboriosam excepturi, et numquam? Atque tempore iure tenetur perspiciatis, aliquam, asperiores aut odio accusamus, unde libero dignissimos quod aliquid neque et illo vero nesciunt. Sunt!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam iure reprehenderit nihil nobis laboriosam beatae assumenda tempore, magni ducimus abentey.</p>
+						<p><a href="#" class="btn btn-primary btn-outline">Our History</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 
+<<<<<<< HEAD
 	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
 			onclick="location.href='write'" />
+=======
+	<div id="fh5co-featured-menu" class="fh5co-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 fh5co-heading animate-box">
+					<h2>Today's Menu</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab debitis sit itaque totam, a maiores nihil, nulla magnam porro minima officiis! Doloribus aliquam voluptates corporis et tempora consequuntur ipsam, itaque, nesciunt similique commodi omnis. Ad magni perspiciatis, voluptatum repellat.</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap animate-box">
+					<div class="fh5co-item">
+						<img src="images/gallery_9.jpeg" class="img-responsive" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+						<h3>Bake Potato Pizza</h3>
+						<span class="fh5co-price">$20<sup>.50</sup></span>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos nihil cupiditate ut vero alias quaerat inventore molestias vel suscipit explicabo.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap animate-box">
+					<div class="fh5co-item margin_top">
+						<img src="images/gallery_8.jpeg" class="img-responsive" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+						<h3>Salted Fried Chicken</h3>
+						<span class="fh5co-price">$19<sup>.00</sup></span>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos nihil cupiditate ut vero alias quaerat inventore molestias vel suscipit explicabo.</p>
+					</div>
+				</div>
+				<div class="clearfix visible-sm-block visible-xs-block"></div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap animate-box">
+					<div class="fh5co-item">
+						<img src="images/gallery_7.jpeg" class="img-responsive" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+						<h3>Italian Sauce Mushroom</h3>
+						<span class="fh5co-price">$17<sup>.99</sup></span>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos nihil cupiditate ut vero alias quaerat inventore molestias vel suscipit explicabo.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap animate-box">
+					<div class="fh5co-item margin_top">
+						<img src="images/gallery_6.jpeg" class="img-responsive" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+						<h3>Fried Potato w/ Garlic</h3>
+						<span class="fh5co-price">$22<sup>.50</sup></span>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos nihil cupiditate ut vero alias quaerat inventore molestias vel suscipit explicabo.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+>>>>>>> refs/remotes/origin/main
 	</div>
-</body>
+
+	<div id="fh5co-featured-testimony" class="fh5co-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 fh5co-heading animate-box">
+					<h2>Testimony</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab debitis sit itaque totam, a maiores nihil, nulla magnam porro minima officiis! Doloribus aliquam voluptates corporis et tempora consequuntur ipsam, itaque, nesciunt similique commodi omnis.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-5 animate-box img-to-responsive animate-box" data-animate-effect="fadeInLeft">
+						<img src="images/person_1.jpg" alt="">
+				</div>
+				<div class="col-md-7 animate-box" data-animate-effect="fadeInRight">
+					<blockquote>
+						<p> &ldquo; Quantum ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab debitis sit itaque totam, a maiores nihil, nulla magnam porro minima officiis! Doloribus aliquam voluptates corporis et tempora consequuntur ipsam. &rdquo;</p>
+						<p class="author"><cite>&mdash; Jane Smith</cite></p>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="fh5co-slider" class="fh5co-section animate-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 animate-box">
+					<div class="fh5co-heading">
+						<h2>Our Best <em>&amp;</em> Unique Menu</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ab debitis sit itaque totam, a maiores nihil, nulla magnam porro minima officiis!</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-md-push-1 animate-box">
+					<aside id="fh5co-slider-wrwap">
+					<div class="flexslider">
+						<ul class="slides">
+					   	<li style="background-image: url(images/gallery_7.jpeg);">
+					   		<div class="overlay-gradient"></div>
+					   		<div class="container-fluid">
+					   			<div class="row">
+						   			<div class="col-md-12 col-md-offset-0 col-md-pull-10 slider-text slider-text-bg">
+						   				<div class="slider-text-inner">
+						   					<div class="desc">
+													<h2>Crab <em>with</em> Curry Sources</h2>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt eveniet quae, numquam magnam doloribus eligendi ratione rem, consequatur quos natus voluptates est totam magni! Nobis a temporibus, ipsum repudiandae dolorum.</p>
+													<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+						   					</div>
+						   				</div>
+						   			</div>
+						   		</div>
+					   		</div>
+					   	</li>
+					   	<li style="background-image: url(images/gallery_6.jpeg);">
+					   		<div class="overlay-gradient"></div>
+					   		<div class="container-fluid">
+					   			<div class="row">
+						   			<div class="col-md-12 col-md-offset-0 col-md-pull-10 slider-text slider-text-bg">
+						   				<div class="slider-text-inner">
+						   					<div class="desc">
+													<h2>Tuna <em>&amp;</em> Roast Beef</h2>
+													<p>Ink is a free html5 bootstrap and a multi-purpose template perfect for any type of websites. A combination of a minimal and modern design template. The features are big slider on homepage, smooth animation, product listing and many more</p>
+													<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+						   					</div>
+						   				</div>
+						   			</div>
+						   		</div>
+					   		</div>
+					   	</li>
+					   	<li style="background-image: url(images/gallery_5.jpeg);">
+					   		<div class="overlay-gradient"></div>
+					   		<div class="container-fluid">
+					   			<div class="row">
+						   			<div class="col-md-12 col-md-offset-0 col-md-pull-10 slider-text slider-text-bg">
+						   				<div class="slider-text-inner">
+						   					<div class="desc">
+													<h2>Egg <em>with</em> Mushroom</h2>
+													<p>Ink is a free html5 bootstrap and a multi-purpose template perfect for any type of websites. A combination of a minimal and modern design template. The features are big slider on homepage, smooth animation, product listing and many more</p>
+													<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+						   					</div>
+						   				</div>
+						   			</div>
+						   		</div>
+					   		</div>
+					   	</li>		   	
+					  	</ul>
+				  	</div>
+				</aside>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="fh5co-blog" class="fh5co-section">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+					<h2>Events</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, consequatur. Aliquam quaerat pariatur repellendus veniam nemo, saepe, culpa eius aspernatur cumque suscipit quae nobis illo tempora. Eum veniam necessitatibus, blanditiis facilis quidem dolore! Dolorem, molestiae.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="fh5co-blog animate-box">
+						<a href="#" class="blog-bg" style="background-image: url(images/gallery_1.jpeg);"></a>
+						<div class="blog-text">
+							<span class="posted_on">Feb. 15th 2016</span>
+							<h3><a href="#">Photoshoot On The Street</a></h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<ul class="stuff">
+								<li><i class="icon-heart2"></i>1.2K</li>
+								<li><i class="icon-eye2"></i>2K</li>
+								<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+							</ul>
+						</div> 
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="fh5co-blog animate-box">
+						<a href="#" class="blog-bg" style="background-image: url(images/gallery_2.jpeg);"></a>
+						<div class="blog-text">
+							<span class="posted_on">Feb. 15th 2016</span>
+							<h3><a href="#">Surfing at Philippines</a></h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<ul class="stuff">
+								<li><i class="icon-heart2"></i>1.2K</li>
+								<li><i class="icon-eye2"></i>2K</li>
+								<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+							</ul>
+						</div> 
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="fh5co-blog animate-box">
+						<a href="#" class="blog-bg" style="background-image: url(images/gallery_3.jpeg);"></a>
+						<div class="blog-text">
+							<span class="posted_on">Feb. 15th 2016</span>
+							<h3><a href="#">Focus On Uderwater</a></h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<ul class="stuff">
+								<li><i class="icon-heart2"></i>1.2K</li>
+								<li><i class="icon-eye2"></i>2K</li>
+								<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+							</ul>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="fh5co-started" class="fh5co-section animate-box" style="background-image: url(images/hero_1.jpeg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Book a Table</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae enim quae vitae cupiditate, sequi quam ea id dolor reiciendis consectetur repudiandae. Rem quam, repellendus veniam ipsa fuga maxime odio? Eaque!</p>
+					<p><a href="reservation.html" class="btn btn-primary btn-outline">Book Now</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="fh5co-footer" role="contentinfo" class="fh5co-section">
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-4 fh5co-widget">
+					<h4>Tasty</h4>
+					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+				</div>
+				<div class="col-md-2 col-md-push-1 fh5co-widget">
+					<h4>Links</h4>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Gallery</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-md-push-1 fh5co-widget">
+					<h4>Categories</h4>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Landing Page</a></li>
+						<li><a href="#">Real Estate</a></li>
+						<li><a href="#">Personal</a></li>
+						<li><a href="#">Business</a></li>
+						<li><a href="#">e-Commerce</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-4 col-md-push-1 fh5co-widget">
+					<h4>Contact Information</h4>
+					<ul class="fh5co-footer-links">
+						<li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+						<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
+						<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+						<li><a href="http://https://freehtml5.co">freehtml5.co</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
+						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="../js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="../js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.stellar.min.js"></script>
+	<!-- Flexslider -->
+	<script src="../js/jquery.flexslider-min.js"></script>
+	<!-- Main -->
+	<script src="../js/main.js"></script>
+
+	</body>
 </html>
