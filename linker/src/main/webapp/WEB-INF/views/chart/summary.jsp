@@ -5,37 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Linker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Satisfy"
-      rel="stylesheet"
-    />
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="/css/animate.css" />
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="/css/icomoon.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="/css/flexslider.css" />
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="/css/style.css" />
-
-    <!-- Modernizr JS -->
-    <script src="/js/modernizr-2.6.2.min.js"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -47,12 +17,12 @@
         <div class="container">
           <div class="col-xs-12 text-right menu-1 menu-wrap">
           	<span id="role" style="display: none;">${ user.role }</span>
-            <ul>
-              	<c:if test="${ user == null }">
-                	<li class="login-signup"><a href="/loginform">로그인</a></li>
-                	<li class="login-signup"><a href="/signupform">회원가입</a></li>
+            <ul class="userStatus">
+              	<c:if test="${ user.userid == null }">
+                	<li class="login"><a href="/loginform">로그인</a></li>
+                	<li class="signup"><a href="/signupform">회원가입</a></li>
              	</c:if>
-              	<c:if test="${ user != null }">
+              	<c:if test="${ user.userid != null }">
               		<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
               		<li class="logout"><a href="/logout">로그아웃</a></li>
               	</c:if>
@@ -92,14 +62,14 @@
         <div class="container">
 		<div>
 		<form id="searchYear">
-			<h4 style="color: white;">재무 관리</h4>
-			<p style="color: white;">*최근 3년간의 결과만 조회 가능합니다.</p><br>
-			<select name="targetYear" id="targetYear" style="color: black;"></select>
-			<button type="button" id="search" style="color: black;">검색</button>
+			<h4>재무 관리</h4>
+			<p>*최근 3년간의 결과만 조회 가능합니다.</p><br>
+			<select name="targetYear" id="targetYear"></select>
+			<button type="button" id="search">검색</button>
 		</form>
 		</div>
 	<hr>
-	<h1 style="color: white;">연간 요약</h1>
+	<h1>연간 요약</h1>
 		<div>
 			<%-- 차트가 들어갈 캔버스 생성 --%>
 			<canvas width="600" height="400" id="myChart"></canvas>
@@ -263,20 +233,5 @@
 
 	});	// ready end
 </script>
-
-    <!-- jQuery -->
-    <script src="/js/jquery.min.js"></script>
-    <!-- jQuery Easing -->
-    <script src="/js/jquery.easing.1.3.js"></script>
-    <!-- Bootstrap -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.stellar.min.js"></script>
-    <!-- Flexslider -->
-    <script src="/js/jquery.flexslider-min.js"></script>
-    <!-- Main -->
-    <script src="/js/main.js"></script>
 </body>
 </html>
