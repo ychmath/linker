@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.linker.ticket.dao.TicketuseDao;
-import com.linker.ticket.dto.TicketorderDto;
 import com.linker.ticket.dto.TicketuseDto;
 
 @Service

@@ -59,7 +59,7 @@
       }
 
       .login__input::placeholder {
-        opacity: 1;
+        opacity: 0;
         transition: all 400ms ease;
       }
 
