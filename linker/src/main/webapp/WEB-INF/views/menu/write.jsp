@@ -6,34 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Linker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link
-	href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700"
-	rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Satisfy"
-	rel="stylesheet" />
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="/css/animate.css" />
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="/css/icomoon.css" />
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="/css/bootstrap.css" />
-<!-- Flexslider  -->
-<link rel="stylesheet" href="/css/flexslider.css" />
-
-<!-- Theme style  -->
-<link rel="stylesheet" href="/css/style.css" />
-
-<!-- Modernizr JS -->
-<script src="/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
 <style>
 	.content {
 		width: 100%;
@@ -51,23 +24,16 @@
 		align-self: flex-end;
 		text-align: right;		
 	}
-	.table-hover {
-		color: black;
-	}
 	.menu {
 		border-bottom: 1px solid gray;
 	}
 	.title {
 		width: 700px;
-		color: white;
 		margin-top: 30px;
 	}
 	.pageController {
 		width: 100%;
 		text-align: center;
-	}
-	.orange {
-		color: white;
 	}
 	#myTable {
 		width: 100%;
@@ -83,7 +49,7 @@ $(function(){
 	var role = $("#role").text();
 	
 	// 열람 권한이 없다면 페이지 이동.
-	if (role == 'buyer') {
+	if (!(role == 'seller' || role == 'admin')) {
 		alert("열람 권한이 없는 페이지입니다.");
 		location.href = "/main";
 	}
@@ -120,7 +86,6 @@ $(function(){
 		tbl += "<tbody>";
 	// create table body rows > start
 	$.each(ajax_data, function(index, val){
-		// looping through ajax row data
 		// 지정해 둔 배열만큼 열과 행을 만든다.
 		tbl += "<tr>";
 			tbl += "<td class=\'tname'\><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
@@ -182,12 +147,12 @@ $(function(){
           <div class="col-xs-12 text-right menu-1 menu-wrap">
           	<!-- 로그인한 유저의 권한을 저장하는 span 태그 -->
             <span id="role" style="display: none;">${ user.role }</span>
-            	<ul>
-            		<c:if test="${ user == null }">
-           				<li class="login-signup"><a href="/loginform">로그인</a></li>
-                		<li class="login-signup"><a href="/joinform">회원가입</a></li>
+            	<ul class="userStatus">
+            		<c:if test="${ user.userid == null }">
+           				<li class="login"><a href="/loginform">로그인</a></li>
+                		<li class="signup"><a href="/joinform">회원가입</a></li>
               		</c:if>
-              		<c:if test="${ user != null }">
+              		<c:if test="${ user.userid != null }">
     					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
         				<li class="logout"><a href="/logout">로그아웃</a></li>
               		</c:if>
@@ -206,10 +171,12 @@ $(function(){
                 <li><a href="/notice/notice">공지사항</a></li>
                 <li><a href="/inquiry/inquiry">문의사항</a></li>
                 <li class="active"><a href="/menu/list">식단표</a></li>
+             <c:if test="${ user.role == 'seller' }">
                 <li><a href="/finance/sales">매출</a></li>
                 <li><a href="/finance/expenditure">지출</a></li>
                 <li><a href="/ingredient/ingredientList">식자재 관리</a></li>
                 <li><a href="/profitChart">차트</a></li>
+       		</c:if>
               </ul>
             </div>
           </div>
@@ -226,7 +193,7 @@ $(function(){
 				<table border="1" style="color:black;">
 					<tr>
 						<td class="orange">제목</td>
-						<td><input name="title" style="background-color: inherit; color: white;"/></td>
+						<td><input name="title" style="background-color: inherit;"/></td>
 					</tr>
 					<tr>
 						<td class="orange">작성자</td>
@@ -269,21 +236,5 @@ $(function(){
       </footer>
     </div>
   </div>
-  
-      <!-- jQuery -->
-    <script src="/js/jquery.min.js"></script>
-    <!-- jQuery Easing -->
-    <script src="/js/jquery.easing.1.3.js"></script>
-    <!-- Bootstrap -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.stellar.min.js"></script>
-    <!-- Flexslider -->
-    <script src="/js/jquery.flexslider-min.js"></script>
-    <!-- Main -->
-    <script src="/js/main.js"></script>
-  
 </body>
 </html>
