@@ -8,22 +8,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.ticket.dao.TicketuseDao;
-import com.linker.ticket.dto.TicketuseDto;
+import com.linker.ticket.dao.TicketUseDao;
+import com.linker.ticket.dto.TicketUseDto;
 
 @Service
-public class TicketuseService {
+public class TicketUseService {
 
 	@Autowired
-	TicketuseDao dao;
+	TicketUseDao dao;
 	
 	//전체 티켓 사용 내역 조히
-	public List<TicketuseDto> getAllTicketuse() {
+	public List<TicketUseDto> getAllTicketuse() {
 		return dao.selectAll();
 	}
 	
 	// 특정 날짜의 사용된 식권 조회
-	public List<TicketuseDto> getUsedByDate(Date startDate, Date endDate) {
+	public List<TicketUseDto> getUsedByDate(Date startDate, Date endDate) {
 		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);
@@ -32,7 +32,7 @@ public class TicketuseService {
 	}
 	
 	//식권 사용 추가 메서드
-	public int addUse(TicketuseDto dto) {
+	public int addUse(TicketUseDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -42,7 +42,7 @@ public class TicketuseService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public List<TicketuseDto> selectByDate(Date startDate, Date endDate) {
+	public List<TicketUseDto> selectByDate(Date startDate, Date endDate) {
 		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);

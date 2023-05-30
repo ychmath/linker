@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.linker.ticket.dao.TicketorderDao">
-<select id="selectAll" resultType="com.linker.ticket.dto.TicketorderDto">
+<mapper namespace="com.linker.ticket.dao.TicketOrderDao">
+
+
+<insert id="buyTicket" parameterType="com.linker.ticket.dto.TicketOrderDto">
+	insert into ticketorder(ticketorderid, userid, tickettype, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettype}, #{quantity}, now())
+</insert>
+
+<select id="selectAll" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
+	select userid, ticketorderid, orderdate, tickettypename as tickettype, price, quantity, price * quantity as totalprice from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} order by orderdate desc limit #{start}, #{count}
+</select>
+
+<select id="selectByDate" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
+	select ticketorderid, orderdate, tickettypename as tickettype, price, quantity, price * quantity as totalprice from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by orderdate desc limit #{start}, #{count}
+</select>
+
+
+<select id="selectByDateCount" parameterType="map" resultType="int">
+	select count(*) from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} and orderdate between #{startDate} and #{endDate}
+</select>
+
+
+<select id="count" parameterType="String" resultType="int">
+	select count(*) from ticketorder where userid = #{userid}
+</select>
+
+
+<!-- <select id="selectAll" resultType="com.linker.ticket.dto.TicketorderDto">
 		select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC
 </select>
 
@@ -14,7 +39,7 @@
 
 </select>
 
-
+ -->
 
 
 

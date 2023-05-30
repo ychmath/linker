@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.ticket.dao.PhoneDao;
-import com.linker.ticket.dto.TicketholdDto;
+import com.linker.ticket.dao.TicketUseByPhoneDao;
+import com.linker.ticket.dto.TicketUseByPhoneDto;
 
 @Service
-public class PhoneService {
+public class TicketUseByPhoneService {
 
 	@Autowired
-	PhoneDao dao;
+	TicketUseByPhoneDao dao;
 
 	// 식권 사용 내역 검증, 업데이트
 	public boolean updateTicketUseByPhone(int tickettypename, Integer quantity, String phone) {
@@ -44,7 +44,7 @@ public class PhoneService {
 		return dao.tickettypeidList();
 	}
 
-	public List<TicketholdDto> gettypename() {
+	public List<TicketUseByPhoneDto> gettypename() {
 		return dao.gettypename();
 	}
 }

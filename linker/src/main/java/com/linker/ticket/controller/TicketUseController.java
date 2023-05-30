@@ -17,32 +17,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.linker.ticket.dto.TicketuseDto;
-import com.linker.ticket.service.TicketuseService;
+import com.linker.ticket.dto.TicketUseDto;
+import com.linker.ticket.service.TicketUseService;
 
 @RequestMapping("ticketuse")
 @Controller
-public class TicketuseController {
+public class TicketUseController {
 
 	@Autowired
-	private TicketuseService tuService; 
+	private TicketUseService tuService; 
  
 	@GetMapping("/ticket")  //전체 식권 사용 내역 조회
 	public String getAllTicketuse(Model m) {
 
-		List<TicketuseDto> list = tuService.getAllTicketuse();
+		List<TicketUseDto> list = tuService.getAllTicketuse();
 		m.addAttribute("tulist", list);
 
 		return "ticket/ticketuseform";
 	}
 
 	@GetMapping("/ticket/{date}") //특정 날짜의 사용된 티켓 조회
-	public List<TicketuseDto> getUsedByDate(@PathVariable Date startdate, Date endDate) {
+	public List<TicketUseDto> getUsedByDate(@PathVariable Date startdate, Date endDate) {
 		return tuService.getUsedByDate(startdate, endDate);
 	}
 
 	@PostMapping("/ticketu") //식권 사용 추가 메서드
-	public int addUse(@RequestBody TicketuseDto dto) {
+	public int addUse(@RequestBody TicketUseDto dto) {
 		return tuService.addUse(dto);
 	}
 
@@ -56,7 +56,7 @@ public class TicketuseController {
 	@ResponseBody
 	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
-		List<TicketuseDto> filterData = tuService.selectByDate(startDate, endDate);
+		List<TicketUseDto> filterData = tuService.selectByDate(startDate, endDate);
 
 		Gson gson = new Gson();
 		String list = gson.toJson(filterData);

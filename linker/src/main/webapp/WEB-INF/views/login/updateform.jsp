@@ -10,12 +10,6 @@
   rel="stylesheet">
   
 <style>
-@font-face {
-    font-family: 'omyu_pretty';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
 body {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -117,6 +111,7 @@ h3 {
 }
 </style>
 </head>
+
 <body>
 <div class="container">
     <h3>${user.userid}<br>님의 정보를 수정합니다.</h3>
@@ -164,5 +159,6 @@ h3 {
       });
     </script>
 </div>
+
 </body>
 </html>

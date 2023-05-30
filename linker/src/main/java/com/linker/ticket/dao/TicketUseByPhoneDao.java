@@ -5,14 +5,14 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.linker.ticket.dto.TicketholdDto;
+import com.linker.ticket.dto.TicketUseByPhoneDto;
 
 @Mapper
-public interface PhoneDao {
+public interface TicketUseByPhoneDao {
 	
 	public int updateTicketQuantityByPhone(Map<String , Object> map);
 	
 	List<Integer> tickettypeidList();
 
-	List<TicketholdDto> gettypename();
+	List<TicketUseByPhoneDto> gettypename();
 }
