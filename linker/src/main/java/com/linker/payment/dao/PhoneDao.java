@@ -1,18 +1,18 @@
-package com.linker.ticket.dao;
+package com.linker.payment.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.linker.ticket.dto.TicketUseByPhoneDto;
+import com.linker.payment.dto.PhoneDto;
 
 @Mapper
-public interface TicketUseByPhoneDao {
+public interface PhoneDao {
 	
 	public int updateTicketQuantityByPhone(Map<String , Object> map);
 	
 	List<Integer> tickettypeidList();
 
-	List<TicketUseByPhoneDto> gettypename();
+	List<PhoneDto> gettypename();
 }
