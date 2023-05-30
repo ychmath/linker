@@ -5,6 +5,33 @@
 <html>
 <head>
 <title>Linker</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet"> 
 <style>
 	.content {
 		width: 100%;
@@ -27,13 +54,8 @@
 	.listController {
 		width: 100%;
 		align-self: flex-start;
-		padding: 20px;
+		padding: 10px;
 		border: 1px solid gray;
-	}
-
-	.title {
-		width: 700px;
-		margin-top: 30px;
 	}
 
 	.pageController {
@@ -42,86 +64,88 @@
 		margin-right: auto;
 		text-align: center;
 	}
-
-	.content {
-		width: 100%;
-		align-content: center;
-	}
-
+	
 	.button {
+		margin-top: 10px;
+	}
+	
+	.title {
+		width: 700px;
+		margin-bottom: 30px;
+	}
+	
+	.check {
 		margin-top: 10px;
 	}
 </style>
 </head>
 <body>
 <body>
-	<div class="fh5co-cover" style="height: 200px"></div>
-	<div class="fh5co-loader"></div>
 	<div id="page">
-		<nav class="fh5co-nav" role="navigation">
-			<!-- <div class="top-menu"> -->
+	
+<!--     Spinner Start
+ -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+<!--     Spinner End
+ -->   
+	
+	    <!-- Navbar Start -->
+    	<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">Linker</h2>
+        </a>
+        	<div class="navbar">
+        	<c:if test="${ user.userid == null }">
+            	<a class="nav-item nav-link" href="/loginform">로그인</a>
+               	<a class="nav-item nav-link" href="/signupform">회원가입</a>
+             </c:if>
+             <c:if test="${ user.userid != null }">
+              	<span class="nav-item">${ user.userid } 회원님 환영합니다!</span> 
+              	<a class="nav-item nav-link" href="/logout">로그아웃</a>
+              </c:if>
+        	</div>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link">Home</a>
+                <a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+                <a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+                <a href="/menu/list" class="nav-item nav-link">식단표</a>
+                <a href="/finance/sales" class="nav-item nav-link">매출</a>
+                <a href="/finance/expenditure" class="nav-item nav-link">지출</a>
+                <a href="/ingredient/ingredientList" class="nav-item nav-link active">식자재 관리</a>
+                <a href="/profitChart" class="nav-item nav-link">차트</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->	
+	
+	<span id="role" style="display: none;">${ user.role }</span>
+  
+      <div id="fh5co-about" class="fh5co-section">
+      <div class="fh5co-cover" style="height: 50px"></div>
 			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-right menu-1 menu-wrap">
-		            <span id="role" style="display: none;">${ user.role }</span>			
-        				<ul>
-              				<c:if test="${ user.userid == null }">
-                				<li class="login-signup"><a href="/loginform">로그인</a></li>
-                				<li class="login-signup"><a href="/joinform">회원가입</a></li>
-              				</c:if>
-               				<c:if test="${ user.userid != null }">
-              					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
-              					<li class="logout"><a href="/logout">로그아웃</a></li>
-              				</c:if>
-            			</ul>
-					</div>
-					</div>
-
-				<div class="row">
-					<div class="col-xs-12 text-center logo-wrap">
-						<div id="fh5co-logo">
-							<a href="/main">Linker<span>.</span></a>
-						</div>
-					</div>
-
-					<div class="col-xs-12 text-left menu-1 menu-wrap">
-						<ul>
-							<li><a href="/main">홈</a></li>
-							<li><a href="/notice/notice">공지사항</a></li>
-							<li><a href="/inquiry/inquiry">문의사항</a></li>
-							<li><a href="/menu/list">식단표</a></li>
-             		<c:if test="${ user.role == 'seller' }">
-                			<li><a href="/finance/sales">매출</a></li>
-                			<li><a href="/finance/expenditure">지출</a></li>
-                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
-                			<li><a href="/profitChart">차트</a></li>
-       				</c:if>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- </div> -->
-		</nav>
-
-		<div id="fh5co-slider" class="fh5co-section animate-box">
-			<div class="fh5co-cover" style="height: 200px"></div>
-			<div class="main">
-				<div class="container">
-					<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
+				<div class="about-text">
+					<h1 class="title"><a href="/ingredient/ingredientList">식자재 목록</a></h1>
 					<div class="listController">
-						<p style="color: white;"><b>식자재 추가</b></p>
+						<p><b>식자재 추가</b></p>
 						<form id="addIngredient" action="/ingredient/insert" method="post">
-							<span style="color: white;">식자재명:&nbsp; &nbsp;</span><input name="ingredientname" required>
-							<span style="color: white;">단위:&nbsp; &nbsp;</span>
+							<span>식자재명:&nbsp;</span><input name="ingredientname" required>&nbsp;
+							<span>단위:&nbsp;</span>
 								<select name="unit" required>
 									<option value="KG">KG</option>
 									<option value="G">G</option>
 									<option value="LB">LB</option>
 									<option value="OZ">OZ</option>
-								</select>
-							<span style="color: white;">유통기한:&nbsp; &nbsp;</span><input name="exp" type="date" required><br>
+								</select>&nbsp;
+							<span>유통기한:&nbsp;</span><input name="exp" type="date" required><br>
 						<div>
-							<input type="button" id="add" class="button" value="식자재 등록" style="color: black;"/>
+							<input type="button" id="add" class="button btn btn-primary" value="식자재 등록"/>
 						</div>
 						</form>
 					</div>
@@ -137,7 +161,7 @@
 							</tr>
 							<c:forEach items="${ ingredientList }" var="ingredient">
 							<tr class="ingredientlist">
-								<td><input type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }"></td>
+								<td><input class="check" type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }"></td>
 								<td>${ ingredient.ingredientname }</td>
 								<td>${ ingredient.unit }</td>
 								<td>${ ingredient.exp }</td>
@@ -145,7 +169,7 @@
 							</c:forEach>
 						</table>
 						<div>
-							<input type="button" id="delete" class="button" value="선택한 식자재 삭제" style="color: black;"/>
+							<input type="button" id="delete" class="button btn btn-primary" value="선택한 식자재 삭제"/>
 						</div>
 						<div class="pageController">
 							<c:if test="${ begin > end }">
@@ -163,27 +187,43 @@
 					</div>	<%-- main > content end --%>
 				</div>	<%-- main > container end --%>
 			</div>	<%-- main end --%>
-
-		<footer id="fh5co-footer" role="contentinfo" class="fh5co-section">
-			<div class="container">
-				<div class="row copyright">
-					<div class="col-md-12 text-center">
-						<p>
-							<small class="block">&copy; 2023 Soldesk Project. All
-								Rights Reserved.</small> <small class="block">Designed by <a
-								href="http://freehtml5.co/" target="_blank">Linker</a>
-							</small>
-						</p>
-					</div>
-				</div>
-			</div>
-		</footer>
-			</div>	<%-- footer > container end --%>
+    </div> <!-- about end -->
+    
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Linker</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	</div>	<%-- page end --%>
+	
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
-	</div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/counterup/counterup.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -192,7 +232,7 @@
 		var role = $("#role").text();
 		
 		// 열람 권한이 없다면 페이지 이동.
-		if (role != 'seller' || role != 'admin') {
+		if (!(role != 'seller' || role != 'admin')) {
 			alert("열람 권한이 없는 페이지입니다.");
 			location.href = "/main";
 		}

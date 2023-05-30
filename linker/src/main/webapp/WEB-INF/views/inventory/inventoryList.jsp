@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <title>Linker</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -33,13 +33,57 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet"> 
+<style>
+	.content {
+		width: 100%;
+	}
+
+	.invenList {
+		width: 100%;
+		border: 1px solid gray;
+		border-collapse: collapse;
+		margin-top: 30px;
+		text-align: center;
+	}
+
+	th {
+		text-align: center;
+		border-bottom: 1px solid gray;
+	}
+
+	.searchController {
+		width: 100%;
+		align-self: flex-start;
+		border: 1px solid gray;
+		padding: 15px;
+	}
+
+	.title {
+		width: 700px;
+		margin-bottom: 30px;
+	}
+
+	.pageController {
+		width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	.content {
+		width: 100%;
+		align-content: center;
+	}
+	#changeIngredient {
+		margin-top: 10px;
+	}
+</style>
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <body>
-<!--     Spinner Start
+<body>
+	<div id="page">
+	
+	<!--     Spinner Start
  -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
@@ -47,32 +91,8 @@
     </div>
 <!--     Spinner End
  -->    
-        <!-- Topbar Start -->
-    <div class="container-fluid bg-light p-0">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>월 - 일 : 09.30 AM - 10.00 PM</small>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>02-6901-7001</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-<div id="page">
-
-    <!-- Navbar Start -->
+	
+ <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">Linker</h2>
@@ -99,33 +119,65 @@
                 <a href="/finance/sales" class="nav-item nav-link">매출</a>
                 <a href="/finance/expenditure" class="nav-item nav-link">지출</a>
                 <a href="/ingredient/ingredientList" class="nav-item nav-link">식자재 관리</a>
-                <a href="/profitChart" class="nav-item nav-link active">차트</a>
+                <a href="/profitChart" class="nav-item nav-link">차트</a>
             </div>
         </div>
     </nav>
-    <!-- Navbar End -->	
+    <!-- Navbar End -->
     
     <span id="role" style="display: none;">${ user.role }</span>
-  
-      <div id="fh5co-about" class="fh5co-section">
-      <div class="fh5co-cover" style="height: 50px"></div>
-        <div class="container">
+    
+	<div id="fh5co-about" class="fh5co-section">
+		<div class="fh5co-cover" style="height: 50px"></div>
+		<div class="container">
 		<div class="about-text">
-		<form id="searchYear">
-			<h1 class="section-title">재무 관리</h1>
-			<p>*최근 3년간의 결과만 조회 가능합니다.</p><br>
-			<select name="targetYear" id="targetYear"></select>
-			<button class="btn" type="button" id="search">검색</button>
-		</form>
-		</div>
-	<hr>
-		<h1 class="section-title.text-start">연간 요약</h1>
-		<div class="feature-text">
-			<%-- 차트가 들어갈 캔버스 생성 --%>
-			<canvas width="600" height="400" id="myChart"></canvas>
-		</div>
+		<div class="content">
+			<c:if test="${ count != 0 }">
+				<table class="invenList" id="invenList">
+					<thead>
+					<tr>
+						<th>식자재명</th>
+						<th>수량</th>
+						<th>유통기한</th>
+						<th>수령일</th>
+						<th style="width: 10%;"> </th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${ invenList }" var="invenList">
+					<tr>
+						<td>${ invenList.ingredientname }</td>
+						<td>${ invenList.quantity }</td>
+						<td>${ invenList.exp }</td>
+						<td>${ invenList.receivedate }</td>
+						<td><button class="update btn" value="${ invenList.inventoryid }">수정</button></td>
+					</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+					<input class="btn btn-primary" type="button" id="changeIngredient" value="목록 추가 / 삭제"
+					onclick="location.href='change';"/>
+				<div class="pageController">
+					<c:if test="${ begin > end }">
+						<a href="ingredientList?p=${ begin-1 }">[이전]</a>
+					</c:if>
+					<c:forEach begin="${ begin }" end="${ end }" var="i">
+						<a href="ingredientList?p=${ i }">${ i }</a>
+					</c:forEach>
+					<c:if test="${ end < totalPages }">
+						<a href="ingredientList?p=${ end + 1 }">[다음]</a>
+					</c:if>
+				</div>
+				</c:if>
+				<c:if test="${ count == 0 }">
+					입력된 식자재가 존재하지 않습니다.
+						<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제"
+						onclick="location.href='change';" style="color: black;"/>
+				</c:if>
+			</div>	<%-- main > content end --%>
     	</div>
     </div>
+   </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -163,144 +215,60 @@
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
     </div>
-
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
 		// 권한 가져오기
 		var role = $("#role").text();
 		
 		// 열람 권한이 없다면 페이지 이동.
-		if (role != 'seller') {
+		if (!(role != 'seller' || role != 'admin')) {
 			alert("열람 권한이 없는 페이지입니다.");
 			location.href = "/main";
 		}
 		
-		// 검색할 년도 지정: 최대 3년간 지정 가능
-		var year = new Date().getFullYear();
-		var startyear = year - 3;
-		
-		for (i = year; i > startyear; i--){
-			// 최근 년도부터 3년간 지정한 결과를 option 태그로 선택할 수 있도록 지정.
-			$('#targetYear').append($('<option/>').val(i).html(i));
-		}
-		
-		// 매출 내역을 저장할 배열
-		var saleResult = [];
-		
-		// 매입 내역을 저장할 내역
-		var purchaseResult = [];
-		
-		// 순수익 저장 배열
-		var netResult = [];
+		$("#search-name").click(function(){
+			
+			let name = $("#name").val();
+						
+			if (!name || name.replace(/\s+/g, "") == "") {
+				alert("검색값을 입력해 주세요.");
+				$("#name").focus();
+				return false;
+			}
+			
+			$("#searchByName").submit();
 
-		// id가 myChart인 캔버스 지정
-		var ctx = document.getElementById("myChart");
+		});	// search click end
 
-		// chart 변수로 차트 데이터를 만든다.
-		var chart = new Chart(ctx, {
-			type: 'bar',	// 디폴트 차트 타입 지정
-			data: {
-				labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-				datasets: [{
-					label: '총수익',
-					yAxisID: 'y-left',
-					backgroundColor: 
-		                'rgba(255, 99, 132, 0.2)',
-		            borderColor: 
-		                'rgba(255, 99, 132, 1)',
-		            borderWidth: 1,
-		            data: saleResult
-				},
-				{
-					label: '총지출',
-					yAxisID: 'y-left',
-		            backgroundColor: 
-		                'rgba(75, 192, 192, 0.2)',
-		            borderColor: 
-		                'rgba(75, 192, 192, 1)',
-		            borderWidth: 1,
-		            data: purchaseResult
-				},
-				{
-					label: '순수익',
-					yAxisID: 'y-left',
-					type: 'line',
-					fill: false,
-					lineTension: 0,
-					pointRadius: 0,
-					backgroundColor: 'rgb(255, 204, 0)',
-					borderColor: 'rgb(255, 204, 0)',
-					data: netResult
-				}]
-			},	// data end
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				scales: {
-					x: {
-						title: {
-							display: false,
-							text: '월'
-						}
-					},
-					'y-left': {
-						type: 'linear',
-						position: 'left',
-						title: {
-							display: true,
-							text: '금액'
-						},
-						grid: {
-							display: false
-						},
-						padding: {
-							top: 30,
-							left: 0,
-							right: 0,
-							bottom: 0
-						}
-					}	// 'y-left end'
-				}	// scales end
-			}	// option end
-		});	// chart end
+		$("#search-date").click(function(){
 
-		// 검색 버튼 클릭 시
-		$("#search").click(function() {
-			// 매입/매출에 기본값 0 저장
-			for(var i = 0; i < 12; i++){
-				// 12칸의 배열을 형성, 각각 0을 배정한다.
-				saleResult[i] = 0;
-				purchaseResult[i] = 0;
+			let startDay = $("#startDay").val();
+			let endDay = $("#endDay").val();
+
+			if (!startDay || !endDay || endDay < startDay) {
+				alert("올바른 날짜값을 입력해 주세요.");
+				$("#startDay").focus();
+				return false;
 			}
 
-			// 매출, 매입 내역을 가져온다. when - done 처리로 ajax 데이터 저장이 끝난 후 차트에 적용되도록 한다.
-		    $.when(
-				$.getJSON("/getysResult", { targetYear : $('#targetYear').val() }, function(data){
-					$.each(data, function(index, obj){
-						// 배열의 index가 0부터 시작이므로 각 월의 값에서 1을 뺀 index에 각 월의 매출값을 저장한다.
-						saleResult[obj.month - 1] = obj.totalSale;
-					})
-				}),	// 연간 매출 배열에 저장 완료
+			$("#searchByDate").submit();
 
-				$.getJSON("/getpResult", { targetYear : $('#targetYear').val() }, function(data){
-					$.each(data, function(index, obj){
-						purchaseResult[obj.month - 1] = obj.totalPurchase;
-					})
-				})	// 연간 매입 배열에 저장 완료
-
-		    ).done(function () {
-		    	// 매입과 매출 내역이 전부 저장되었다면 (매출 - 매입) 값을 순수익 배열에 저장한다.
-				for(var i = 0; i < 12; i++){
-					netResult[i] = saleResult[i]-purchaseResult[i];
-
-				}
-		    	// 차트에 가져온 데이터를 각각 업데이트한다.
-		    	chart.update();
-		    	});	// done end
-
-		});	// click end
-
+		});	// search click end
+				
 	});	// ready end
+	
+	$(".update").click(function() {
+		
+		var targetid = $(this).val();
+		
+	    var _left = Math.ceil(( window.screen.width - 500 )/2);
+	    var _top = Math.ceil(( window.screen.height - 600 )/2); 
+	    
+		window.open('update/' + targetid, '식자재 수정하기', 'top=' + _top + ', left=' + _left + ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+	});	// update click end
+	
 </script>
 </body>
 </html>
