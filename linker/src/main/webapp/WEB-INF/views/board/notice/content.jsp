@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
     <title>글 상세보기</title>
     <style>
       table {

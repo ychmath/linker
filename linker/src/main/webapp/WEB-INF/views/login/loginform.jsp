@@ -170,5 +170,6 @@ a:hover {
 			document.getElementById('login-alert').style.display = 'none';
 		}
 	</script>
+
 </body>
 </html>

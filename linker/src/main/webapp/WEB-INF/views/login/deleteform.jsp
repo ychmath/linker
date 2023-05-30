@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
