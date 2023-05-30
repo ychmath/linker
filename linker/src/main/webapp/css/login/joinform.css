@@ -175,7 +175,7 @@
 	display: flex; /* 디스플레이 형식 설정: 플렉스 박스 */
 	flex-direction: column; /* 플렉스 항목이 수직 방향으로 배열되도록 설정 */
 	width: 350px; /* 폭 설정 */
-	height: 750px; /* 높이 설정 */
+	height: 800px; /* 높이 설정 */
 	top: 0; /* 상단 위치 설정 */
 	bottom: 0; /* 하단 위치 설정 */
 	left: 0; /* 왼쪽 위치 설정 */
@@ -227,6 +227,7 @@ body {
 	font-weight: 400; /* 폰트 두께 설정 */
 	line-height: 1.4; /* 줄 간격 설정 */
 	font-family: 'Montserrat', 'Pretendard', sans-serif; /* 폰트 패밀리 설정 */
+	
 }
 
 /* BOX SHAPE INPUT FIELD */
@@ -257,12 +258,10 @@ body {
 
 /* CONTAINER */
 .container {
-	position: absolute; /* 위치 기준 설정: 절대적 위치 */
 	display: flex; /* 디스플레이 형식 설정: 플렉스 박스 */
 	flex-direction: column; /* 플렉스 항목이 수직 방향으로 배열되도록 설정 */
 	width: 500px; /* 폭 설정 */
-	height: 850px; /* 높이 설정 */
-	min-width: 350px; /* 최소 폭 설정 */
+	height: 800px; /* 높이 설정 */
 	top: 0; /* 상단 위치 설정 */
 	bottom: 0; /* 하단 위치 설정 */
 	left: 0; /* 왼쪽 위치 설정 */

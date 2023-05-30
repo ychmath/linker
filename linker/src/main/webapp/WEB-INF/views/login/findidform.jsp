@@ -4,16 +4,8 @@
 <html>
   <head>
         <!-- Animate.css -->
-    <link rel="stylesheet" href="/css/animate.css" />
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="/css/icomoon.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="/css/flexslider.css" />
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/findidform.css"/>
+
+    <link rel="stylesheet" href="/css/login/findidform.css"/>
          <style>
     #name{
     	width:300px;
@@ -40,15 +32,15 @@
    
     <div class="container">
         <div class="content">
-            <h1 style="color:#ffffff">아이디 찾기</h1>
+            <h1 style="color: black;">아이디 찾기</h1>
             <form action="/find-id" method="post">
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" required />
+                <label for="name" style="color: black;" >이름:</label>
+                <input type="text" id="name" name="name" required  style="color: black;"/>
                 <br />
-                <label for="email">이메일:</label>
-                <input type="email" id="email" name="email" required />
+                <label for="email" style="color: black;">이메일:</label>
+                <input type="email" id="email" name="email" required  style="color: black;"/>
                 <br />
-                <button type="submit" style="color:#ffffff">아이디 찾기</button>
+                <button type="submit" style="color: #ffffff;">아이디 찾기</button>
             </form>
         </div>
     </div>

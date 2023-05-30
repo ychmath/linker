@@ -85,13 +85,21 @@ body {
 }
 
 #write {
-	width: 100px;
 	height: 30px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
+	
 }
+.table-spacing{
+	text-align:right;
+}
+.write_ty{
+	text-align:right;
+	width:100%;
+}
+ 
   /* BUTTON FOCUS */
   .custom-button:focus-visible {
     outline: 0px solid; /* 포커스 시 외곽선 스타일 초기화 */

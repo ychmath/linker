@@ -78,7 +78,7 @@
 	</div>
 	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 
-	<div id="write">
+	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
 			onclick="location.href='write'" />
 	</div>

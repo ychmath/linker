@@ -8,29 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Sign Up</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />	
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">	
-<link rel="stylesheet" href="/css/joinform.css"/>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"	rel="stylesheet">
-<script 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	        <!-- Animate.css -->
-    <link rel="stylesheet" href="/css/animate.css" />
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="/css/icomoon.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="/css/flexslider.css" />
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="/css/style.css" />
-<!-- Animate.css -->
+<link rel="stylesheet" href="/css/login/joinform.css"/>
 
 </head>
 
@@ -48,30 +27,30 @@
 							name="role" value="seller" /> <label for="seller">판매자</label>
 					</div>
 					<div class="info" id="info__id">
-						<input type="text" name="name" id="name" placeholder="이름" required />
+						<input type="text" name="name" id="name" placeholder="이름" style="color: black;"  required />
 						<div id="name_msg"></div>
 					</div>
 					<div class="info" id="info__id">
 						<div id="id-input">
-							<input type="text" name="userid" id="userid" placeholder="아이디"
+							<input type="text" name="userid" id="userid" placeholder="아이디" style="color: black;" 
 								required /> <input type="button" id="id_check" value="중복 확인"  style="color:#000000"/>
 							<div id="id_msg" class="error"></div>
 							<input type="hidden" id="id_ck" value="" />
 						</div>
 					</div>
 					<div class="info" id="info__pw">
-						<input type="password" name="password" id="password"
+						<input type="password" name="password" id="password" style="color: black;" 
 							placeholder="비밀번호 입력" required />
 						<div id="pw_msg" class="error"></div>
 					</div>
 					<div class="info" id="info__pwRe">
-						<input type="password" name="chk_password" id="chk_password"
+						<input type="password" name="chk_password" id="chk_password" style="color: black;" 
 							placeholder="비밀번호 재입력" required />
 						<div id="chk_pw_msg" class="error"></div>
 					</div>
 					<div class="info" id="info__email">
 						<div id="id-input">
-							<input type="email" name="email" id="email" placeholder="이메일"
+							<input type="email" name="email" id="email" placeholder="이메일" style="color: black;" 
 								required /> <input type="hidden" name="email_verified"
 								id="email_verified" value="0" /> <input type="button"
 								id="mail_ck" value="이메일 인증"  style="color:#000000"/>
@@ -80,13 +59,13 @@
 							<input type="hidden" id="ck" value="" />
 						</div>
 						<div id="input">
-							<input id="ck_num" /> <input type="button" id="ck_b"
+							<input id="ck_num"  style="color: black;" /> <input type="button" id="ck_b"
 								value="인증 확인"  style="color:#000000"/>
 						</div>
 						<div id="result" class="error"></div>
 					</div>
 					<div class="info" id="info__mobile">
-						<input type="text" id="phone" name="phone" placeholder="휴대폰 번호 입력"
+						<input type="text" id="phone" name="phone" placeholder="휴대폰 번호 입력" style="color: black;" 
 							oninput="oninputPhone(this);" />
 						<div id="phone_msg" class="error"></div>
 					</div>
@@ -127,7 +106,7 @@
 					</fieldset>
 					</fieldset>
 			</div>
-			<input type="submit" id="registerButton" value="가입하기" />
+			<input type="submit" id="registerButton" value="가입하기"  style="color:black"/>
 
 		</div>
 	</form>
@@ -219,46 +198,61 @@
 
                 $('#registerButton').prop('disabled', true);
 
-                $("#id_check").click(function () {
+                $("#id_check").click(function() {
                     let id = $("#userid").val();
                     if (!validateUserId(id)) {
                         $("#id_msg").html("아이디를 6~20자 이내로 입력하세요");
+
+                        // 일정 시간(예: 3초) 후 에러 메시지를 사라지게 합니다.
+                        setTimeout(function() {
+                            $("#id_msg").html("");
+                        }, 3000);
+
                         return false;
                     }
                     $.ajax({
                         url: "/idCheck",
                         data: "id=" + id,
                         datatype: "text"
-                    }).done(
-                        function (data) {
-                            if (data == "") {
-                                $("#id_msg").html("사용할 수 있는 아이디 입니다.");
-                                $("#id_msg").append(
-                                    "<input type='hidden' id='id_ck' value='1'>"
-                                );
-                            } else {
-                                $("#id_msg").html("이미 사용중인 아이디 입니다.");
-                            }
+                    }).done(function(data) {
+                        if (data == "") {
+                            $("#id_msg").html("사용할 수 있는 아이디 입니다.");
+                            $("#id_msg").append("<input type='hidden' id='id_ck' value='1'>");
+
+                            // 일정 시간(예: 3초) 후 메시지를 사라지게 합니다.
+                            setTimeout(function() {
+                                $("#id_msg").html("");
+                            }, 3000);
+                        } else {
+                            $("#id_msg").html("이미 사용중인 아이디 입니다.");
+                            
+                            // 일정 시간(예: 3초) 후 에러 메시지를 사라지게 합니다.
+                            setTimeout(function() {
+                                $("#id_msg").html("");
+                            }, 3000);
                         }
-                    );
+                    });
                 }); //아이디 중복 확인 click
 
                 let emailVerificationClicked = false;
                 let num = "";
-                $("#mail_ck").click(function () {
+                $("#mail_ck").click(function() {
                     emailVerificationClicked = true;
                     let email = $("#email").val();
                     if (!validateEmail(email)) {
-                        $("#email_msg").html(
-                            "이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요"
-                        );
+                        $("#email_msg").html("이메일 형식이 올바르지 않습니다. '@'가 포함된 이메일을 적어주세요");
+
+                        setTimeout(function() {
+                            $("#email_msg").html("");
+                        }, 3000);
+
                         return false;
                     }
                     $.ajax({
                         url: "/send",
                         data: "emailAddress=" + email,
                         dataType: "json",
-                    }).done(function (data) {
+                    }).done(function(data) {
                         if (eval(data[1])) {
                             num = data[0];
                             alert("메일이 전송되었습니다. 인증번호를 입력하세요.");
@@ -267,7 +261,7 @@
                     });
                 });
 
-                $("#ck_b").click(function () {
+                $("#ck_b").click(function() {
                     let ck_num = $("#ck_num").val();
                     if (ck_num == num) {
                         $("#result").html("인증이 확인되었습니다.");
@@ -276,9 +270,12 @@
                         $("#email_verified").val("1");
                     } else {
                         $("#result").html("인증 실패했습니다. 다시 확인하세요.");
+
+                        setTimeout(function() {
+                            $("#result").html("");
+                        }, 3000);
                     }
                 });
-
                 // "모두 동의" 버튼 클릭 시 모든 체크박스 체크
                 $('#agreeAllButton').on('click', function () {
                     $('input[type=checkbox][name=mandatoryTerms]').prop('checked', true);

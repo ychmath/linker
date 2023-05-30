@@ -21,9 +21,9 @@
     <!-- Icomoon Icon Fonts-->
     <link rel="stylesheet" href="/css/icomoon.css" />
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
     <!-- Flexslider  -->
-  
+    <link rel="stylesheet" href="/css/flexslider.css" />
     <!-- Theme style  -->
     <link rel="stylesheet" href="/css/style.css" />
 
@@ -59,8 +59,7 @@
           <div class="row">
             <div class="col-xs-12 text-right menu-1 menu-wrap">
               <ul>
-                <li><a href="/loginform">로그인</a></li>
-                <li><a href="/joinform">회원가입</a></li>
+                <li>	<h3><a href="/checkPassword"><i class="bi bi-person-fill"></i>${user.userid}</a>님이 로그인하셨습니다.</h3></li>
               </ul>
             </div>
           </div>

@@ -4,16 +4,8 @@
 <head>
 <title>비밀번호 찾기</title>
         <!-- Animate.css -->
-    <link rel="stylesheet" href="/css/animate.css" />
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="/css/icomoon.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="/css/flexslider.css" />
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/findpwform.css"/>
+<link rel="stylesheet" href="/css/login/findpwform.css"/>
+<link rel="stylesheet" href="/css/style.css"/>
 <script>
       function showResult(message, success) {
         if (message) {
@@ -47,11 +39,11 @@
 <body onload="showResult('${message}', ${success});">
 	<div class="container">
 		<div class="content">
-			<h1 style="color:#ffffff">비밀번호 찾기</h1>
+			<h1 style="color: black;">비밀번호 찾기</h1>
 			<form action="/findpw" method="post">
-				<label for="userid">아이디:</label> <input type="text" id="userid"
-					name="userid" required /> <br /> <label for="email">이메일:</label>
-				<input type="email" id="email" name="email" required /> <br />
+				<label for="userid" style="color: black;">아이디:</label> <input type="text" id="userid"
+					name="userid" required style="color: black;" />  <label for="email" style="color: black;">이메일:</label>
+				<input type="email" id="email" name="email" required style="color: black;" />
 					<input type="submit"  value="비밀번호 찾기"  style="color:#000000"/>
 			</form>
 		</div>

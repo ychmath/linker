@@ -102,7 +102,7 @@
 		</c:if>
 			</div>
 
-	<div id="write">
+	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
 			onclick="location.href='write'" />
 	</div>
