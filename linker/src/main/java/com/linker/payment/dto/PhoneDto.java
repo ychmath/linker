@@ -1,9 +1,9 @@
-package com.linker.ticket.dto;
+package com.linker.payment.dto;
 
 import lombok.Data;
 
 @Data
-public class TicketUseByPhoneDto {
+public class PhoneDto {
 	private String tickettypename;
 	private int tickettypeid;
 }

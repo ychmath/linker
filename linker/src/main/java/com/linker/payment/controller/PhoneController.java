@@ -1,4 +1,4 @@
-package com.linker.ticket.controller;
+package com.linker.payment.controller;
 
 import java.util.List;
 
@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linker.ticket.dto.TicketUseByPhoneDto;
-import com.linker.ticket.service.TicketUseByPhoneService;
+import com.linker.payment.dto.PhoneDto;
+import com.linker.payment.service.PhoneService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class TicketUseByPhoneController {
+public class PhoneController {
 
 	@Autowired
-	TicketUseByPhoneService service;
+	PhoneService service;
 
 	@GetMapping("/phone") // 식권 사용 양식 페이지 이동
 	public String useTicketForm(Model m) {
-		List<TicketUseByPhoneDto> tickettypename = service.gettypename();
+		List<PhoneDto> tickettypename = service.gettypename();
 		m.addAttribute("tickettypename", tickettypename);
-		return "ticket/ticketUseByPhoneForm";
+		return "ticket/PhoneForm";
 	}
 
 	@PostMapping("/phone/use") // 식권 사용 내역을 검증 및 업데이트 하는 메서드
@@ -42,6 +42,6 @@ public class TicketUseByPhoneController {
 		List<Integer> list = service.ticketidList();
 		model.addAttribute("uid", userid);
 		model.addAttribute("list", list);
-		return "ticketUseByPhoneForm";
+		return "PhoneForm";
 	}
 }
