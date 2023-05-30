@@ -4,24 +4,11 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
 <title>Linker</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
 <link href="img/favicon.ico" rel="icon">
-
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap"
-	rel="stylesheet">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -43,7 +30,15 @@
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
 </head>
-
+  
+<style>
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 <body>
 	<!-- Spinner Start -->
 	<div id="spinner"
