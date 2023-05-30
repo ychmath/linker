@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
 <style>
 body {
   font-family: Roboto, serif;
@@ -78,7 +76,7 @@ h2 {
 
 .login__input:focus ~ .floating-label,
   .login__input:not(:placeholder-shown) ~ .floating-label {
-    transform: translateY(-250%);
+    transform: translateY(-350%);
     font-size: 0.75rem;
     transition: all 400ms ease;
 }
@@ -139,7 +137,9 @@ a:hover {
 
 <body>
 <form:form action="login" method="post" modelAttribute="command">
+
   <div class="container">
+  
     <h2>로그인</h2>
     <div class="login__field">
       <input type="text" id="signin-id" class="login__input" name="userid" placeholder="아이디" required autocomplete="off">

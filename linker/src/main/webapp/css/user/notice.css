@@ -1,0 +1,159 @@
+@charset "UTF-8";
+body {
+    padding:1.5em;
+    background: #f5f5f5
+  }
+  
+  table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  th {
+    text-align: left;
+  }
+    
+  thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+  }
+    
+   td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+  }
+    
+   td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+  
+  a {
+    color: #73685d;
+  }
+  .table-spacing {
+	margin-bottom: 10px; /* 테이블 간 간격을 조절합니다. 원하는 값으로 지정할 수 있습니다. */
+}
+
+.table-spacing {
+	margin-bottom: 10px;
+}
+
+.table-center th {
+	text-align: center; /* 가로 정렬을 가운데로 변경합니다. */
+	vertical-align: middle;
+}
+/* 세로 정렬을 가운데로 변경합니다. */
+.right-align {
+	
+}
+
+#search_text {
+	width: 200px;
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	margin-bottom: 10px;
+}
+
+#search_btn {
+	width: 100px;
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	margin-bottom: 10px;
+}
+
+#searchn {
+	width: 100px;
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	margin-bottom: 10px;
+}
+
+#write {
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	
+}
+.table-spacing{
+	text-align:right;
+}
+.write_ty{
+	text-align:right;
+	width:100%;
+}
+ 
+  /* BUTTON FOCUS */
+  .custom-button:focus-visible {
+    outline: 0px solid; /* 포커스 시 외곽선 스타일 초기화 */
+    background-color: #5000FF; /* 포커스 시 배경색 변환 */
+  }
+
+  /* BUTTON HOVER */
+  .custom-button:hover {
+    outline: 0px solid; /* 마우스 오버 시 외곽선 스타일 초기화 */
+    background-color: #5000FF; /* 마우스 오버 시 배경색 변환 */
+  }
+    
+   @media all and (max-width: 240px) {
+      
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    th {
+      text-align: right;
+    }
+    
+    table {
+      position: relative; 
+      padding-bottom: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    
+    thead {
+      float: left;
+      white-space: nowrap;
+    }
+    
+    tbody {
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    tr {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    th {
+      border-bottom: 1px solid #a39485;
+    }
+    
+    td {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+
+
+   }
