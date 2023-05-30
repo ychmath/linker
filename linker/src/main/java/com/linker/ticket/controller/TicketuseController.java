@@ -20,22 +20,23 @@ import com.google.gson.Gson;
 import com.linker.ticket.dto.TicketuseDto;
 import com.linker.ticket.service.TicketuseService;
 
+@RequestMapping("ticketuse")
 @Controller
 public class TicketuseController {
 
 	@Autowired
 	private TicketuseService tuService; 
  
-	@GetMapping("/ticketu")  //전체 식권 사용 내역 조회
+	@GetMapping("/ticket")  //전체 식권 사용 내역 조회
 	public String getAllTicketuse(Model m) {
 
 		List<TicketuseDto> list = tuService.getAllTicketuse();
 		m.addAttribute("tulist", list);
 
-		return "ticketuse/ticketu";
+		return "ticket/ticketuseform";
 	}
 
-	@GetMapping("/ticketu/{date}") //특정 날짜의 사용된 티켓 조회
+	@GetMapping("/ticket/{date}") //특정 날짜의 사용된 티켓 조회
 	public List<TicketuseDto> getUsedByDate(@PathVariable Date startdate, Date endDate) {
 		return tuService.getUsedByDate(startdate, endDate);
 	}

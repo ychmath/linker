@@ -122,7 +122,7 @@ border-bottom: 1px solid #444444;
 
 <body>
 <%-- <form:form> --%>
-<form action="${pageContext.request.contextPath}/finance/filtered_data_t" method="get">
+<form action="${pageContext.request.contextPath}/ticket/filtered_data_t" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   

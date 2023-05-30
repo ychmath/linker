@@ -123,7 +123,7 @@ border-bottom: 1px solid #444444;
 
 
 <body>
-<form action="${pageContext.request.contextPath}/finance/filtered_data_tu" method="get">
+<form action="${pageContext.request.contextPath}/ticket/filtered_data_u" method="get">
 <div>
 	<div>
 <p><strong>식권 사용 내역</strong></p><br>
@@ -170,7 +170,7 @@ border-bottom: 1px solid #444444;
 	<script>
 	function resetSearch(){
 		
-		location.assign("${pageContext.request.contextPath}/ticketuse/ticketu");
+		location.assign("${pageContext.request.contextPath}/ticketuse/ticket");
 	}
 	$(function(){
 	    $("input[type='radio'][name='date']").on("change", function(){
@@ -252,7 +252,6 @@ border-bottom: 1px solid #444444;
 		}
 		</script>
 		<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-		
 	   </tr>
 	</table><br>	
 	</div>
@@ -272,8 +271,6 @@ border-bottom: 1px solid #444444;
 			<td>${ticketu.tickettypename}</td>
 			<td>${ticketu.quantity}</td>
 		</tr>
-			
-	
 	</c:forEach>
 		</tbody>	
 	</table>

@@ -32,7 +32,7 @@ public class TicketorderController {
 		List<TicketorderDto> list = ticketorderService.getAllTicketorder();
 		m.addAttribute("tlist", list);
 		
-		return "ticketorder/ticket";
+		return "ticket/ticketorder";
 	}
 	
 	@GetMapping("/ticket/{date}")
@@ -40,7 +40,7 @@ public class TicketorderController {
 		return ticketorderService.getOrdersByDate(startdate, endDate);
 	}
 
-	@PostMapping("/ticket")
+	@PostMapping("/ticketo")
 	public int addOrder(@RequestBody TicketorderDto dto) {
 		return ticketorderService.addOrder(dto);
 	}
@@ -66,14 +66,4 @@ public class TicketorderController {
 		String list = gson.toJson(filterData);
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
