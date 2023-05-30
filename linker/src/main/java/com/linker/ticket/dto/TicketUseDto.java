@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class TicketuseDto {
+public class TicketUseDto {
 	private String tickettypename;
 	private int quantity;
 	private Date usedate;

@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linker.ticket.dto.TicketholdDto;
-import com.linker.ticket.service.PhoneService;
+import com.linker.ticket.dto.TicketUseByPhoneDto;
+import com.linker.ticket.service.TicketUseByPhoneService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class PhoneController {
+public class TicketUseByPhoneController {
 
 	@Autowired
-	PhoneService service;
+	TicketUseByPhoneService service;
 
 	@GetMapping("/phone") // 식권 사용 양식 페이지 이동
 	public String useTicketForm(Model m) {
-		List<TicketholdDto> tickettypename = service.gettypename();
+		List<TicketUseByPhoneDto> tickettypename = service.gettypename();
 		m.addAttribute("tickettypename", tickettypename);
 		return "ticket/ticketUseByPhoneForm";
 	}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.ticket.dao.PhoneDao">
+<mapper namespace="com.linker.ticket.dao.TicketUseByPhoneDao">
 	<update id="updateTicketQuantityByPhone" parameterType="map">
 		update
 		tickethold th
@@ -14,7 +14,7 @@
 	</select>
 
 	<select id="gettypename"
-		resultType="com.linker.ticket.dto.TicketholdDto">
+		resultType="com.linker.ticket.dto.TicketUseByPhoneDto">
 		SELECT tickettypename, tickettypeid FROM tickettype
 	</select>
 
