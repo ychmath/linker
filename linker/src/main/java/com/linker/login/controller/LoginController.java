@@ -106,7 +106,7 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/update")
+	@GetMapping("/updateform")
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
 		return "login/updateform";
 	}
@@ -119,7 +119,7 @@ public class LoginController {
 		return "redirect:/main";
 	}
 
-	@GetMapping("/delete")
+	@GetMapping("/deleteform")
 	public String deleteform(String result, Model m) {
 		m.addAttribute("result", result);
 		return "login/deleteform";
