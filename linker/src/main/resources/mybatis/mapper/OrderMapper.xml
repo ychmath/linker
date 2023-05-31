@@ -31,4 +31,20 @@
 		order by orderdate desc
 		limit #{start}, #{count}
 	</select>
+	<!-- 식자재 입고 내역 이름별 검색 -->
+	<select id="orderSearchByName" parameterType="map" resultType="com.linker.ingredient.dto.OrderDto">
+		select * from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+		order by orderdate desc
+		limit #{start}, #{count}
+	</select>
+	<!-- 식자재 입고 내역 이름별 검색 개수 -->
+	<select id="searchNameCount" parameterType="String" resultType="int">
+		select count(*) from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+	</select>
 </mapper>

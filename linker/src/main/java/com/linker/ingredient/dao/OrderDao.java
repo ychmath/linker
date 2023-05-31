@@ -24,5 +24,11 @@ public interface OrderDao {
 
 	// <!-- 식자재 입고 내역 출력 -->
 	List<OrderDto> orderList(Map<String, Object> m);
+	
+	// 입고 내역 이름 검색
+	List<OrderDto> orderSearchByName(Map<String, Object> m);
+	
+	// 입고 내역 이름 검색 개수
+	int searchNameCount(String name);
 
 }

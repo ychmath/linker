@@ -84,7 +84,6 @@ public class InventoryController {
 	}
 	
 	// 수령일 검색 결과
-	// 날짜별 검색 결과 보이기
 	@GetMapping("inventory/searchbyreceive/result")
 	public String dateSearchResult(@RequestParam(name = "p", defaultValue = "1") int page, Model m, Date startDay,
 			Date endDay) {

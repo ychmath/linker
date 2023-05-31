@@ -188,22 +188,22 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/inventoryList">재고 목록</a>
+						<a href="/inventory/orderList">발주 목록</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/inventory/searchbyname/result"
+						<form id="searchByName" action="/inventory/orderSearchByName/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="ingredientname" id="ingredientname">
+							<input type="search" name="name" id="name">
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
 						<form id="searchByReceive" action="/inventory/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>수령기간별 검색</b>
+								<b>주문기간별 검색</b>
 							</p>
 							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
@@ -215,26 +215,26 @@ td {
 								<thead>
 									<tr>
 										<th>식자재명</th>
-										<th>수량</th>
-										<th>유통기한</th>
-										<th>수령일</th>
+										<th>공급자</th>
+										<th>주문수량</th>
+										<th>주문 가격</th>
+										<th>주문일</th>
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${ invenList }" var="invenList">
+								<c:forEach items="${ orderList }" var="orderList">
 									<tr>
-										<td>${ invenList.ingredientname }</td>
-										<td>${ invenList.quantity }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ invenList.exp }"></fmt:formatDate></td>
-										<td><fmt:formatDate dateStyle="long" value="${ invenList.receivedate }"></fmt:formatDate></td>
+										<td>${ orderList.ingredientname }</td>
+										<td>${ orderList.supplier }</td>
+										<td>${ orderList.orderquantity }</td>
+										<td>${ orderList.orderprice }</td>
+										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
 									</tr>
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="Order" value="발주 내역"
-								onclick="location.href='orderList';" />
-							<input class="btn btn-primary" type="button" id="UseDetail" value="사용 내역"
-								onclick="location.href='change';" />
+							<input class="btn btn-primary" type="button" id="Order" value="재고 목록"
+								onclick="location.href='inventoryList';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="inventoryList?p=${ begin-1 }">[이전]</a>
@@ -315,11 +315,11 @@ td {
 
 			$("#search-name").click(function() {
 
-				let name = $("#ingredientname").val();
+				let name = $("#name").val();
 
 				if (!name || name.replace(/\s+/g, "") == "") {
 					alert("검색값을 입력해 주세요.");
-					$("#ingredientname").focus();
+					$("#name").focus();
 					return false;
 				}
 
