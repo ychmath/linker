@@ -14,7 +14,9 @@ public class InventoryDto {
 	private String supplier;
 	private int orderprice;
 
+	// 식자재
 	private String ingredientname;
+	private Date exp;
 
 	// 인벤토리
 	private int inventoryid;

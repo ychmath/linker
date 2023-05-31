@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,8 +149,8 @@
 					<tr>
 						<td>${ invenList.ingredientname }</td>
 						<td>${ invenList.quantity }</td>
-						<td>${ invenList.exp }</td>
-						<td>${ invenList.receivedate }</td>
+						<td><fmt:formatDate dateStyle="long" value="${ invenList.exp }"></fmt:formatDate></td>
+						<td><fmt:formatDate dateStyle="long" value="${ invenList.receivedate }"></fmt:formatDate></td>
 						<td><button class="update btn" value="${ invenList.inventoryid }">수정</button></td>
 					</tr>
 					</c:forEach>
