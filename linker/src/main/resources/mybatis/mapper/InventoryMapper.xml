@@ -2,45 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.linker.inventory.dao.InventoryDao">
-	<!-- 식자재 입고 -->
-	<insert id="addInventory" parameterType="com.linker.inventory.dto.InventoryDto">
-		insert into ingredientorder (ingredientid, orderdate, orderquantity, supplier, orderprice)
-		values (#{ingredientid}, #{orderdate}, #{orderquantity}, #{supplier}, #{orderprice}) on duplicate key
-		update ingredientid = #{ingredientid}
-	</insert>
-	<!-- 식자재 사용 -->
-	<insert id="useInventory" parameterType="com.linker.inventory.dto.InventoryDto">
-		insert into usedetail (ingredientusage, usedate)
-		values (#{ingredientuseage}, #{usedate}, #{usedate})
-		where inventoryid = #{inventoryid}
-	</insert>
-	<!-- 식자재 입고내역 수정 -->
-	<update id="changeOrder" parameterType="com.linker.inventory.dto.InventoryDto">
-		update ingredientorder (ingredientid, orderdate, orderquantity, supplier, orderprice)
-		values (#{ingredientid}, #{orderdate}, #{orderquantity}, #{supplier}, #{orderprice})
-		where orderid = #{orderid}
-	</update>
-	<!-- 식자재 사용내역 수정 -->
-	<update id="changeUseage" parameterType="com.linker.inventory.dto.InventoryDto">
-		update usedetail (ingredientusage, usedate)
-		values (#{ingredientusage}, #{usedate})
-		where inventoryid = #{inventoryid}
-	</update>
-	<!-- 입고 내역 삭제 -->
-	<delete id="deleteOrder" parameterType="int">
-		delete from ingredientorder where orderid = #{orderid}
-	</delete>
-	<!-- 사용 내역 삭제 -->
-	<delete id="deleteUseage" parameterType="int">
-		delete from usedetail where inventoryid = #{inventoryid}
-	</delete>
+<mapper namespace="com.linker.ingredient.dao.InventoryDao">
 	<!-- 인벤토리 목록 수 -->
 	<select id="inventoryCount" resultType="int">
 		select count(*) from inventory where quantity is not null and quantity != 0
 	</select>
 	<!-- 인벤토리 출력 -->
-	<select id="getInvenList" parameterType="map" resultType="com.linker.inventory.dto.InventoryDto">
+	<select id="getInvenList" parameterType="map" resultType="com.linker.ingredient.dto.InventoryDto">
 		select * from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
@@ -48,29 +16,40 @@
 		order by exp
 		limit #{start}, #{count}
 	</select>
-	<!-- 식자재 입고 내역 개수 -->
-	<select id="orderCount" resultType="int">
-		select count(*) from ingredientorder
-	</select>
-	<!-- 식자재 입고 내역 출력 -->
-	<select id="orderList" parameterType="map" resultType="com.linker.inventory.dto.InventoryDto">
-		select * from ingredientorder
+	<!-- 인벤토리 식자재 이름 조회 -->
+	<select id="getInventoryByName" parameterType="map" resultType="com.linker.ingredient.dto.InventoryDto">
+		select * from inventory
 		inner join ingredient
-		on ingredient.ingredientid = ingredientorder.ingredientid
-		order by orderdate desc
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity != 0
+		and ingredientname like concat('%', #{ingredientname}, '%')
+		order by exp
 		limit #{start}, #{count}
 	</select>
-	<!-- 식자재 사용 내역 수 -->
-	<select id="useCount" resultType="int">
-		select count(*) from usedetail
-	</select>
-	<!-- 식자재 사용 내역 출력 -->
-	<select id="useList" parameterType="map" resultType="com.linker.inventory.dto.InventoryDto">
-		select * from 
-		(usedetail inner join inventory
-		on inventory.inventoryid = usedetail.inventoryid)
+	<!-- 이름 조회 개수 -->
+	<select id="invennameSearchCount" parameterType="String" resultType="int">
+		select count(*) from inventory
 		inner join ingredient
-		on ingredient.ingredientid = inventory.ingredientid
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity != 0
+		and ingredientname like concat('%', #{ingredientname}, '%')
+	</select>
+	<!-- 인벤토리 수령일 조회 -->
+	<select id="getInventoryByReceive" parameterType="map" resultType="com.linker.ingredient.dto.InventoryDto">
+		select * from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity != 0
+		and receivedate between #{startDay} and #{endDay}
+		order by exp
 		limit #{start}, #{count}
+	</select>
+	<!-- 수령일 목록 조회 -->
+	<select id="ReceiveSearchCount" parameterType="map" resultType="int">
+		select count(*) from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity != 0
+		and receivedate between #{startDay} and #{endDay}
 	</select>
 </mapper>

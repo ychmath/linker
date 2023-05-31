@@ -1,22 +1,15 @@
-package com.linker.inventory.dto;
+package com.linker.ingredient.dto;
 
 import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class InventoryDto {
-	// 주문
-	private int orderid;
-	private int ingredientid;
-	private Date orderdate;
-	private int orderquantity;
-	private String supplier;
-	private int orderprice;
+public class UseDetailDto {
 
 	// 식자재
+	private int ingredientid;
 	private String ingredientname;
-	private Date exp;
 
 	// 인벤토리
 	private int inventoryid;
@@ -26,5 +19,6 @@ public class InventoryDto {
 	// 식자재 사용내역
 	private int ingredientusage;
 	private Date usedate;
+
 
 }

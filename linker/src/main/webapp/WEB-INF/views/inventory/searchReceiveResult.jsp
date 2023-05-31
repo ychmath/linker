@@ -205,11 +205,12 @@ td {
 							<p>
 								<b>수령기간별 검색</b>
 							</p>
-							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
+							<input type="date" class="receive" name="startDay"> <span>-</span> <input type="date" class="receive" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
 					<div class="content">
+					<h4 class="title">해당 수령기간에 대한 재고 검색 결과입니다.</h4></div>
 						<c:if test="${ count != 0 }">
 							<table class="InvenList" id="InvenList">
 								<thead>
@@ -221,12 +222,12 @@ td {
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${ invenList }" var="invenList">
+								<c:forEach items="${ receiveSearchResult }" var="result">
 									<tr>
-										<td>${ invenList.ingredientname }</td>
-										<td>${ invenList.quantity }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ invenList.exp }"></fmt:formatDate></td>
-										<td><fmt:formatDate dateStyle="long" value="${ invenList.receivedate }"></fmt:formatDate></td>
+										<td>${ result.ingredientname }</td>
+										<td>${ result.quantity }</td>
+										<td><fmt:formatDate dateStyle="long" value="${ result.exp }"></fmt:formatDate></td>
+										<td><fmt:formatDate dateStyle="long" value="${ result.receivedate }"></fmt:formatDate></td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -237,13 +238,13 @@ td {
 								onclick="location.href='change';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
-									<a href="inventoryList?p=${ begin-1 }">[이전]</a>
+									<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
 								</c:if>
 								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="invetoryList?p=${ i }">${ i }</a>
+									<a href="searchReceiveResult?p=${ i }">${ i }</a>
 								</c:forEach>
 								<c:if test="${ end < totalPages }">
-									<a href="inventoryList?p=${ end + 1 }">[다음]</a>
+									<a href="searchReceiveResult?p=${ end + 1 }">[다음]</a>
 								</c:if>
 							</div>
 						</c:if>
