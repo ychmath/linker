@@ -70,7 +70,7 @@ public class InquiryController {
 	@PostMapping("/inquiry/write")
 	public String writeinquiry(InquiryDto dto) {
 		service.insertInquiry(dto);
-		return "redirect:/board/inquiry/inquiry";
+		return "redirect:/inquiry/inquiry";
 	}
 
 	@GetMapping("/inquiry/writeComm")
@@ -81,7 +81,7 @@ public class InquiryController {
 	@PostMapping("/inquiry/writeComm")
 	public String writecomm(InquiryDto dto) {
 		service.insertInquiry(dto);
-		return "redirect:/board/inquiry/inquiry";
+		return "redirect:/inquiry/inquiry";
 	}
 
 	@GetMapping("/inquiry/content/{inquirypostid}")
@@ -101,7 +101,7 @@ public class InquiryController {
 	@PutMapping("/inquiry/update")
 	public String update(InquiryDto dto) {
 		service.updateInquiry(dto);
-		return "redirect:board/inquiry/inquiry";
+		return "redirect:/inquiry/inquiry";
 	}
 
 	@DeleteMapping("/inquiry/delete")

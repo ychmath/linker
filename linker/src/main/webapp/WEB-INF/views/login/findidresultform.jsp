@@ -3,17 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아이디 찾기 결과</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
   rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-<title>아이디 찾기 결과</title>
+  
 <style>
+
   body {
-    font-family: Roboto, serif;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     display: flex;
     align-items: center;
@@ -33,7 +31,6 @@
   }
 
   h2 {
-    font-family: "Roboto Slab", serif;
     font-size: 1.5rem;
     color: #f38181;
     font-weight: 700;

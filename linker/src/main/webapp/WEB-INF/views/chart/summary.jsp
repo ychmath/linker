@@ -7,18 +7,10 @@
 <meta charset="UTF-8">
 <title>Linker</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
 
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
-	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-    
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -33,9 +25,12 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet"> 
+    
 </head>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
+"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <body>
@@ -73,36 +68,61 @@
 <div id="page">
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary">Linker</h2>
-        </a>
-        <div class="navbar">
-        	<c:if test="${ user.userid == null }">
-            	<a class="nav-item nav-link" href="/loginform">로그인</a>
-               	<a class="nav-item nav-link" href="/signupform">회원가입</a>
-             </c:if>
-             <c:if test="${ user.userid != null }">
-              	<span class="nav-item">${ user.userid } 회원님 환영합니다!</span> 
-              	<a class="nav-item nav-link" href="/logout">로그아웃</a>
-              </c:if>
-        </div>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" class="nav-item nav-link">Home</a>
-                <a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-                <a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-                <a href="/menu/list" class="nav-item nav-link">식단표</a>
-                <a href="/finance/sales" class="nav-item nav-link">매출</a>
-                <a href="/finance/expenditure" class="nav-item nav-link">지출</a>
-                <a href="/ingredient/ingredientList" class="nav-item nav-link">식자재 관리</a>
-                <a href="/profitChart" class="nav-item nav-link active">차트</a>
-            </div>
-        </div>
-    </nav>
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/" class="dropdown-item">재고현황</a> 
+							<a href="/" class="dropdown-item">발주내역</a> 
+							<a href="/" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item active">요약</a> 
+							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+										<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
     <!-- Navbar End -->	
     
     <span id="role" style="display: none;">${ user.role }</span>
@@ -112,7 +132,7 @@
         <div class="container">
 		<div class="about-text">
 		<form id="searchYear">
-			<h1 class="section-title">재무 관리</h1>
+			<h1 class="section-title">비용 관리</h1>
 			<p>*최근 3년간의 결과만 조회 가능합니다.</p><br>
 			<select name="targetYear" id="targetYear"></select>
 			<button class="btn" type="button" id="search">검색</button>
