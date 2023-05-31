@@ -1,21 +1,156 @@
 @charset "UTF-8";
 
 body {
-  font-family: Roboto, serif;
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
 }
 
 .container {
-  width: 400px;
-  height: auto;
-  max-width: 100%;
-  padding: 30px 30px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+	width: 400px;
+	height: auto;
+	max-width: 100%;
+	padding: 30px 30px;
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+#input, #result {
+	display: none;
+}
+
+.error {
+	color: red;
+	font-size: 0.8em;
+}
+
+.userjoin {
+	color: #f38181;
+	font-weight: 700;
+	margin: 0 0 1.5rem 0;
+	text-align: center;
+}
+
+info {
+	position: relative;
+	margin-bottom: 1.5rem;
+}
+
+.info {
+	background-color: rgba(0, 0, 0, 0.05);
+	display: block;
+	font-size: 16px;
+	margin-bottom: 0;
+	outline: none;
+	padding: auto;
+	width: 100%;
+	box-shadow: none !important;
+}
+
+.info::placeholder {
+	opacity: 1;
+	transition: all 400ms ease;
+}
+
+.info:focus::placeholder {
+	opacity: 0;
+	transition: all 400ms ease;
+}
+
+.info:focus {
+	outline: none;
+	border-color: #7369ac;
+	box-shadow: 0 0 5px rgba(115, 105, 172, 0.75);
+}
+
+.btn {
+	background-color: #5C97FF;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 12px;
+	width: 90%;
+	margin-top: 0.5rem;
+	transition: all 0.3s;
+}
+
+.btn:hover {
+	background-color: #4C85DC;
+	transform: translateY(-2px);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login__input:focus ~ .floating-label, .login__input:not(:placeholder-shown) 
+	~ .floating-label {
+	transform: translateY(-250%);
+	font-size: 0.75rem;
+	transition: all 400ms ease;
+}
+
+#name {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	 margin-bottom: 10px;
+}
+
+#userid {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;	  
+	
+
+}
+#password {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+	 margin-bottom: 10px;
+}
+
+#chk_password {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+		padding-top: 10px; 
+		 margin-bottom: 10px;
+}
+
+#email {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+
+}
+
+#phone {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;
+ 	 padding-top: 10px
 }

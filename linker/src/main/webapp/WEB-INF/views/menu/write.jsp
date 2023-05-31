@@ -6,84 +6,225 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Linker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Favicon -->
+<link href="/img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
 <link
-	href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700"
-	rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Satisfy"
-	rel="stylesheet" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="/css/animate.css" />
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="/css/icomoon.css" />
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="/css/bootstrap.css" />
-<!-- Flexslider  -->
-<link rel="stylesheet" href="/css/flexslider.css" />
+<!-- Libraries Stylesheet -->
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-<!-- Theme style  -->
-<link rel="stylesheet" href="/css/style.css" />
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Modernizr JS -->
-<script src="/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-<style>
-	.content {
-		width: 100%;
-		align-self: center;
-		align-content: stretch;
-	}
-	.menu {
-		width: 100%;
-		border: 1px solid gray;
-		border-collapse: collapse;
-		margin-top: 30px;
-	}
-	.write {
-		width: 100%;
-		align-self: flex-end;
-		text-align: right;		
-	}
-	.table-hover {
-		color: black;
-	}
-	.menu {
-		border-bottom: 1px solid gray;
-	}
-	.title {
-		width: 700px;
-		color: white;
-		margin-top: 30px;
-	}
-	.pageController {
-		width: 100%;
-		text-align: center;
-	}
-	.orange {
-		color: white;
-	}
-	#myTable {
-		width: 100%;
-		table-layout: fixed;
-	}
-</style>
+<!-- Template Stylesheet -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/menu/menu_write.css" rel="stylesheet">
+
 </head>
+  
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- Spinner Start -->
+	<div id="spinner"
+		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+		<div class="spinner-grow text-primary"
+			style="width: 3rem; height: 3rem;" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<!-- Spinner End -->
+
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
+				</div>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Topbar End -->
+
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="feature.html" class="dropdown-item">Feature</a> <a
+								href="quote.html" class="dropdown-item">Free Quote</a> <a
+								href="team.html" class="dropdown-item">Our Team</a> <a
+								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
+								href="404.html" class="dropdown-item">404 Page</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/" class="dropdown-item">재고현황</a> 
+							<a href="/" class="dropdown-item">발주내역</a> 
+							<a href="/" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item">요약</a> 
+							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+										<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<a href="/updateform" style="text-decoration:noe; color:#333">
+					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+
+ 	<div class="fh5co-cover" style="height: 50px"></div>      
+      <div id="fh5co-about" class="fh5co-section">
+        <div class="container">
+			<form method="post" id="writeform" action="write">
+				<table border="1" style="color:black;">
+					<tr>
+						<td class="orange">제목</td>
+						<td><input name="title" style="background-color: inherit;"/></td>				
+					<td class="orange">작성자</td>
+						<td><input name="userID" style="background-color: inherit; color: black;" value="${ user.userid }" readonly></td>
+					</tr>
+					</table>
+					<table border="1" style="color:black;">
+					<tr>
+						<td class="orange">내용</td>
+						<td>
+							<!-- 아래 content에 table 내용이 들어갑니다. -->
+							<input name="content" id="content" disabled style="display: none;"/>
+							<div class="panel panel-default" id="table">
+								<div class="panel-heading"><b>식단표</b></div>
+								<div class="panel-body">
+									<div class="tbl_user_data">
+								</div>
+								</div>
+							</div>
+							<input type="button" id="save" value="새 식단표 등록" style="margin-left: auto;">
+						</td>
+					</tr>
+				</table>
+			</form>
+   		</div>
+
+      <div
+		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
+	<!-- Back to Top -->
+	<a href="#"
+		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
+		class="bi bi-arrow-up"></i></a>
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
 	// 권한 가져오기
 	var role = $("#role").text();
 	
 	// 열람 권한이 없다면 페이지 이동.
-	if (role == 'buyer') {
+	if ((role == 'seller' || role == 'admin')) {
 		alert("열람 권한이 없는 페이지입니다.");
 		location.href = "/main";
 	}
@@ -91,9 +232,9 @@ $(function(){
 	// ajax row data
 	// 테이블에 넣어 둘 기본값을 정한다.
 	var ajax_data = [
-		{tname:"조식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"},
-		{tname:"중식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"},
-		{tname:"석식", line1:"없음", line2:"없음", line3:"없음", line4:"없음", line5:"없음"}
+		{tname:"조식", line1:"&nbsp", line2:"&nbsp", line3:"&nbsp", line4:"&nbsp", line5:"&nbsp"},
+		{tname:"중식", line1:"&nbsp", line2:"&nbsp", line3:"&nbsp", line4:"&nbsp", line5:"&nbsp"},
+		{tname:"석식", line1:"&nbsp", line2:"&nbsp", line3:"&nbsp", line4:"&nbsp", line5:"&nbsp"}
 	]
 	
 	// create HTML table	
@@ -120,7 +261,6 @@ $(function(){
 		tbl += "<tbody>";
 	// create table body rows > start
 	$.each(ajax_data, function(index, val){
-		// looping through ajax row data
 		// 지정해 둔 배열만큼 열과 행을 만든다.
 		tbl += "<tr>";
 			tbl += "<td class=\'tname'\><div class=\'row_data'\  col_name=\'tname'\>" + val["tname"] + "</div></td>";
@@ -173,117 +313,19 @@ $(function(){
 	});
 	
 });	// ready end
+
 </script>
-<div class="fh5co-loader"></div>
-<div id="page">
-<nav class="fh5co-nav" role="navigation">
-        <!-- <div class="top-menu"> -->
-        <div class="container">
-          <div class="col-xs-12 text-right menu-1 menu-wrap">
-          	<!-- 로그인한 유저의 권한을 저장하는 span 태그 -->
-            <span id="role" style="display: none;">${ user.role }</span>
-            	<ul>
-            		<c:if test="${ user == null }">
-           				<li class="login-signup"><a href="/loginform">로그인</a></li>
-                		<li class="login-signup"><a href="/joinform">회원가입</a></li>
-              		</c:if>
-              		<c:if test="${ user != null }">
-    					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
-        				<li class="logout"><a href="/logout">로그아웃</a></li>
-              		</c:if>
-            	</ul>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 text-center logo-wrap">
-              <div id="fh5co-logo">
-                <a href="/main">Linker<span>.</span></a>
-              </div>
-            </div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-            <div class="col-xs-12 text-left menu-1 menu-wrap">
-              <ul>
-                <li><a href="/main">홈</a></li>
-                <li><a href="/notice/notice">공지사항</a></li>
-                <li><a href="/inquiry/inquiry">문의사항</a></li>
-                <li class="active"><a href="/menu/list">식단표</a></li>
-                <li><a href="/finance/sales">매출</a></li>
-                <li><a href="/finance/expenditure">지출</a></li>
-                <li><a href="/ingredient/ingredientList">식자재 관리</a></li>
-                <li><a href="/profitChart">차트</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- </div> -->
-      </nav>
-
- 	<div class="fh5co-cover" style="height: 200px"></div>
-      
-      <div id="fh5co-about" class="fh5co-section">
-    
-        <div class="container">
-			<form method="post" id="writeform" action="write">
-				<table border="1" style="color:black;">
-					<tr>
-						<td class="orange">제목</td>
-						<td><input name="title" style="background-color: inherit; color: white;"/></td>
-					</tr>
-					<tr>
-						<td class="orange">작성자</td>
-						<td><input name="userID" style="background-color: inherit; color: white;" value="${ user.userid }" readonly></td>
-					</tr>
-					<tr>
-						<td class="orange">내용</td>
-						<td>
-							<!-- 아래 content에 table 내용이 들어갑니다. -->
-							<input name="content" id="content" disabled style="display: none;"/>
-							<div class="panel panel-default" id="table">
-								<div class="panel-heading"><b>식단표</b></div>
-								<div class="panel-body">
-									<div class="tbl_user_data">
-								</div>
-								</div>
-							</div>
-							<input type="button" id="save" value="새 식단표 등록" style="margin-left: auto;">
-						</td>
-					</tr>
-				</table>
-			</form>
-   		</div>
-
-      <footer id="fh5co-footer" role="contentinfo" class="fh5co-section">
-        <div class="container">
-          <div class="row copyright">
-            <div class="col-md-12 text-center">
-              <p>
-                <small class="block"
-                  >&copy; 2023 Soldesk Project. All Rights Reserved.</small>
-                <small class="block"
-                  >Designed by
-                  <a href="http://freehtml5.co/" target="_blank">Linker</a></small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
-  
-      <!-- jQuery -->
-    <script src="/js/jquery.min.js"></script>
-    <!-- jQuery Easing -->
-    <script src="/js/jquery.easing.1.3.js"></script>
-    <!-- Bootstrap -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/jquery.stellar.min.js"></script>
-    <!-- Flexslider -->
-    <script src="/js/jquery.flexslider-min.js"></script>
-    <!-- Main -->
-    <script src="/js/main.js"></script>
-  
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
 </body>
 </html>

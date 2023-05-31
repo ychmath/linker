@@ -73,9 +73,16 @@ public class LoginController {
 		return "login/joinform";
 	}
 
-	// 회원가입 처리
-	@PostMapping("/join")
-	public String joinProc(@Valid LoginDto dto, @RequestParam("phone") String phone, BindingResult bindingResult, Model model) {
+	@PostMapping("/joinform")
+	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
+	    dto.setPhone(phone);
+	    service.insertUser(dto);
+	    return "redirect:loginform";
+	}
+
+
+	@PostMapping("/auth/joinProc")
+	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userDto", dto);
@@ -84,11 +91,11 @@ public class LoginController {
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
+
 			return "login/joinform";
 		}
-		dto.setPhone(phone);
 		service.insertUser(dto);
-		return "redirect:loginform";
+		return "redirect:/auth/login";
 	}
 
 	// 아이디 중복체크
@@ -106,7 +113,7 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/update")
+	@GetMapping("/updateform")
 	public String updateform(@ModelAttribute("user") LoginDto dto) {
 		return "login/updateform";
 	}
@@ -119,7 +126,7 @@ public class LoginController {
 		return "redirect:/main";
 	}
 
-	@GetMapping("/delete")
+	@GetMapping("/deleteform")
 	public String deleteform(String result, Model m) {
 		m.addAttribute("result", result);
 		return "login/deleteform";

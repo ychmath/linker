@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-	 background: #f5f5f5
+    background: #f5f5f5
   }
   
   table {
@@ -43,12 +43,22 @@ body {
 .table-spacing {
 	margin-bottom: 10px;
 }
-
+.pageController{
+	text-align:center;
+	width:100%;
+}
+.title{
+	text-align:center;
+	width:100%;
+}
 .table-center th {
 	text-align: center; /* 가로 정렬을 가운데로 변경합니다. */
 	vertical-align: middle;
 }
-
+/* 세로 정렬을 가운데로 변경합니다. */
+.right-align {
+	
+}
 
 #search_text {
 	width: 200px;
@@ -68,7 +78,6 @@ body {
 	border-right: none;
 	border-bottom: 3px;
 	margin-bottom: 10px;
-	background-color:#AB7442;
 }
 
 #searchn {
@@ -79,7 +88,6 @@ body {
 	border-right: none;
 	border-bottom: 3px;
 	margin-bottom: 10px;
-
 }
 
 #write {
@@ -89,7 +97,6 @@ body {
 	border-right: none;
 	border-bottom: 3px;
 	
-	
 }
 .table-spacing{
 	text-align:right;
@@ -98,16 +105,17 @@ body {
 	text-align:right;
 	width:100%;
 }
+ 
   /* BUTTON FOCUS */
   .custom-button:focus-visible {
     outline: 0px solid; /* 포커스 시 외곽선 스타일 초기화 */
-    background-color: #AB7442; /* 포커스 시 배경색 변환 */
+    background-color: rgba(0, 191, 255, 0.3);/* 포커스 시 배경색 변환 */
   }
 
   /* BUTTON HOVER */
   .custom-button:hover {
     outline: 0px solid; /* 마우스 오버 시 외곽선 스타일 초기화 */
-    background-color: #AB7442;/* 마우스 오버 시 배경색 변환 */
+    background-color: rgba(0, 191, 255, 0.3); /* 마우스 오버 시 배경색 변환 */
   }
     
    @media all and (max-width: 240px) {

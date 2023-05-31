@@ -9,124 +9,136 @@ String end_date = request.getParameter("end_date");%>
 <html>
 <head>
 <title>매출 내역</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<!-- Favicon -->
+<link href="../../img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/menu/menu_write.css" rel="stylesheet">
+
+
 </head>
-<style>
-#B {
-  width: 800px;
-  height: 400px; /* 수정된 높이값 */
-  border-top: 1px solid #444444;
-  padding: 10px;
-  text-align: center;
-  border-collapse: collapse;
-  display: block;
-  margin: 0 auto; 
-}
-#C{
-border-bottom: 1px solid #444444;
-    padding: 10px;
-}
- table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #444444;
-    border-left: 1px solid #444444;
-    padding: 10px;
-  }
-
-  th{
-   background-color: #D9D9D9;
-  
-  }
-  td{
-  	text-align: center;
-  }
-  th:first-child, td:first-child {
-    border-left: none;
-  }
-#B > div {
-  width: 100%;
-
-  box-sizing: border-box; /* border와 padding을 포함한 크기를 지정합니다. */
-  float: left; /* 좌우 정렬을 위해 float 속성을 사용합니다. */
-}
-#B > div:first-child {
-  padding-right: 104px; /* 첫 번째 div 요소 오른쪽에 10px의 padding을 추가합니다. */
-}
-#B > div:last-child {
-  padding-left: 10px; /* 마지막 div 요소 왼쪽에 10px의 padding을 추가합니다. */
-}
-#B table {
-  width: 100%;
-  height: 100%;
-}
-.test_obj input[type="radio"] {
-        display: none;
-    }
- 
-    .test_obj input[type="radio"] + span {
-        display: inline-block;
-/*         padding: 15px 10px;
- */        border: 1px solid #dfdfdf;
-        background-color: #ffffff;
-        text-align: center;
-        cursor: pointer;
-         width: 60px;
-  		height: 30px;
-  		float: left;
-        
-    }
- 
-    .test_obj input[type="radio"]:checked + span {
-        background-color: #113a6b;
-        color: #ffffff;
-    }
-    #start-date-input{
-    	float:left;
-    }
-    #end-date-input{
-    	float:left;
-    }
-    
-    #P{
-     float:left;
-    }
-  	#myButton{
-  	float:left;
-  	}
-  	.resetButton{
-  	display: inline-block;
-  	background-color:#ffffff;
-  	padding: 2px 4px;
-  	border: 1px solid #ccc;
-  	cursor:pointer;
-  	margin-left: 10px;
-  	
-  	}
-  	.resetButton{
-  	display: inline-block;
-  	background-color: #ffffff;
-  	padding: 2px 4px;
-  	border: 1px soild #ccc;
-  	cursor: pointer;
-  	margin-left: 10px;
-  	}
-  	.resetButton:hover{
-  	background-color: #e0e0e0;
-  	}
-  	
-    
-</style>
-
 <body>
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="feature.html" class="dropdown-item">Feature</a> <a
+								href="quote.html" class="dropdown-item">Free Quote</a> <a
+								href="team.html" class="dropdown-item">Our Team</a> <a
+								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
+								href="404.html" class="dropdown-item">404 Page</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/" class="dropdown-item">재고현황</a> 
+							<a href="/" class="dropdown-item">발주내역</a> 
+							<a href="/" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item">요약</a> 
+							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+										<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<a href="/updateform" style="text-decoration:noe; color:#333">
+					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+
 <%-- <form:form> --%>
 <form action="${pageContext.request.contextPath}/finance/filtered_data_sa" method="get">
 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
   
-  <p><strong>매출 내역</strong></p><br>
+
+  <p style="font-size:24px; font-weight:bold; text-align:center;">매출 내역</p>
+
     <table id="data-table">
       <tr>
         <th id="C">날짜</th>
@@ -168,7 +180,68 @@ function search() {
 </script>
 <button type="button" id="myButton" onclick="search()">검색 </button>
 
-<script>
+
+	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+	
+   </tr>
+   </table> <br>
+  </div>
+	<div>
+	<table>
+	<thead>
+		<tr>
+		<th scope="col">식권주문ID</th>
+		<th scope="col">식권종류</th>
+		<th scope="col">수량</th>
+		<th scope="col">총 가격</th>
+		<th scope="col">주문 일자</th>
+	</tr>
+	</thead>
+	<tbody id = "saled">
+	<c:forEach items="${slist}" var="sales">
+	<tr>
+		<td>${sales.ticketorderid}</td>
+		<td>${sales.tickettypename}</td>
+		<td>${sales.quantity}</td>    
+		<td>${sales.price}</td>
+		<td><fmt:formatDate value="${sales.orderdate}" pattern="yyyy-MM-dd" /></td>
+
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	</div>
+</div>
+
+ </form>
+ 		<!-- Footer Start -->
+	<div
+		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
+
+
+	<!-- Back to Top -->
+	<a href="#"
+		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
+		class="bi bi-arrow-up"></i></a>
+ 
+ <script>
 
 function resetSearch(){
 	
@@ -258,38 +331,17 @@ function showSaledResult(start, end) {
 	    $("#saled").append(table_data);
 	}
 	</script>
-	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-	
-   </tr>
-   </table> <br>
-  </div>
-	<div>
-	<table>
-	<thead>
-		<tr>
-		<th scope="col">식권주문ID</th>
-		<th scope="col">식권종류</th>
-		<th scope="col">수량</th>
-		<th scope="col">총 가격</th>
-		<th scope="col">주문 일자</th>
-	</tr>
-	</thead>
-	<tbody id = "saled">
-	<c:forEach items="${slist}" var="sales">
-	<tr>
-		<td>${sales.ticketorderid}</td>
-		<td>${sales.tickettypename}</td>
-		<td>${sales.quantity}</td>    
-		<td>${sales.price}</td>
-		<td><fmt:formatDate value="${sales.orderdate}" pattern="yyyy-MM-dd" /></td>
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-	</tr>
-	</c:forEach>
-	</tbody>
-	</table>
-	</div>
-</div>
-
- </form>
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
 </body>
 </html>

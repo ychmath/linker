@@ -1,0 +1,65 @@
+@charset "UTF-8";
+body {
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.container {
+	width: 400px;
+	height: auto;
+	max-width: 100%;
+	padding: 20px 40px;
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+	font-size: 1.5rem;
+	color: #f38181;
+	font-weight: 700;
+	margin: 0 0 1.5rem 0;
+	text-align: center;
+}
+h4 {
+	font-size: 1.5rem;
+	color: #f38181;
+	font-weight: 700;
+	margin: 0 0 1.5rem 0;
+	text-align: center;
+}
+
+.login__field {
+	position: relative;
+	margin-bottom: 2.0rem;
+}
+
+.submit {
+	background-color: #5C97FF;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 700;
+	padding: 10px;
+	width: 100%;
+	margin-top: 1rem;
+	transition: all 0.3s;
+}
+
+.submit:hover {
+	background-color: #4C85DC;
+	transform: translateY(-2px);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+	color: red;
+	font-size: 0.8em;
+	margin-bottom: 1rem;
+}
