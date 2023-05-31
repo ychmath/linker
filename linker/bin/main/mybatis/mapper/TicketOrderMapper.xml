@@ -5,7 +5,7 @@
 
 
 <insert id="buyTicket" parameterType="com.linker.ticket.dto.TicketOrderDto">
-	insert into ticketorder(ticketorderid, userid, tickettype, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettype}, #{quantity}, now())
+	insert into ticketorder(ticketorderid, userid, tickettypeid, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettypeid}, #{quantity}, now())
 </insert>
 
 <select id="selectAll" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
@@ -16,11 +16,9 @@
 	select ticketorderid, orderdate, tickettypename as tickettype, price, quantity, price * quantity as totalprice from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by orderdate desc limit #{start}, #{count}
 </select>
 
-
 <select id="selectByDateCount" parameterType="map" resultType="int">
 	select count(*) from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} and orderdate between #{startDate} and #{endDate}
 </select>
-
 
 <select id="count" parameterType="String" resultType="int">
 	select count(*) from ticketorder where userid = #{userid}

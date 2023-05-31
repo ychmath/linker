@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>Linker</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+<title>Linker</title>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <!-- Favicon -->
 <link href="../../img/favicon.ico" rel="icon">
 
@@ -78,7 +78,6 @@ th {
 }
 </style>
 </head>
-<body>
 <body>
 
 <!--     Spinner Start
@@ -165,7 +164,7 @@ th {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -298,7 +297,6 @@ th {
 		<script src="/js/main.js"></script>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기

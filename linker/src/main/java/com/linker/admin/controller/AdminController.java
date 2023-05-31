@@ -1,3 +1,4 @@
+
 package com.linker.admin.controller;
 
 import java.util.List;
@@ -57,14 +58,14 @@ public class AdminController {
 		int userCount = service.userCount();
 		
 		if(userCount > 0) {
-			int perPage = 5;
+			int perPage = 10;
 			int startRow = (page -1) * perPage;
 			
 			List<AdminDto> userList = service.userList(startRow);
 			
 			m.addAttribute("userList", userList);
 			
-			  int pageNum = 5;
+			  int pageNum = 10;
 			  int totalPages = userCount / perPage + (userCount % perPage > 0 ? 1 : 0); // 전체 페이지 수
 			  int begin = (page - 1) / pageNum * pageNum + 1;
 			  int end = begin + pageNum - 1;
@@ -115,14 +116,14 @@ public class AdminController {
 		int inquiryCount = service.inquiryCount();
 		
 		if(inquiryCount > 0) {
-			int perPage = 5;
+			int perPage = 10;
 			int startRow = (page -1) * perPage;
 			
 			List<AdminDto> inquiryList = service.inquiryList(startRow);
 			
 			m.addAttribute("inquiryList", inquiryList);
 			
-			  int pageNum = 5;
+			  int pageNum = 10;
 			  int totalPages = inquiryCount / perPage + (inquiryCount % perPage > 0 ? 1 : 0); // 전체 페이지 수
 			  int begin = (page - 1) / pageNum * pageNum + 1;
 			  int end = begin + pageNum - 1;
@@ -165,14 +166,14 @@ public class AdminController {
 		int noticeCount = service.noticeCount();
 		
 		if(noticeCount > 0) {
-			int perPage = 5;
+			int perPage = 10;
 			int startRow = (page -1) * perPage;
 			
 			List<AdminDto> noticeList = service.noticeList(startRow);
 			
 			m.addAttribute("noticeList", noticeList);
 			
-			  int pageNum = 5;
+			  int pageNum = 10;
 			  int totalPages = noticeCount / perPage + (noticeCount % perPage > 0 ? 1 : 0); // 전체 페이지 수
 			  int begin = (page - 1) / pageNum * pageNum + 1;
 			  int end = begin + pageNum - 1;

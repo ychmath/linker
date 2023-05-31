@@ -8,131 +8,125 @@ String end_date = request.getParameter("end_date");
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Linker</title>
+
+<!-- Favicon -->
+<link href="../../img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="../../lib/animate/animate.min.css" rel="stylesheet">
+<link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="../../css/style.css" rel="stylesheet">
+
 <title>지출 내역</title>
 </head>
 <style>
-#B {
-	width: 800px;
-	height: 400px; /* 수정된 높이값 */
-	border-top: 1px solid #444444;
-	padding: 10px;
-	text-align: center;
-	border-collapse: collapse;
-	display: block;
-	margin: 0 auto;
-}
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
 
-#C {
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
+    .page-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
 
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
+    .data-table-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
 
-th, td {
-	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
-	padding: 10px;
-}
+    .data-table {
+        width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
 
-th {
-	background-color: #D9D9D9;
-}
+    .data-table th, .data-table td {
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        padding: 10px;
+    }
 
-td {
-	text-align: center;
-}
+    .data-table th {
+        background-color: #D9D9D9;
+    }
 
-th:first-child, td:first-child {
-	border-left: none;
-}
+    .data-table td {
+        text-align: center;
+    }
 
-#B>div {
-	width: 100%;
-	box-sizing: border-box; /* border와 padding을 포함한 크기를 지정합니다. */
-	float: left; /* 좌우 정렬을 위해 float 속성을 사용합니다. */
-}
+    .data-table th:first-child, .data-table td:first-child {
+        border-left: none;
+    }
 
-#B>div:first-child {
-	padding-right: 104px; /* 첫 번째 div 요소 오른쪽에 10px의 padding을 추가합니다. */
-}
+    .test_obj input[type="radio"] {
+        display: none;
+    }
 
-#B>div:last-child {
-	padding-left: 10px; /* 마지막 div 요소 왼쪽에 10px의 padding을 추가합니다. */
-}
+    .test_obj input[type="radio"]+span {
+        display: inline-block;
+        border: 1px solid #dfdfdf;
+        background-color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+    }
 
-#B table {
-	width: 100%;
-	height: 100%;
-}
+    .test_obj input[type="radio"]:checked+span {
+        background-color: #113a6b;
+        color: #ffffff;
+    }
 
-.test_obj input[type="radio"] {
-	display: none;
-}
+    .search-settings {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-.test_obj input[type="radio"]+span {
-	display: inline-block;
-	/*         padding: 15px 10px;
- */
-	border: 1px solid #dfdfdf;
-	background-color: #ffffff;
-	text-align: center;
-	cursor: pointer;
-	width: 60px;
-	height: 30px;
-	float: left;
-}
+    .search-settings > * {
+        margin-right: 8px;
+    }
 
-.test_obj input[type="radio"]:checked+span {
-	background-color: #113a6b;
-	color: #ffffff;
-}
+    .resetButton {
+        display: inline-block;
+        background-color: #ffffff;
+        padding: 2px 4px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
 
-#start-date-input {
-	float: left;
-}
-
-#end-date-input {
-	float: left;
-}
-
-#P {
-	float: left;
-}
-
-#myButton {
-	float: left;
-}
-
-.resetButton {
-	display: inline-block;
-	background-color: #ffffff;
-	padding: 2px 4px;
-	border: 1px solid #ccc;
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-.resetButton {
-	display: inline-block;
-	background-color: #ffffff;
-	padding: 2px 4px;
-	border: 1px soild #ccc;
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-.resetButton:hover {
-	background-color: #e0e0e0;
-}
+    .resetButton:hover {
+        background-color: #e0e0e0;
+    }
 </style>
 <body>
 	<%-- <form:form> --%>
@@ -351,5 +345,20 @@ th:first-child, td:first-child {
 			</div>
 		</div>
 	</form>
+	
+			<!-- JavaScript Libraries -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/lib/wow/wow.min.js"></script>
+		<script src="/lib/easing/easing.min.js"></script>
+		<script src="/lib/waypoints/waypoints.min.js"></script>
+		<script src="/lib/counterup/counterup.min.js"></script>
+		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+		<script src="/lib/lightbox/js/lightbox.min.js"></script>
+
+		<!-- Template Javascript -->
+		<script src="/js/main.js"></script>
 </body>
 </html>
