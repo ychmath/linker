@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.ingredient.dao.UseDetailDao">
+	<!-- 식자재 사용 -->
+	<insert id="useInventory" parameterType="com.linker.ingredient.dto.UseDetailDto">
+		insert into usedetail (ingredientusage, usedate)
+		values (#{ingredientuseage}, #{usedate}, #{usedate})
+		where inventoryid = #{inventoryid}
+	</insert>
+	<!-- 식자재 사용내역 수정 -->
+	<update id="changeUseage" parameterType="com.linker.ingredient.dto.UseDetailDto">
+		update usedetail (ingredientusage, usedate)
+		values (#{ingredientusage}, #{usedate})
+		where inventoryid = #{inventoryid}
+	</update>
+	<!-- 사용 내역 삭제 -->
+	<delete id="deleteUseage" parameterType="int">
+		delete from usedetail where inventoryid = #{inventoryid}
+	</delete>
+	<!-- 식자재 사용 내역 수 -->
+	<select id="useCount" resultType="int">
+		select count(*) from usedetail
+	</select>
+	<!-- 식자재 사용 내역 출력 -->
+	<select id="useList" parameterType="map" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		limit #{start}, #{count}
+	</select>
+</mapper>
