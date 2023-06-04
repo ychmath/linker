@@ -13,9 +13,6 @@ public interface OrderDao {
 	// <!-- 식자재 입고 -->
 	int addOrder (OrderDto dto);
 
-	// <!-- 식자재 입고내역 수정 -->
-	int changeOrder (OrderDto dto);
-
 	// 입고 내역 삭제
 	int deleteOrder(int orderid);
 
@@ -30,5 +27,11 @@ public interface OrderDao {
 	
 	// 입고 내역 이름 검색 개수
 	int searchNameCount(String name);
+	
+	// 입고 내역 날짜 검색
+	List<OrderDto> orderSearchByDate(Map<String, Object> m);
+	
+	// 식자재 입고 내역 이름별 검색 개수
+	int searchOrderdateCount(Map<String, Object> m);
 
 }

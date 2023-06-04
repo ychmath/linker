@@ -233,7 +233,7 @@ td {
 								</tbody>
 							</table>
 							<input class="btn btn-primary" type="button" id="Order" value="발주 내역"
-								onclick="location.href='change';" />
+								onclick="location.href='/inventory/orderList';" />
 							<input class="btn btn-primary" type="button" id="UseDetail" value="사용 내역"
 								onclick="location.href='change';" />
 							<div class="pageController">

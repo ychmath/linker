@@ -194,23 +194,12 @@ td {
 					<h1 class="title">
 						<a href="/inventory/orderList">발주 목록</a>
 					</h1>
-					<div class="searchController">
+					<div class="update">
+						<h3>재고 목록 추가</h3>
 						<form id="searchByName" action="/inventory/orderSearchByName/result"
-							method="get" style="display: inline-block;">
-							<p>
-								<b>이름별 검색</b>
-							</p>
-							<input type="search" name="name" id="name">
-							<input class="btn btn-primary" type="button" id="search-name" value="검색">
-						</form>
-						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result"
-							method="get" style="display: inline-block;">
-							<p>
-								<b>주문기간별 검색</b>
-							</p>
-							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
+						method="get">
+						
+
 						</form>
 					</div>
 					<div class="content">
