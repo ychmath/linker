@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linker.ingredient.dao.OrderDao">
+	<!-- 식자재 입고 -->
+	<insert id="addOrder" parameterType="com.linker.ingredient.dto.OrderDto">
+		insert into ingredientorder (ingredientid, orderdate, orderquantity, supplier, orderprice)
+		values (#{ingredientid}, #{orderdate}, #{orderquantity}, #{supplier}, #{orderprice})
+	</insert>
+	<!-- 입고 내역 삭제 -->
+	<delete id="deleteOrder" parameterType="int">
+		delete from ingredientorder where orderid = #{orderid}
+	</delete>
+	<!-- 식자재 입고 내역 개수 -->
+	<select id="orderCount" resultType="int">
+		select count(*) from ingredientorder
+	</select>
+	<!-- 식자재 입고 내역 출력 -->
+	<select id="orderList" parameterType="map" resultType="com.linker.ingredient.dto.OrderDto">
+		select * from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		order by orderdate desc
+		limit #{start}, #{count}
+	</select>
+	<!-- 식자재 입고 내역 이름별 검색 -->
+	<select id="orderSearchByName" parameterType="map" resultType="com.linker.ingredient.dto.OrderDto">
+		select * from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+		order by orderdate desc
+		limit #{start}, #{count}
+	</select>
+	<!-- 식자재 입고 내역 이름별 검색 개수 -->
+	<select id="searchNameCount" parameterType="String" resultType="int">
+		select count(*) from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+	</select>
+		<!-- 식자재 입고 내역 날짜별 검색 -->
+	<select id="orderSearchByDate" parameterType="map" resultType="com.linker.ingredient.dto.OrderDto">
+		select * from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and orderdate between #{startDay} and #{endDay}
+		order by orderdate desc
+		limit #{start}, #{count}
+	</select>
+	<!-- 식자재 입고 내역 이름별 검색 개수 -->
+	<select id="searchOrderdateCount" parameterType="map" resultType="int">
+		select count(*) from ingredientorder
+		inner join ingredient
+		on ingredient.ingredientid = ingredientorder.ingredientid
+		and orderdate between #{startDay} and #{endDay}
+	</select>
+</mapper>

@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Linker</title>
 <meta charset="utf-8" />
+<title>Linker</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
 <!-- Favicon -->
 <link href="../../img/favicon.ico" rel="icon">
 
@@ -31,12 +32,13 @@
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
 
+
 <style>
 .content {
 	width: 100%;
 }
 
-.IngredientList {
+.InvenList {
 	width: 100%;
 	border: 1px solid gray;
 	border-collapse: collapse;
@@ -47,6 +49,10 @@
 th {
 	text-align: center;
 	border-bottom: 1px solid gray;
+}
+
+td {
+	padding : 8px;
 }
 
 .searchController {
@@ -73,21 +79,24 @@ th {
 	align-content: center;
 }
 
-#changeIngredient {
+#Order {
+	margin-top: 10px;
+}
+
+#UseDetail {
 	margin-top: 10px;
 }
 </style>
 </head>
 <body>
+<!--     Spinner Start-->
+  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+     <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+     </div>
+   </div>
+<!--     Spinner End -->
 
-<!--     Spinner Start
- -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-<!--     Spinner End
- -->    
         <!-- Topbar Start -->
     <div class="container-fluid bg-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
@@ -111,17 +120,14 @@ th {
     </div>
     <!-- Topbar End -->
 
-<div id="page">
+	<div id="page">
 
     <!-- Navbar Start -->
-	<nav
-		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-		<a href="/"
-			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+	<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 			<h2 class="m-0 text-primary">Linker</h2>
 		</a>
-		<button type="button" class="navbar-toggler me-4"
-			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+		<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,8 +148,8 @@ th {
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
 							<a href="/" class="dropdown-item">발주내역</a> 
 							<a href="/" class="dropdown-item">사용내역</a>
 						</div>
@@ -156,7 +162,7 @@ th {
 							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
+					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
@@ -164,7 +170,7 @@ th {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -178,82 +184,70 @@ th {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/ingredient/ingredientList">식자재 목록</a>
+						<a href="/inventory/orderList">발주 목록</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/ingredient/searchbyname/result"
+						<form id="searchByName" action="/inventory/orderSearchByName/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="name" id="name"> <input
-								class="btn btn-primary" type="button" id="search-name"
-								value="검색">
+							<input type="search" name="name" id="name">
+							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByDate" action="/ingredient/searchbydate/result"
+						<form id="searchByReceive" action="/ingredient/searchbydate/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>유통기한별 검색</b>
+								<b>입고일별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay">
-							<span>-</span> <input type="date"
-								class="exp" name="endDay" id="endDay"> <input
-								class="btn btn-primary" type="button" id="search-date"
-								value="검색">
+							<input type="date" class="exp" name="startDay"> <span>-</span> <input type="date" class="exp" name="endDay">
+							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
-					<div class="content">
-						<c:if test="${ count != 0 }">
-							<table class="IngredientList" id="IngredientList">
-								<thead>
-									<tr>
-										<th>식자재명</th>
-										<th>단위</th>
-										<th>유통기한</th>
-										<th style="width: 10%;"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${ ingredientList }" var="ingredient">
-										<tr>
-											<td>${ ingredient.ingredientname }</td>
-											<td>${ ingredient.unit }</td>
-											<td>${ ingredient.exp }</td>
-											<td><button class="update btn"
-													value="${ ingredient.ingredientid }">수정</button></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<input class="btn btn-primary" type="button"
-								id="changeIngredient" value="목록 추가 / 삭제"
-								onclick="location.href='change';" />
-							<div class="pageController">
-								<c:if test="${ begin > end }">
-									<a href="ingredientList?p=${ begin-1 }">[이전]</a>
-								</c:if>
-								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="ingredientList?p=${ i }">${ i }</a>
-								</c:forEach>
-								<c:if test="${ end < totalPages }">
-									<a href="ingredientList?p=${ end + 1 }">[다음]</a>
-								</c:if>
-							</div>
-						</c:if>
-						<c:if test="${ count == 0 }">
-					입력된 식자재가 존재하지 않습니다.
-						<input class="btn" type="button" id="changeIngredient"
-								value="목록 추가 / 삭제" onclick="location.href='change';"
-								style="color: black;" />
-						</c:if>
-					</div>
-					<%-- main > content end --%>
-				</div>
-			</div>
-		</div>
+				<div class="container">
+					<h4 class="title">'<%= request.getParameter("name") %>'에 대한 검색 결과입니다.</h4></div>
+					<c:if test="${ count != 0 }">
+						<table class="InvenList">
+							<tr>
+								<th>식자재명</th>
+								<th>공급자</th>
+								<th>주문수량</th>
+								<th>주문 가격</th>
+								<th>주문일</th>
+							</tr>
+							<c:forEach items="${ nameSearchResult }" var="result">
+							<tr>
+								<td>${ result.ingredientname }</td>
+								<td>${ result.supplier }</td>
+								<td>${ result.orderquantity }</td>
+								<td>${ result.orderprice }</td>
+								<td><fmt:formatDate dateStyle="long" value="${ result.orderdate }"></fmt:formatDate></td>
+							</tr>
+							</c:forEach>
+						</table>
+						<div class="pageController">
+							<c:if test="${ begin > end }">
+								<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
+							</c:if>
+							<c:forEach begin="${ begin }" end="${ end }" var="i">
+								<a href="searchNameResult?p=${ i }">${ i }</a>
+							</c:forEach>
+							<c:if test="${ end < totalPages }">
+								<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
+							</c:if>
+						</div>
+					</c:if>
+					<c:if test="${ count == 0 }">
+						해당 식자재가 존재하지 않습니다.
+					</c:if>
+				</div>	<%-- main > content end --%>
+				</div>	<%-- main > container end --%>
+			</div>	<%-- main end --%>
 
-		<!-- Footer Start -->
+	</div>	<%-- page end --%>
+	
+			<!-- Footer Start -->
 		<div
 			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
 			data-wow-delay="0.1s">
@@ -295,9 +289,10 @@ th {
 
 		<!-- Template Javascript -->
 		<script src="/js/main.js"></script>
-	</div>
-
-	<script>
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
 		$(function() {
 			// 권한 가져오기
 			var role = $("#role").text();
@@ -308,54 +303,37 @@ th {
 				location.href = "/main";
 			}
 
-			$("#search-name").click(function() {
+		
+		$("#search-name").click(function(){
+			
+			let name = $("#ingredientname").val();
+						
+			if (!name || name.replace(/\s+/g, "") == "") {
+				alert("검색값을 입력해 주세요.");
+				$("#ingredientname").focus();
+				return false;
+			}
+			
+			$("#searchByName").submit();
 
-				let name = $("#name").val();
+		});	// search click end
 
-				if (!name || name.replace(/\s+/g, "") == "") {
-					alert("검색값을 입력해 주세요.");
-					$("#name").focus();
-					return false;
-				}
+		$("#search-date").click(function(){
 
-				$("#searchByName").submit();
+			let startDay = $("#startDay").val();
+			let endDay = $("#endDay").val();
 
-			}); // search click end
+			if (!startDay || !endDay || endDay < startDay) {
+				alert("올바른 날짜값을 입력해 주세요.");
+				$("#startDay").focus();
+				return false;
+			}
 
-			$("#search-date").click(function() {
+			$("#searchByDate").submit();
 
-				let startDay = $("#startDay").val();
-				let endDay = $("#endDay").val();
-
-				if (!startDay || !endDay || endDay < startDay) {
-					alert("올바른 날짜값을 입력해 주세요.");
-					$("#startDay").focus();
-					return false;
-				}
-
-				$("#searchByDate").submit();
-
-			}); // search click end
-
-		}); // ready end
-
-		$(".update").click(
-						function() {
-
-							var targetid = $(this).val();
-
-							var _left = Math
-									.ceil((window.screen.width - 500) / 2);
-							var _top = Math
-									.ceil((window.screen.height - 600) / 2);
-
-							window.open(
-											'update/' + targetid,
-											'식자재 수정하기',
-											'top=' + _top
-											+ ', left=' + _left
-											+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
-						}); // update click end
-	</script>
+		});	// search click end
+		
+	});	// ready end
+</script>
 </body>
 </html>

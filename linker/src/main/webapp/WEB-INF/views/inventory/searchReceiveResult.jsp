@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Linker</title>
 <meta charset="utf-8" />
+<title>Linker</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
 <!-- Favicon -->
 <link href="../../img/favicon.ico" rel="icon">
 
@@ -36,7 +37,7 @@
 	width: 100%;
 }
 
-.IngredientList {
+.InvenList {
 	width: 100%;
 	border: 1px solid gray;
 	border-collapse: collapse;
@@ -47,6 +48,10 @@
 th {
 	text-align: center;
 	border-bottom: 1px solid gray;
+}
+
+td {
+	padding : 8px;
 }
 
 .searchController {
@@ -73,11 +78,16 @@ th {
 	align-content: center;
 }
 
-#changeIngredient {
+#Order {
+	margin-top: 10px;
+}
+
+#UseDetail {
 	margin-top: 10px;
 }
 </style>
 </head>
+<body>
 <body>
 
 <!--     Spinner Start
@@ -142,8 +152,8 @@ th {
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
 							<a href="/" class="dropdown-item">발주내역</a> 
 							<a href="/" class="dropdown-item">사용내역</a>
 						</div>
@@ -156,7 +166,7 @@ th {
 							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
+					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
@@ -164,7 +174,7 @@ th {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -178,74 +188,69 @@ th {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/ingredient/ingredientList">식자재 목록</a>
+						<a href="/inventory/inventoryList">재고 목록</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/ingredient/searchbyname/result"
+						<form id="searchByName" action="/inventory/searchbyname/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="name" id="name"> <input
-								class="btn btn-primary" type="button" id="search-name"
-								value="검색">
+							<input type="search" name="ingredientname" id="ingredientname">
+							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByDate" action="/ingredient/searchbydate/result"
+						<form id="searchByReceive" action="/inventory/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>유통기한별 검색</b>
+								<b>수령기간별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay">
-							<span>-</span> <input type="date"
-								class="exp" name="endDay" id="endDay"> <input
-								class="btn btn-primary" type="button" id="search-date"
-								value="검색">
+							<input type="date" class="receive" name="startDay"> <span>-</span> <input type="date" class="receive" name="endDay">
+							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
 					<div class="content">
+					<h4 class="title">해당 수령기간에 대한 재고 검색 결과입니다.</h4></div>
 						<c:if test="${ count != 0 }">
-							<table class="IngredientList" id="IngredientList">
+							<table class="InvenList" id="InvenList">
 								<thead>
 									<tr>
 										<th>식자재명</th>
-										<th>단위</th>
+										<th>수량</th>
 										<th>유통기한</th>
-										<th style="width: 10%;"></th>
+										<th>수령일</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${ ingredientList }" var="ingredient">
-										<tr>
-											<td>${ ingredient.ingredientname }</td>
-											<td>${ ingredient.unit }</td>
-											<td>${ ingredient.exp }</td>
-											<td><button class="update btn"
-													value="${ ingredient.ingredientid }">수정</button></td>
-										</tr>
-									</c:forEach>
+								<c:forEach items="${ receiveSearchResult }" var="result">
+									<tr>
+										<td>${ result.ingredientname }</td>
+										<td>${ result.quantity }</td>
+										<td><fmt:formatDate dateStyle="long" value="${ result.exp }"></fmt:formatDate></td>
+										<td><fmt:formatDate dateStyle="long" value="${ result.receivedate }"></fmt:formatDate></td>
+									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button"
-								id="changeIngredient" value="목록 추가 / 삭제"
+							<input class="btn btn-primary" type="button" id="Order" value="발주 내역"
+								onclick="location.href='/inventory/orderList';" />
+							<input class="btn btn-primary" type="button" id="UseDetail" value="사용 내역"
 								onclick="location.href='change';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
-									<a href="ingredientList?p=${ begin-1 }">[이전]</a>
+									<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
 								</c:if>
 								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="ingredientList?p=${ i }">${ i }</a>
+									<a href="searchReceiveResult?p=${ i }">${ i }</a>
 								</c:forEach>
 								<c:if test="${ end < totalPages }">
-									<a href="ingredientList?p=${ end + 1 }">[다음]</a>
+									<a href="searchReceiveResult?p=${ end + 1 }">[다음]</a>
 								</c:if>
 							</div>
 						</c:if>
 						<c:if test="${ count == 0 }">
-					입력된 식자재가 존재하지 않습니다.
-						<input class="btn" type="button" id="changeIngredient"
-								value="목록 추가 / 삭제" onclick="location.href='change';"
-								style="color: black;" />
+							입력된 재고가 존재하지 않습니다.
+							<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제" onclick="location.href='change';" style="color: black;" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>
@@ -297,6 +302,7 @@ th {
 		<script src="/js/main.js"></script>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -310,11 +316,11 @@ th {
 
 			$("#search-name").click(function() {
 
-				let name = $("#name").val();
+				let name = $("#ingredientname").val();
 
 				if (!name || name.replace(/\s+/g, "") == "") {
 					alert("검색값을 입력해 주세요.");
-					$("#name").focus();
+					$("#ingredientname").focus();
 					return false;
 				}
 
@@ -322,7 +328,7 @@ th {
 
 			}); // search click end
 
-			$("#search-date").click(function() {
+			$("#search-receive").click(function() {
 
 				let startDay = $("#startDay").val();
 				let endDay = $("#endDay").val();
@@ -333,29 +339,11 @@ th {
 					return false;
 				}
 
-				$("#searchByDate").submit();
+				$("#searchByReceive").submit();
 
 			}); // search click end
 
 		}); // ready end
-
-		$(".update").click(
-						function() {
-
-							var targetid = $(this).val();
-
-							var _left = Math
-									.ceil((window.screen.width - 500) / 2);
-							var _top = Math
-									.ceil((window.screen.height - 600) / 2);
-
-							window.open(
-											'update/' + targetid,
-											'식자재 수정하기',
-											'top=' + _top
-											+ ', left=' + _left
-											+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
-						}); // update click end
 	</script>
 </body>
 </html>
