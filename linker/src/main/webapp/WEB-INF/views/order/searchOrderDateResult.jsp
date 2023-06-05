@@ -82,10 +82,6 @@ td {
 	margin-top: 10px;
 }
 
-#newOrder {
-	margin-top: 10px;
-}
-
 #UseDetail {
 	margin-top: 10px;
 }
@@ -214,33 +210,28 @@ td {
 						</form>
 					</div>
 					<div class="content">
-						<c:if test="${ count != 0 }">
-							<table class="InvenList" id="InvenList">
-								<thead>
-									<tr>
-										<th>식자재명</th>
-										<th>공급자</th>
-										<th>주문수량</th>
-										<th>주문 가격</th>
-										<th>주문일</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach items="${ orderList }" var="orderList">
-									<tr>
-										<td>${ orderList.ingredientname }</td>
-										<td>${ orderList.supplier }</td>
-										<td>${ orderList.orderquantity }</td>
-										<td>${ orderList.orderprice }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
+					<h4 class="title">해당 기간에 주문한 식자재 내역입니다.</h4>
+					<c:if test="${ count != 0 }">
+						<table class="InvenList">
+							<tr>
+								<th>식자재명</th>
+								<th>공급자</th>
+								<th>주문수량</th>
+								<th>주문 가격</th>
+								<th>주문일</th>
+							</tr>
+							<c:forEach items="${ orderdateSearchResult }" var="result">
+							<tr>
+								<td>${ result.ingredientname }</td>
+								<td>${ result.supplier }</td>
+								<td>${ result.orderquantity }</td>
+								<td>${ result.orderprice }</td>
+								<td><fmt:formatDate dateStyle="long" value="${ result.orderdate }"></fmt:formatDate></td>
+							</tr>
+							</c:forEach>
+						</table>
 							<input class="btn btn-primary" type="button" id="Order" value="재고 목록으로"
-								onclick="location.href='inventoryList';" />
-							<input class="btn btn-primary" type="button" id="newOrder" value="내역 추가/삭제"
-								onclick="location.href='changeOrder';" />
+								onclick="location.href='/inventory/orderList';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="orderList?p=${ begin-1 }">[이전]</a>
@@ -258,7 +249,7 @@ td {
 							<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제" onclick="location.href='change';" style="color: black;" />
 						</c:if>
 					</div>
-					<%-- main > content end --%>
+					</div><%-- main > content end --%>
 				</div>
 			</div>
 		</div>
