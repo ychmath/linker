@@ -145,6 +145,7 @@ border-bottom: 1px solid #444444;
     <input type="radio" name="date" value="3month">
     <span>3개월</span>
 </label>
+
 <label class="test_obj">
     <input type="radio" name="date" value="1year">
     <span>1년</span>

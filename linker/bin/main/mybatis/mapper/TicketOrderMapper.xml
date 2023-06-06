@@ -4,12 +4,12 @@
 <mapper namespace="com.linker.ticket.dao.TicketOrderDao">
 
 
-<insert id="buyTicket" parameterType="com.linker.ticket.dto.TicketOrderDto">
+<!-- <insert id="buyTicket" parameterType="com.linker.ticket.dto.TicketOrderDto">
 	insert into ticketorder(ticketorderid, userid, tickettypeid, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettypeid}, #{quantity}, now())
 </insert>
 
 <select id="selectAll" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
-	select userid, ticketorderid, orderdate, tickettypename as tickettype, price, quantity, price * quantity as totalprice from ticketorder tto, ticketnum ttn where tto.tickettype = ttn.tickettype and userid = #{userid} order by orderdate desc limit #{start}, #{count}
+	select userid, ticketorderid, orderdate, tickettypename, price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} order by orderdate desc limit #{start}, #{count}
 </select>
 
 <select id="selectByDate" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
@@ -22,23 +22,16 @@
 
 <select id="count" parameterType="String" resultType="int">
 	select count(*) from ticketorder where userid = #{userid}
-</select>
+</select> -->
 
-
-<!-- <select id="selectAll" resultType="com.linker.ticket.dto.TicketorderDto">
+<select id="selectAll" resultType="com.linker.ticket.dto.TicketOrderDto">
 		select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC
 </select>
 
-<select id="selectByDate" resultType="com.linker.finance.dto.ExpenditureDto" parameterType="map">
+<select id="selectByDate" resultType="com.linker.ticket.dto.TicketOrderDto" parameterType="map">
 	<![CDATA[
 	select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid WHERE orderdate >= #{startDate} AND orderdate <= #{endDate} ORDER BY orderdate DESC
 ]]>
-
-
 </select>
-
- -->
-
-
 
 </mapper>

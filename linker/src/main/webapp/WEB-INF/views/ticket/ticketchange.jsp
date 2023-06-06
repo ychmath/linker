@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -30,49 +31,6 @@
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
-
-<style>
-.content{
-	width: 100%;
-	align-content: center;
-}
-.ticketlist{
-	width: 100%;
-	border: 1px solid gray;
-	border-collapse: collapse;
-	margin-top: 30px;
-	text-align: center;
-	font-size: 15px; 
-	 border-left: 2px solid;
- 	 border-bottom: 2px solid #000;
-  	 border-right: 2px solid #000;
-  	 border-top: 2px solid #000;
-}
-th{
-	text-align: center;
-	border-bottom: 1px solid gray;
-	border-collapse: collapse;
-	border: 1px solid #000;
-	height: 40px;
-	 border-bottom: 2px solid #000;
-}
-#tickettable{
-height: 460px;
-}
-#d{
- margin-top: 20px;
-}
-td{
-  border-collapse: collapse;
-  border: 1px solid #ccc;
-}
-#tbody{
-	 border-left: 1px solid;
- 	 border-bottom: 1px solid #000;
-  	 border-right: 1px solid #000;
-}
-
-</style>
 
 </head>
   
@@ -153,43 +111,27 @@ td{
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				
 			</div>
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	<div class="content">
-	<div class="container">
-	<div id="tickettable" class="about-text">
-	<h1 class="title">
-	<a href="/ticket/ticketlist" >식권 정보</a>
-	</h1>
-	<div id="tickettable">
-	<table class="ticketlist" id="ticketlist">
-		<thead>
-			<tr>
-				<th>식권 이름</th>
-				<th>가격</th>
-				<th style="width: 10%"></th>
-			</tr>
-		</thead>
-		<tbody id="tbody">
-			<c:forEach items="${ticketList}" var="ticket">
-				<tr>
-					<td>${ticket.tickettypename}</td>
-					<td>${ticket.price}</td>
-					<td><button class="update btn" value="${ticket.tickettypeid}">수정</button></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-	<button id="d" class="btn btn-primary" value="${ticket.tickettypeid}" onclick="location.href='/ticket/add'">등록</button>
-	</div>
-	</div>
-		</div>
+		
+			<h1><a class="title" href="/ticket/ticketupdateList">식권 목록</a></h1>
+			<div class="TicketupdateController">
+			<p style="color: black;">
+				<b>식권 추가</b>
+				</p>
+				<form id="addTicket" action="/ticket/insert" method="post">
+					<span style="color: black;">식권 이름:&nbsp; &nbsp;</span><input name="tickettypename" required> 
+					<span style="color: black;">가격:&nbsp;&nbsp;</span><input name="price" required>
+					<input type="submit" id="add" class="button" value="식권등록" style="color: black;"/>
+					
+				</form>
+			
+			</div>
 			<!-- Footer Start -->
 	<div
 		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
@@ -201,7 +143,6 @@ td{
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-
 					<div class="col-md-6 text-center text-md-end">
 						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
@@ -210,8 +151,6 @@ td{
 			</div>
 		</div>
 	</div>
-	</div>
-	
 	<!-- Footer End -->
 
 
@@ -235,28 +174,5 @@ td{
 
 	<!-- Template Javascript -->
 	<script src="../../js/main.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(function() {
-			// 권한 가져오기
-			var role = $("#role").text();
-
-			// 열람 권한이 없다면 페이지 이동.
-			if (!(role != 'seller' || role != 'admin')) {
-				alert("열람 권한이 없는 페이지입니다.");
-				location.href = "/main";
-			}
-
-			$(".update").click(function() {
-				var targetid = $(this).val();
-				var _left = Math.ceil((window.screen.width - 500) / 2);
-				var _top = Math.ceil((window.screen.height - 600) / 2);
-
-				window.open('update/' + targetid, '식권 정보 수정하기', 'top=' + _top
-						+ ', left=' + _left
-						+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
-			}); // update click end
-		});
-	</script>
 </body>
 </html>

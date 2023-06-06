@@ -132,12 +132,12 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyticket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/ticketorder" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
