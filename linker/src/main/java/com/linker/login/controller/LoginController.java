@@ -73,16 +73,9 @@ public class LoginController {
 		return "login/joinform";
 	}
 
-	@PostMapping("/joinform")
-	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
-	    dto.setPhone(phone);
-	    service.insertUser(dto);
-	    return "redirect:loginform";
-	}
-
-
-	@PostMapping("/auth/joinProc")
-	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
+	// 회원가입 처리
+	@PostMapping("/join")
+	public String joinProc(@Valid LoginDto dto, @RequestParam("phone") String phone, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userDto", dto);
@@ -91,11 +84,11 @@ public class LoginController {
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
-
 			return "login/joinform";
 		}
+		dto.setPhone(phone);
 		service.insertUser(dto);
-		return "redirect:/auth/login";
+		return "redirect:loginform";
 	}
 
 	// 아이디 중복체크

@@ -8,7 +8,7 @@
 <title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/login/deleteform.css"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"  rel="stylesheet">
+
 <style>
 
 body {
@@ -111,6 +111,11 @@ td:first-child {
 	font-size: 0.8em;
 	margin-bottom: 1rem;
 }
+  .center-text {
+    text-align: center;
+    pointer-events: none;
+    cursor: default;
+  }
 </style>
 
 </head>
@@ -125,8 +130,12 @@ td:first-child {
 			<input type="hidden" name="_method" value="delete" />
 			<label class="floating-label" for="passowrd">비밀번호</label>
 				<input type="password" name="formpw" id="password" class="login__input" placeholder="비밀번호" required/>
-					<input type="submit" value="탈퇴" class="submit" />
+					<input type="submit" value="탈퇴" class="submit" />	
+					<div class="center-text">
+							<a href="/">홈으로 돌아가기</a>
+						</div>
 		</form>
+	
 		<script>
 			function checkVal() {
 				let pw = document.querySelector("#password").value;
