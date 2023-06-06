@@ -150,8 +150,7 @@
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<a href="/updateform" style="text-decoration:noe; color:#333">
-					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
 					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
