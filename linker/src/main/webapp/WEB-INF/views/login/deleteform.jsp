@@ -7,10 +7,8 @@
 <head>
 <title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-  rel="stylesheet">
-  
+<link rel="stylesheet" href="/css/login/deleteform.css"/>
+
 <style>
 
 body {
@@ -33,6 +31,13 @@ body {
 }
 
 h3 {
+	font-size: 1.5rem;
+	color: #f38181;
+	font-weight: 700;
+	margin: 0 0 1.5rem 0;
+	text-align: center;
+}
+h4 {
 	font-size: 1.5rem;
 	color: #f38181;
 	font-weight: 700;
@@ -106,22 +111,31 @@ td:first-child {
 	font-size: 0.8em;
 	margin-bottom: 1rem;
 }
+  .center-text {
+    text-align: center;
+    pointer-events: none;
+    cursor: default;
+  }
 </style>
 
 </head>
 <body>
 	<div class="container">
-		<h3>회원 탈퇴하려면<br>비밀번호를 입력해주세요</h3>
+		<h3>회원 탈퇴</h3>
+		<h4>비밀번호를 입력해주세요</h4>
 		<c:if test="${result == false}">
 			<p class="error-message">입력하신 비밀번호는 틀렸습니다.</p>
 		</c:if>
 		<form method="post" onsubmit="checkVal()" action="delete">
 			<input type="hidden" name="_method" value="delete" />
-				<input type="password" name="formpw" id="password"
-						class="login__input" placeholder="비밀번호" required/>
-						<label class="floating-label" for="passowrd">비밀번호</label>
-					<input type="submit" value="탈퇴" class="submit" />
+			<label class="floating-label" for="passowrd">비밀번호</label>
+				<input type="password" name="formpw" id="password" class="login__input" placeholder="비밀번호" required/>
+					<input type="submit" value="탈퇴" class="submit" />	
+					<div class="center-text">
+							<a href="/">홈으로 돌아가기</a>
+						</div>
 		</form>
+	
 		<script>
 			function checkVal() {
 				let pw = document.querySelector("#password").value;

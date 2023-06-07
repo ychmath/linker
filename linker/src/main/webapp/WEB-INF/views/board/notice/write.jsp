@@ -26,8 +26,8 @@
 </style>
     </head>
 
-    <body style="padding-top: 5rem;">
-        <form method="post" id="writenotice" action="write">
+    <body  >
+        <form method="post" id="writenotice" action="write" style="padding-top: 5rem;">
             <form>
                 <div class="pt-1">
                     <input type="text" name="title" id="title" placeholder="제목을 입력하세요"

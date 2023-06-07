@@ -7,7 +7,7 @@
 <meta charset="utf-8" />
 <title>Linker</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+<link href="/css/menu/menu_write.css" rel="stylesheet">
 <!-- Favicon -->
 <link href="../../img/favicon.ico" rel="icon">
 
@@ -144,7 +144,7 @@ th {
 						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/" class="dropdown-item">재고현황</a> 
 							<a href="/" class="dropdown-item">발주내역</a> 
 							<a href="/" class="dropdown-item">사용내역</a>
 						</div>
@@ -198,7 +198,7 @@ th {
 								<b>유통기한별 검색</b>
 							</p>
 							<input type="date" class="exp" name="startDay" id="startDay">
-							<span>-</span> <input type="date"
+							<span style="color: white">-</span> <input type="date"
 								class="exp" name="endDay" id="endDay"> <input
 								class="btn btn-primary" type="button" id="search-date"
 								value="검색">
@@ -341,7 +341,8 @@ th {
 
 		}); // ready end
 
-		$(".update").click(
+		$(".update")
+				.click(
 						function() {
 
 							var targetid = $(this).val();
@@ -351,12 +352,15 @@ th {
 							var _top = Math
 									.ceil((window.screen.height - 600) / 2);
 
-							window.open(
+							window
+									.open(
 											'update/' + targetid,
 											'식자재 수정하기',
-											'top=' + _top
-											+ ', left=' + _left
-											+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+											'top='
+													+ _top
+													+ ', left='
+													+ _left
+													+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
 						}); // update click end
 	</script>
 </body>
