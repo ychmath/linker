@@ -88,12 +88,20 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/admin" class="nav-item nav-link">요약</a>
-					<a href="/admin/user" class="nav-item nav-link">회원 관리</a>
-					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
-					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="feature.html" class="dropdown-item">Feature</a> <a
+								href="quote.html" class="dropdown-item">Free Quote</a> <a
+								href="team.html" class="dropdown-item">Our Team</a> <a
+								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
+								href="404.html" class="dropdown-item">404 Page</a>
+						</div>
+					</div>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -125,25 +133,25 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyticket" class="nav-item nav-link">식권 구매</a>
+					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse" class="dropdown-item">식권 사용내역</a>
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -338,10 +346,12 @@
 	</div>
 	<!-- Footer End -->
 
+
 	<!-- Back to Top -->
 	<a href="#"
 		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
 		class="bi bi-arrow-up"></i></a>
+
 
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

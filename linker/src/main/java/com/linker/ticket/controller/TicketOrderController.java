@@ -1,63 +1,190 @@
 package com.linker.ticket.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.linker.login.dto.LoginDto;
 import com.linker.ticket.dto.TicketOrderDto;
+import com.linker.ticket.dto.TicketOrderDtoList;
 import com.linker.ticket.service.TicketOrderService;
 
-@Controller
-public class TicketOrderController {
-	@Autowired
-	private TicketOrderService toService; 
- 
-	@GetMapping("/ticketorder")  //전체 식권 사용 내역 조회
-	public String getAllTicketorder(Model m) {
+	@SessionAttributes("user")
+	@Controller
+	public class TicketOrderController {
+		
+		@Autowired
+		private TicketOrderService service;
 
-		List<TicketOrderDto> list = toService.getAllTicketOrder();
-		m.addAttribute("tolist", list);
+		
+		@RequestMapping("/ticket/filtered_data_t")
+		@ResponseBody
+		public String fetchFilteredData(
+				@RequestParam("start-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
+				@RequestParam("end-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
+				@RequestParam(value="p", defaultValue="1") int page, //페이지 번호 추가
+				Model model, @ModelAttribute("user")LoginDto userid) {
+			
+			System.out.println(startDate+" "+endDate);
+			
+			Map<String, Object> m = new HashMap<>();
+			
+			int count = service.selectByDateCount(startDate, endDate, userid.getUserid()); //시작 날짜와 종료 날짜 사이의 티켓 주문 개수를 가져옴
+			
+			int perPage = 10;
+			int startRow = (page - 1) * perPage;
+			
+			List<TicketOrderDto> filterData = service.selectByDate(startDate, endDate, userid.getUserid(),startRow); //해당 페이지의 티켓 주문 데이터를 가져옴
+			
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0);
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			
+			m.put("pageNum", pageNum);
+			m.put("totalPages", totalPages);
+			m.put("begin", begin);
+			m.put("end", end);
+			m.put("count", count);
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //가져온 날짜 데이터를 포맷팅함
+			
+			m.put("startDate",sdf.format(startDate));
+			m.put("endDate",sdf.format(endDate));
+			
+			List<Object> filterDatas = new ArrayList<>();
+			
+			filterDatas.add(m);
+			filterDatas.add(filterData);
+			
+			Gson gson = new Gson();
+			String list = gson.toJson(filterDatas);
+			System.out.println(list);
+			return list;
+		}
+		
+		@ModelAttribute("user")
+		public LoginDto getDto() {
+			return new LoginDto();
+		}
+		
+		@GetMapping("/ticket/buyTicket")
+		public String buyTicket(Model m) {
+			//
+			List<Integer> idList = Arrays.asList(1,2); //select tickettypeid from tickettype;
+			m.addAttribute("ids", idList);
+			return "ticket/buyTicket";
+		}
 
-		return "ticket/ticketorderform";
-	}
+		@GetMapping("/ticket/buyTicket1")
+		public String buyTicket(@ModelAttribute("user")LoginDto userid, TicketOrderDtoList orders) {
+		List<TicketOrderDto> orderList = orders.getTicketOrderDto();
+		
+		for(TicketOrderDto dto : orderList) {
+			if(dto.getQuantity() != 0) {
+			dto.setUserid(userid.getUserid());
+			service.buyTicket(dto);
+			}
+		}	
+		//dto.setUserid(user.getUserid());
+		//service.buyTicket(dto);
+		return "redirect:/main";
+		}
+		
+		@RequestMapping("/ticket/ticketlist")
+		public String selectAll(@RequestParam(name="p", defaultValue="1")int page, @ModelAttribute("user")LoginDto userid, Model m) {
+			
+			int count = service.count(userid.getUserid());
+				if(count > 0) {
+					int perPage = 10;
+					int startRow = (page - 1) * perPage;
+					
+					List<TicketOrderDto> purchaseList = service.selectAll(startRow, userid.getUserid());
+					m.addAttribute("pList", purchaseList);
+					
+					int pageNum = 5;
+					int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0);
+					int begin = (page - 1) / pageNum * pageNum + 1;
+					int end = begin + pageNum - 1;
+					if(end > totalPages) {
+						end = totalPages;
+					}
+					
+					m.addAttribute("pageNum", pageNum);
+					m.addAttribute("totalPages", totalPages);
+					m.addAttribute("begin", begin);
+					m.addAttribute("end", end);
+					
+					//System.out.println(purchaseList);
+				}
+				m.addAttribute("count", count);
+				return "ticket/ticketlist";
+		}
 
-	@GetMapping("/ticketorder/{date}") //특정 날짜의 사용된 티켓 조회
-	public List<TicketOrderDto> getOrderByDate(@PathVariable Date startdate, Date endDate) {
-		return toService.selectByDate(startdate, endDate);
-	}
-
-	@PostMapping("/ticketorder") //식권 사용 추가 메서드
-	public int addOrder(@RequestBody TicketOrderDto dto) {
-		return toService.addUse(dto);
-	}
-
-	@DeleteMapping("/ticketorder/{tickettypename}") //식권 타입별 식권 주문 삭제
-	public int deleteOrderById(@PathVariable int tickettypename) {
-		return toService.deleteOrderById(tickettypename);
-	}
-
-	//필터링된 식권 사용 내역 조회(특정 기간 내)
-	@RequestMapping("/filtered_data_o")
-	@ResponseBody
-	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
-		List<TicketOrderDto> filterData = toService.selectByDate(startDate, endDate);
-
-		Gson gson = new Gson();
-		String list = gson.toJson(filterData);
-		return list;
-	}
+		@GetMapping("/ticket/{date}")
+		public String selectByDate(@RequestParam(name="p", defaultValue="1")int page, @ModelAttribute("user")LoginDto userid, 
+									@RequestParam("start-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
+									@RequestParam("end-date") @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
+									int start){
+			
+			Map<String, Object> m = new HashMap<>();
+			
+			int count = service.selectByDateCount(startDate, endDate, userid.getUserid());
+			
+			int perPage = 10;
+			int startRow = (page - 1) * perPage;
+			
+			List<TicketOrderDto> filterData = service.selectByDate(startDate, endDate, userid.getUserid(),startRow);
+			
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0);
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			
+			m.put("pageNum", pageNum);
+			m.put("totalPages", totalPages);
+			m.put("begin", begin);
+			m.put("end", end);
+			m.put("count", count);
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			
+			m.put("startDate",sdf.format(startDate));
+			m.put("endDate",sdf.format(endDate));
+			
+			List<Object> filterDatas = new ArrayList<>();
+			
+			filterDatas.add(m);
+			filterDatas.add(filterData);
+			
+			Gson gson = new Gson();
+			String list = gson.toJson(filterDatas);
+			System.out.println(list);
+			return list;
+		}
 }

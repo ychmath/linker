@@ -26,7 +26,8 @@
 </style>
     </head>
 
-    <body style="padding-top: 5rem;">
+    <body >
+    
         <form method="post" id="writenotice" action="write">
             <form>
                 <div class="pt-1">

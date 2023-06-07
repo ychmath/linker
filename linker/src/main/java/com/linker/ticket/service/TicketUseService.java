@@ -33,15 +33,15 @@ public class TicketUseService {
 	
 	//식권 사용 추가 메서드
 	public int addUse(TicketUseDto dto) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	//식권 타입별 식권 주문 삭제
 	public int deleteOrderById(int tickettypename) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	//필터링된 식권 사용 내역 조회(특정 기간 내)
 	public List<TicketUseDto> selectByDate(Date startDate, Date endDate) {
 		Map<String, Date> map = new HashMap<>();
 		map.put("startDate", startDate);
@@ -49,4 +49,6 @@ public class TicketUseService {
 
 		return dao.selectByDate(map);
 	}
+
+
 }

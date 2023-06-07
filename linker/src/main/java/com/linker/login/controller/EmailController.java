@@ -21,8 +21,11 @@ public class EmailController {
 		EmailVO email = new EmailVO();
 
 		String receiver = emailAddress; // Receiver.
+
 		String subject = "Email 제목";
+
 		String number = makeRandom();
+		
 		String content = "인증 번호는 "+number+"입니다.";
 		
 		email.setReceiver(receiver);

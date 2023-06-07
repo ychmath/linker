@@ -8,8 +8,7 @@ String end_date = request.getParameter("end_date");%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>식권 사용 내역</title>
+<title>식권 구매 내역</title>
 </head>
 <style>
 #B {
@@ -121,22 +120,23 @@ border-bottom: 1px solid #444444;
     
 </style>
 
-
 <body>
-<form action="${pageContext.request.contextPath}/filtered_data_o" method="get">
-<div>
-	<div>
-<p><strong>식권 구매 내역</strong></p><br>
-	<table id="data-table">
-		<tr>
-			<th id="C">구매 일자</th>
-			<td id="I">
-	<label class="test_obj">
-		<input type="radio" name="date" value="today">
-		<span>오늘</span>
-		</label>
-		
-		<label class="test_obj">
+<%-- <form:form> --%>
+<form action="${pageContext.request.contextPath}/ticket/filtered_data_t" method="get">
+<div> <!--  id="B" --> 
+  <div> <!-- style="display:flex; align-items:center;" -->
+  
+  <p><strong>식권 구매 내역</strong></p><br>
+    <table id="data-table">
+      <tr>
+        <th id="C">날짜</th>
+      <td id="I">
+   <label class="test_obj">
+    <input type="radio" name="date" value="today">
+    <span>오늘</span>
+</label>
+ 
+<label class="test_obj">
     <input type="radio" name="date" value="1month">
     <span>1개월</span>
 </label>
@@ -145,124 +145,128 @@ border-bottom: 1px solid #444444;
     <input type="radio" name="date" value="3month">
     <span>3개월</span>
 </label>
-
 <label class="test_obj">
     <input type="radio" name="date" value="1year">
     <span>1년</span>
-	</label>
-
-<label for="start-date-input"></label>
+</label>
+ <label for="start-date-input"></label>
 <input type="date" id="start-date-input" name="start-date" min="2021-01-01" max="" value="" required>
 
 <label for="end-date-input"><a id="P">~</a></label>
 <input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function search() {
+    var start_date = document.getElementById('start-date-input').value;
+    var end_date = document.getElementById('end-date-input').value;
 
-	<script>
-	function search() {
-	    var start_date = document.getElementById('start-date-input').value;
-	    var end_date = document.getElementById('end-date-input').value;
-	    showSaledResult(start_date, end_date);   
+    //window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
+    showSaledResult(start_date, end_date);   
+}
+
+</script>
+<button type="button" id="myButton" onclick="search()">검색 </button>
+
+<script>
+
+function resetSearch(){
+	
+	location.assign("${pageContext.request.contextPath}/ticketorder/ticket");
+
+}
+
+$(function(){
+    $("input[type='radio'][name='date']").on("change", function(){
+        var dateRange =  $(this).val();
+        var startDate = "";
+        var endDate = "";
+
+        // dateRange에 따라 startDate와 endDate값을 설정합니다.
+        switch (dateRange) {
+          case "today":
+            startDate = new Date();
+            endDate = new Date();
+            break;
+          case "1month":
+            startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - 1);
+            endDate = new Date();
+            break;
+          case "3month":
+            startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - 3);
+            endDate = new Date();
+            break;
+          case "1year":
+            startDate = new Date();
+            startDate.setFullYear(startDate.getFullYear() - 1);
+            endDate = new Date();
+            break;
+        }
+
+        var startYear = startDate.getFullYear();
+        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
+        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
+        var endYear = endDate.getFullYear();
+        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
+        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
+
+        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
+        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
+
+        showSaledResult(startDateStr, endDateStr);
+    });
+});
+
+function showSaledResult(start, end) {
+	 $.ajax({
+	        url: "./filtered_data_t",
+	        data: {
+	            "start-date": start,
+	            "end-date": end
+	        },
+	        type: "GET",
+	        dataType:"json",
+	        success: function (data) {
+	            updateTableWithNewData(data);
+	        },
+	        error: function (error) {   
+	            console.log(error);
+	        }
+	    });
+	}
+
+	function updateTableWithNewData(data) {
+	    var table_data = '';
+	    //$.each(data, function (index, ticket) {
+	    	
+	    	for (var i = 0; i < data.length; i++){
+	        let ticket = data[i];
+	    	table_data += '<tr>';
+	        table_data += '<td>'+ ticket.ticketorderid+'</td>';
+	        table_data += "<td>"+ new Date(ticket.orderdate).toISOString().split('T')[0] +"</td>";
+	        table_data += '<td>'+ ticket.tickettypename +'</td>';
+	        table_data += '<td>'+ ticket.price+'</td>';
+	        table_data += '<td>'+ ticket.quantity +'</td>';
+	        table_data += '<td>'+ ticket.totalprice +'</td>';
+	        table_data += '</tr>';
+	    	}
+	    //});
+
+	    $("#saled").empty();
+	    $("#saled").append(table_data);
 	}
 	</script>
-	<button type="button" id="myButton" onclick="search()">검색 </button>
-
-	<script>
-	function resetSearch(){
-		
-		location.assign("${pageContext.request.contextPath}/ticketorder");
-	}
-	$(function(){
-	    $("input[type='radio'][name='date']").on("change", function(){
-	        var dateRange =  $(this).val();
-	        var startDate = "";
-	        var endDate = "";
-
-	        // dateRange에 따라 startDate와 endDate값을 설정합니다.
-	        switch (dateRange) {
-	          case "today":
-	            startDate = new Date();
-	            endDate = new Date();
-	            break;
-	          case "1month":
-	            startDate = new Date();
-	            startDate.setMonth(startDate.getMonth() - 1);
-	            endDate = new Date();
-	            break;
-	          case "3month":
-	            startDate = new Date();
-	            startDate.setMonth(startDate.getMonth() - 3);
-	            endDate = new Date();
-	            break;
-	          case "1year":
-	            startDate = new Date();
-	            startDate.setFullYear(startDate.getFullYear() - 1);
-	            endDate = new Date();
-	            break;
-	        }
-
-	        var startYear = startDate.getFullYear();
-	        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
-	        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
-	        var endYear = endDate.getFullYear();
-	        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
-	        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
-
-	        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
-	        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
-
-	        showSaledResult(startDateStr, endDateStr);
-	    });
-	});
-
-	function showSaledResult(start, end) {
-		 $.ajax({
-		        url: "./filtered_data_o",
-		        data: {
-		            "start-date": start,
-		            "end-date": end
-		        },
-		        type: "GET",
-		        dataType:"json",
-		        success: function (data) {
-		            updateTableWithNewData(data);
-		        },
-		        error: function (error) {   
-		            console.log(error);
-		        }
-		    });
-		}
-
-		function updateTableWithNewData(data) {
-		    var table_data = '';
-		    //$.each(data, function (index, ticket) {
-		    	
-		    	for (var i = 0; i < data.length; i++){
-		        let ticket = data[i];
-		    	table_data += '<tr>';
-		        table_data += '<td>'+ ticket.ticketorderid +'</td>';
-		        table_data += "<td>"+ new Date(ticket.orderdate).toISOString().split('T')[0] +"</td>";
-		        table_data += '<td>'+ ticket.tickettypename +'</td>';
-		        table_data += '<td>'+ ticket.price +'</td>';
-		        table_data += '<td>'+ ticket.quantity +'</td>';
-		        table_data += '<td>'+ ticket.totalprice +'</td>';
-		        table_data += '</tr>';
-		    	}
-		    //});
-
-		    $("#saled").empty();
-		    $("#saled").append(table_data);
-		}
-		</script>
-		<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-	   </tr>
-	</table><br>	
-	</div>
+	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+	
+   </tr>
+   </table> <br>
+  </div>
 	<div>
 	<table>
 	<thead>
-	<tr>
+		<tr>
 		<th scope="col">식권 구매 번호</th>
 		<th scope="col">구매 일자</th>
 		<th scope="col">식권 종류</th>
@@ -271,22 +275,22 @@ border-bottom: 1px solid #444444;
 		<th scope="col">결제 금액</th>
 	</tr>
 	</thead>
-	<tbody id="saled">
-	<c:forEach items="${tolist}" var="ticketo">
-		<tr>
-			<td>${ticketo.ticketorderid}</td>
-			<td><fmt:formatDate value="${ticketo.orderdate}" pattern="yyyy-MM-dd" /></td>
-			<td>${ticketo.tickettypename}</td>
-			<td>${ticketo.quantity}</td>
-			<td>${ticketo.price}</td>
-			<td>${ticketo.totalprice}</td>
-		</tr>
+	<tbody id = "saled">
+	<c:forEach items="${tlist}" var="ticket">
+	<tr>
+		<td>${ticket.ticketorderid}</td>
+		<td><fmt:formatDate value="${ticket.orderdate}" pattern="yyyy-MM-dd" /></td>
+		<td>${ticket.tickettypename}</td>
+		<td>${ticket.price}</td>    
+		<td>${ticket.quantity}</td>
+		<td>${ticket.totalprice}</td>
+	</tr>
 	</c:forEach>
-		</tbody>	
+	</tbody>
 	</table>
-	
 	</div>
 </div>
-</form>
+
+ </form>
 </body>
 </html>

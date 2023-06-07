@@ -80,6 +80,8 @@
 			<td><span id="totalprice">0</span>원</td>
 		</tr>
 			
+		
+		
 	</table>
 	</div>
 		<form method="get" id="buyTicket" action="/ticket/buyTicket1" name="form">
@@ -88,7 +90,9 @@
 		<input type="hidden" name="ticketOrderDto[${status.index}].tickettype" value="${ticketid}">
 		<input type="hidden" name="ticketOrderDto[${status.index}].quantity" value="0" id="${ticketid}">
 		
+		
 		</c:forEach>
+		
 		
 		<button id="kakaopay"><img src="/img/kakaopay.png"></button>
 		</form>
@@ -147,6 +151,7 @@
 				$("#picB").show();
 			}
 		})
+	
 	
  	 	//select태그와 span태그를 가져옴 
 		const ticketTypeSelect = document.getElementById("tickettype");
@@ -244,6 +249,7 @@
 			return calculateTotalPrice3();
 		})
 			
+			
 			$("#delete").click(function(){
 				const amount = parseInt($("#calculateATotalPrice2").text());
 				//alert(amount);
@@ -251,6 +257,7 @@
 				$(this).hide();
 				updateTotalPrice3(amount);
 			})
+				
 			
 			$("#delete2").click(function(){
 				const amount = parseInt($("#calculateBTotalPrice2").text())

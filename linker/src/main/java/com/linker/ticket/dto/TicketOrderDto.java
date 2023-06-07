@@ -12,5 +12,6 @@ public class TicketOrderDto{
 	private int price;
 	private int quantity;
 	private int totalprice;
+	private String userid;
 	
 }

@@ -8,44 +8,54 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.linker.login.dto.LoginDto;
 import com.linker.ticket.dao.TicketOrderDao;
 import com.linker.ticket.dto.TicketOrderDto;
 
 @Service
 public class TicketOrderService {
+	
 	@Autowired
 	TicketOrderDao dao;
 
-	// 전체 티켓 구매 내역 조히
-	public List<TicketOrderDto> getAllTicketOrder() {
-		return dao.selectAll();
+	public int buyTicket(TicketOrderDto dto) {
+		return dao.buyTicket(dto);
+	}
+	
+	public List<TicketOrderDto> selectAll(int start, String userid){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 10);
+		m.put("userid", userid);
+		return dao.selectAll(m);
+	}
+	
+	
+	public int count(String userid) {
+		return dao.count(userid);
+	}
+	
+	public List<TicketOrderDto> selectByDate(Date startDate, Date endDate, String userid, int start){
+		Map<String, Object> m = new HashMap<>();
+		m.put("startDate", startDate);
+		m.put("endDate", endDate);
+		m.put("userid", userid);
+		m.put("start", start);
+		m.put("count", 10);
+		//limit 추가
+		return dao.selectByDate(m);
+	}
+	
+	public int selectByDateCount(Date startDate, Date endDate, String userid) {
+		
+		Map<String, Object> m = new HashMap<>();
+		m.put("startDate", startDate);
+		m.put("endDate", endDate);
+		m.put("userid", userid);
+		
+		return dao.selectByDateCount(m);
+		
 	}
 
-	// 특정 날짜의 구매한 식권 조회
-	public List<TicketOrderDto> getOrderByDate(Date startDate, Date endDate) {
-		Map<String, Date> map = new HashMap<>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-
-		return dao.selectByDate(map);
-	}
-
-	// 식권 구매 추가 메서드
-	public int addUse(TicketOrderDto dto) {
-		return 0;
-	}
-
-	// 식권 타입별 식권 주문 삭제
-	public int deleteOrderById(int tickettypename) {
-		return 0;
-	}
-
-	//필터링된 식권 구매 내역 조회(특정 기간 내)
-	public List<TicketOrderDto> selectByDate(Date startDate, Date endDate) {
-		Map<String, Date> map = new HashMap<>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-
-		return dao.selectByDate(map);
-	}
+	
 }
