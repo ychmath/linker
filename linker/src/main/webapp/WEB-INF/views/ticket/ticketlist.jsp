@@ -288,17 +288,28 @@ function showSaledResult(start, end, page) {
 	    var table_data = ''; //나중에 HTML 테이블에 추가될 요소들을 저장할 변수
 	    //$.each(data, function (index, ticket) {
 	    	
+	    	
+	    	
 	    	for (var i = 0; i < data[1].length; i++){
+	    	
 	        let ticket = data[1][i];
+	        
+	    	let orderDate = new Date(ticket.orderdate);
+			orderDate.setHours(orderDate.getHours() + 9);
+			let koreanDate = orderDate.toISOString().split('T')[0];
+	        
 	    	table_data += '<tr>';
 	        table_data += '<td>'+ ticket.ticketorderid+'</td>';
-	        table_data += "<td>"+ new Date(ticket.orderdate).toISOString().split('T')[0] +"</td>";
-	        table_data += '<td>'+ ticket.tickettype +'</td>';
+	        table_data += "<td>"+ koreanDate +"</td>";
+	        table_data += '<td>'+ ticket.tickettypename +'</td>';
 	        table_data += '<td>'+ ticket.price+'</td>';
 	        table_data += '<td>'+ ticket.quantity +'</td>';
 	        table_data += '<td>'+ ticket.totalprice +'</td>';
 	        table_data += '</tr>';
 	        
+	        //기존 Date코드 (UTC+9여서 하루 늦게 반영됐었음. 현재 코드로 수정)
+	        //new Date(ticket.orderdate).toISOString().split('T')[0]
+	    	
 	    	}
 	    //});
 
@@ -344,7 +355,7 @@ function showSaledResult(start, end, page) {
 		<tr>
 		<th scope="col" id="ticketorderid">식권 구매 번호</th>
 		<th scope="col" id="orderdate">구매 일자</th>
-		<th scope="col" id="tickettype">식권 종류</th>
+		<th scope="col" id="tickettypename">식권 종류</th>
 		<th scope="col" id="price">식권 가격</th>
 		<th scope="col" id="quantity">수량</th>
 		<th scope="col" id="totalprice">결제 금액</th>
@@ -357,7 +368,7 @@ function showSaledResult(start, end, page) {
 	<tr>
 		<td>${purchase.ticketorderid}</td>
 		<td><fmt:formatDate value="${purchase.orderdate}" pattern="yyyy-MM-dd" /></td>
-		<td>${purchase.tickettype}</td>
+		<td>${purchase.tickettypename}</td>
 		<td>${purchase.price}</td>
 		<td>${purchase.quantity}</td>
 		<td>${purchase.totalprice}</td>

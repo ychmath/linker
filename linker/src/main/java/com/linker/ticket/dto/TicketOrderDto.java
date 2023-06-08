@@ -8,7 +8,7 @@ public class TicketOrderDto{
 	
 	private int ticketorderid;
 	private Date orderdate;
-	private String tickettype;
+	private String tickettypename;
 	private int price;
 	private int quantity;
 	private int totalprice;

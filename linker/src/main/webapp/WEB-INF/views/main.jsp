@@ -144,7 +144,7 @@
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticket/ticketlist" class="dropdown-item">식권 구매내역</a> 
 							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>

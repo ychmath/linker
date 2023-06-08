@@ -43,7 +43,7 @@ import com.linker.ticket.service.TicketOrderService;
 				@RequestParam(value="p", defaultValue="1") int page, //페이지 번호 추가
 				Model model, @ModelAttribute("user")LoginDto userid) {
 			
-			//System.out.println(startDate+" "+endDate);
+			System.out.println(startDate+" "+endDate);
 			
 			Map<String, Object> m = new HashMap<>();
 			
