@@ -140,7 +140,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
@@ -171,7 +171,7 @@
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">조식</h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
-								<a href=""
+								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
 							</div>
@@ -189,7 +189,7 @@
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">중식</h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
-								<a href=""
+								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
 							</div>
@@ -207,7 +207,7 @@
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">석식</h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
-								<a href=""
+								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
 							</div>

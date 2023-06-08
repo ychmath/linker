@@ -96,26 +96,6 @@ border-bottom: 1px solid #444444;
   	#myButton{
   	float:left;
   	}
-  	.resetButton{
-  	display: inline-block;
-  	background-color:#ffffff;
-  	padding: 2px 4px;
-  	border: 1px solid #ccc;
-  	cursor:pointer;
-  	margin-left: 10px;
-  	
-  	}
-  	.resetButton{
-  	display: inline-block;
-  	background-color: #ffffff;
-  	padding: 2px 4px;
-  	border: 1px soild #ccc;
-  	cursor: pointer;
-  	margin-left: 10px;
-  	}
-  	.resetButton:hover{
-  	background-color: #e0e0e0;
-  	}
   	
   	#page{
   		text-align: center;
@@ -151,6 +131,10 @@ border-bottom: 1px solid #444444;
 <label class="test_obj">
     <input type="radio" name="date" value="1year">
     <span>1년</span>
+</label>
+<label class="test_obj">
+    <input type="radio" name="date" value="total">
+    <span>전체</span>
 </label>
 
  <label for="start-date-input"></label>
@@ -242,6 +226,11 @@ function resetSearch(){
             endDate1 = new Date();
             endDate = new Date(endDate1.setDate(endDate1.getDate()+1));
             break;
+          case "total":
+        	startDate = new Date();
+        	endDate1 = new Date();
+        	endDate = new Date(endDate1.setDate(endDate1.getDate() + 1));
+        	break;
         }
 
         var startYear = startDate.getFullYear();
@@ -344,8 +333,6 @@ function showSaledResult(start, end, page) {
 	     
 	}
 	</script>
-	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-	
    </tr>
    </table> <br>
   </div>
