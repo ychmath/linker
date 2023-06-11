@@ -220,11 +220,14 @@
 		</c:if>
 	</div>
 	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
-
+	
+	<c:if test="${ user.role == 'admin' || user.role =='seller' }">
 	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
 			onclick="location.href='write'" />
 	</div>
+	</c:if>
+	
 		<!-- Footer Start -->
 	<div
 		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"

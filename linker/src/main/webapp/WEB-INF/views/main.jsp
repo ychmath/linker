@@ -33,15 +33,6 @@
 </head>
   
 <body>
-	<!-- Spinner Start -->
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner-grow text-primary"
-			style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-	<!-- Spinner End -->
 
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
@@ -101,7 +92,7 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -133,7 +124,7 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -151,7 +142,7 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -291,7 +282,8 @@
 						<p class="mb-4 pb-2">신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 최고의 맛과 건강함을
 							선사합니다.</p>
 						<div class="row g-4 mb-4 pb-2">
-							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+							
 								<div class="d-flex align-items-center">
 									<div
 										class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
@@ -299,21 +291,21 @@
 										<i class="fa fa-users fa-2x text-primary"></i>
 									</div>
 									<div class="ms-3">
-										<h2 class="text-primary mb-1" data-toggle="counter-up">1346</h2>
-										<p class="fw-medium mb-0">이용자 수</p>
+										<h2 id="sellerCount" class="text-primary mb-1" data-toggle="counter-up">0</h2>
+										<p class="fw-medium mb-0">판매자 수</p>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+								</div>
+								<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
 								<div class="d-flex align-items-center">
 									<div
 										class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
 										style="width: 60px; height: 60px;">
-										<i class="fa fa-check fa-2x text-primary"></i>
+										<i class="fa fa-users fa-2x text-primary"></i>
 									</div>
 									<div class="ms-3">
-										<h2 class="text-primary mb-1" data-toggle="counter-up">73</h2>
-										<p class="fw-medium mb-0">기업 수</p>
+										<h2 id="buyerCount" class="text-primary mb-1" data-toggle="counter-up">0</h2>
+										<p class="fw-medium mb-0">구매자 수</p>
 									</div>
 								</div>
 							</div>
@@ -367,6 +359,41 @@
 
 	<!-- Template Javascript -->
 	<script src="js/main.js"></script>
+	
+	<script>
+    $(document).ready(function () {
+        $.get('/sellerCount', function (data) {
+            countAnimation("sellerCount", data.userCount, 1000);
+        });
+
+        $.get('/buyerCount', function (data) {
+            countAnimation("buyerCount", data.userCount, 1000);
+        });
+    });
+
+	function countAnimation(id, endValue, duration) {
+	    const element = document.getElementById(id);
+	    let startValue = 0;
+	    let startTime = null;
+	    
+	    function render(currentTime) {
+	        if (startTime === null) {
+	            startTime = currentTime;
+	        }
+	        const elapsedTime = currentTime - startTime;
+	        const progress = Math.min(elapsedTime / duration, 1);
+	        const currentValue = Math.floor(startValue + (endValue - startValue) * progress);
+	        element.textContent = currentValue;
+	        if (elapsedTime < duration) {
+	            requestAnimationFrame(render);
+	        }
+	    }
+	    
+	    requestAnimationFrame(render);
+	}
+	
+	
+</script>
 </body>
 
 </html>

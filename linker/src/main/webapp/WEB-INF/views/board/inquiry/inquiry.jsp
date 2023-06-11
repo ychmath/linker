@@ -101,7 +101,7 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -152,7 +152,7 @@
 					</div>
 					<a href="/updateform" style="text-decoration:noe; color:#333">
 					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -246,10 +246,13 @@
 		</c:if>
 	</div>
 
+<c:if test="${ user.role == 'buyer'}">
 	<div id="write" class="write_ty">
 		<input type="button" id="write" value="글쓰기"
 			onclick="location.href='write'" />
 	</div>
+</c:if>
+	
 		<!-- Footer Start -->
 	<div
 		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
