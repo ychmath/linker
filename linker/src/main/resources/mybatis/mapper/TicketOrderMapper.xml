@@ -9,11 +9,11 @@
 </insert>
 
 <select id="selectAll" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
-	select userid, ticketorderid, orderdate, tickettypename, price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} order by orderdate desc limit #{start}, #{count}
+	select userid, ticketorderid, orderdate, tickettypename, price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} order by ticketorderid desc, orderdate desc limit #{start}, #{count}
 </select>
 
 <select id="selectByDate" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
-	select ticketorderid, orderdate, tickettypename , price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by orderdate desc limit #{start}, #{count}
+	select ticketorderid, orderdate, tickettypename , price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by ticketorderid desc, orderdate desc limit #{start}, #{count}
 </select>
 
 <select id="selectByDateCount" parameterType="map" resultType="int">

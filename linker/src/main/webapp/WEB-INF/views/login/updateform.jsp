@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>회원정보 수정</title>
+    <title>비밀번호 수정</title>
     <link rel="stylesheet" href="/css/login/updateform.css"/>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link
@@ -35,7 +35,7 @@
     <form action="update" method="post" id="updateform">
       <input type="hidden" name="_method" value="put" />  
       <div class="container">  
-        <h3>${user.userid}님의정보를수정합니다.</h3>
+        <h3>${user.userid}님의 비밀번호를 변경합니다.</h3>
             <div class="login__field">
             <span>이름</span>
             <input type="text" name="name" id="name" value="${user.name}" readonly/>
