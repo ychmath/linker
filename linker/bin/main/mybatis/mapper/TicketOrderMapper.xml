@@ -5,42 +5,23 @@
 
 
 <insert id="buyTicket" parameterType="com.linker.ticket.dto.TicketOrderDto">
-	insert into ticketorder(ticketorderid, userid, tickettype, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettype}, #{quantity}, now())
+	insert into ticketorder(ticketorderid, userid, tickettypeid, quantity, orderdate) values(#{ticketorderid}, #{userid}, #{tickettype}, #{quantity}, now())
 </insert>
 
 <select id="selectAll" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
-	select userid, ticketorderid, orderdate, tickettypename, price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} order by orderdate desc limit #{start}, #{count}
+	select userid, ticketorderid, orderdate, tickettypename, price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} order by ticketorderid desc, orderdate desc limit #{start}, #{count}
 </select>
 
 <select id="selectByDate" parameterType="map" resultType="com.linker.ticket.dto.TicketOrderDto">
-	select ticketorderid, orderdate, tickettypename , price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by orderdate desc limit #{start}, #{count}
+	select ticketorderid, orderdate, tickettypename , price, quantity, price * quantity as totalprice from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} and orderdate between #{startDate} and #{endDate} order by ticketorderid desc, orderdate desc limit #{start}, #{count}
 </select>
-
 
 <select id="selectByDateCount" parameterType="map" resultType="int">
 	select count(*) from ticketorder tto, tickettype ttn where tto.tickettypeid = ttn.tickettypeid and userid = #{userid} and orderdate between #{startDate} and #{endDate}
 </select>
 
-
 <select id="count" parameterType="String" resultType="int">
 	select count(*) from ticketorder where userid = #{userid}
 </select>
-
-
-<!-- <select id="selectAll" resultType="com.linker.ticket.dto.TicketorderDto">
-		select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid ORDER BY orderdate DESC
-</select>
-
-<select id="selectByDate" resultType="com.linker.finance.dto.ExpenditureDto" parameterType="map">
-	<![CDATA[
-	select ticketorderid, orderdate, tickettypename,  price, quantity, price * quantity AS totalprice FROM tickettype tt INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid WHERE orderdate >= #{startDate} AND orderdate <= #{endDate} ORDER BY orderdate DESC
-]]>
-
-
-</select>
-
- -->
-
-
 
 </mapper>

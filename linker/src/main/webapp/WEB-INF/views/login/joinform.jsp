@@ -17,7 +17,7 @@
 
 
 <body>
-	<form action="joinform" method="post" id="joinForm">
+	<form action="join" method="post" id="join">
 		<div class="container">
 			<div class="content">
 				<!-- INPUT -->

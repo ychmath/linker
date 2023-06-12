@@ -118,7 +118,7 @@ https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
