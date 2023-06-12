@@ -248,6 +248,7 @@ $(function(){
 });
 
 function showSaledResult(start, end) {
+	
 	 $.ajax({
 	        url: "./filtered_data_sa",
 	        data: {
