@@ -484,7 +484,7 @@ th:first-child, td:first-child {
 		</c:if>
 	</div>
 	<c:if test="${count == 0 }">
- 	아직 구매한 식권이 없습니다.
+ 	식권 구매 내역이 없습니다.
  	</c:if>
 
 

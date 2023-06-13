@@ -30,7 +30,6 @@ public class TicketOrderService {
 		return dao.selectAll(m);
 	}
 	
-	
 	public int count(String userid) {
 		return dao.count(userid);
 	}
@@ -54,8 +53,5 @@ public class TicketOrderService {
 		m.put("userid", userid);
 		
 		return dao.selectByDateCount(m);
-		
 	}
-
-	
 }

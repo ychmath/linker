@@ -8,7 +8,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.linker.ticket.dao.TicketOrderDao;
 import com.linker.ticket.dao.TicketUseDao;
+import com.linker.ticket.dto.TicketOrderDto;
 import com.linker.ticket.dto.TicketUseDto;
 
 @Service
@@ -17,38 +19,36 @@ public class TicketUseService {
 	@Autowired
 	TicketUseDao dao;
 	
-	//전체 티켓 사용 내역 조히
-	public List<TicketUseDto> getAllTicketuse() {
-		return dao.selectAll();
+	public List<TicketUseDto> selectAll(int start, String userid){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 10);
+		m.put("userid", userid);
+		return dao.selectAll(m);
 	}
 	
-	// 특정 날짜의 사용된 식권 조회
-	public List<TicketUseDto> getUsedByDate(Date startDate, Date endDate) {
-		Map<String, Date> map = new HashMap<>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-
-		return dao.selectByDate(map);
+	public int count(String userid) {
+		return dao.count(userid);
 	}
 	
-	//식권 사용 추가 메서드
-	public int addUse(TicketUseDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<TicketUseDto> selectByDate(Date startDate, Date endDate, String userid, int start){
+		Map<String, Object> m = new HashMap<>();
+		m.put("startDate", startDate);
+		m.put("endDate", endDate);
+		m.put("userid", userid);
+		m.put("start", start);
+		m.put("count", 10);
+		//limit 추가
+		return dao.selectByDate(m);
 	}
-
-	//식권 타입별 식권 주문 삭제
-	public int deleteOrderById(int tickettypename) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public int selectByDateCount(Date startDate, Date endDate, String userid) {
+		
+		Map<String, Object> m = new HashMap<>();
+		m.put("startDate", startDate);
+		m.put("endDate", endDate);
+		m.put("userid", userid);
+		
+		return dao.selectByDateCount(m);
 	}
-	public List<TicketUseDto> selectByDate(Date startDate, Date endDate) {
-		Map<String, Date> map = new HashMap<>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-
-		return dao.selectByDate(map);
-	}
-
-
 }
