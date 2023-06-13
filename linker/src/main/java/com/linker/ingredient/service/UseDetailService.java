@@ -1,5 +1,6 @@
 package com.linker.ingredient.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,24 @@ public class UseDetailService {
 		m.put("name", ingredientname);
 		m.put("count", 10);
 		return dao.getUseByName(m);
+	}
+	
+	// 사용내역 사용일 기준 검색 수
+	public int useDateCount(Date startDay, Date endDay) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("startDay", startDay);
+		m.put("endDay", endDay);
+		return dao.useDateCount(m);
+	}
+	
+	// 사용일 기준 조회 리스트
+	public List<UseDetailDto> getByUseDate(int start, Date startDay, Date endDay) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("startDay", startDay);
+		m.put("endDay", endDay);
+		m.put("count", 10);
+		return dao.getByUseDate(m);
 	}
 
 }

@@ -169,7 +169,7 @@ td {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -195,13 +195,13 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/useSearchByDate/result"
+						<form id="searchByUseDate" action="/inventory/SearchByUseDate/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>사용일자별 검색</b>
 							</p>
 							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
+							<input class="btn btn-primary" type="button" id="search-useDate" value="검색">
 						</form>
 					</div>
 					<div class="content">
@@ -313,7 +313,7 @@ td {
 
 			}); // search click end
 
-			$("#search-orderDate").click(function() {
+			$("#search-useDate").click(function() {
 
 				let startDay = $("#startDay").val();
 				let endDay = $("#endDay").val();
@@ -324,7 +324,7 @@ td {
 					return false;
 				}
 
-				$("#searchByOrderDate").submit();
+				$("#searchByUseDate").submit();
 
 			}); // search click end
 

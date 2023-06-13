@@ -34,7 +34,7 @@
 		inner join ingredient
 		on ingredient.ingredientid = inventory.ingredientid
 		and ingredientname like concat('%', #{name}, '%')
-		order by receivedate, ingredientname
+		order by usedate, ingredientname
 		limit #{start}, #{count}
 	</select>
 	<!-- 조회된 개수 조회 -->
@@ -45,6 +45,26 @@
 		inner join ingredient
 		on ingredient.ingredientid = inventory.ingredientid
 		and ingredientname like concat('%', #{name}, '%')
-		order by receivedate, ingredientname
+		order by usedate, ingredientname
+	</select>
+		<!-- 사용일 기준 조회 -->
+	<select id="getByUseDate" parameterType="map" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and usedate between #{startDay} and #{endDay}
+		order by usedate, ingredientname
+		limit #{start}, #{count}
+	</select>
+	<!-- 사용일 조회 리스트 수 -->
+	<select id="useDateCount" parameterType="map" resultType="int">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and usedate between #{startDay} and #{endDay}
 	</select>
 </mapper>
