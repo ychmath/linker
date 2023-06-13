@@ -1,50 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 <title>Linker</title>
 <style>
-	.content {
-		width: 100%;
-	}
+.content {
+	width: 100%;
+}
 
-	.IngredientList {
-		width: 100%;
-		border: 1px solid gray;
-		border-collapse: collapse;
-		margin-top: 30px;
-		text-align: center;
-	}
+.IngredientList {
+	width: 100%;
+	border: 1px solid gray;
+	border-collapse: collapse;
+	margin-top: 30px;
+	text-align: center;
+}
 
-	th {
-		text-align: center;
-		border-bottom: 1px solid gray;
-	}
+th {
+	text-align: center;
+	border-bottom: 1px solid gray;
+}
 
-	.searchController {
-		width: 100%;
-		align-self: flex-start;
-	}
+.searchController {
+	width: 100%;
+	align-self: flex-start;
+}
 
-	.title {
-		width: 700px;
-		margin-top: 30px;
-	}
+.title {
+	width: 700px;
+	margin-top: 30px;
+}
 
-	.pageController {
-		width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-	}
+.pageController {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
 
-	.content {
-		width: 100%;
-		align-content: center;
-	}
+.content {
+	width: 100%;
+	align-content: center;
+}
 </style>
 </head>
 <body>
@@ -56,16 +56,16 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 text-right menu-1 menu-wrap">
-        				<ul>
-              				<c:if test="${ user == null }">
-                				<li class="login-signup"><a href="/loginform">로그인</a></li>
-                				<li class="login-signup"><a href="/joinform">회원가입</a></li>
-              				</c:if>
-               				<c:if test="${ user != null }">
-              					<li class="myinfo">${ user.userid } 회원님 환영합니다!</li>
-              					<li class="logout"><a href="/logout">로그아웃</a></li>
-              				</c:if>
-            			</ul>
+						<ul>
+							<c:if test="${ user == null }">
+								<li class="login-signup"><a href="/loginform">로그인</a></li>
+								<li class="login-signup"><a href="/joinform">회원가입</a></li>
+							</c:if>
+							<c:if test="${ user != null }">
+								<li class="myinfo">${ user.userid }회원님 환영합니다!</li>
+								<li class="logout"><a href="/logout">로그아웃</a></li>
+							</c:if>
+						</ul>
 					</div>
 				</div>
 
@@ -82,12 +82,13 @@
 							<li><a href="/notice/notice">공지사항</a></li>
 							<li><a href="/inquiry/inquiry">문의사항</a></li>
 							<li><a href="/menu/list">식단표</a></li>
-            			<c:if test="${ user.role == 'seller' }">
-                			<li><a href="/finance/sales">매출</a></li>
-                			<li><a href="/finance/expenditure">지출</a></li>
-                			<li class="active"><a href="/ingredient/ingredientList">식자재 관리</a></li>
-                			<li><a href="/profitChart">차트</a></li>
-       					</c:if>
+							<c:if test="${ user.role == 'seller' }">
+								<li><a href="/finance/sales">매출</a></li>
+								<li><a href="/finance/expenditure">지출</a></li>
+								<li class="active"><a href="/ingredient/ingredientList">식자재
+										관리</a></li>
+								<li><a href="/profitChart">차트</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -100,22 +101,32 @@
 			<div class="main">
 				<div class="container">
 					<div class="searchController">
-						<h1><a class="title" href="/ingredient/ingredientList">식자재 목록</a></h1>
-						<form id="searchByName" action="/ingredient/searchbyname/result" method="get"
-						 style="display: inline-block;">
-							<p style="color: white;"><b>이름별 검색</b></p>
-							<input type="search" name="name" id="name">
-							<input type="button" id="search-name" value="검색">
+						<h1>
+							<a class="title" href="/ingredient/ingredientList">식자재 목록</a>
+						</h1>
+						<form id="searchByName" action="/ingredient/searchbyname/result"
+							method="get" style="display: inline-block;">
+							<p style="color: white;">
+								<b>이름별 검색</b>
+							</p>
+							<input type="search" name="name" id="name"> <input
+								type="button" id="search-name" value="검색">
 						</form>
-						<form id="searchByDate" action="/ingredient/searchbydate/result" method="get"
-						 style="display: inline-block;">
-							<p style="color: white;"><b>유통기한별 검색</b></p>
-							<input type="date" class="exp" name="startDay" id="startDay"> - <input type="date" class="exp" name="endDay" id="endDay">
+						<form id="searchByDate" action="/ingredient/searchbydate/result"
+							method="get" style="display: inline-block;">
+							<p style="color: white;">
+								<b>유통기한별 검색</b>
+							</p>
+							<input type="date" class="exp" name="startDay" id="startDay">
+							- <input type="date" class="exp" name="endDay" id="endDay">
 							<input type="button" id="search-date" value="검색">
 						</form>
 					</div>
-				<div class="container">
-					<h4 class="title">'<%= request.getParameter("name") %>'에 대한 검색 결과입니다.</h4></div>
+					<div class="container">
+						<h4 class="title">
+							'<%=request.getParameter("name")%>'에 대한 검색 결과입니다.
+						</h4>
+					</div>
 					<c:if test="${ count != 0 }">
 						<table class="IngredientList">
 							<tr>
@@ -124,11 +135,11 @@
 								<th>유통기한</th>
 							</tr>
 							<c:forEach items="${ nameSearchResult }" var="result">
-							<tr>
-								<td>${ result.ingredientname }</td>
-								<td>${ result.unit }</td>
-								<td>${ result.exp }</td>
-							</tr>
+								<tr>
+									<td>${ result.ingredientname }</td>
+									<td>${ result.unit }</td>
+									<td>${ result.exp }</td>
+								</tr>
 							</c:forEach>
 						</table>
 						<div class="pageController">
@@ -146,9 +157,12 @@
 					<c:if test="${ count == 0 }">
 						해당 식자재가 존재하지 않습니다.
 					</c:if>
-				</div>	<%-- main > content end --%>
-				</div>	<%-- main > container end --%>
-			</div>	<%-- main end --%>
+				</div>
+				<%-- main > content end --%>
+			</div>
+			<%-- main > container end --%>
+		</div>
+		<%-- main end --%>
 
 		<footer id="fh5co-footer" role="contentinfo" class="fh5co-section">
 			<div class="container">
@@ -164,46 +178,48 @@
 				</div>
 			</div>
 		</footer>
-			</div>	<%-- footer > container end --%>
-	</div>	<%-- page end --%>
+	</div>
+	<%-- footer > container end --%>
+	</div>
+	<%-- page end --%>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
-	
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(function(){
-		$("#search-name").click(function(){
-			
-			let name = $("#name").val();
-						
-			if (!name || name.replace(/\s+/g, "") == "") {
-				alert("검색값을 입력해 주세요.");
-				$("#name").focus();
-				return false;
-			}
-			
-			$("#searchByName").submit();
+	<script>
+		$(function() {
+			$("#search-name").click(function() {
 
-		});	// search click end
+				let name = $("#name").val();
 
-		$("#search-date").click(function(){
+				if (!name || name.replace(/\s+/g, "") == "") {
+					alert("검색값을 입력해 주세요.");
+					$("#name").focus();
+					return false;
+				}
 
-			let startDay = $("#startDay").val();
-			let endDay = $("#endDay").val();
+				$("#searchByName").submit();
 
-			if (!startDay || !endDay || endDay < startDay) {
-				alert("올바른 날짜값을 입력해 주세요.");
-				$("#startDay").focus();
-				return false;
-			}
+			}); // search click end
 
-			$("#searchByDate").submit();
+			$("#search-date").click(function() {
 
-		});	// search click end
-		
-	});	// ready end
-</script>
+				let startDay = $("#startDay").val();
+				let endDay = $("#endDay").val();
+
+				if (!startDay || !endDay || endDay < startDay) {
+					alert("올바른 날짜값을 입력해 주세요.");
+					$("#startDay").focus();
+					return false;
+				}
+
+				$("#searchByDate").submit();
+
+			}); // search click end
+
+		}); // ready end
+	</script>
 </body>
 </html>

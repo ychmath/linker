@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -32,50 +33,55 @@
 <link href="../../css/style.css" rel="stylesheet">
 
 <style>
-.content{
+.content {
 	width: 100%;
 	align-content: center;
 }
-.ticketlist{
+
+.ticketlist {
 	width: 100%;
 	border: 1px solid gray;
 	border-collapse: collapse;
 	margin-top: 30px;
 	text-align: center;
-	font-size: 15px; 
-	 border-left: 2px solid;
- 	 border-bottom: 2px solid #000;
-  	 border-right: 2px solid #000;
-  	 border-top: 2px solid #000;
+	font-size: 15px;
+	border-left: 2px solid;
+	border-bottom: 2px solid #000;
+	border-right: 2px solid #000;
+	border-top: 2px solid #000;
 }
-th{
+
+th {
 	text-align: center;
 	border-bottom: 1px solid gray;
 	border-collapse: collapse;
 	border: 1px solid #000;
 	height: 40px;
-	 border-bottom: 2px solid #000;
-}
-#tickettable{
-height: 460px;
-}
-#d{
- margin-top: 20px;
-}
-td{
-  border-collapse: collapse;
-  border: 1px solid #ccc;
-}
-#tbody{
-	 border-left: 1px solid;
- 	 border-bottom: 1px solid #000;
-  	 border-right: 1px solid #000;
+	border-bottom: 2px solid #000;
 }
 
+#tickettable {
+	height: 460px;
+}
+
+#d {
+	margin-top: 20px;
+}
+
+td {
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+}
+
+#tbody {
+	border-left: 1px solid;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+}
 </style>
 
 </head>
-  
+
 <body>
 	<!-- Spinner Start -->
 	<div id="spinner"
@@ -122,96 +128,102 @@ td{
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				
+
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/" class="dropdown-item">재고현황</a> <a href="/"
+								class="dropdown-item">발주내역</a> <a href="/" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-				
+
 			</div>
 		</div>
 	</nav>
 	<!-- Navbar End -->
 	<div class="content">
-	<div class="container">
-	<div id="tickettable" class="about-text">
-	<h1 class="title">
-	<a href="/ticket/ticketlist" >식권 목록</a>
-	</h1>
-	<div id="tickettable">
-	<table class="ticketlist" id="ticketlist">
-		<thead>
-			<tr>
-				<th>식권 이름</th>
-				<th>가격</th>
-				<th style="width: 10%"></th>
-			</tr>
-		</thead>
-		<tbody id="tbody">
-			<c:forEach items="${ticketList}" var="ticket">
-				<tr>
-					<td>${ticket.tickettypename}</td>
-					<td>${ticket.price}</td>
-					<td><button class="update btn" value="${ticket.tickettypeid}">수정</button></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-	<button id="d" class="btn btn-primary" value="${ticket.tickettypeid}" onclick="location.href='/ticket/add'">등록</button>
-	</div>
-	</div>
-		</div>
-			<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
 		<div class="container">
-			<div class="copyright">
-				<div class="row">
-					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-						Reserved.
-					</div>
+			<div id="tickettable" class="about-text">
+				<h1 class="title">
+					<a href="/ticket/ticketlist">식권 목록</a>
+				</h1>
+				<div id="tickettable">
+					<table class="ticketlist" id="ticketlist">
+						<thead>
+							<tr>
+								<th>식권 이름</th>
+								<th>가격</th>
+								<th style="width: 10%"></th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${ticketList}" var="ticket">
+								<tr>
+									<td>${ticket.tickettypename}</td>
+									<td>${ticket.price}</td>
+									<td><button class="update btn"
+											value="${ticket.tickettypeid}">수정</button></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+					<button id="d" class="btn btn-primary"
+						value="${ticket.tickettypeid}"
+						onclick="location.href='/ticket/add'">등록</button>
+				</div>
+			</div>
+		</div>
+		<!-- Footer Start -->
+		<div
+			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+			data-wow-delay="0.1s">
+			<div class="container">
+				<div class="copyright">
+					<div class="row">
+						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+							Reserved.
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+								Codex</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	
+
 	<!-- Footer End -->
 
 
@@ -247,15 +259,25 @@ td{
 				location.href = "/main";
 			}
 
-			$(".update").click(function() {
-				var targetid = $(this).val();
-				var _left = Math.ceil((window.screen.width - 500) / 2);
-				var _top = Math.ceil((window.screen.height - 600) / 2);
+			$(".update")
+					.click(
+							function() {
+								var targetid = $(this).val();
+								var _left = Math
+										.ceil((window.screen.width - 500) / 2);
+								var _top = Math
+										.ceil((window.screen.height - 600) / 2);
 
-				window.open('update/' + targetid, '식권 정보 수정하기', 'top=' + _top
-						+ ', left=' + _left
-						+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
-			}); // update click end
+								window
+										.open(
+												'update/' + targetid,
+												'식권 정보 수정하기',
+												'top='
+														+ _top
+														+ ', left='
+														+ _left
+														+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+							}); // update click end
 		});
 	</script>
 </body>

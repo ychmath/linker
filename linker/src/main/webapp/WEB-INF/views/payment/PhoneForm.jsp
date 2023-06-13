@@ -26,7 +26,8 @@
 				</tr>
 				<tr>
 					<td>전화번호 입력</td>
-					<td><input type="text" id="phone" name="phone" oninput="oninputPhone(this);"></td>
+					<td><input type="text" id="phone" name="phone"
+						oninput="oninputPhone(this);"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" id="use" value="식권 사용"></td>
@@ -36,23 +37,20 @@
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
-			
 			$(function() {
-				
-	            function oninputPhone(target) {
-	                target.value = target.value
-	                    //.replace(/[^0-9]/g, '')
-	                    .replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-	            }
-	            
+
+				function oninputPhone(target) {
+					target.value = target.value
+					//.replace(/[^0-9]/g, '')
+					.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
+				}
+
 				$("#phone-form").submit(function(e) {
 					e.preventDefault();
 					useMealTicket();
 				});
 			});
 
-
-            
 			function useMealTicket() {
 				var tickettypename = $("#selected").val();
 				var quantity = 1;

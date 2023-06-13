@@ -30,12 +30,7 @@
 </head>
 
 <body>
-  <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
+
   <!-- Topbar Start -->
   <div class="container-fluid bg-light p-0">
     <div class="row gx-0 d-none d-lg-flex">
@@ -244,7 +239,7 @@
   </c:if>
 
   <!-- Footer Start -->
-  <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" >
     <div class="container">
       <div class="copyright">
         <div class="row">
@@ -260,10 +255,6 @@
     </div>
   </div>
   <!-- Footer End -->
-
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-      class="bi bi-arrow-up"></i></a>
 
   <!-- JavaScript Libraries -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
