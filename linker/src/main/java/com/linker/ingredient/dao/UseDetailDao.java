@@ -24,6 +24,12 @@ public interface UseDetailDao {
 	
 	// <!-- 식자재 사용 내역 출력 -->
 	List<UseDetailDto> useList(Map<String, Object> m);
+	
+	// 식자재 사용 내역 이름 검색 수
+	int useNameCount(String ingredientname);
+	
+	// 식자재 사용 내역 이름 검색 리스트
+	List<UseDetailDto> getUseByName(Map<String, Object> m);
 
 
 }

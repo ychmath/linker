@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.linker.ingredient.dao.UseDetailDao;
 import com.linker.ingredient.dto.UseDetailDto;
 
+@Service
 public class UseDetailService {
 	@Autowired
 	UseDetailDao dao;
@@ -39,6 +41,20 @@ public class UseDetailService {
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.useList(m);
+	}
+	
+	// 식자재 사용 내역 이름 검색 수
+	public int useNameCount(String ingredientname) {
+		return dao.useNameCount(ingredientname);
+	}
+	
+	// 식자재 사용 내역 이름 검색 리스트
+	public List<UseDetailDto> getUseByName(int start, String ingredientname) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("name", ingredientname);
+		m.put("count", 10);
+		return dao.getUseByName(m);
 	}
 
 }
