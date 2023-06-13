@@ -154,7 +154,7 @@ td {
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
 							<a href="/" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
@@ -240,7 +240,7 @@ td {
 									<a href="inventoryList?p=${ begin-1 }">[이전]</a>
 								</c:if>
 								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="invetoryList?p=${ i }">${ i }</a>
+									<a href="inventoryList?p=${ i }">${ i }</a>
 								</c:forEach>
 								<c:if test="${ end < totalPages }">
 									<a href="inventoryList?p=${ end + 1 }">[다음]</a>
