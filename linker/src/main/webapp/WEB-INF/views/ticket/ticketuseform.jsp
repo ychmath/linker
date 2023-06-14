@@ -20,12 +20,14 @@ String end_date = request.getParameter("end_date");
 <link href="../../img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+	integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
 <link href="../../lib/animate/animate.min.css" rel="stylesheet">
@@ -45,7 +47,7 @@ String end_date = request.getParameter("end_date");
 	rel="stylesheet"
 	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 	crossorigin="anonymous">
-  <link href="/css/user/inquiry.css" rel="stylesheet">
+  <link href="/css/user/table.css" rel="stylesheet">
 
 </head>
 
@@ -217,10 +219,8 @@ String end_date = request.getParameter("end_date");
 									.getDate() + 1));
 							break;
 						case "total":
-							startDate = new Date();
-							endDate1 = new Date();
-							endDate = new Date(endDate1.setDate(endDate1
-									.getDate() + 1));
+							startDate = new Date("2021-01-01");
+							endDate = new Date();
 							break;
 						}
 
