@@ -7,10 +7,9 @@
 <head>
 <title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/login/deleteform.css"/>
+<link rel="stylesheet" href="/css/login/deleteform.css" />
 
 <style>
-
 body {
 	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 	display: flex;
@@ -18,7 +17,7 @@ body {
 	justify-content: center;
 	height: 100vh;
 	margin: 0;
-}45
+}
 
 .container {
 	width: 400px;
@@ -37,6 +36,7 @@ h3 {
 	margin: 0 0 1.5rem 0;
 	text-align: center;
 }
+
 h4 {
 	font-size: 1.5rem;
 	color: #f38181;
@@ -111,11 +111,11 @@ td:first-child {
 	font-size: 0.8em;
 	margin-bottom: 1rem;
 }
-  .center-text {
-    text-align: center;
-    pointer-events: none;
-    cursor: default;
-  }
+
+.center-text {
+	text-align: center;
+	cursor: default;
+}
 </style>
 
 </head>
@@ -123,28 +123,29 @@ td:first-child {
 	<div class="container">
 		<h3>회원 탈퇴</h3>
 		<h4>비밀번호를 입력해주세요</h4>
-		<c:if test="${result == false}">
+		<c:if test="${result == 'false'}">
 			<p class="error-message">입력하신 비밀번호는 틀렸습니다.</p>
 		</c:if>
 		<form method="post" onsubmit="checkVal()" action="delete">
-			<input type="hidden" name="_method" value="delete" />
-			<label class="floating-label" for="passowrd">비밀번호</label>
-				<input type="password" name="formpw" id="password" class="login__input" placeholder="비밀번호" required/>
-					<input type="submit" value="탈퇴" class="submit" />	
-					<div class="center-text">
-							<a href="/">홈으로 돌아가기</a>
-						</div>
+			<input type="hidden" name="_method" value="delete" /> <label
+				class="floating-label" for="passowrd">비밀번호</label> <input
+				type="password" name="formpw" id="password" class="login__input"
+				placeholder="비밀번호" required /> <input type="submit" value="탈퇴"
+				class="submit" />
+			<div class="center-text">
+				<br> <a href="/">홈으로 돌아가기</a>
+			</div>
 		</form>
-	
-		<script>
-			function checkVal() {
-				let pw = document.querySelector("#password").value;
-				if (!pw) {
-					alert("비밀번호 입력하세요");
-					return false;
-				}
-			}
-		</script>
 	</div>
+	<script>
+		function checkVal() {
+			let pw = document.querySelector("#password").value;
+			if (!pw) {
+				alert("비밀번호 입력하세요");
+				return false;
+			}
+		}
+	</script>
+
 </body>
 </html>

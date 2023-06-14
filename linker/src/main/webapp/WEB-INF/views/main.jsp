@@ -29,9 +29,8 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
-
 </head>
-  
+
 <body>
 
 	<!-- Topbar Start -->
@@ -92,6 +91,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
@@ -377,7 +377,6 @@
 	    
 	    requestAnimationFrame(render);
 	}
-	
 	
 </script>
 </body>

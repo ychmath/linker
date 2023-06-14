@@ -115,10 +115,7 @@ String end_date = request.getParameter("end_date");
 		action="${pageContext.request.contextPath}/finance/filtered_data_t"
 		method="get">
 		<div>
-			<!--  id="B" -->
 			<div>
-				<!-- style="display:flex; align-items:center;" -->
-
 				<p>
 					<strong>식권 구매 내역</strong>
 				</p>
@@ -194,6 +191,7 @@ String end_date = request.getParameter("end_date");
 	<c:if test="${count == 0 }">
  	식권 구매 내역이 없습니다.
  	</c:if>
+
 	<!-- Footer Start -->
 	<div
 		class="container-fluid bg-dark text-light footer mt-0 pt-0 wow fadeIn"
@@ -202,7 +200,7 @@ String end_date = request.getParameter("end_date");
 			<div class="copyright">
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						&copy; <a class="border-bottom" href="/">Linker</a>, All Right
 						Reserved.
 					</div>
 					<div class="col-md-6 text-center text-md-end">
@@ -215,7 +213,9 @@ String end_date = request.getParameter("end_date");
 		</div>
 	</div>
 	<!-- Footer End -->
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		function search() {
 			var start_date = document.getElementById('start-date-input').value;
