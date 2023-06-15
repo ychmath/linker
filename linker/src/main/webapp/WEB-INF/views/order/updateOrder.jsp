@@ -199,21 +199,21 @@ td {
 								<b>주문 내역 추가</b>
 							</p>
 							<span>식자재명:&nbsp;</span>
-							<select name="ingredient" required>
-								<!-- 식자재 리스트 DB에서 가져와 select 할 예정 -->
-								<option value="KG">KG</option>
-								<option value="G">G</option>
-								<option value="LB">LB</option>
-								<option value="OZ">OZ</option>
+							<select name="ingredientid" required>
+								<c:forEach items="${ IngredientList }" var="IngredientList">
+									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
+								</c:forEach>
 							</select>
-							<span>공급자:&nbsp;</span><input name="exp" type="date"required>
-							<span>주문수량:&nbsp;</span><input name="exp" type="date"required>
-							<span>주문가격:&nbsp;</span><input name="exp" type="date"required>
-							<span>주문일:&nbsp;</span><input name="exp" type="date"required>
+							<span>공급자:&nbsp;</span><input name="supplier" required>
+							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
+							<span>주문가격:&nbsp;</span><input name="orderprice" required>
+							<span>주문일:&nbsp;</span><input name="orderdate" type="date" required>
+							<div>
+								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
+							</div>
 						</form>
 					</div>
-					<div class="content">
-						<c:if test="${ count != 0 }">
+					<div class="deleteController">
 							<table class="InvenList" id="InvenList">
 								<thead>
 									<tr>
@@ -229,7 +229,7 @@ td {
 								<c:forEach items="${ orderList }" var="orderList">
 									<tr class="orders">
 										<td>
-											<input type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }">
+											<input type="checkbox" name="checkList" class="checkList" value="${ orderList.orderid }">
 										</td>
 										<td>${ orderList.ingredientname }</td>
 										<td>${ orderList.supplier }</td>
@@ -240,7 +240,10 @@ td {
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="deleteOrder" value="선택 내역 삭제" />
+							<div>
+								<input class="btn btn-primary" type="button" id="deleteOrder" value="선택 내역 삭제" />
+							</div>
+					</div>
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="changeOrder?p=${ begin-1 }">[이전]</a>
@@ -252,12 +255,6 @@ td {
 									<a href="changeOrder?p=${ end + 1 }">[다음]</a>
 								</c:if>
 							</div>
-						</c:if>
-						<c:if test="${ count == 0 }">
-							입력된 주문 내역이 존재하지 않습니다.
-							<input class="btn" type="button" id="changeOrder" value="목록 추가 / 삭제" onclick="location.href='/inventory/orderList/changeOrder';" />
-						</c:if>
-					</div>
 					<%-- main > content end --%>
 				</div>
 			</div> <!-- container end -->
@@ -329,34 +326,46 @@ td {
 				location.href = "/main";
 			}
 
-			$("#search-name").click(function() {
+			$("#deleteOrder").on("click", function() {
+				// 체크박스에 체크된 식자재 id 번호 값 찾기
+				$(".checkList:checked").each(function(i, item) {
+					// target에 id값 저장
+					var target = item.value;
 
-				let name = $("#name").val();
+					$.ajax({
+						url : "/order/delete/" + target,
+						method : "delete",
+						data : {
+							'orderid' : target
+						}
+					}).done(function(result) {
 
-				if (!name || name.replace(/\s+/g, "") == "") {
-					alert("검색값을 입력해 주세요.");
-					$("#name").focus();
-					return false;
-				}
+					});
+				}); // each end
 
-				$("#searchByName").submit();
+				alert("삭제가 완료되었습니다.");
+				location.replace("/inventory/orderList/updateOrder");
+			});
 
-			}); // search click end
+			$("#add").on("click", function(event) {
+						// 바로 전송 차단
+						event.preventDefault;
 
-			$("#search-orderDate").click(function() {
-
-				let startDay = $("#startDay").val();
-				let endDay = $("#endDay").val();
-
-				if (!startDay || !endDay || endDay < startDay) {
-					alert("올바른 날짜값을 입력해 주세요.");
-					$("#startDay").focus();
-					return false;
-				}
-
-				$("#searchByOrderDate").submit();
-
-			}); // search click end
+						// 하나라도 값이 입력되지 않은 경우
+						if (!$("input[name='supplier']").val()
+								|| !$("select[name='ingredientid']").val()
+								|| !$("input[name='orderquantity']").val()
+								|| !$("input[name='orderprice']").val()
+								|| !$("input[name='orderdate']").val()
+								) {
+							// submit 하지 않고 alert 출력
+							alert("필수 항목을 전부 입력해 주십시오.");
+						} else {
+							// 전부 입력했다면 submit
+							alert("등록이 완료되었습니다.");
+							$("#addOrder").submit();
+						}
+					});
 
 		}); // ready end
 	</script>

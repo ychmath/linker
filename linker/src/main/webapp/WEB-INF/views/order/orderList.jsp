@@ -236,8 +236,8 @@ td {
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="newOrder" value="내역 추가/삭제"
-								onclick="location.href='/inventory/orderList/changeOrder';" />
+							<input class="btn btn-primary" type="button" id="newOrder" value="주문 내역 추가/삭제"
+								onclick="location.href='/inventory/orderList/updateOrder';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="orderList?p=${ begin-1 }">[이전]</a>
@@ -252,7 +252,7 @@ td {
 						</c:if>
 						<c:if test="${ count == 0 }">
 							입력된 주문 내역이 존재하지 않습니다.
-							<input class="btn" type="button" id="changeOrder" value="주문 내역 추가 / 삭제" onclick="location.href='/inventory/orderList/changeOrder';" />
+							<input class="btn" type="button" id="changeOrder" value="주문 내역 추가 / 삭제" onclick="location.href='/inventory/orderList/updateOrder';" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>

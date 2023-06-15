@@ -199,7 +199,6 @@ th {
 					</div>
 					<div class="content">
 						<form id="deleteIngredient">
-							<c:if test="${ count != 0 }">
 								<table class="IngredientList" id="IngredientList">
 									<tr>
 										<th style="width: 5%;"></th>
@@ -221,6 +220,7 @@ th {
 								<div>
 									<input type="button" id="delete" class="button btn btn-primary" value="선택한 식자재 삭제" />
 								</div>
+								</form>
 								<div class="pageController">
 									<c:if test="${ begin > end }">
 										<a href="change?p=${ begin-1 }">[이전]</a>
@@ -232,8 +232,6 @@ th {
 										<a href="change?p=${ end + 1 }">[다음]</a>
 									</c:if>
 								</div>
-							</c:if>
-						</form>
 					</div>
 					<%-- main > content end --%>
 				</div>
@@ -297,7 +295,7 @@ th {
 			$("#delete").on("click", function() {
 				// 체크박스에 체크된 식자재 id 번호 값 찾기
 				$(".checkList:checked").each(function(i, item) {
-					// target에 id값 저장
+					// target에 value값 저장
 					var target = item.value;
 
 					$.ajax({
