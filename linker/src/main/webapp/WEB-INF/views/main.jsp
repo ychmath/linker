@@ -145,8 +145,8 @@
 	<!-- Carousel Start -->
 	<div class="container-fluid p-0 pb-5">
 		<div class="owl-carousel header-carousel position-relative">
-			<div class="owl-carousel-item position-relative">
-				<img class="img-fluid" src="img/breakfast.jpg" alt="">
+			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/breakfast.jpg" alt="" style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -154,7 +154,10 @@
 						<div class="row justify-content-center">
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">조식</h1>
-								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">오믈렛</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">베이컨</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">소세지</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">감자</p>
 								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
@@ -163,8 +166,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="owl-carousel-item position-relative">
-				<img class="img-fluid" src="img/lunch.jpg" alt="">
+			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/lunch.jpg" alt="" style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -172,7 +175,10 @@
 						<div class="row justify-content-center">
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">중식</h1>
-								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">자장면</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">짬뽕</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">볶음밥</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">탕수육</p>
 								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
@@ -181,8 +187,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="owl-carousel-item position-relative">
-				<img class="img-fluid" src="img/dinner.jpg" alt="">
+			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/dinner.jpg" alt="" style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -191,6 +197,9 @@
 							<div class="col-12 col-lg-8 text-center">
 								<h1 class="display-3 text-white animated slideInDown mb-4">석식</h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-2">쌀밥</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">스테이크</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">해쉬포테이토</p>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">샐러드</p>
 								<a href="/menu/list"
 									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">식단표
 									확인</a>
@@ -272,7 +281,7 @@
 						<div class="section-title text-start">
 							<h1 class="display-5 mb-4">About Us</h1>
 						</div>
-						<p class="mb-4 pb-2">신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 최고의 맛과 건강함을
+						<p class="mb-4 pb-2">신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 <br>최고의 맛과 건강함을
 							선사합니다.</p>
 						<div class="row g-4 mb-4 pb-2">
 							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">

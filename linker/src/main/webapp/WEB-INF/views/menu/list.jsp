@@ -31,7 +31,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 </head>
   
@@ -137,8 +137,8 @@
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
@@ -155,8 +155,11 @@
 			<div class="main">
 				<div class="container">
 					<div class="content">
-						<h1 class="title" >식단표 목록</h1>
+					<p>
+						<strong>식단표 목록</strong>
+						</p>
 						<!-- 현재 로그인한 user의 role 값이 seller인 경우 글 등록 가능 -->
+						
 						<c:if test="${ user.role == 'seller' }">
 						<div class="write" align="right">
 							<a href="write">새 글 등록</a>

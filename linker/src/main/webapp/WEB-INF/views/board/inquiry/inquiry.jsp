@@ -26,7 +26,7 @@
 
   <!-- Template Stylesheet -->
   <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/user/inquiry.css" rel="stylesheet">
+  <link href="/css/comm/table.css" rel="stylesheet">
 </head>
 
 <body>

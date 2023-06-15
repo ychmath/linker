@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/user/notice.css">
+
 <title>공지사항</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,6 +22,8 @@
 <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
+
 </head>
 
 <body>

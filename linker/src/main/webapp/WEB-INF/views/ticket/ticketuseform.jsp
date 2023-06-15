@@ -17,7 +17,7 @@ String end_date = request.getParameter("end_date");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="../../img/favicon.ico" rel="icon">
+<link href="/img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link rel="stylesheet"
@@ -30,17 +30,17 @@ String end_date = request.getParameter("end_date");
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
-<link href="../../lib/animate/animate.min.css" rel="stylesheet">
-<link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="../../css/style.css" rel="stylesheet">
-<link href="../../css/user/table.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 </head>
 
