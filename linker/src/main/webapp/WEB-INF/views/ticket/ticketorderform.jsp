@@ -8,6 +8,7 @@ String end_date = request.getParameter("end_date");%>
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>식권 구매 내역</title>
 </head>
 <style>

@@ -53,4 +53,12 @@ public class LoginService {
 
 		return errorMap;
 	}
+	
+	public int getSellerCount() {
+		return dao.getSellerCount();
+	}
+	
+	public int getBuyerCount() {
+		return dao.getBuyerCount();
+	}
 }

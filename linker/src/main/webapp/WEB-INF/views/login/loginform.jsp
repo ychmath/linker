@@ -140,6 +140,7 @@ a:hover {
 	<form:form action="login" method="post" modelAttribute="command">
 		<div class="container">
 			<h2>로그인</h2>
+
 			<div class="login__field">
 				<input type="text" id="signin-id" class="login__input" name="userid"
 					placeholder="아이디" required autocomplete="off"> <label
@@ -149,10 +150,11 @@ a:hover {
 				<input type="password" id="signin-pw" class="login__input"
 					name="password" placeholder="비밀번호" required autocomplete="off">
 				<label class="floating-label" for="signin-pw">비밀번호</label>
-			</div>
+			</div>			
+			<span id="login-alert"
+				style="color: red; display: none; margin-top: 10px;">아이디 또는 비밀번호가 일치하지 않습니다.</span>
 			<button class="submit" id="signin" type="submit">로그인</button>
-			<span></span> <span id="login-alert"
-				style="color: red; display: none; margin-top: 10px;">${loginError}</span>
+			<span></span>
 
 			<div id="link-menu">
 				<a href="/find-id">아이디 찾기</a> <span class="separator">|</span> <a
@@ -162,14 +164,12 @@ a:hover {
 		</div>
 	</form:form>
 	<script>
-  var loginError = '<%=request.getAttribute("loginError")%>
-		';
-		if (loginError) {
-			document.getElementById('login-alert').style.display = 'inline';
+       var loginError = '${loginError}';
+		if (loginError != null && loginError != '') {
+			document.getElementById('login-alert').style.display = 'block';
 		} else {
 			document.getElementById('login-alert').style.display = 'none';
 		}
 	</script>
-
 </body>
 </html>

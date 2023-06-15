@@ -1,5 +1,6 @@
 package com.linker.login.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,4 +144,29 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
+	
+	// 판매자 수 가져오기
+	// 구매자 수 가져오기
+	@GetMapping("/sellerCount")
+	@ResponseBody
+    public Map<String, Integer> getSellerCount() {
+        int sellerCount = service.getSellerCount(); 
+        
+        Map<String, Integer> response = new HashMap<>();
+        response.put("userCount", sellerCount);
+        
+        return response;
+    }
+	
+	// 구매자 수 가져오기
+	@GetMapping("/buyerCount")
+	@ResponseBody
+    public Map<String, Integer> getBuyerCount() {
+        int buyerCount = service.getBuyerCount(); 
+        
+        Map<String, Integer> response = new HashMap<>();
+        response.put("userCount", buyerCount);
+        
+        return response;
+    }
 }
