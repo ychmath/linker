@@ -60,7 +60,7 @@
 	</select>
 	<!-- 사용일 조회 리스트 수 -->
 	<select id="useDateCount" parameterType="map" resultType="int">
-		select * from 
+		select count(*) from 
 		(usedetail inner join inventory
 		on inventory.inventoryid = usedetail.inventoryid)
 		inner join ingredient

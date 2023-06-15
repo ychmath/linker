@@ -155,7 +155,7 @@ public class OrderController {
 
 		m.addAttribute("count", count);
 
-		return "order/updateOrder";
+		return "order/changeOrder";
 	}
 
 	// 주문 삭제

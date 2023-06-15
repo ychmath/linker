@@ -33,6 +33,10 @@
 <link href="../../css/style.css" rel="stylesheet">
 
 <style>
+.container {
+	min-height: 200px;
+}
+
 .content {
 	width: 100%;
 }
@@ -183,7 +187,7 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/useDetailList">사용 내역 목록</a>
+						<a href="/inventory/useDetailList">사용 내역</a>
 					</h1>
 					<div class="searchController">
 						<form id="searchByName" action="/inventory/useSearchByName/result"

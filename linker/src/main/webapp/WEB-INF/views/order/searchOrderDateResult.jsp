@@ -71,6 +71,7 @@ td {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	margin-top: 10px;
 }
 
 .content {
@@ -155,7 +156,7 @@ td {
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
 							<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -174,7 +175,7 @@ td {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -230,8 +231,6 @@ td {
 							</tr>
 							</c:forEach>
 						</table>
-							<input class="btn btn-primary" type="button" id="Order" value="재고 목록으로"
-								onclick="location.href='/inventory/orderList';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="orderList?p=${ begin-1 }">[이전]</a>

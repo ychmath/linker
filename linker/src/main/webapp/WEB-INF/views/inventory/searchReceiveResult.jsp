@@ -147,7 +147,7 @@ td {
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -165,8 +165,8 @@ td {
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<span class="nav-item nav-link">${ user.userid } 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
