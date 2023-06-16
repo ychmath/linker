@@ -33,7 +33,7 @@
   - [About](#about)
 ## Introduction
 ```
-soldesk
+linker(soldesk project)
 |-- last commit version
 |     `-- back
 |		`-- bin
@@ -49,8 +49,6 @@ soldesk
 ## ERD 다이어그램
 
 ![ERD]()
-
-
 
 ##  My Role
 
