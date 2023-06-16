@@ -34,14 +34,6 @@ https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <body>
-<!--     Spinner Start
- -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-<!--     Spinner End
- -->    
         <!-- Topbar Start -->
     <div class="container-fluid bg-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
@@ -97,9 +89,9 @@ https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">

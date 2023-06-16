@@ -37,6 +37,10 @@
 	width: 100%;
 }
 
+.container{
+	min-height: 210px;
+}
+
 .IngredientList {
 	width: 100%;
 	border: 1px solid gray;
@@ -74,7 +78,7 @@ th {
 	margin-bottom: 30px;
 }
 
-.check {
+.checkList {
 	margin-top: 10px;
 }
 </style>
@@ -135,32 +139,33 @@ th {
 							<div class="nav-link dropdown-toggle active"
 								data-bs-toggle="dropdown">식자재 관리</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/ingredient/ingredientList active"
-									class="dropdown-item">식자재 목록</a> <a
-									href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-								<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
-									href="/" class="dropdown-item">사용내역</a>
+								<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
+								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+								<a href="/inventory/orderList" class="dropdown-item">발주내역</a>
+								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-								관리</div>
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								비용 관리
+							</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/profitChart" class="dropdown-item">요약</a> <a
-									href="/finance/sales" class="dropdown-item">매출내역</a> <a
-									href="/finance/expenditure" class="dropdown-item">지출내역</a>
+								<a href="/profitChart" class="dropdown-item">요약</a>
+								<a href="/finance/sales" class="dropdown-item">매출내역</a>
+								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-								정보</div>
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								나의 정보
+							</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-									href="/deleteform" class="dropdown-item">회원탈퇴</a>
+								<a href="/updateform" class="dropdown-item">회원정보 수정</a>
+								<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 							</div>
 						</div>
 						<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-						<a href="logout" class="nav-item nav-link">로그아웃</a>
+						<a href="/logout" class="nav-item nav-link">로그아웃</a>
 					</c:if>
 				</div>
 			</div>
@@ -187,17 +192,14 @@ th {
 								<option value="G">G</option>
 								<option value="LB">LB</option>
 								<option value="OZ">OZ</option>
-							</select>&nbsp; <span>유통기한:&nbsp;</span><input name="exp" type="date"
-								required><br>
+							</select><span>유통기한:&nbsp;</span><input name="exp" type="date"required>
 							<div>
-								<input type="button" id="add" class="button btn btn-primary"
-									value="식자재 등록" />
+								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
 							</div>
 						</form>
 					</div>
 					<div class="content">
 						<form id="deleteIngredient">
-							<c:if test="${ count != 0 }">
 								<table class="IngredientList" id="IngredientList">
 									<tr>
 										<th style="width: 5%;"></th>
@@ -207,9 +209,9 @@ th {
 									</tr>
 									<c:forEach items="${ ingredientList }" var="ingredient">
 										<tr class="ingredientlist">
-											<td><input class="check" type="checkbox"
-												name="checkList" class="checkList"
-												value="${ ingredient.ingredientid }"></td>
+											<td>
+											<input type="checkbox" name="checkList" class="checkList" value="${ ingredient.ingredientid }">
+											</td>
 											<td>${ ingredient.ingredientname }</td>
 											<td>${ ingredient.unit }</td>
 											<td>${ ingredient.exp }</td>
@@ -217,9 +219,9 @@ th {
 									</c:forEach>
 								</table>
 								<div>
-									<input type="button" id="delete" class="button btn btn-primary"
-										value="선택한 식자재 삭제" />
+									<input type="button" id="delete" class="button btn btn-primary" value="선택한 식자재 삭제" />
 								</div>
+								</form>
 								<div class="pageController">
 									<c:if test="${ begin > end }">
 										<a href="change?p=${ begin-1 }">[이전]</a>
@@ -231,8 +233,6 @@ th {
 										<a href="change?p=${ end + 1 }">[다음]</a>
 									</c:if>
 								</div>
-							</c:if>
-						</form>
 					</div>
 					<%-- main > content end --%>
 				</div>
@@ -296,7 +296,7 @@ th {
 			$("#delete").on("click", function() {
 				// 체크박스에 체크된 식자재 id 번호 값 찾기
 				$(".checkList:checked").each(function(i, item) {
-					// target에 id값 저장
+					// target에 value값 저장
 					var target = item.value;
 
 					$.ajax({

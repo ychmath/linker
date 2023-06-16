@@ -125,10 +125,11 @@ public class OrderController {
 
 	
 	// 주문 수정 페이지
-	@GetMapping("/inventory/orderList/changeOrder")
-	public String updateListForm(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+	@GetMapping("/inventory/orderList/updateOrder")
+	public String updateOrderListForm(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
 		
 		int count = service.orderCount();
+		List<OrderDto> IngredientList = service.getIngredientList();
 		
 		if (count > 0) {
 			int perPage = 10; // 한 페이지 당 보일 글의 개수
@@ -154,7 +155,8 @@ public class OrderController {
 		}
 
 		m.addAttribute("count", count);
-
+		m.addAttribute("IngredientList", IngredientList);
+		
 		return "order/updateOrder";
 	}
 
@@ -169,7 +171,7 @@ public class OrderController {
 	@PostMapping("/order/insert")
 	public String addOrder(OrderDto newOrder) {
 		service.addOrder(newOrder);
-		return "redirect:/inventory/orderList/changeOrder";
+		return "redirect:/inventory/orderList/updateOrder";
 	}
 
 }

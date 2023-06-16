@@ -41,17 +41,18 @@
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
-						종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small>
+					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small> <small>월
-						- 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small>
+					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small>
+					<small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -61,8 +62,7 @@
 	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-		<a href="/"
-			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+		<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 			<h2 class="m-0 text-primary">Linker</h2>
 		</a>
 		<button type="button" class="navbar-toggler me-4"
@@ -75,26 +75,9 @@
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
-				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="feature.html" class="dropdown-item">Feature</a> <a
-								href="quote.html" class="dropdown-item">Free Quote</a> <a
-								href="team.html" class="dropdown-item">Our Team</a> <a
-								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
-								href="404.html" class="dropdown-item">404 Page</a>
-						</div>
-					</div>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -107,7 +90,7 @@
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">

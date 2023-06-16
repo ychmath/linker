@@ -5,14 +5,14 @@
 <mapper namespace="com.linker.ingredient.dao.InventoryDao">
 	<!-- 인벤토리 목록 수 -->
 	<select id="inventoryCount" resultType="int">
-		select count(*) from inventory where quantity is not null and quantity != 0
+		select count(*) from inventory where quantity is not null and quantity >= 0
 	</select>
 	<!-- 인벤토리 출력 -->
 	<select id="getInvenList" parameterType="map" resultType="com.linker.ingredient.dto.InventoryDto">
 		select * from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
-		and quantity is not null and quantity != 0
+		and quantity is not null and quantity >= 0
 		order by exp
 		limit #{start}, #{count}
 	</select>
@@ -21,7 +21,7 @@
 		select * from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
-		and quantity is not null and quantity != 0
+		and quantity is not null and quantity >= 0
 		and ingredientname like concat('%', #{ingredientname}, '%')
 		order by exp
 		limit #{start}, #{count}
@@ -31,7 +31,7 @@
 		select count(*) from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
-		and quantity is not null and quantity != 0
+		and quantity is not null and quantity >= 0
 		and ingredientname like concat('%', #{ingredientname}, '%')
 	</select>
 	<!-- 인벤토리 수령일 조회 -->
@@ -39,7 +39,7 @@
 		select * from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
-		and quantity is not null and quantity != 0
+		and quantity is not null and quantity >= 0
 		and receivedate between #{startDay} and #{endDay}
 		order by exp
 		limit #{start}, #{count}
@@ -49,7 +49,7 @@
 		select count(*) from inventory
 		inner join ingredient
 		on inventory.ingredientid = ingredient.ingredientid
-		and quantity is not null and quantity != 0
+		and quantity is not null and quantity >= 0
 		and receivedate between #{startDay} and #{endDay}
 	</select>
 </mapper>

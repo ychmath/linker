@@ -6,21 +6,9 @@
 <meta charset="UTF-8">
 <title>식자재 수정하기</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
-
+<link href="/css/menu/menu_write.css" rel="stylesheet">
 <!-- Favicon -->
-<link href="/img/favicon.ico" rel="icon">
-
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap"
-	rel="stylesheet">
+<link href="../../img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -31,37 +19,47 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="/lib/animate/animate.min.css" rel="stylesheet">
-<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="../../lib/animate/animate.min.css" rel="stylesheet">
+<link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="/css/style.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
+<style>
+	.page{
+		width: 100%;
+	}
+	.btn {
+		size: 50px;
+		align-content: center;
+	}
+	#updateIngredient{
+		padding: 10px;
+	}
+</style>
 </head>
 <body>
-	<h3>식자재 수정 폼입니다.</h3>
-	<div id="page">
-
-		<div class="content">
-			<form id="updateIngredient" method="post"
-				action="/ingredient/update/${ dto.ingredientid }">
-				<input type="hidden" name="_method" value="put" /> <span>식자재명:
-				</span><input type="text" name="ingredientname"
-					value=${ dto.ingredientname }><br> <span>단위: </span> <span
-					id="targetUnit" style="display: none;">${ dto.unit }</span> <select
-					name="unit" id="unit">
+	<div class="page">
+		<div id="fh5co-about" class="fh5co-section">
+			<h3 class="title">선택한 식자재를 수정합니다.</h3>
+			<div class="container">
+			<form id="updateIngredient" method="post" action="/ingredient/update/${ dto.ingredientid }">
+				<input type="hidden" name="_method" value="put" />
+				<span>식자재명:</span><input type="text" name="ingredientname" value=${ dto.ingredientname }><br>
+				<span>단위: </span> <span id="targetUnit" style="display: none;">${ dto.unit }</span>
+				<select name="unit" id="unit">
 					<option value="KG">KG</option>
 					<option value="G">G</option>
 					<option value="LB">LB</option>
 					<option value="OZ">OZ</option>
-				</select><br> <span>유통기한: </span><input type="date" name="exp"
-					value="${ dto.exp }"><br> <input class="btn"
-					type="button" id="save" value="수정">
+				</select><br> <span>유통기한: </span> <input type="date" name="exp"value="${ dto.exp }"><br>
+				<input class="btn" type="button" id="save" value="수정">
 			</form>
+		</div>
 		</div>
 	</div>
 
