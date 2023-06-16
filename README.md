@@ -1,12 +1,14 @@
 # 식권 구매 및 식자재 관리 시스템
 ![version](https://img.shields.io/badge/version-0.0.1-orange?style=plastic&logo=appveyor)
-![java](https://img.shields.io/badge/java-17-blue?logo=java)
-![spring](https://img.shields.io/badge/spring-3.1.0-yellow?logo=spring)
-![spring-boot](https://img.shields.io/badge/springboot-4.0.0-yellow?logo=spring)
-![html](https://img.shields.io/badge/html-html5-red?logo=html5)
-![css](https://img.shields.io/badge/css-css3-red?logo=css3)
-![scss](https://img.shields.io/badge/sass-1.63.4-red?logo=scss)
-![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?logo=javascript)
+![java](https://img.shields.io/badge/java-17-blue?style=plastic&logo=appveyor?logo=java)
+![spring](https://img.shields.io/badge/spring-3.1.0-yellow?style=plastic&logo=appveyor?logo=spring)
+![spring-boot](https://img.shields.io/badge/springboot-4.0.0-yellow?style=plastic&logo=appveyor?logo=spring)
+![html](https://img.shields.io/badge/html-html5-red?style=plastic&logo=appveyor?logo=html5)
+![css](https://img.shields.io/badge/css-css3-red?style=plastic&logo=appveyor?logo=css3)
+![scss](https://img.shields.io/badge/sass-1.63.4-red?style=plastic&logo=appveyor?logo=scss)
+![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?style=plastic&logo=appveyor?logo=javascript)
+![eclipse](https://img.shields.io/badge/eclipse-2023.06-blueviolet?style=plastic&logo=appveyor?logo=eclipseide)
+![github](https://img.shields.io/badge/github-blueviolet?style=plastic&logo=appveyor?logo=github)
 
 ---
 ## 메인화면
