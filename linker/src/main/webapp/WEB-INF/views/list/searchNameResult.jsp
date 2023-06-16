@@ -83,17 +83,18 @@ th {
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
-						종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small>
+					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small> <small>월
-						- 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small>
+					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small>
+					<small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -178,10 +179,10 @@ th {
 						</form>
 						<form id="searchByDate" action="/ingredient/searchbydate/result"
 							method="get" style="display: inline-block;">
-							<p style="color: white;">
+							<p>
 								<b>유통기한별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay"> - <input type="date" class="exp" name="endDay" id="endDay">
+							<input type="date" name="startDay" id="startDay"> - <input type="date" name="endDay" id="endDay">
 							<input type="button" id="search-date" value="검색">
 						</form>
 					</div>

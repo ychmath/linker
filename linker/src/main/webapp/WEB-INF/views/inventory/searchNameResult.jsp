@@ -189,12 +189,12 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByReceive" action="/ingredient/searchbydate/result"
+						<form id="searchByReceive" action="/ingredient/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>입고일별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay"> <span>-</span> <input type="date" class="exp" name="endDay">
+							<input type="date" name="startDay"> <span>-</span> <input type="date" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
@@ -247,13 +247,11 @@ td {
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right Reserved.
 						</div>
 						<div class="col-md-6 text-center text-md-end">
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
 						</div>
 					</div>
 				</div>
@@ -304,7 +302,7 @@ td {
 
 		});	// search click end
 
-		$("#search-date").click(function(){
+		$("#search-receive").click(function(){
 
 			let startDay = $("#startDay").val();
 			let endDay = $("#endDay").val();
@@ -315,7 +313,7 @@ td {
 				return false;
 			}
 
-			$("#searchByDate").submit();
+			$("#searchByReceive").submit();
 
 		});	// search click end
 		

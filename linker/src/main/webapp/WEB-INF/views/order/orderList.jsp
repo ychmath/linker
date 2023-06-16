@@ -203,8 +203,7 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result"
-							method="get" style="display: inline-block;">
+						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result" method="get" style="display: inline-block;">
 							<p>
 								<b>주문기간별 검색</b>
 							</p>

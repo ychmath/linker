@@ -197,7 +197,7 @@ td {
 							<p>
 								<b>수령기간별 검색</b>
 							</p>
-							<input type="date" class="receive" name="startDay"> <span>-</span> <input type="date" class="receive" name="endDay">
+							<input type="date" name="startDay" id="startDay"> <span>-</span> <input type="date" name="endDay" id="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
@@ -224,10 +224,6 @@ td {
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="Order" value="발주 내역"
-								onclick="location.href='/inventory/orderList';" />
-							<input class="btn btn-primary" type="button" id="UseDetail" value="사용 내역"
-								onclick="location.href='change';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
@@ -242,7 +238,6 @@ td {
 						</c:if>
 						<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
-							<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제" onclick="location.href='change';" style="color: black;" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>

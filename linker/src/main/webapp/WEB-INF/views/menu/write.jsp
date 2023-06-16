@@ -107,25 +107,27 @@
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
 								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
-								href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-							관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+							비용 관리
+						</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> <a
-								href="/finance/sales" class="dropdown-item">매출내역</a> <a
-								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a>
+							<a href="/finance/sales" class="dropdown-item">매출내역</a>
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+							나의 정보
+						</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a>
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -138,13 +140,14 @@
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+							나의 정보
+						</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> <a
-								href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a> <a
-								href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a>
+							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a>
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<a href="/updateform" style="text-decoration: noe; color: #333">
@@ -165,9 +168,8 @@
 						<td class="orange">제목</td>
 						<td><input name="title" style="background-color: inherit;" /></td>
 						<td class="orange">작성자</td>
-						<td><input name="userID"
-							style="background-color: inherit; color: black;"
-							value="${ user.userid }" readonly></td>
+						<td>
+							<input name="userID"style="background-color: inherit; color: black;" value="${ user.userid }" readonly></td>
 					</tr>
 				</table>
 				<table border="1" style="color: black;">
@@ -183,8 +185,8 @@
 								<div class="panel-body">
 									<div class="tbl_user_data"></div>
 								</div>
-							</div> <input type="button" id="save" value="새 식단표 등록"
-							style="margin-left: auto;">
+							</div>
+							<input type="button" id="save" value="새 식단표 등록" style="margin-left: auto;">
 						</td>
 					</tr>
 				</table>

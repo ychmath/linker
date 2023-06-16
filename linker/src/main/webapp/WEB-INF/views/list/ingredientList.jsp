@@ -87,17 +87,18 @@ th {
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
-						종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small>
+					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small> <small>월
-						- 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small>
+					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small>
+					<small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -139,12 +140,13 @@ th {
 							</div>
 						</div>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-								관리</div>
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								비용 관리
+							</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/profitChart" class="dropdown-item">요약</a> <a
-									href="/finance/sales" class="dropdown-item">매출내역</a> <a
-									href="/finance/expenditure" class="dropdown-item">지출내역</a>
+								<a href="/profitChart" class="dropdown-item">요약</a>
+								<a href="/finance/sales" class="dropdown-item">매출내역</a>
+								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
@@ -186,8 +188,8 @@ th {
 							<p>
 								<b>유통기한별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay"> <span>-</span>
-							<input type="date" class="exp" name="endDay" id="endDay">
+							<input type="date" name="startDay" id="startDay"> <span>-</span>
+							<input type="date" name="endDay" id="endDay">
 							<input class="btn btn-primary" type="button" id="search-date" value="검색">
 						</form>
 					</div>
