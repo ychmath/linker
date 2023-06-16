@@ -27,6 +27,7 @@
   - [Prerequisite](#prerequisite)
   - [Development](#development)
     - [Install](#install)
+    - [Commit](#commit)
   - [Team](#team)
   - [Demo](#demo)
   - [license](#license)
@@ -65,6 +66,15 @@ Therefore, we used only the skills and code languages we had learned over the pr
 ### Install
 ```bash
 $ git clone https://github.com/ychmath/linker.git
+```
+
+### Commit
+Each member has their own brances and worked on the functions that assigned.
+The members can't directly merge the code to main. They should request pull and only the code that are reviewed by three people or a creator can merge into main.
+```bash
+$ git pull
+$ git commit -m "commit_description"
+$ git push
 ```
 
 ## Team
