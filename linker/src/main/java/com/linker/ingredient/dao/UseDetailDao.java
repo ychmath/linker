@@ -36,5 +36,7 @@ public interface UseDetailDao {
 	
 	// 사용일 기준 조회 리스트
 	List<UseDetailDto> getByUseDate(Map<String, Object> m);
+	
+	// 식자재 인벤토리 가져오기
 
 }

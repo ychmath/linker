@@ -189,7 +189,7 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 목록</a>
+						<a href="/inventory/orderList">발주 내역</a>
 					</h1>
 					<div class="searchController">
 						<form id="searchByName" action="/inventory/orderSearchByName/result"

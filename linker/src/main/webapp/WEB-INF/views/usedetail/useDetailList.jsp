@@ -230,7 +230,7 @@ td {
 							</table>
 							<input class="btn btn-primary" type="button"
 								id="changeUseDetail" value="사용 내역 추가 / 삭제"
-								onclick="location.href='change';" />
+								onclick="location.href='/inventory/updateUseDetailForm';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="useDetailList?p=${ begin-1 }">[이전]</a>
@@ -245,7 +245,7 @@ td {
 						</c:if>
 						<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
-							<input class="btn" type="button" id="changeUseDetail" value="사용 내역 추가 / 삭제" onclick="location.href='change';" />
+							<input class="btn" type="button" id="changeUseDetail" value="사용 내역 추가 / 삭제" onclick="location.href='/inventory/updateUseDetailForm';" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>

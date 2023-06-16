@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.linker.ingredient.dto.UseDetailDto;
 import com.linker.ingredient.service.UseDetailService;
@@ -48,7 +52,7 @@ public class UseDetailController {
 		
 		m.addAttribute("count", count);
 		
-		return "usedetail/useDetailList";
+		return "/usedetail/useDetailList";
 	}
 	
 	// 이름별 검색 결과
@@ -82,7 +86,7 @@ public class UseDetailController {
 
 		m.addAttribute("count", resultCount);
 
-		return "usedetail/useSearchByName";
+		return "/usedetail/useSearchByName";
 	}
 	
 	// 날짜별 검색 결과
@@ -117,6 +121,25 @@ public class UseDetailController {
 
 		m.addAttribute("count", resultCount);
 
-		return "usedetail/useSearchByDate";
+		return "/usedetail/useSearchByDate";
+	}
+	// 사용 내역 추가 / 삭제 폼 반환
+	@GetMapping("/inventory/updateUseDetailForm")
+	public String updateUseDetail() {
+		return "/usedetail/updateUseDetail";
+	}
+	
+	// 식자재 사용 내역 추가
+	@PostMapping("/inventory/addUse")
+	public String useInventory(UseDetailDto dto) {
+		service.useInventory(dto);
+		return "redirect:/inventory/useDetailList";
+	}
+	
+	// 식자재 사용 내역 삭제
+	@DeleteMapping("/inventory/deleteUse/{inventoryid}")
+	@ResponseBody
+	public void deleteUseage(@PathVariable int inventoryid) {
+		service.deleteUseage(inventoryid);
 	}
 }

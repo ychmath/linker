@@ -67,4 +67,13 @@
 		on ingredient.ingredientid = inventory.ingredientid
 		and usedate between #{startDay} and #{endDay}
 	</select>
+	<!-- 인벤토리 가져오기 -->
+	<select id="getInvenList" parameterType="map" resultType="com.linker.ingredient.dto.InventoryDto">
+		select * from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity >= 0
+		order by exp
+		limit #{start}, #{count}
+	</select>
 </mapper>

@@ -20,5 +20,4 @@ public class UseDetailDto {
 	private int ingredientusage;
 	private Date usedate;
 
-
 }
