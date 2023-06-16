@@ -86,12 +86,12 @@ $ git push
 - 김태균
 
 ## Demo
-URL: 
-ID : 
-PW : 
+URL:  
+ID :  
+PW :  
 
 ## license
-- [HTML Codex](https://htmlcodex.com/)): Template License 
+- [HTML Codex](https://htmlcodex.com/): Template License 
   
 ## About
 Authored and maintained by **linker**
