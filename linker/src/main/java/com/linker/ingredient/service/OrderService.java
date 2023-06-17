@@ -74,5 +74,10 @@ public class OrderService {
 		
 		return dao.searchOrderdateCount(m);
 	}
+	
+	// 식자재 목록 출력
+	public List<OrderDto> getIngredientList() {
+		return dao.getIngredientList();
+	}
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -32,13 +32,12 @@
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
 
-
 <style>
 .content {
 	width: 100%;
 }
 
-.InvenList {
+.useList {
 	width: 100%;
 	border: 1px solid gray;
 	border-collapse: collapse;
@@ -83,20 +82,17 @@ td {
 	margin-top: 10px;
 }
 
-#UseDetail {
+#newOrder {
+	margin-top: 10px;
+}
+
+#changeUseDetail {
 	margin-top: 10px;
 }
 </style>
 </head>
 <body>
-<!--     Spinner Start-->
-  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-     <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-     </div>
-   </div>
-<!--     Spinner End -->
-
+<body>
         <!-- Topbar Start -->
     <div class="container-fluid bg-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
@@ -120,14 +116,17 @@ td {
     </div>
     <!-- Topbar End -->
 
-	<div id="page">
+<div id="page">
 
     <!-- Navbar Start -->
-	<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-		<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 			<h2 class="m-0 text-primary">Linker</h2>
 		</a>
-		<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -150,8 +149,8 @@ td {
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item active">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -184,10 +183,10 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 내역</a>
+						<a href="/inventory/useDetailList">사용 내역 목록</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/inventory/orderSearchByName/result"
+						<form id="searchByName" action="/inventory/useSearchByName/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
@@ -196,58 +195,57 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result"
+						<form id="searchByUseDate" action="/inventory/SearchByUseDate/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>주문기간별 검색</b>
+								<b>사용일자별 검색</b>
 							</p>
 							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
+							<input class="btn btn-primary" type="button" id="search-useDate" value="검색">
 						</form>
 					</div>
-				<div class="container">
-					<h4 class="title">'<%= request.getParameter("name") %>'에 대한 검색 결과입니다.</h4></div>
-					<c:if test="${ count != 0 }">
-						<table class="InvenList">
-							<tr>
-								<th>식자재명</th>
-								<th>공급자</th>
-								<th>주문수량</th>
-								<th>주문 가격</th>
-								<th>주문일</th>
-							</tr>
-							<c:forEach items="${ nameSearchResult }" var="result">
-							<tr>
-								<td>${ result.ingredientname }</td>
-								<td>${ result.supplier }</td>
-								<td>${ result.orderquantity }</td>
-								<td>${ result.orderprice }</td>
-								<td><fmt:formatDate dateStyle="long" value="${ result.orderdate }"></fmt:formatDate></td>
-							</tr>
-							</c:forEach>
-						</table>
-						<div class="pageController">
-							<c:if test="${ begin > end }">
-								<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
-							</c:if>
-							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="searchNameResult?p=${ i }">${ i }</a>
-							</c:forEach>
-							<c:if test="${ end < totalPages }">
-								<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
-							</c:if>
-						</div>
-					</c:if>
-					<c:if test="${ count == 0 }">
-						해당 식자재가 존재하지 않습니다.
-					</c:if>
-				</div>	<%-- main > content end --%>
-				</div>	<%-- main > container end --%>
-			</div>	<%-- main end --%>
+					<div class="content">
+						<c:if test="${ count != 0 }">
+							<table class="useList" id="useList">
+								<thead>
+									<tr>
+										<th>식자재명</th>
+										<th>사용량</th>
+										<th>사용일자</th>
+									</tr>
+								</thead>
+								<tbody>
+								<c:forEach items="${ usedateSearchResult }" var="result">
+									<tr>
+										<td>${ result.ingredientname }</td>
+										<td>${ result.ingredientusage }</td>
+										<td><fmt:formatDate dateStyle="long" value="${ result.usedate }"></fmt:formatDate></td>
+									</tr>
+								</c:forEach>
+								</tbody>
+							</table>
+							<div class="pageController">
+								<c:if test="${ begin > end }">
+									<a href="result?p=${ begin-1 }">[이전]</a>
+								</c:if>
+								<c:forEach begin="${ begin }" end="${ end }" var="i">
+									<a href="result?p=${ i }">${ i }</a>
+								</c:forEach>
+								<c:if test="${ end < totalPages }">
+									<a href="result?p=${ end + 1 }">[다음]</a>
+								</c:if>
+							</div>
+						</c:if>
+						<c:if test="${ count == 0 }">
+							해당하는 사용 내역이 존재하지 않습니다.
+						</c:if>
+					</div>
+					<%-- main > content end --%>
+				</div>
+			</div>
+		</div>
 
-	</div>	<%-- page end --%>
-	
-			<!-- Footer Start -->
+		<!-- Footer Start -->
 		<div
 			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
 			data-wow-delay="0.1s">
@@ -260,20 +258,14 @@ td {
 						</div>
 						<div class="col-md-6 text-center text-md-end">
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+							Designed By 
+							<a class="border-bottom" href="https://htmlcodex.com">HTMLCodex</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Footer End -->
-
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
 
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -289,10 +281,10 @@ td {
 
 		<!-- Template Javascript -->
 		<script src="/js/main.js"></script>
-	
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(function(){
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
 		$(function() {
 			// 권한 가져오기
 			var role = $("#role").text();
@@ -303,37 +295,36 @@ td {
 				location.href = "/main";
 			}
 
-		
-		$("#search-name").click(function(){
-			
-			let name = $("#ingredientname").val();
-						
-			if (!name || name.replace(/\s+/g, "") == "") {
-				alert("검색값을 입력해 주세요.");
-				$("#ingredientname").focus();
-				return false;
-			}
-			
-			$("#searchByName").submit();
+			$("#search-name").click(function() {
 
-		});	// search click end
+				let name = $("#name").val();
 
-		$("#search-orderDate").click(function() {
+				if (!name || name.replace(/\s+/g, "") == "") {
+					alert("검색값을 입력해 주세요.");
+					$("#name").focus();
+					return false;
+				}
 
-			let startDay = $("#startDay").val();
-			let endDay = $("#endDay").val();
+				$("#searchByName").submit();
 
-			if (!startDay || !endDay || endDay < startDay) {
-				alert("올바른 날짜값을 입력해 주세요.");
-				$("#startDay").focus();
-				return false;
-			}
+			}); // search click end
 
-			$("#searchByOrderDate").submit();
+			$("#search-useDate").click(function() {
 
-		}); // search click end
-		
-	});	// ready end
-</script>
+				let startDay = $("#startDay").val();
+				let endDay = $("#endDay").val();
+
+				if (!startDay || !endDay || endDay < startDay) {
+					alert("올바른 날짜값을 입력해 주세요.");
+					$("#startDay").focus();
+					return false;
+				}
+
+				$("#searchByUseDate").submit();
+
+			}); // search click end
+
+		}); // ready end
+	</script>
 </body>
 </html>

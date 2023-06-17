@@ -103,17 +103,18 @@ td {
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
-						종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> 
+					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small> <small>월
-						- 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small>
+					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small>
+					<small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -125,12 +126,10 @@ td {
 		<!-- Navbar Start -->
 		<nav
 			class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-			<a href="/"
-				class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 				<h2 class="m-0 text-primary">Linker</h2>
 			</a>
-			<button type="button" class="navbar-toggler me-4"
-				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -149,13 +148,14 @@ td {
 						<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 						<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle active"
-								data-bs-toggle="dropdown">식자재 관리</div>
+							<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
+								식자재 관리
+							</div>
 							<div class="dropdown-menu fade-up m-0">
 								<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a> 
 								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-								<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
-								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+								<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+								<a href="/inventory/useDetailList" class="dropdown-item active">사용내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
@@ -191,19 +191,22 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 내역</a>
+						<a href="/inventory/useDetailList">사용 내역</a>
 					</h1>
-					<div class="orderController">
-						<form id="addOrder" action="/order/insert" method="post">
+					<div class="UsedetailController">
+						<form id="selectIngredient">
 							<p>
-								<b>발주내역 추가</b>
+								<b>사용내역 추가</b>
 							</p>
 							<span>식자재명:&nbsp;</span>
 							<select name="ingredientid" required>
-								<c:forEach items="${ IngredientList }" var="IngredientList">
+								<c:forEach items="${ inventoryIngredient }" var="IngredientList">
 									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
 								</c:forEach>
 							</select>
+							<button class="btn" type="button" id="search">검색</button>
+						</form>
+						<form id="addUse" action="/inventory/addUse" method="post">
 							<span>공급자:&nbsp;</span><input name="supplier" required>
 							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
 							<span>주문가격:&nbsp;</span><input name="orderprice" required>
@@ -213,46 +216,15 @@ td {
 							</div>
 						</form>
 					</div>
-					<div class="deleteController">
-							<table class="InvenList" id="InvenList">
-								<thead>
-									<tr>
-										<th style="width: 5%;"></th>
-										<th>식자재명</th>
-										<th>공급자</th>
-										<th>주문수량</th>
-										<th>주문가격</th>
-										<th>주문일</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach items="${ orderList }" var="orderList">
-									<tr class="orders">
-										<td>
-											<input type="checkbox" name="checkList" class="checkList" value="${ orderList.orderid }">
-										</td>
-										<td>${ orderList.ingredientname }</td>
-										<td>${ orderList.supplier }</td>
-										<td>${ orderList.orderquantity }</td>
-										<td>${ orderList.orderprice }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-							<div>
-								<input class="btn btn-primary" type="button" id="deleteOrder" value="선택 내역 삭제" />
-							</div>
-					</div>
 							<div class="pageController">
 								<c:if test="${ begin > end }">
-									<a href="changeOrder?p=${ begin-1 }">[이전]</a>
+									<a href="updateUseDetail?p=${ begin-1 }">[이전]</a>
 								</c:if>
 								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="changeOrder?p=${ i }">${ i }</a>
+									<a href="updateUseDetail?p=${ i }">${ i }</a>
 								</c:forEach>
 								<c:if test="${ end < totalPages }">
-									<a href="changeOrder?p=${ end + 1 }">[다음]</a>
+									<a href="updateUseDetail?p=${ end + 1 }">[다음]</a>
 								</c:if>
 							</div>
 					<%-- main > content end --%>
@@ -268,13 +240,12 @@ td {
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right Reserved.
 						</div>
 						<div class="col-md-6 text-center text-md-end">
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+							Designed By
+							<a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
 						</div>
 					</div>
 				</div>
@@ -326,27 +297,6 @@ td {
 				location.href = "/main";
 			}
 
-			$("#deleteOrder").on("click", function() {
-				// 체크박스에 체크된 식자재 id 번호 값 찾기
-				$(".checkList:checked").each(function(i, item) {
-					// target에 id값 저장
-					var target = item.value;
-
-					$.ajax({
-						url : "/order/delete/" + target,
-						method : "delete",
-						data : {
-							'orderid' : target
-						}
-					}).done(function(result) {
-
-					});
-				}); // each end
-
-				alert("삭제가 완료되었습니다.");
-				location.replace("/inventory/orderList/updateOrder");
-			});
-
 			$("#add").on("click", function(event) {
 						// 바로 전송 차단
 						event.preventDefault;
@@ -365,7 +315,18 @@ td {
 							alert("등록이 완료되었습니다.");
 							$("#addOrder").submit();
 						}
-					});
+				});
+			
+			$("#search").click(function(){
+				var useList = [];
+				
+				$.when(
+					$(getJSON("/getInvenIngredient", { ingredientid : $("#ingredientid").val() }, function(data)
+						$.each(data, function(index, obj){
+							
+						})
+				))).done()
+			})
 
 		}); // ready end
 	</script>

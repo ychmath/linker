@@ -58,6 +58,7 @@ th {
 
 .title {
 	width: 700px;
+	text-align:left;
 	margin-bottom: 30px;
 }
 
@@ -86,17 +87,18 @@ th {
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
-						종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small>
+					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small> <small>월
-						- 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small>
+					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small>
+					<small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -106,14 +108,11 @@ th {
 	<div id="page">
 
 		<!-- Navbar Start -->
-		<nav
-			class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-			<a href="/"
-				class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+		<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+			<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 				<h2 class="m-0 text-primary">Linker</h2>
 			</a>
-			<button type="button" class="navbar-toggler me-4"
-				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -132,35 +131,33 @@ th {
 						<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 						<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle active"
-								data-bs-toggle="dropdown">식자재 관리</div>
+							<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/ingredient/ingredientList"
-									class="dropdown-item active">식자재 목록</a> <a
-									href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-								<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
-									href="/" class="dropdown-item">사용내역</a>
+								<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
+								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+								<a href="/inventory/orderList" class="dropdown-item">발주내역</a>
+								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-								관리</div>
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								비용 관리
+							</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/profitChart" class="dropdown-item">요약</a> <a
-									href="/finance/sales" class="dropdown-item">매출내역</a> <a
-									href="/finance/expenditure" class="dropdown-item">지출내역</a>
+								<a href="/profitChart" class="dropdown-item">요약</a>
+								<a href="/finance/sales" class="dropdown-item">매출내역</a>
+								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
-							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-								정보</div>
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 							<div class="dropdown-menu fade-up m-0">
 								<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
 									href="/deleteform" class="dropdown-item">회원탈퇴</a>
 							</div>
 						</div>
 						<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-						<a href="logout" class="nav-item nav-link">로그아웃</a>
+						<a href="/logout" class="nav-item nav-link">로그아웃</a>
 					</c:if>
 				</div>
 			</div>
@@ -182,9 +179,8 @@ th {
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="name" id="name"> <input
-								class="btn btn-primary" type="button" id="search-name"
-								value="검색">
+							<input type="search" name="name" id="name"> 
+							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
 						<form id="searchByDate" action="/ingredient/searchbydate/result"
@@ -192,11 +188,9 @@ th {
 							<p>
 								<b>유통기한별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay">
-							<span style="color: white">-</span> <input type="date"
-								class="exp" name="endDay" id="endDay"> <input
-								class="btn btn-primary" type="button" id="search-date"
-								value="검색">
+							<input type="date" name="startDay" id="startDay"> <span>-</span>
+							<input type="date" name="endDay" id="endDay">
+							<input class="btn btn-primary" type="button" id="search-date" value="검색">
 						</form>
 					</div>
 					<div class="content">
@@ -216,8 +210,9 @@ th {
 											<td>${ ingredient.ingredientname }</td>
 											<td>${ ingredient.unit }</td>
 											<td>${ ingredient.exp }</td>
-											<td><button class="update btn"
-													value="${ ingredient.ingredientid }">수정</button></td>
+											<td>
+												<button class="update btn" value="${ ingredient.ingredientid }">수정</button>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -238,10 +233,9 @@ th {
 							</div>
 						</c:if>
 						<c:if test="${ count == 0 }">
-					입력된 식자재가 존재하지 않습니다.
+							입력된 식자재가 존재하지 않습니다.
 						<input class="btn" type="button" id="changeIngredient"
-								value="목록 추가 / 삭제" onclick="location.href='change';"
-								style="color: black;" />
+								value="목록 추가 / 삭제" onclick="location.href='change';" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>
@@ -250,9 +244,7 @@ th {
 		</div>
 
 		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-0 pt-0 wow fadeIn"
-			data-wow-delay="0.1s">
+		<div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
 			<div class="container">
 				<div class="copyright">
 					<div class="row">
@@ -272,9 +264,8 @@ th {
 		<!-- Footer End -->
 
 		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="/lib/wow/wow.min.js"></script>
 		<script src="/lib/easing/easing.min.js"></script>
 		<script src="/lib/waypoints/waypoints.min.js"></script>
@@ -287,6 +278,7 @@ th {
 		<script src="/js/main.js"></script>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -340,15 +332,11 @@ th {
 							var _top = Math
 									.ceil((window.screen.height - 600) / 2);
 
-							window
-									.open(
-											'update/' + targetid,
+							window.open('update/' + targetid,
 											'식자재 수정하기',
-											'top='
-													+ _top
-													+ ', left='
-													+ _left
-													+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+											'top=' + _top
+											+ ', left=' + _left
+											+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
 						}); // update click end
 	</script>
 </body>

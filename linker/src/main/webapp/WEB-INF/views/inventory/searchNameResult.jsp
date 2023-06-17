@@ -144,7 +144,7 @@ td {
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -162,8 +162,8 @@ td {
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<span class="nav-item nav-link">${ user.userid } 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -189,16 +189,17 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByReceive" action="/ingredient/searchbydate/result"
+						<form id="searchByReceive" action="/ingredient/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>입고일별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay"> <span>-</span> <input type="date" class="exp" name="endDay">
+							<input type="date" name="startDay"> <span>-</span> <input type="date" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
 				<div class="container">
+					&nbsp; &nbsp;
 					<h4 class="title">'<%= request.getParameter("ingredientname") %>'에 대한 검색 결과입니다.</h4></div>
 					<c:if test="${ count != 0 }">
 						<table class="InvenList">
@@ -246,13 +247,11 @@ td {
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right Reserved.
 						</div>
 						<div class="col-md-6 text-center text-md-end">
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
 						</div>
 					</div>
 				</div>
@@ -303,7 +302,7 @@ td {
 
 		});	// search click end
 
-		$("#search-date").click(function(){
+		$("#search-receive").click(function(){
 
 			let startDay = $("#startDay").val();
 			let endDay = $("#endDay").val();
@@ -314,7 +313,7 @@ td {
 				return false;
 			}
 
-			$("#searchByDate").submit();
+			$("#searchByReceive").submit();
 
 		});	// search click end
 		

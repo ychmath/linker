@@ -2,6 +2,8 @@ package com.linker.ingredient.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,7 @@ public class OrderDto {
 	private int orderquantity;
 	private String supplier;
 	private int orderprice;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date orderdate;
 
 	// 식자재

@@ -38,7 +38,7 @@
 	width: 100%;
 }
 
-.InvenList {
+.useList {
 	width: 100%;
 	border: 1px solid gray;
 	border-collapse: collapse;
@@ -150,8 +150,8 @@ td {
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item active">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -170,7 +170,7 @@ td {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					<a href="logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -184,10 +184,10 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 내역</a>
+						<a href="/inventory/useDetailList">사용 내역 목록</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/inventory/orderSearchByName/result"
+						<form id="searchByName" action="/inventory/useSearchByName/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
@@ -196,33 +196,29 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result"
+						<form id="searchByUseDate" action="/inventory/SearchByUseDate/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>주문기간별 검색</b>
+								<b>사용일자별 검색 검색</b>
 							</p>
-							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
+							<input type="date" name="startDay"> <span>-</span> <input type="date" name="endDay">
+							<input class="btn btn-primary" type="button" id="search-useDate" value="검색">
 						</form>
 					</div>
 				<div class="container">
 					<h4 class="title">'<%= request.getParameter("name") %>'에 대한 검색 결과입니다.</h4></div>
 					<c:if test="${ count != 0 }">
-						<table class="InvenList">
+						<table class="useList">
 							<tr>
 								<th>식자재명</th>
-								<th>공급자</th>
-								<th>주문수량</th>
-								<th>주문 가격</th>
-								<th>주문일</th>
+								<th>사용량</th>
+								<th>사용일자</th>
 							</tr>
 							<c:forEach items="${ nameSearchResult }" var="result">
 							<tr>
 								<td>${ result.ingredientname }</td>
-								<td>${ result.supplier }</td>
-								<td>${ result.orderquantity }</td>
-								<td>${ result.orderprice }</td>
-								<td><fmt:formatDate dateStyle="long" value="${ result.orderdate }"></fmt:formatDate></td>
+								<td>${ result.ingredientusage }</td>
+								<td><fmt:formatDate dateStyle="long" value="${ result.usedate }"></fmt:formatDate></td>
 							</tr>
 							</c:forEach>
 						</table>
@@ -298,7 +294,7 @@ td {
 			var role = $("#role").text();
 
 			// 열람 권한이 없다면 페이지 이동.
-			if (!(role != 'seller' || role != 'admin')) {
+			if (!(role == 'seller' || role == 'admin')) {
 				alert("열람 권한이 없는 페이지입니다.");
 				location.href = "/main";
 			}
@@ -318,7 +314,7 @@ td {
 
 		});	// search click end
 
-		$("#search-orderDate").click(function() {
+		$("#search-useDate").click(function(){
 
 			let startDay = $("#startDay").val();
 			let endDay = $("#endDay").val();
@@ -329,9 +325,9 @@ td {
 				return false;
 			}
 
-			$("#searchByOrderDate").submit();
+			$("#searchByUseDate").submit();
 
-		}); // search click end
+		});	// search click end
 		
 	});	// ready end
 </script>
