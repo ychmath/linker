@@ -229,8 +229,11 @@ td {
 								</tbody>
 							</table>
 							<input class="btn btn-primary" type="button"
-								id="changeUseDetail" value="사용 내역 추가 / 삭제"
-								onclick="location.href='/inventory/updateUseDetailForm';" />
+								id="addUseDetail" value="사용 내역 추가"
+								onclick="location.href='/inventory/addUseDetail';" />
+							<input class="btn btn-primary" type="button"
+								id="deleteUseDetail" value="사용 내역 추가"
+								onclick="location.href='/inventory/deleteUseDetail';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="useDetailList?p=${ begin-1 }">[이전]</a>

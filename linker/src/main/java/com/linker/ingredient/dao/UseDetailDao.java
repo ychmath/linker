@@ -9,12 +9,8 @@ import com.linker.ingredient.dto.UseDetailDto;
 
 @Mapper
 public interface UseDetailDao {
-	
 	// <!-- 식자재 사용 -->
-	int useInventory (UseDetailDto dto);
-
-	// <!-- 식자재 사용내역 수정 -->
-	int changeUseage (UseDetailDto dto);
+	int useInventory(UseDetailDto dto);
 	
 	// 사용 내역 삭제
 	int deleteUseage(int inventoryid);
@@ -37,6 +33,13 @@ public interface UseDetailDao {
 	// 사용일 기준 조회 리스트
 	List<UseDetailDto> getByUseDate(Map<String, Object> m);
 	
-	// 식자재 인벤토리 가져오기
+	// 식자재 id로 인벤토리 가져오기
+	List<UseDetailDto> getInvenList(int ingredientid);
+	
+	// 사용내역 정보 가져오기
+	UseDetailDto getInvenInfo(int inventoryid);
+	
+	// 인벤토리의 식자재 종류 가져오기
+	List<UseDetailDto> inventoryIngredient();
 
 }

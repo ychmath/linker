@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.linker.ingredient.dto.UseDetailDto;
 import com.linker.ingredient.service.UseDetailService;
 
@@ -123,10 +125,27 @@ public class UseDetailController {
 
 		return "/usedetail/useSearchByDate";
 	}
-	// 사용 내역 추가 / 삭제 폼 반환
-	@GetMapping("/inventory/updateUseDetailForm")
-	public String updateUseDetail() {
-		return "/usedetail/updateUseDetail";
+	// 사용 내역 추가 폼 반환
+	@GetMapping("/inventory/addUseDetail")
+	public String addUseDetail(Model m) {
+		List<UseDetailDto> list = service.inventoryIngredient();
+		m.addAttribute("inventoryIngredient", list);
+
+		return "/usedetail/addUseDetail";
+	}
+	
+	// 식자재 이름별로 인벤토리 반환
+	@RequestMapping("/getInvenIngredient")
+	@ResponseBody
+	public String getInvenbyIngredient(int ingredientid, Model m) {
+		m.addAttribute("ingredientid", ingredientid);
+		List <UseDetailDto> UseIngredinetList = service.getInvenList(ingredientid);
+		m.addAttribute("idInven", UseIngredinetList);
+		
+		Gson gson = new Gson();
+		String invenById = gson.toJson(UseIngredinetList);
+		
+		return invenById;
 	}
 	
 	// 식자재 사용 내역 추가
@@ -136,6 +155,13 @@ public class UseDetailController {
 		return "redirect:/inventory/useDetailList";
 	}
 	
+	
+	// 삭제 내역 추가 폼 반환
+	@GetMapping("/inventory/deleteUseDetail")
+	public String deleteUseDetail() {
+		return "/usedetail/deleteUseDetail";
+	}
+
 	// 식자재 사용 내역 삭제
 	@DeleteMapping("/inventory/deleteUse/{inventoryid}")
 	@ResponseBody

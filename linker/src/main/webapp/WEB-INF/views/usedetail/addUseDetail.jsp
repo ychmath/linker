@@ -193,17 +193,20 @@ td {
 					<h1 class="title">
 						<a href="/inventory/useDetailList">사용 내역</a>
 					</h1>
-					<div class="orderController">
-						<form id="addUse" action="/inventory/addUse" method="post">
+					<div class="UsedetailController">
+						<form id="selectIngredient">
 							<p>
 								<b>사용내역 추가</b>
 							</p>
 							<span>식자재명:&nbsp;</span>
 							<select name="ingredientid" required>
-								<c:forEach items="${ IngredientList }" var="IngredientList">
+								<c:forEach items="${ inventoryIngredient }" var="IngredientList">
 									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
 								</c:forEach>
 							</select>
+							<button class="btn" type="button" id="search">검색</button>
+						</form>
+						<form id="addUse" action="/inventory/addUse" method="post">
 							<span>공급자:&nbsp;</span><input name="supplier" required>
 							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
 							<span>주문가격:&nbsp;</span><input name="orderprice" required>
@@ -212,37 +215,6 @@ td {
 								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
 							</div>
 						</form>
-					</div>
-					<div class="deleteController">
-							<table class="InvenList" id="InvenList">
-								<thead>
-									<tr>
-										<th style="width: 5%;"></th>
-										<th>식자재명</th>
-										<th>공급자</th>
-										<th>주문수량</th>
-										<th>주문가격</th>
-										<th>주문일</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach items="${ orderList }" var="useDetailList">
-									<tr class="useDetail">
-										<td>
-											<input type="checkbox" name="checkList" class="checkList" value="${ orderList.orderid }">
-										</td>
-										<td>${ orderList.ingredientname }</td>
-										<td>${ orderList.supplier }</td>
-										<td>${ orderList.orderquantity }</td>
-										<td>${ orderList.orderprice }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-							<div>
-								<input class="btn btn-primary" type="button" id="deleteUse" value="선택 내역 삭제" />
-							</div>
 					</div>
 							<div class="pageController">
 								<c:if test="${ begin > end }">
@@ -325,27 +297,6 @@ td {
 				location.href = "/main";
 			}
 
-			$("#deleteOrder").on("click", function() {
-				// 체크박스에 체크된 식자재 id 번호 값 찾기
-				$(".checkList:checked").each(function(i, item) {
-					// target에 id값 저장
-					var target = item.value;
-
-					$.ajax({
-						url : "/order/delete/" + target,
-						method : "delete",
-						data : {
-							'orderid' : target
-						}
-					}).done(function(result) {
-
-					});
-				}); // each end
-
-				alert("삭제가 완료되었습니다.");
-				location.replace("/inventory/orderList/updateOrder");
-			});
-
 			$("#add").on("click", function(event) {
 						// 바로 전송 차단
 						event.preventDefault;
@@ -364,7 +315,18 @@ td {
 							alert("등록이 완료되었습니다.");
 							$("#addOrder").submit();
 						}
-					});
+				});
+			
+			$("#search").click(function(){
+				var useList = [];
+				
+				$.when(
+					$(getJSON("/getInvenIngredient", { ingredientid : $("#ingredientid").val() }, function(data)
+						$.each(data, function(index, obj){
+							
+						})
+				))).done()
+			})
 
 		}); // ready end
 	</script>
