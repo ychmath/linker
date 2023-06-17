@@ -38,7 +38,7 @@ String end_date = request.getParameter("end_date");
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/menu/menu_write.css" rel="stylesheet">
-
+<link href="../../css/user/radio.css" rel="stylesheet">
 
 </head>
 <body>

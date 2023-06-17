@@ -39,8 +39,9 @@ String end_date = request.getParameter("end_date");
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/comm/table.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
+<link href="../../css/user/table.css" rel="stylesheet">
+<link href="../../css/user/radio.css" rel="stylesheet">
 
 </head>
 
@@ -141,6 +142,7 @@ String end_date = request.getParameter("end_date");
 							id="end-date-input" name="end-date" min="" max="" value=""
 							required oninput="restrictStartDate()">
 							<button type="button" id="myButton" onclick="search()">검색</button>
+							<input type="radio" name="date" value="search" style="display: none">
 					</tr>
 				</table>
 				<br>
@@ -213,6 +215,7 @@ String end_date = request.getParameter("end_date");
 
 	<script>
 		function search() {
+			$("#I > input[type=radio]:nth-child(11)").prop('checked', true);
 			var start_date = document.getElementById('start-date-input').value;
 			var end_date = document.getElementById('end-date-input').value;
 			var currentPage = 1;
