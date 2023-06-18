@@ -97,7 +97,6 @@ td {
 </style>
 </head>
 <body>
-<body>
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -225,6 +224,9 @@ td {
 										<th>
 											사용량
 										</th>
+										<th>
+											사용일
+										</th>
 									</tr>
 								</thead>
 								<tbody id="tabledata">
@@ -278,6 +280,7 @@ td {
 	</div>
 
 		<!-- JavaScript Libraries -->
+	<div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -306,58 +309,69 @@ td {
 			}
 
 			$("#add").on("click", function(event) {
-						// 바로 전송 차단
-						event.preventDefault;
+				  event.preventDefault();
 
-						// 하나라도 값이 입력되지 않은 경우
-						if (!$("input[name='supplier']").val()
-								|| !$("select[name='ingredientid']").val()
-								|| !$("input[name='orderquantity']").val()
-								|| !$("input[name='orderprice']").val()
-								|| !$("input[name='orderdate']").val()
-								) {
-							// submit 하지 않고 alert 출력
-							alert("필수 항목을 전부 입력해 주십시오.");
-						} else {
-							// 전부 입력했다면 submit
-							alert("등록이 완료되었습니다.");
-							$("#addOrder").submit();
-						}
+				  var isAnyEmpty = false;
+
+				  // Check if any input fields are empty or disabled
+				  $("input[name='inventoryid']:checked").each(function() {
+				    var ingredientUsageInput = $(this).closest("tr").find("input[name='ingredientusage']");
+				    
+				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val()) {
+				      isAnyEmpty = true;
+				      return false; // Exit the loop if an empty field is found
+				    }
+
+				  });
+
+				  if (isAnyEmpty) {
+				    // Display an alert if any required fields are empty
+				    alert("필수 항목을 전부 입력해 주십시오.");
+				  } else {
+				    // Submit the form if all required fields are filled
+				    alert("등록이 완료되었습니다.");
+				    $("#addUse").submit();
+				  }
 				});
 			
 			$("#search").click(function(){
+				  $('#tabledata').empty();
+				  
+				  $.getJSON("/inventory/getInvenIngredient", { ingredientid : $('#ingredientid').val() }, function(data){
+				   
+					  var tabledata = "";	// 테이블 데이터를 저장할 변수
 
-				$('#tabledata').empty();
+				    $.each(data, function(index, obj){
+				    	
+				      tabledata += "<tr>";
+				      tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>';
+				      tabledata += '<td>' + obj.ingredientname + '</td>';
+				      tabledata += '<td>' + obj.quantity + '</td>';
+				      tabledata += '<td>' + obj.receivedate + '</td>';
+				      tabledata += '<td><input name="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
+				      tabledata += '<td><input name="usedate" type="date" disabled></td>'
+				      tabledata += '</tr>';
 
-				tabledata = "<tr>";
-				
-				$.getJSON("/inventory/getInvenIngredient", { ingredientid : $('#ingredientid').val() }, function(data){
-					// console.log(data);
-					$.each(data, function(index, obj){
-						tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>'
-						tabledata += '<td>' + obj.ingredientname + '</td>'
-						tabledata += '<td>' + obj.quantity + '</td>'
-						tabledata += '<td>' + obj.receivedate + '</td>'
-						tabledata += '<td><input id="ingredientusage" disabled></td>'
-						})									
-				}).done(function(){
-					tabledata += '</tr>';
-					$('#tabledata').append(tabledata);
+				    });
+					  
+				    $('#tabledata').append(tabledata);
+				    
+				  });
+				  
+				});	// click end
+
+			$(document).on('change', 'input[name="inventoryid"]', function() {
+				  var selectedValue = $('input[name="inventoryid"]:checked').val();
+				  
+				  $('input[name="usedate"]').prop('disabled', true);
+				  $('input[name="ingredientusage"]').prop('disabled', true);
+				  
+				  if (selectedValue !== 'select') {
+					  // 라디오박스로 선택되었다면 사용 수량과 날짜 입력 가능
+				    $(this).closest('tr').find('input[name="ingredientusage"]').prop('disabled', false);
+				    $(this).closest('tr').find('input[name="usedate"]').prop('disabled', false); 
+				  }
 				});
-
-			}); // click end
-			
-			$('input:radio[name="inventoryid"]').click(function(){
-				
-				console.log($('input:radio[name="inventoryid"]:checked').val());
-				
-				if($('input:radio[name="inventoryid"]:checked').val() == 'select') {
-					$('#ingredientusage').attr('disabled', false);
-				} else {
-					$('#ingredientusage').attr('disabled', true);
-				}
-
-			})
 		}); // ready end
 	</script>
 </body>

@@ -5,9 +5,8 @@
 <mapper namespace="com.linker.ingredient.dao.UseDetailDao">
 	<!-- 식자재 사용 -->
 	<insert id="useInventory" parameterType="com.linker.ingredient.dto.UseDetailDto">
-		insert into usedetail (ingredientusage, usedate)
-		values (#{ingredientuseage}, #{usedate}, #{usedate})
-		where inventoryid = #{inventoryid}
+		insert into usedetail (inventoryid, ingredientusage, usedate)
+		values (#{inventoryid}, #{ingredientusage}, #{usedate})
 	</insert>
 	<!-- 사용 내역 삭제 -->
 	<delete id="deleteUseage" parameterType="int">
