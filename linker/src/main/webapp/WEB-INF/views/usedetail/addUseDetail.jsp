@@ -313,22 +313,22 @@ td {
 
 				  var isAnyEmpty = false;
 
-				  // Check if any input fields are empty or disabled
+				  // input 값 확인
 				  $("input[name='inventoryid']:checked").each(function() {
 				    var ingredientUsageInput = $(this).closest("tr").find("input[name='ingredientusage']");
 				    
 				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val()) {
 				      isAnyEmpty = true;
-				      return false; // Exit the loop if an empty field is found
+				      return false; // input 값에 disabled를 제외하고 비어있는 것이 있다면 false return
 				    }
 
 				  });
 
 				  if (isAnyEmpty) {
-				    // Display an alert if any required fields are empty
+				    // 비어있다면 경고창
 				    alert("필수 항목을 전부 입력해 주십시오.");
 				  } else {
-				    // Submit the form if all required fields are filled
+				    // 비어있지 않다면 전송
 				    alert("등록이 완료되었습니다.");
 				    $("#addUse").submit();
 				  }

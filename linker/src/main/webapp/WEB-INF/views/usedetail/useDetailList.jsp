@@ -232,7 +232,7 @@ td {
 								id="addUseDetail" value="사용 내역 추가"
 								onclick="location.href='/inventory/addUseDetail';" />
 							<input class="btn btn-primary" type="button"
-								id="deleteUseDetail" value="사용 내역 추가"
+								id="deleteUseDetail" value="사용 내역 삭제"
 								onclick="location.href='/inventory/deleteUseDetail';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
