@@ -225,7 +225,6 @@
 
 			<input type="button" id="write" value="글쓰기"
 				onclick="location.href='write'" />
-
 		</c:if>
 	</div>
 

@@ -19,18 +19,19 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="/lib/animate/animate.min.css" rel="stylesheet">
-<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/user/content.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/css/user/notice.css">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/user/content.css" rel="stylesheet">
+<link href="css/comm/table.css" rel="stylesheet">
+
 <title>글 상세보기</title>
 <style>
 table {

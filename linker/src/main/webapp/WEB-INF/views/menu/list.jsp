@@ -31,7 +31,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 </head>
 
@@ -139,56 +139,53 @@
 		</div>
 	</nav>
 
-	<div id="fh5co-slider" class="fh5co-section animate-box"
-		style="height: 50px">
 		<div class="main">
 			<div class="container">
 				<div class="content">
-					<h1 class="title">식단표 목록</h1>
+					<p>식단표 목록</p>
 					<!-- 현재 로그인한 user의 role 값이 seller인 경우 글 등록 가능 -->
 					<c:if test="${ user.role == 'seller' }">
 						<div class="write" align="right">
 							<a href="write">새 글 등록</a>
 						</div>
 					</c:if>
-					<c:if test="${ count != 0 }">
-						<table class="menuList">
-							<tr class="menulist">
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
+					<table class="menuList">
+						<tr class="menulist">
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+						</tr>
+						<c:forEach items="${ menuList }" var="menu">
+							<tr>
+								<td><a href="content/${ menu.menuID }">${ menu.title }</a></td>
+								<td>${ menu.userID }</td>
+								<td><fmt:formatDate value="${ menu.creationDate }"
+										dateStyle="short" /></td>
 							</tr>
-							<c:forEach items="${ menuList }" var="menu">
-								<tr>
-									<td><a href="content/${ menu.menuID }">${ menu.title }</a></td>
-									<td>${ menu.userID }</td>
-									<td><fmt:formatDate value="${ menu.creationDate }"
-											dateStyle="short" /></td>
-								</tr>
-							</c:forEach>
-						</table>
-						<div class="pageController">
-							<c:if test="${ begin > pageNum }">
-								<a href="list?p=${ begin-1 }">[이전]</a>
-							</c:if>
-							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="list?p=${ i }">${ i }</a>
-							</c:forEach>
-							<c:if test="${ end < totalPages }">
-								<a href="list?p=${ end + 1 }">[다음]</a>
-							</c:if>
-						</div>
-					</c:if>
-					<c:if test="${ count == 0 }">
-						입력한 식단표가 존재하지 않습니다.
-					</c:if>
+						</c:forEach>
+					</table>
 				</div>
 				<%-- main > content end --%>
 			</div>
 			<%-- main > container end --%>
 		</div>
 		<%-- main end --%>
-
+		<div id="page">
+			<c:if test="${ begin > pageNum }">
+				<a href="list?p=${ begin-1 }">[이전]</a>
+			</c:if>
+			<c:forEach begin="${ begin }" end="${ end }" var="i">
+				<a href="list?p=${ i }">${ i }</a>
+			</c:forEach>
+			<c:if test="${ end < totalPages }">
+				<a href="list?p=${ end + 1 }">[다음]</a>
+			</c:if>
+		</div>
+		<c:if test="${ count == 0 }">
+						입력한 식단표가 존재하지 않습니다.
+					</c:if>
+					
+					
 		<!-- Footer Start -->
 		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 			<div class="container">
@@ -203,8 +200,6 @@
 			</div>
 		</div>
 		<!-- Footer End -->
-	</div>
-	<%-- footer > container end --%>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script

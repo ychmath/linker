@@ -31,6 +31,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 <link href="/css/menu/menu_write.css" rel="stylesheet">
 
 </head>
@@ -157,61 +158,53 @@
 		</div>
 	</nav>
 
-	<div id="fh5co-slider" class="fh5co-section animate-box">
-		<div class="fh5co-cover" style="height: 200px"></div>
-
-		<div class="main">
-			<div class="container">
-				<div class="content">
-					<h1 class="title">${ dto.title }</h1>
-					<table class="menu">
-						<tr>
-							<td class="orange">작성자</td>
-							<td>${ dto.userID }</td>
-						</tr>
-						<tr>
-							<td class="orange">등록일</td>
-							<td><fmt:formatDate value="${ dto.creationDate }"
-									dateStyle="long" /></td>
-						</tr>
-						<tr>
-							<td class="orange">내용</td>
-							<td>${ dto.content }</td>
-						</tr>
-						<tr>
-							<td colspan="2" align="right">
-								<!-- 작성자의 id와 현재 게시글의 id가 같을 경우 --> <c:if
-									test="${ dto.userID == user.userid }">
-									<a href="/menu/update/${ dto.menuID }">글 수정</a>
-									<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
-								</c:if> <a href="../list">목록 이동</a>
-							</td>
-						</tr>
-					</table>
+	<div class="main">
+		<div class="container">
+			<div class="content">
+				<p>${ dto.title }</p>
+				<table class="menu">
+					<tr>
+						<td class="orange">작성자</td>
+						<td>${ dto.userID }</td>
+					</tr>
+					<tr>
+						<td class="orange">등록일</td>
+						<td><fmt:formatDate value="${ dto.creationDate }"
+								dateStyle="long" /></td>
+					</tr>
+					<tr>
+						<td class="orange">내용</td>
+						<td>${ dto.content }</td>
+					</tr>
+				</table>
+				<div id="page">
+					<c:if test="${ dto.userID == user.userid }">
+						<a href="/menu/update/${ dto.menuID }">글 수정</a>
+						<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
+					</c:if>
+					<a href="../list">목록 이동</a>
 				</div>
-				<%-- main > content end --%>
 			</div>
-			<%-- main > container end --%>
+			<%-- main > content end --%>
 		</div>
-		<%-- main end --%>
+		<%-- main > container end --%>
+	</div>
+	<%-- main end --%>
 
-		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
 	</div>
-	<%-- footer > container end --%>
-
+	<!-- Footer End -->
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script

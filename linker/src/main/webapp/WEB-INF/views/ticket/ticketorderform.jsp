@@ -38,7 +38,7 @@ String end_date = request.getParameter("end_date");
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
-<link href="../../css/user/table.css" rel="stylesheet">
+<link href="../../css/comm/table.css" rel="stylesheet">
 <link href="../../css/user/radio.css" rel="stylesheet">
 </head>
 
@@ -413,10 +413,6 @@ String end_date = request.getParameter("end_date");
 
 			$("#page").append(page_str);
 		}
-		
-		
-		
-		
 	</script>
 </body>
 </html>
