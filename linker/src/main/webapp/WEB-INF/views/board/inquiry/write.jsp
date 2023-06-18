@@ -26,11 +26,12 @@
 </style>
     </head>
 
-    <body style="padding-top: 5rem;">
+    <body >
+    
         <form method="post" id="writenotice" action="write">
             <form>
                 <div class="pt-1">
-                    <input type="text" name="title" id="title" placeholder="제목을 입력하세요"
+                    <input type="text" name="title" id="title" placeholder="제목을 입력하세요" required
                         style="border-radius:5px; width:100%; padding:5px;">
                 </div>
                 <div class="pt-1">
@@ -38,7 +39,7 @@
                 </div>
                 <div class="pt-1">
                     <div id="smarteditor">
-                    <textarea name="content"  id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요"
+                    <textarea name="content"  id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요" required
                     style="border-radius:5px; width:100%; padding:5px;"></textarea>
                     </div>
                 </div>

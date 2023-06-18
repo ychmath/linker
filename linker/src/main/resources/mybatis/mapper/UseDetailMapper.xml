@@ -9,12 +9,6 @@
 		values (#{ingredientuseage}, #{usedate}, #{usedate})
 		where inventoryid = #{inventoryid}
 	</insert>
-	<!-- 식자재 사용내역 수정 -->
-	<update id="changeUseage" parameterType="com.linker.ingredient.dto.UseDetailDto">
-		update usedetail (ingredientusage, usedate)
-		values (#{ingredientusage}, #{usedate})
-		where inventoryid = #{inventoryid}
-	</update>
 	<!-- 사용 내역 삭제 -->
 	<delete id="deleteUseage" parameterType="int">
 		delete from usedetail where inventoryid = #{inventoryid}
@@ -31,5 +25,68 @@
 		inner join ingredient
 		on ingredient.ingredientid = inventory.ingredientid
 		limit #{start}, #{count}
+	</select>
+		<!-- 식자재 이름으로 조회 -->
+	<select id="getUseByName" parameterType="map" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+		order by usedate, ingredientname
+		limit #{start}, #{count}
+	</select>
+	<!-- 조회된 개수 조회 -->
+	<select id="useNameCount" parameterType="String" resultType="int">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and ingredientname like concat('%', #{name}, '%')
+		order by usedate, ingredientname
+	</select>
+		<!-- 사용일 기준 조회 -->
+	<select id="getByUseDate" parameterType="map" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from 
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and usedate between #{startDay} and #{endDay}
+		order by usedate, ingredientname
+		limit #{start}, #{count}
+	</select>
+	<!-- 사용일 조회 리스트 수 -->
+	<select id="useDateCount" parameterType="map" resultType="int">
+		select count(*) from
+		(usedetail inner join inventory
+		on inventory.inventoryid = usedetail.inventoryid)
+		inner join ingredient
+		on ingredient.ingredientid = inventory.ingredientid
+		and usedate between #{startDay} and #{endDay}
+	</select>
+	<!-- 인벤토리에 있는 식자재 가져오기 -->
+	<select id="inventoryIngredient" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select distinct inventory.ingredientid, ingredientname from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity >= 0
+	</select>
+	<!-- 식자재 선택하여 인벤토리 가져오기 -->
+	<select id="getInvenList" parameterType="int" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity >= 0
+		and inventory.ingredientid = #{ingredientid}
+	</select>
+	<select id="getInvenInfo" parameterType="int" resultType="com.linker.ingredient.dto.UseDetailDto">
+		select * from inventory
+		inner join ingredient
+		on inventory.ingredientid = ingredient.ingredientid
+		and quantity is not null and quantity >= 0
+		and inventoryid = #{inventoryid}
 	</select>
 </mapper>

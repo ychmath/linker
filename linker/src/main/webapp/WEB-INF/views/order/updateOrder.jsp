@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <title>Linker</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+<link href="/css/menu/menu_write.css" rel="stylesheet">
 <!-- Favicon -->
 <link href="../../img/favicon.ico" rel="icon">
 
@@ -33,6 +33,10 @@
 <link href="../../css/style.css" rel="stylesheet">
 
 <style>
+.container {
+	min-height: 200px;
+}
+
 .content {
 	width: 100%;
 }
@@ -64,6 +68,7 @@ td {
 .title {
 	width: 700px;
 	margin-bottom: 30px;
+	text-align: left;
 }
 
 .pageController {
@@ -93,97 +98,91 @@ td {
 </head>
 <body>
 <body>
-
-<!--     Spinner Start
- -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-<!--     Spinner End
- -->    
-        <!-- Topbar Start -->
-    <div class="container-fluid bg-light p-0">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>월 - 일 : 09.30 AM - 10.00 PM</small>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>02-6901-7001</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-<div id="page">
-
-    <!-- Navbar Start -->
-	<nav
-		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-		<a href="/"
-			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-			<h2 class="m-0 text-primary">Linker</h2>
-		</a>
-		<button type="button" class="navbar-toggler me-4"
-			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/loginform" class="nav-item nav-link">로그인</a>
-					<a href="/joinform" class="nav-item nav-link">회원가입</a>
-				</c:if>
-				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
-						</div>
-					</div>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
-						</div>
-					</div>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
-						</div>
-					</div>
-					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
+				</div>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
 			</div>
 		</div>
-	</nav>
-    <!-- Navbar End -->	
+	</div>
+	<!-- Topbar End -->
+
+	<div id="page">
+
+		<!-- Navbar Start -->
+		<nav
+			class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+			<a href="/"
+				class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+				<h2 class="m-0 text-primary">Linker</h2>
+			</a>
+			<button type="button" class="navbar-toggler me-4"
+				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<div class="navbar-nav ms-auto p-4 p-lg-0">
+					<c:if test="${ user.role == null }">
+						<a href="/" class="nav-item nav-link active">Home</a>
+						<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+						<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+						<a href="/menu/list" class="nav-item nav-link">식단표</a>
+						<a href="/loginform" class="nav-item nav-link">로그인</a>
+						<a href="/joinform" class="nav-item nav-link">회원가입</a>
+					</c:if>
+					<c:if test="${ user.role == 'seller' }">
+						<a href="/" class="nav-item nav-link ">Home</a>
+						<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+						<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+						<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+						<div class="nav-item dropdown">
+							<div class="nav-link dropdown-toggle active"
+								data-bs-toggle="dropdown">식자재 관리</div>
+							<div class="dropdown-menu fade-up m-0">
+								<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a> 
+								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+								<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
+								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								비용관리
+							</div>
+							<div class="dropdown-menu fade-up m-0">
+								<a href="/profitChart" class="dropdown-item">요약</a>
+								<a href="/finance/sales" class="dropdown-item">매출내역</a>
+								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								나의 정보</div>
+							<div class="dropdown-menu fade-up m-0">
+								<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+									href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							</div>
+						</div>
+						<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+						<a href="/logout" class="nav-item nav-link">로그아웃</a>
+					</c:if>
+				</div>
+			</div>
+		</nav>
+		<!-- Navbar End -->
 
 		<span id="role" style="display: none;">${ user.role }</span>
 
@@ -192,31 +191,46 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 목록</a>
+						<a href="/inventory/orderList">발주 내역</a>
 					</h1>
-					<div class="update">
-						<h3>재고 목록 추가</h3>
-						<form id="searchByName" action="/inventory/orderSearchByName/result"
-						method="get">
-						
-
+					<div class="orderController">
+						<form id="addOrder" action="/order/insert" method="post">
+							<p>
+								<b>발주내역 추가</b>
+							</p>
+							<span>식자재명:&nbsp;</span>
+							<select name="ingredientid" required>
+								<c:forEach items="${ IngredientList }" var="IngredientList">
+									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
+								</c:forEach>
+							</select>
+							<span>공급자:&nbsp;</span><input name="supplier" required>
+							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
+							<span>주문가격:&nbsp;</span><input name="orderprice" required>
+							<span>주문일:&nbsp;</span><input name="orderdate" type="date" required>
+							<div>
+								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
+							</div>
 						</form>
 					</div>
-					<div class="content">
-						<c:if test="${ count != 0 }">
+					<div class="deleteController">
 							<table class="InvenList" id="InvenList">
 								<thead>
 									<tr>
+										<th style="width: 5%;"></th>
 										<th>식자재명</th>
 										<th>공급자</th>
 										<th>주문수량</th>
-										<th>주문 가격</th>
+										<th>주문가격</th>
 										<th>주문일</th>
 									</tr>
 								</thead>
 								<tbody>
 								<c:forEach items="${ orderList }" var="orderList">
-									<tr>
+									<tr class="orders">
+										<td>
+											<input type="checkbox" name="checkList" class="checkList" value="${ orderList.orderid }">
+										</td>
 										<td>${ orderList.ingredientname }</td>
 										<td>${ orderList.supplier }</td>
 										<td>${ orderList.orderquantity }</td>
@@ -226,30 +240,24 @@ td {
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="Order" value="재고 목록으로"
-								onclick="location.href='inventoryList';" />
-							<input class="btn btn-primary" type="button" id="newOrder" value="내역 추가/삭제"
-								onclick="location.href='changeOrder';" />
+							<div>
+								<input class="btn btn-primary" type="button" id="deleteOrder" value="선택 내역 삭제" />
+							</div>
+					</div>
 							<div class="pageController">
 								<c:if test="${ begin > end }">
-									<a href="orderList?p=${ begin-1 }">[이전]</a>
+									<a href="changeOrder?p=${ begin-1 }">[이전]</a>
 								</c:if>
 								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="orderList?p=${ i }">${ i }</a>
+									<a href="changeOrder?p=${ i }">${ i }</a>
 								</c:forEach>
 								<c:if test="${ end < totalPages }">
-									<a href="orderList?p=${ end + 1 }">[다음]</a>
+									<a href="changeOrder?p=${ end + 1 }">[다음]</a>
 								</c:if>
 							</div>
-						</c:if>
-						<c:if test="${ count == 0 }">
-							입력된 재고가 존재하지 않습니다.
-							<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제" onclick="location.href='change';" style="color: black;" />
-						</c:if>
-					</div>
 					<%-- main > content end --%>
 				</div>
-			</div>
+			</div> <!-- container end -->
 		</div>
 
 		<!-- Footer Start -->
@@ -274,11 +282,21 @@ td {
 		</div>
 		<!-- Footer End -->
 
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
+		<!-- JavaScript Libraries -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/lib/wow/wow.min.js"></script>
+		<script src="/lib/easing/easing.min.js"></script>
+		<script src="/lib/waypoints/waypoints.min.js"></script>
+		<script src="/lib/counterup/counterup.min.js"></script>
+		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+		<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
+		<!-- Template Javascript -->
+		<script src="/js/main.js"></script>
+	</div>
 
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -308,34 +326,46 @@ td {
 				location.href = "/main";
 			}
 
-			$("#search-name").click(function() {
+			$("#deleteOrder").on("click", function() {
+				// 체크박스에 체크된 식자재 id 번호 값 찾기
+				$(".checkList:checked").each(function(i, item) {
+					// target에 id값 저장
+					var target = item.value;
 
-				let name = $("#name").val();
+					$.ajax({
+						url : "/order/delete/" + target,
+						method : "delete",
+						data : {
+							'orderid' : target
+						}
+					}).done(function(result) {
 
-				if (!name || name.replace(/\s+/g, "") == "") {
-					alert("검색값을 입력해 주세요.");
-					$("#name").focus();
-					return false;
-				}
+					});
+				}); // each end
 
-				$("#searchByName").submit();
+				alert("삭제가 완료되었습니다.");
+				location.replace("/inventory/orderList/updateOrder");
+			});
 
-			}); // search click end
+			$("#add").on("click", function(event) {
+						// 바로 전송 차단
+						event.preventDefault;
 
-			$("#search-orderDate").click(function() {
-
-				let startDay = $("#startDay").val();
-				let endDay = $("#endDay").val();
-
-				if (!startDay || !endDay || endDay < startDay) {
-					alert("올바른 날짜값을 입력해 주세요.");
-					$("#startDay").focus();
-					return false;
-				}
-
-				$("#searchByOrderDate").submit();
-
-			}); // search click end
+						// 하나라도 값이 입력되지 않은 경우
+						if (!$("input[name='supplier']").val()
+								|| !$("select[name='ingredientid']").val()
+								|| !$("input[name='orderquantity']").val()
+								|| !$("input[name='orderprice']").val()
+								|| !$("input[name='orderdate']").val()
+								) {
+							// submit 하지 않고 alert 출력
+							alert("필수 항목을 전부 입력해 주십시오.");
+						} else {
+							// 전부 입력했다면 submit
+							alert("등록이 완료되었습니다.");
+							$("#addOrder").submit();
+						}
+					});
 
 		}); // ready end
 	</script>

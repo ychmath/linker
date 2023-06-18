@@ -20,4 +20,8 @@ public interface LoginDao {
 	public LoginDto login(LoginDto dto);
 
 	List<LoginDto> userInfo();
+	
+	public int getSellerCount();
+	
+	public int getBuyerCount();
 }

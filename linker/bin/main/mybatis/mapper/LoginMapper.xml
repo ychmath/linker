@@ -34,5 +34,12 @@
 		userid=#{userid}
 	</update>
 	
-   
+	<select id="getSellerCount" parameterType = "com.linker.login.dto.LoginDto" resultType="Integer">
+   select count(*) from user where role = 'seller';
+   </select>
+	
+	
+   <select id="getBuyerCount" parameterType = "com.linker.login.dto.LoginDto" resultType="Integer">
+   select count(*) from user where role = 'buyer';
+   </select>
 </mapper>

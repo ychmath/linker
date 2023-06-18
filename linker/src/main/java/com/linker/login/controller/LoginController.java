@@ -1,5 +1,6 @@
 package com.linker.login.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,16 @@ public class LoginController {
 		return "login/joinform";
 	}
 
-	// 회원가입 처리
-	@PostMapping("/join")
-	public String joinProc(@Valid LoginDto dto, @RequestParam("phone") String phone, BindingResult bindingResult, Model model) {
+	@PostMapping("/joinform")
+	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
+	    dto.setPhone(phone);
+	    service.insertUser(dto);
+	    return "redirect:loginform";
+	}
+
+
+	@PostMapping("/auth/joinProc")
+	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userDto", dto);
@@ -84,11 +92,11 @@ public class LoginController {
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
+
 			return "login/joinform";
 		}
-		dto.setPhone(phone);
 		service.insertUser(dto);
-		return "redirect:loginform";
+		return "redirect:/auth/login";
 	}
 
 	// 아이디 중복체크
@@ -136,4 +144,30 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
+	
+	// 판매자 수 가져오기
+	// 구매자 수 가져오기
+	@GetMapping("/sellerCount")
+	@ResponseBody
+    public Map<String, Integer> getSellerCount() {
+        int sellerCount = service.getSellerCount(); 
+        
+        Map<String, Integer> response = new HashMap<>();
+        response.put("userCount", sellerCount);
+        
+        return response;
+    }
+	
+	// 구매자 수 가져오기
+	@GetMapping("/buyerCount")
+	@ResponseBody
+    public Map<String, Integer> getBuyerCount() {
+        int buyerCount = service.getBuyerCount(); 
+        
+        Map<String, Integer> response = new HashMap<>();
+        response.put("userCount", buyerCount);
+        
+        return response;
+    }
 }
+

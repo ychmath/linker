@@ -56,4 +56,7 @@
 		on ingredient.ingredientid = ingredientorder.ingredientid
 		and orderdate between #{startDay} and #{endDay}
 	</select>
+	<select id="getIngredientList" resultType="com.linker.ingredient.dto.OrderDto">
+		select ingredientid, ingredientname from ingredient
+	</select>
 </mapper>

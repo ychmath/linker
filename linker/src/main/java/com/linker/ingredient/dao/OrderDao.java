@@ -33,5 +33,8 @@ public interface OrderDao {
 	
 	// 식자재 입고 내역 이름별 검색 개수
 	int searchOrderdateCount(Map<String, Object> m);
+	
+	// 식자재 목록 가져오기
+	List<OrderDto> getIngredientList();
 
 }

@@ -149,9 +149,9 @@ td {
 						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -170,7 +170,7 @@ td {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -184,7 +184,7 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/orderList">발주 목록</a>
+						<a href="/inventory/orderList">발주 내역</a>
 					</h1>
 					<div class="searchController">
 						<form id="searchByName" action="/inventory/orderSearchByName/result"
@@ -196,13 +196,13 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByReceive" action="/ingredient/searchbydate/result"
+						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result"
 							method="get" style="display: inline-block;">
 							<p>
-								<b>입고일별 검색</b>
+								<b>주문기간별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay"> <span>-</span> <input type="date" class="exp" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
+							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
+							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
 						</form>
 					</div>
 				<div class="container">
@@ -318,7 +318,7 @@ td {
 
 		});	// search click end
 
-		$("#search-date").click(function(){
+		$("#search-orderDate").click(function() {
 
 			let startDay = $("#startDay").val();
 			let endDay = $("#endDay").val();
@@ -329,9 +329,9 @@ td {
 				return false;
 			}
 
-			$("#searchByDate").submit();
+			$("#searchByOrderDate").submit();
 
-		});	// search click end
+		}); // search click end
 		
 	});	// ready end
 </script>

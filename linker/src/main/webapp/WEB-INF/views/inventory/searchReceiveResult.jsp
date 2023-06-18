@@ -90,14 +90,6 @@ td {
 <body>
 <body>
 
-<!--     Spinner Start
- -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-<!--     Spinner End
- -->    
         <!-- Topbar Start -->
     <div class="container-fluid bg-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
@@ -154,8 +146,8 @@ td {
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -173,8 +165,8 @@ td {
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<span class="nav-item nav-link">${ user.userid } 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -205,7 +197,7 @@ td {
 							<p>
 								<b>수령기간별 검색</b>
 							</p>
-							<input type="date" class="receive" name="startDay"> <span>-</span> <input type="date" class="receive" name="endDay">
+							<input type="date" name="startDay" id="startDay"> <span>-</span> <input type="date" name="endDay" id="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
@@ -232,10 +224,6 @@ td {
 								</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="Order" value="발주 내역"
-								onclick="location.href='/inventory/orderList';" />
-							<input class="btn btn-primary" type="button" id="UseDetail" value="사용 내역"
-								onclick="location.href='change';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
 									<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
@@ -250,7 +238,6 @@ td {
 						</c:if>
 						<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
-							<input class="btn" type="button" id="changeIngredient" value="목록 추가 / 삭제" onclick="location.href='change';" style="color: black;" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>
@@ -280,12 +267,6 @@ td {
 		</div>
 		<!-- Footer End -->
 
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
-
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
@@ -300,7 +281,6 @@ td {
 
 		<!-- Template Javascript -->
 		<script src="/js/main.js"></script>
-	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>

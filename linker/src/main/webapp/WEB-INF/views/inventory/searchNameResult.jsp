@@ -89,13 +89,6 @@ td {
 </style>
 </head>
 <body>
-<!--     Spinner Start-->
-  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-     <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-     </div>
-   </div>
-<!--     Spinner End -->
 
         <!-- Topbar Start -->
     <div class="container-fluid bg-light p-0">
@@ -150,8 +143,8 @@ td {
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item active">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -169,8 +162,8 @@ td {
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<span class="nav-item nav-link">${ user.userid } 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
@@ -196,16 +189,17 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByReceive" action="/ingredient/searchbydate/result"
+						<form id="searchByReceive" action="/ingredient/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>입고일별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay"> <span>-</span> <input type="date" class="exp" name="endDay">
+							<input type="date" name="startDay"> <span>-</span> <input type="date" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
 				<div class="container">
+					&nbsp; &nbsp;
 					<h4 class="title">'<%= request.getParameter("ingredientname") %>'에 대한 검색 결과입니다.</h4></div>
 					<c:if test="${ count != 0 }">
 						<table class="InvenList">
@@ -253,25 +247,17 @@ td {
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right Reserved.
 						</div>
 						<div class="col-md-6 text-center text-md-end">
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Footer End -->
-
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
 
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -316,7 +302,7 @@ td {
 
 		});	// search click end
 
-		$("#search-date").click(function(){
+		$("#search-receive").click(function(){
 
 			let startDay = $("#startDay").val();
 			let endDay = $("#endDay").val();
@@ -327,7 +313,7 @@ td {
 				return false;
 			}
 
-			$("#searchByDate").submit();
+			$("#searchByReceive").submit();
 
 		});	// search click end
 		
