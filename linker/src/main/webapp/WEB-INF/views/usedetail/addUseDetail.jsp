@@ -199,7 +199,7 @@ td {
 								<b>사용내역 추가</b>
 							</p>
 							<span>식자재명:&nbsp;</span>
-							<select name="ingredientid" required>
+							<select name="ingredientid" id="ingredientid" required>
 								<c:forEach items="${ inventoryIngredient }" var="IngredientList">
 									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
 								</c:forEach>
@@ -207,26 +207,34 @@ td {
 							<button class="btn" type="button" id="search">검색</button>
 						</form>
 						<form id="addUse" action="/inventory/addUse" method="post">
-							<span>공급자:&nbsp;</span><input name="supplier" required>
-							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
-							<span>주문가격:&nbsp;</span><input name="orderprice" required>
-							<span>주문일:&nbsp;</span><input name="orderdate" type="date" required>
+							<table id="useList">
+								<thead>
+									<tr>
+										<th>
+											&nbsp;
+										</th>
+										<th>
+											식자재명
+										</th>
+										<th>
+											재고량
+										</th>
+										<th>
+											수령일
+										</th>
+										<th>
+											사용량
+										</th>
+									</tr>
+								</thead>
+								<tbody id="tabledata">
+								</tbody>
+							</table>
 							<div>
 								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
 							</div>
 						</form>
 					</div>
-							<div class="pageController">
-								<c:if test="${ begin > end }">
-									<a href="updateUseDetail?p=${ begin-1 }">[이전]</a>
-								</c:if>
-								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="updateUseDetail?p=${ i }">${ i }</a>
-								</c:forEach>
-								<c:if test="${ end < totalPages }">
-									<a href="updateUseDetail?p=${ end + 1 }">[다음]</a>
-								</c:if>
-							</div>
 					<%-- main > content end --%>
 				</div>
 			</div> <!-- container end -->
@@ -318,16 +326,38 @@ td {
 				});
 			
 			$("#search").click(function(){
-				var useList = [];
-				
-				$.when(
-					$(getJSON("/getInvenIngredient", { ingredientid : $("#ingredientid").val() }, function(data)
-						$.each(data, function(index, obj){
-							
-						})
-				))).done()
-			})
 
+				$('#tabledata').empty();
+
+				tabledata = "<tr>";
+				
+				$.getJSON("/inventory/getInvenIngredient", { ingredientid : $('#ingredientid').val() }, function(data){
+					// console.log(data);
+					$.each(data, function(index, obj){
+						tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>'
+						tabledata += '<td>' + obj.ingredientname + '</td>'
+						tabledata += '<td>' + obj.quantity + '</td>'
+						tabledata += '<td>' + obj.receivedate + '</td>'
+						tabledata += '<td><input id="ingredientusage" disabled></td>'
+						})									
+				}).done(function(){
+					tabledata += '</tr>';
+					$('#tabledata').append(tabledata);
+				});
+
+			}); // click end
+			
+			$('input:radio[name="inventoryid"]').click(function(){
+				
+				console.log($('input:radio[name="inventoryid"]:checked').val());
+				
+				if($('input:radio[name="inventoryid"]:checked').val() == 'select') {
+					$('#ingredientusage').attr('disabled', false);
+				} else {
+					$('#ingredientusage').attr('disabled', true);
+				}
+
+			})
 		}); // ready end
 	</script>
 </body>

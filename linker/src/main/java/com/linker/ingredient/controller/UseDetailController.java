@@ -135,7 +135,7 @@ public class UseDetailController {
 	}
 	
 	// 식자재 이름별로 인벤토리 반환
-	@RequestMapping("/getInvenIngredient")
+	@RequestMapping("/inventory/getInvenIngredient")
 	@ResponseBody
 	public String getInvenbyIngredient(int ingredientid, Model m) {
 		m.addAttribute("ingredientid", ingredientid);
@@ -154,7 +154,6 @@ public class UseDetailController {
 		service.useInventory(dto);
 		return "redirect:/inventory/useDetailList";
 	}
-	
 	
 	// 삭제 내역 추가 폼 반환
 	@GetMapping("/inventory/deleteUseDetail")
