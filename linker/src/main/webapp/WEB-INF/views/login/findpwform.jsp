@@ -6,11 +6,10 @@
 <title>비밀번호 찾기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-  rel="stylesheet">
-  
-<style>
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
+<style>
 body {
 	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 	display: flex;
@@ -74,7 +73,7 @@ h2 {
 }
 
 .login__input:focus ~ .floating-label, .login__input:not(:placeholder-shown) 
-	~ .floating-label {
+	 ~ .floating-label {
 	transform: translateY(-250%);
 	font-size: 0.75rem;
 	transition: all 400ms ease;
@@ -128,7 +127,20 @@ h2 {
 			<button type="submit" class="submit">비밀번호 찾기</button>
 		</form>
 	</div>
-
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 	<script>
       function showResult(message, success) {
         if (message) {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,37 +11,67 @@
 <body>
 	<div class="main">
 		<table class="content" border="1">
-			<tr><td>제목</td><td>${ dto.title }</td>
-			<tr><td>작성자</td><td>${ dto.userid }</td>
-				<tr><td>내용</td><td>${ dto.content }</td>
-			<tr><td>등록일</td><td><fmt:formatDate value="${ dto.creationdate }" dateStyle="long"/></td>
-			<tr><td colspan="2" align="right">
-				<a id="delete" href="/admin/notice/delete/${ dto.noticepostid }">글 삭제</a>
-				<a href="../notice">목록 이동</a>
-			</td></tr>
+			<tr>
+				<td>제목</td>
+				<td>${ dto.title }</td>
+			<tr>
+				<td>작성자</td>
+				<td>${ dto.userid }</td>
+			<tr>
+				<td>내용</td>
+				<td>${ dto.content }</td>
+			<tr>
+				<td>등록일</td>
+				<td><fmt:formatDate value="${ dto.creationdate }"
+						dateStyle="long" /></td>
+			<tr>
+				<td colspan="2" align="right"><a id="delete"
+					href="/admin/notice/delete/${ dto.noticepostid }">글 삭제</a> <a
+					href="../notice">목록 이동</a></td>
+			</tr>
 		</table>
 	</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(function(){
-		$("#delete").click(function(){
-			var noticepostid = ${ dto.noticepostid };
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(function() {
+			$("#delete").click(function() {
+				var noticepostid = $
+				{
+					dto.noticepostid
+				}
+				;
 
-			$.ajax({
-				url:"/admin/notice/delete/" + noticepostid,
-				method:"delete",
-				data:{"noticepostid":noticepostid}
-			
-			}).done(function(result){
-				
-				alert("삭제가 완료되었습니다.");
-				location.replace(result);
-				
-			});	// ajax end
+				$.ajax({
+					url : "/admin/notice/delete/" + noticepostid,
+					method : "delete",
+					data : {
+						"noticepostid" : noticepostid
+					}
 
-			return false;
-		});	// click end
-	}); // ready end
-</script>
+				}).done(function(result) {
+
+					alert("삭제가 완료되었습니다.");
+					location.replace(result);
+
+				}); // ajax end
+
+				return false;
+			}); // click end
+		}); // ready end
+	</script>
 </body>
 </html>

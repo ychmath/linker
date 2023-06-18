@@ -156,22 +156,9 @@
 	</nav>
 	<!-- Navbar End -->
 
-	<div id="search" class="table-spacing">
-		<form action="search">
-			<select name="searchn" id="searchn">
-				<option value="0">제목</option>
-				<option value="1">작성자</option>
-			</select> <input type="text" id="search_text" name="search" size="15"
-				maxlength="40" /> <input type="submit" id="search_btn"
-				name="search_btn" value="검색" />
-		</form>
-	</div>
-
-	<table class="table-spacing table-center">
-		<tr>
-			<th>문의사항</th>
-		</tr>
-	</table>
+	<p>
+		<strong>문의사항</strong>
+	</p>
 
 	<table>
 		<tr>
@@ -235,25 +222,32 @@
 		</c:if>
 
 		<c:if test="${ user.role == 'buyer'}">
-			
-				<input type="button" id="write" value="글쓰기"
-					onclick="location.href='write'" />
-			
+
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+
 		</c:if>
 	</div>
+
+	<div id="search">
+		<form action="search">
+			<select name="searchn" id="searchn">
+				<option value="0">제목</option>
+				<option value="1">작성자</option>
+			</select> <input type="text" id="search_text" name="search" size="15"
+				maxlength="40" /> <input type="submit" id="search_btn"
+				name="search_btn" value="검색" />
+		</form>
+	</div>
+
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-0 pt-0">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
-					</div>
-					<div class="col-md-6 text-center text-md-end">
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
 					</div>
 				</div>
 			</div>

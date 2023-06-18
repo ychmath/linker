@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,7 @@ th {
 }
 
 td {
-	padding : 8px;
+	padding: 8px;
 }
 
 .searchController {
@@ -152,20 +152,19 @@ td {
 							<div class="nav-link dropdown-toggle active"
 								data-bs-toggle="dropdown">식자재 관리</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a> 
-								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-								<a href="/inventory/orderList active" class="dropdown-item">발주내역</a> 
+								<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+									목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+								<a href="/inventory/orderList active" class="dropdown-item">발주내역</a>
 								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
 							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-								비용관리
-							</div>
+								비용관리</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/profitChart" class="dropdown-item">요약</a>
-								<a href="/finance/sales" class="dropdown-item">매출내역</a>
-								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+								<a href="/profitChart" class="dropdown-item">요약</a> <a
+									href="/finance/sales" class="dropdown-item">매출내역</a> <a
+									href="/finance/expenditure" class="dropdown-item">지출내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
@@ -194,21 +193,27 @@ td {
 						<a href="/inventory/orderList">발주 내역</a>
 					</h1>
 					<div class="searchController">
-						<form id="searchByName" action="/inventory/orderSearchByName/result"
-							method="get" style="display: inline-block;">
+						<form id="searchByName"
+							action="/inventory/orderSearchByName/result" method="get"
+							style="display: inline-block;">
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="name" id="name">
-							<input class="btn btn-primary" type="button" id="search-name" value="검색">
+							<input type="search" name="name" id="name"> <input
+								class="btn btn-primary" type="button" id="search-name"
+								value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByOrderDate" action="/inventory/orderSearchByDate/result" method="get" style="display: inline-block;">
+						<form id="searchByOrderDate"
+							action="/inventory/orderSearchByDate/result" method="get"
+							style="display: inline-block;">
 							<p>
 								<b>주문기간별 검색</b>
 							</p>
-							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
-							<input class="btn btn-primary" type="button" id="search-orderDate" value="검색">
+							<input type="date" id="startDay" name="startDay"> <span>-</span>
+							<input type="date" id="endDay" name="endDay"> <input
+								class="btn btn-primary" type="button" id="search-orderDate"
+								value="검색">
 						</form>
 					</div>
 					<div class="content">
@@ -224,18 +229,20 @@ td {
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${ orderList }" var="orderList">
-									<tr>
-										<td>${ orderList.ingredientname }</td>
-										<td>${ orderList.supplier }</td>
-										<td>${ orderList.orderquantity }</td>
-										<td>${ orderList.orderprice }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
+									<c:forEach items="${ orderList }" var="orderList">
+										<tr>
+											<td>${ orderList.ingredientname }</td>
+											<td>${ orderList.supplier }</td>
+											<td>${ orderList.orderquantity }</td>
+											<td>${ orderList.orderprice }</td>
+											<td><fmt:formatDate dateStyle="long"
+													value="${ orderList.orderdate }"></fmt:formatDate></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-							<input class="btn btn-primary" type="button" id="newOrder" value="주문 내역 추가/삭제"
+							<input class="btn btn-primary" type="button" id="newOrder"
+								value="주문 내역 추가/삭제"
 								onclick="location.href='/inventory/orderList/updateOrder';" />
 							<div class="pageController">
 								<c:if test="${ begin > end }">
@@ -251,29 +258,25 @@ td {
 						</c:if>
 						<c:if test="${ count == 0 }">
 							입력된 주문 내역이 존재하지 않습니다.
-							<input class="btn" type="button" id="changeOrder" value="주문 내역 추가 / 삭제" onclick="location.href='/inventory/orderList/updateOrder';" />
+							<input class="btn" type="button" id="changeOrder"
+								value="주문 내역 추가 / 삭제"
+								onclick="location.href='/inventory/orderList/updateOrder';" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>
 				</div>
-			</div> <!-- container end -->
+			</div>
+			<!-- container end -->
 		</div>
 
 		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-			data-wow-delay="0.1s">
+		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 			<div class="container">
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 							Reserved.
-						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
 						</div>
 					</div>
 				</div>
@@ -297,20 +300,20 @@ td {
 		<script src="/js/main.js"></script>
 	</div>
 
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="/lib/wow/wow.min.js"></script>
-		<script src="/lib/easing/easing.min.js"></script>
-		<script src="/lib/waypoints/waypoints.min.js"></script>
-		<script src="/lib/counterup/counterup.min.js"></script>
-		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-		<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-		<!-- Template Javascript -->
-		<script src="/js/main.js"></script>
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

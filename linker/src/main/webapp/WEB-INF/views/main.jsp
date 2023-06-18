@@ -320,9 +320,7 @@
 	<!-- About End -->
 
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-0 pt-0 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">

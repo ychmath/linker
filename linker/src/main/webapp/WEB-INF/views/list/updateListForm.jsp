@@ -30,16 +30,18 @@
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
 <style>
-	.page{
-		width: 100%;
-	}
-	.btn {
-		size: 50px;
-		align-content: center;
-	}
-	#updateIngredient{
-		padding: 10px;
-	}
+.page {
+	width: 100%;
+}
+
+.btn {
+	size: 50px;
+	align-content: center;
+}
+
+#updateIngredient {
+	padding: 10px;
+}
 </style>
 </head>
 <body>
@@ -47,22 +49,39 @@
 		<div id="fh5co-about" class="fh5co-section">
 			<h3 class="title">선택한 식자재를 수정합니다.</h3>
 			<div class="container">
-			<form id="updateIngredient" method="post" action="/ingredient/update/${ dto.ingredientid }">
-				<input type="hidden" name="_method" value="put" />
-				<span>식자재명:</span><input type="text" name="ingredientname" value=${ dto.ingredientname }><br>
-				<span>단위: </span> <span id="targetUnit" style="display: none;">${ dto.unit }</span>
-				<select name="unit" id="unit">
-					<option value="KG">KG</option>
-					<option value="G">G</option>
-					<option value="LB">LB</option>
-					<option value="OZ">OZ</option>
-				</select><br> <span>유통기한: </span> <input type="date" name="exp"value="${ dto.exp }"><br>
-				<input class="btn" type="button" id="save" value="수정">
-			</form>
-		</div>
+				<form id="updateIngredient" method="post"
+					action="/ingredient/update/${ dto.ingredientid }">
+					<input type="hidden" name="_method" value="put" /> <span>식자재명:</span><input
+						type="text" name="ingredientname" value=${ dto.ingredientname }><br>
+					<span>단위: </span> <span id="targetUnit" style="display: none;">${ dto.unit }</span>
+					<select name="unit" id="unit">
+						<option value="KG">KG</option>
+						<option value="G">G</option>
+						<option value="LB">LB</option>
+						<option value="OZ">OZ</option>
+					</select><br> <span>유통기한: </span> <input type="date" name="exp"
+						value="${ dto.exp }"><br> <input class="btn"
+						type="button" id="save" value="수정">
+				</form>
+			</div>
 		</div>
 	</div>
-
+	
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
+	
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script

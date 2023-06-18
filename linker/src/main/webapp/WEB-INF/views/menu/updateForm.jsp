@@ -50,7 +50,8 @@
 </head>
 <body>
 	<!-- css 수정 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -198,20 +199,20 @@
 			</div>
 			<%-- main end --%>
 
-			<footer id="fh5co-footer" role="contentinfo" class="fh5co-section">
+			<!-- Footer Start -->
+			<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 				<div class="container">
-					<div class="row copyright">
-						<div class="col-md-12 text-center">
-							<p>
-								<small class="block">&copy; 2023 Soldesk Project. All
-									Rights Reserved.</small> <small class="block">Designed by <a
-									href="http://freehtml5.co/" target="_blank">Linker</a>
-								</small>
-							</p>
+					<div class="copyright">
+						<div class="row">
+							<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+								&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+								Reserved.
+							</div>
 						</div>
 					</div>
 				</div>
-			</footer>
+			</div>
+			<!-- Footer End -->
 		</div>
 		<%-- footer > container end --%>
 	</div>

@@ -17,7 +17,7 @@ table {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 	width: 100%;
 	max-width: 1200px;
-	margin: 0 auto;
+	margin: auto;
 	border-collapse: collapse;
 	border-radius: 5px;
 	overflow: hidden;
@@ -62,7 +62,9 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
-
+#search {
+	text-align: center;
+}
 #search_text {
 	width: 200px;
 	height: 30px;

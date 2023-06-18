@@ -34,7 +34,7 @@
 	width: 100%;
 }
 
-.container{
+.container {
 	min-height: 210px;
 }
 
@@ -83,18 +83,17 @@ th {
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-map-marker-alt text-primary me-2"></small>
-					<small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
 				</div>
 				<div class="h-100 d-inline-flex align-items-center py-3">
-					<small class="far fa-clock text-primary me-2"></small>
-					<small>월 - 일 : 09.30 AM - 10.00 PM</small>
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small>
-					<small>02-6901-7001</small>
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
 				</div>
 			</div>
 		</div>
@@ -104,8 +103,10 @@ th {
 	<div id="page">
 
 		<!-- Navbar Start -->
-		<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-			<a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+		<nav
+			class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+			<a href="/"
+				class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 				<h2 class="m-0 text-primary">Linker</h2>
 			</a>
 			<button type="button" class="navbar-toggler me-4"
@@ -167,100 +168,94 @@ th {
 
 		<div id="fh5co-about" class="fh5co-section">
 			<div class="fh5co-cover" style="height: 50px"></div>
-				<div >
-					<div class="searchController">
-						<h1>
-							<a class="title" href="/ingredient/ingredientList">식자재 목록</a>
-						</h1>
-						<form id="searchByName" action="/ingredient/searchbyname/result" method="get" style="display: inline-block;">
-							<b>이름별 검색</b>
-							<input type="search" name="name" id="name">
-							<input type="button" id="search-name" value="검색">
-						</form>
-						<form id="searchByDate" action="/ingredient/searchbydate/result"
-							method="get" style="display: inline-block;">
-							<p>
-								<b>유통기한별 검색</b>
-							</p>
-							<input type="date" name="startDay" id="startDay"> - <input type="date" name="endDay" id="endDay">
-							<input type="button" id="search-date" value="검색">
-						</form>
-					</div>
-					<div class="container">
-						<h4 class="title">
-							'<%=request.getParameter("name")%>'에 대한 검색 결과입니다.
-						</h4>
-					</div>
-					<c:if test="${ count != 0 }">
-						<table class="IngredientList">
+			<div>
+				<div class="searchController">
+					<h1>
+						<a class="title" href="/ingredient/ingredientList">식자재 목록</a>
+					</h1>
+					<form id="searchByName" action="/ingredient/searchbyname/result"
+						method="get" style="display: inline-block;">
+						<b>이름별 검색</b> <input type="search" name="name" id="name">
+						<input type="button" id="search-name" value="검색">
+					</form>
+					<form id="searchByDate" action="/ingredient/searchbydate/result"
+						method="get" style="display: inline-block;">
+						<p>
+							<b>유통기한별 검색</b>
+						</p>
+						<input type="date" name="startDay" id="startDay"> - <input
+							type="date" name="endDay" id="endDay"> <input
+							type="button" id="search-date" value="검색">
+					</form>
+				</div>
+				<div class="container">
+					<h4 class="title">
+						'<%=request.getParameter("name")%>'에 대한 검색 결과입니다.
+					</h4>
+				</div>
+				<c:if test="${ count != 0 }">
+					<table class="IngredientList">
+						<tr>
+							<th>식자재명</th>
+							<th>단위</th>
+							<th>유통기한</th>
+						</tr>
+						<c:forEach items="${ nameSearchResult }" var="result">
 							<tr>
-								<th>식자재명</th>
-								<th>단위</th>
-								<th>유통기한</th>
+								<td>${ result.ingredientname }</td>
+								<td>${ result.unit }</td>
+								<td>${ result.exp }</td>
 							</tr>
-							<c:forEach items="${ nameSearchResult }" var="result">
-								<tr>
-									<td>${ result.ingredientname }</td>
-									<td>${ result.unit }</td>
-									<td>${ result.exp }</td>
-								</tr>
-							</c:forEach>
-						</table>
-						<div class="pageController">
-							<c:if test="${ begin > end }">
-								<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
-							</c:if>
-							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="searchNameResult?p=${ i }">${ i }</a>
-							</c:forEach>
-							<c:if test="${ end < totalPages }">
-								<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
-							</c:if>
-						</div>
-					</c:if>
-					<c:if test="${ count == 0 }">
+						</c:forEach>
+					</table>
+					<div class="pageController">
+						<c:if test="${ begin > end }">
+							<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
+						</c:if>
+						<c:forEach begin="${ begin }" end="${ end }" var="i">
+							<a href="searchNameResult?p=${ i }">${ i }</a>
+						</c:forEach>
+						<c:if test="${ end < totalPages }">
+							<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
+						</c:if>
+					</div>
+				</c:if>
+				<c:if test="${ count == 0 }">
 						해당 식자재가 존재하지 않습니다.
 					</c:if>
-				</div>
 			</div>
 		</div>
-	
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-			data-wow-delay="0.1s">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
-						</div>
+	</div>
+
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+	</div>
+	<!-- Footer End -->
+	
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="/lib/wow/wow.min.js"></script>
-		<script src="/lib/easing/easing.min.js"></script>
-		<script src="/lib/waypoints/waypoints.min.js"></script>
-		<script src="/lib/counterup/counterup.min.js"></script>
-		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-		<script src="/lib/lightbox/js/lightbox.min.js"></script>
-
-		<!-- Template Javascript -->
-		<script src="/js/main.js"></script>
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>

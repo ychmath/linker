@@ -4,14 +4,18 @@
 <html>
 
 <head>
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Sign Up</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-<link rel="stylesheet" href="/css/login/joinform.css"/>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/login/joinform.css" />
 
 </head>
 
@@ -22,7 +26,7 @@
 			<div class="content">
 				<!-- INPUT -->
 				<fieldset class="userjoin">
-					<legend >회원정보 입력</legend>
+					<legend>회원정보 입력</legend>
 					<div class="info" id="info__id">
 						<span class="member-type">회원 유형</span> <input type="radio"
 							id="buyer" name="role" value="buyer" checked /> <label
@@ -30,89 +34,110 @@
 							name="role" value="seller" /> <label for="seller">판매자</label>
 					</div>
 					<div class="info" id="info__id">
-						<input type="text" name="name" id="name" placeholder="이름" style="color: black;"  required />
+						<input type="text" name="name" id="name" placeholder="이름"
+							style="color: black;" required />
 						<div id="name_msg"></div>
 					</div>
 					<div class="info" id="info__id">
 						<div id="id-input">
-							<input type="text" name="userid" id="userid" placeholder="아이디" style="color: black;" 
-								required /> <input type="button" class="btn" id="id_check" value="중복 확인"  style="color:#000000"/>
+							<input type="text" name="userid" id="userid" placeholder="아이디"
+								style="color: black;" required /> <input type="button"
+								class="btn" id="id_check" value="중복 확인" style="color: #000000" />
 							<div id="id_msg" class="error"></div>
 							<input type="hidden" id="id_ck" value="" />
 						</div>
 					</div>
 					<div class="info" id="info__pw">
-						<input type="password" name="password" id="password" style="color: black;" 
-							placeholder="비밀번호 입력" required />
+						<input type="password" name="password" id="password"
+							style="color: black;" placeholder="비밀번호 입력" required />
 						<div id="pw_msg" class="error"></div>
 					</div>
 					<div class="info" id="info__pwRe">
-						<input type="password" name="chk_password" id="chk_password" style="color: black;" 
-							placeholder="비밀번호 재입력" required />
+						<input type="password" name="chk_password" id="chk_password"
+							style="color: black;" placeholder="비밀번호 재입력" required />
 						<div id="chk_pw_msg" class="error"></div>
 					</div>
 					<div class="info" id="info__email">
 						<div id="id-input">
-							<input type="email" name="email" id="email" placeholder="이메일" style="color: black;" 
-								required /> <input type="hidden" name="email_verified"
-								id="email_verified" value="0" /> <input type="button"
-								id="mail_ck"  class="btn"value="이메일 인증"  style="color:#000000"/>
+							<input type="email" name="email" id="email" placeholder="이메일"
+								style="color: black;" required /> <input type="hidden"
+								name="email_verified" id="email_verified" value="0" /> <input
+								type="button" id="mail_ck" class="btn" value="이메일 인증"
+								style="color: #000000" />
 							<div id="emailresult"></div>
 							<div id="email_msg" class="error"></div>
 							<input type="hidden" id="ck" value="" />
 						</div>
 						<div id="input">
-							<input id="ck_num"  style="color: black;" /> <input type="button" id="ck_b" class="btn"
-								value="인증 확인"  style="color:#000000"/>
+							<input id="ck_num" style="color: black;" /> <input type="button"
+								id="ck_b" class="btn" value="인증 확인" style="color: #000000" />
 						</div>
 						<div id="result" class="error"></div>
 					</div>
 					<div class="info" id="info__mobile">
-						<input type="text" id="phone" name="phone" placeholder="휴대폰 번호 입력" style="color: black;" 
-							oninput="oninputPhone(this);" />
+						<input type="text" id="phone" name="phone" placeholder="휴대폰 번호 입력"
+							style="color: black;" oninput="oninputPhone(this);" />
 						<div id="phone_msg" class="error"></div>
 					</div>
-				
+
 				</fieldset>
 
 				<fieldset class="agrrretype">
 					<div class="all-oh">
-						<input type="checkbox" name="agreeAllButton" id="agreeAllButton" >
-						<span style="color:#000000">모두 동의합니다</span>
+						<input type="checkbox" name="agreeAllButton" id="agreeAllButton">
+						<span style="color: #000000">모두 동의합니다</span>
 					</div>
-					<fieldset class="agreech" >
+					<fieldset class="agreech">
 						<div class="m-box">
 							<div class="mandatory">
-								<label for="mandatoryTerms1" style="color:#000000"> 
-									<input type="checkbox" id="mandatoryTerms1" name="mandatoryTerms"> 이용약관 동의<strong>(필수)</strong>
+								<label for="mandatoryTerms1" style="color: #000000"> <input
+									type="checkbox" id="mandatoryTerms1" name="mandatoryTerms">
+									이용약관 동의<strong>(필수)</strong>
 								</label>
 							</div>
 							<div class="mandatory">
-								 
-									<input type="checkbox" id="mandatoryTerms2" name="mandatoryTerms"> 
-									<label for="mandatoryTerms2"  style="color:#000000">개인정보 수집, 이용동의
-									<strong>(필수)</strong>
+
+								<input type="checkbox" id="mandatoryTerms2"
+									name="mandatoryTerms"> <label for="mandatoryTerms2"
+									style="color: #000000">개인정보 수집, 이용동의 <strong>(필수)</strong>
 								</label>
 							</div>
 							<div class="optional">
-								 <input type="checkbox"	 id="optionalTerms1" name="optionalTerms">
-								<label for="optionalTerms1" style="color:#000000"> 개인정보 이용 동의<strong>(선택)</strong>
+								<input type="checkbox" id="optionalTerms1" name="optionalTerms">
+								<label for="optionalTerms1" style="color: #000000"> 개인정보
+									이용 동의<strong>(선택)</strong>
 								</label>
 							</div>
 							<div class="optional">
-								 <input type="checkbox"
-									id="optionalTerms2" name="optionalTerms"><label for="optionalTerms2" style="color:#000000"> 이벤트, 혜택정보
+								<input type="checkbox" id="optionalTerms2" name="optionalTerms"><label
+									for="optionalTerms2" style="color: #000000"> 이벤트, 혜택정보
 									수신동의<strong class="select_disable">(선택)</strong>
 								</label>
 							</div>
 						</div>
 					</fieldset>
-					</fieldset>
+				</fieldset>
 			</div>
-			<input type="submit" id="registerButton"  class="btn" value="가입하기"  style="color:black"/>
+			<input type="submit" id="registerButton" class="btn" value="가입하기"
+				style="color: black" />
 
 		</div>
 	</form>
+	
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
