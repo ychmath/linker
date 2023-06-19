@@ -31,7 +31,6 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/comm/table.css" rel="stylesheet">
 <link href="/css/menu/menu_write.css" rel="stylesheet">
 
 </head>
@@ -107,26 +106,29 @@
 							식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">
-								식자재 목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
-								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+								식자재 목록</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-							비용 관리</div>
+							비용 관리
+						</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> <a
-								href="/finance/sales" class="dropdown-item">매출내역</a> <a
-								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a>
+							<a href="/finance/sales" class="dropdown-item">매출내역</a>
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-							나의 정</div>
+							나의 정
+						</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a>
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -142,15 +144,14 @@
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
 							나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> <a
-								href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a> <a
-								href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a>
+							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a>
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<a href="/updateform" style="text-decoration: noe; color: #333">
-						<!-- 이게 뭘까요?? --> <span class="nav-item nav-link">${user.userid}
-							구매자님 환영합니다.</span>
+					<a href="/updateform" style="text-decoration: noe; color: #333"> <!-- 이게 뭘까요?? -->
+						<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
 					</a>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
@@ -158,53 +159,67 @@
 		</div>
 	</nav>
 
-	<div class="main">
-		<div class="container">
-			<div class="content">
-				<p>${ dto.title }</p>
-				<table class="menu">
-					<tr>
-						<td class="orange">작성자</td>
-						<td>${ dto.userID }</td>
-					</tr>
-					<tr>
-						<td class="orange">등록일</td>
-						<td><fmt:formatDate value="${ dto.creationDate }"
-								dateStyle="long" /></td>
-					</tr>
-					<tr>
-						<td class="orange">내용</td>
-						<td>${ dto.content }</td>
-					</tr>
-				</table>
-				<div id="page">
-					<c:if test="${ dto.userID == user.userid }">
-						<a href="/menu/update/${ dto.menuID }">글 수정</a>
-						<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
-					</c:if>
-					<a href="../list">목록 이동</a>
-				</div>
-			</div>
-			<%-- main > content end --%>
-		</div>
-		<%-- main > container end --%>
-	</div>
-	<%-- main end --%>
+	<div id="fh5co-slider" class="fh5co-section animate-box">
+		<div class="fh5co-cover" style="height: 200px"></div>
 
-	<!-- Footer Start -->
-	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
-		<div class="container">
-			<div class="copyright">
-				<div class="row">
-					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-						Reserved.
+		<div class="main">
+			<div class="container">
+				<div class="content">
+					<h1 class="title">${ dto.title }</h1>
+					<table class="menu">
+						<tr>
+							<td class="orange">작성자</td>
+							<td>${ dto.userID }</td>
+						</tr>
+						<tr>
+							<td class="orange">등록일</td>
+							<td><fmt:formatDate value="${ dto.creationDate }"
+									dateStyle="long" /></td>
+						</tr>
+						<tr>
+							<td class="orange">내용</td>
+							<td>${ dto.content }</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right">
+								<!-- 작성자의 id와 현재 게시글의 id가 같을 경우 --> <c:if
+									test="${ dto.userID == user.userid }">
+									<a href="/menu/update/${ dto.menuID }">글 수정</a>
+									<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
+								</c:if> <a href="../list">목록 이동</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<%-- main > content end --%>
+			</div>
+			<%-- main > container end --%>
+		</div>
+		<%-- main end --%>
+
+		<div
+			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+			data-wow-delay="0.1s">
+			<div class="container">
+				<div class="copyright">
+					<div class="row">
+						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+							Reserved.
+						</div>
+						<div class="col-md-6 text-center text-md-end">
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+								Codex</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- Footer End -->
 	</div>
-	<!-- Footer End -->
+	<%-- footer > container end --%>
+
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script

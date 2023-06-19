@@ -93,27 +93,30 @@
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -126,12 +129,13 @@
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -145,8 +149,10 @@
 	<!-- Carousel Start -->
 	<div class="container-fluid p-0 pb-5">
 		<div class="owl-carousel header-carousel position-relative">
-			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
-				<img class="img-fluid" src="img/breakfast.jpg" alt="" style="width: 60%; height: auto;">
+			<div class="owl-carousel-item position-relative"
+				style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/breakfast.jpg" alt=""
+					style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -166,8 +172,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
-				<img class="img-fluid" src="img/lunch.jpg" alt="" style="width: 60%; height: auto;">
+			<div class="owl-carousel-item position-relative"
+				style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/lunch.jpg" alt=""
+					style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -187,8 +195,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="owl-carousel-item position-relative" style="display: flex; justify-content: center;">
-				<img class="img-fluid" src="img/dinner.jpg" alt="" style="width: 60%; height: auto;">
+			<div class="owl-carousel-item position-relative"
+				style="display: flex; justify-content: center;">
+				<img class="img-fluid" src="img/dinner.jpg" alt=""
+					style="width: 60%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -281,11 +291,12 @@
 						<div class="section-title text-start">
 							<h1 class="display-5 mb-4">About Us</h1>
 						</div>
-						<p class="mb-4 pb-2">신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 <br>최고의 맛과 건강함을
-							선사합니다.</p>
+						<p class="mb-4 pb-2">
+							신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 <br>최고의 맛과 건강함을 선사합니다.
+						</p>
 						<div class="row g-4 mb-4 pb-2">
 							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
-							
+
 								<div class="d-flex align-items-center">
 									<div
 										class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
@@ -293,12 +304,13 @@
 										<i class="fa fa-users fa-2x text-primary"></i>
 									</div>
 									<div class="ms-3">
-										<h2 id="sellerCount" class="text-primary mb-1" data-toggle="counter-up">0</h2>
+										<h2 id="sellerCount" class="text-primary mb-1"
+											data-toggle="counter-up">0</h2>
 										<p class="fw-medium mb-0">판매자 수</p>
 									</div>
 								</div>
-								</div>
-								<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+							</div>
+							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
 								<div class="d-flex align-items-center">
 									<div
 										class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
@@ -306,7 +318,8 @@
 										<i class="fa fa-users fa-2x text-primary"></i>
 									</div>
 									<div class="ms-3">
-										<h2 id="buyerCount" class="text-primary mb-1" data-toggle="counter-up">0</h2>
+										<h2 id="buyerCount" class="text-primary mb-1"
+											data-toggle="counter-up">0</h2>
 										<p class="fw-medium mb-0">구매자 수</p>
 									</div>
 								</div>
@@ -333,7 +346,7 @@
 		</div>
 	</div>
 	<!-- Footer End -->
-	
+
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
@@ -348,7 +361,7 @@
 
 	<!-- Template Javascript -->
 	<script src="js/main.js"></script>
-	
+
 </body>
 
 </html>
