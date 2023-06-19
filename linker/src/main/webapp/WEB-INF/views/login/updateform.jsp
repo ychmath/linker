@@ -2,63 +2,77 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>비밀번호 수정</title>
-    <link rel="stylesheet" href="/css/login/updateform.css"/>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-  rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<head>
+<title>비밀번호 수정</title>
+<link rel="stylesheet" href="/css/login/updateform.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 
-        .login__field {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-    </style>
-  </head>
-  <body>
-    <form action="update" method="post" id="updateform">
-      <input type="hidden" name="_method" value="put" />  
-      <div class="container">  
-        <h3>${user.userid}님의 비밀번호를 변경합니다.</h3>
-            <div class="login__field">
-            <span>이름</span>
-            <input type="text" name="name" id="name" value="${user.name}" readonly/>
-       
-            </div>
-            <div class="login__field">
-              <input type="password" id="password" name="password" placeholder="비밀번호" class="login__input" />
-              <label class="floating-label" for="password">비밀번호</label>
-              <div id="pw_msg" class="error"></div>
-            </div>
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-            <div class="login__field">
-              <input type="password" id="chk_password" name="chk_password" placeholder="비밀번호 확인" class="login__input" />
-              <label class="floating-label" for="chk_password">비밀번호 확인</label>
-              <div id="chk_pw_msg" class="error"></div>
-            </div>
-        </div>
-        <button type="submit" class="submit" id ="changepw">수정완료</button>
-       
-      </div>
-    </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+.login__field {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+	<form action="update" method="post" id="updateform">
+		<input type="hidden" name="_method" value="put" />
+		<div class="container">
+			<h3>${user.userid}님의비밀번호를 변경합니다.</h3>
+			<div class="login__field">
+				<span>이름</span> <input type="text" name="name" id="name"
+					value="${user.name}" readonly />
+
+			</div>
+			<div class="login__field">
+				<input type="password" id="password" name="password"
+					placeholder="비밀번호" class="login__input" /> <label
+					class="floating-label" for="password">비밀번호</label>
+				<div id="pw_msg" class="error"></div>
+			</div>
+
+			<div class="login__field">
+				<input type="password" id="chk_password" name="chk_password"
+					placeholder="비밀번호 확인" class="login__input" /> <label
+					class="floating-label" for="chk_password">비밀번호 확인</label>
+				<div id="chk_pw_msg" class="error"></div>
+			</div>
+		</div>
+		<button type="submit" class="submit" id="changepw">수정완료</button>
+	</form>
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
       const validatePassword = (password) =>
         /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,20}$/.test(password);
       const displayMessage = (selector, message) => {
@@ -86,5 +100,5 @@
         });
       });
     </script>
-  </body>
+</body>
 </html>

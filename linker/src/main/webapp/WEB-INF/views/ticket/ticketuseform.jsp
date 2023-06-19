@@ -17,7 +17,7 @@ String end_date = request.getParameter("end_date");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="../../img/favicon.ico" rel="icon">
+<link href="/img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link rel="stylesheet"
@@ -30,109 +30,185 @@ String end_date = request.getParameter("end_date");
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
-<link href="../../lib/animate/animate.min.css" rel="stylesheet">
-<link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
-
-<!-- Bootstrap 5 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-	crossorigin="anonymous">
-  <link href="/css/user/table.css" rel="stylesheet">
+<link href="../../css/user/table.css" rel="stylesheet">
+<link href="../../css/user/radio.css" rel="stylesheet">
 
 </head>
 
 <body>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-10 col-lg-8">
-				<form
-					action="${pageContext.request.contextPath}/finance/filtered_data_t"
-					method="get">
-					<div>
-						<div>
-							<p>
-								<strong>식권 사용 내역</strong>
-							</p>
-							<br>
-							<div class="form-row">
-								<label class="test_obj"> <input type="radio" name="date"
-									value="today"> <span>오늘</span>
-								</label> <label class="test_obj"> <input type="radio"
-									name="date" value="1month"> <span>1개월</span>
-								</label> <label class="test_obj"> <input type="radio"
-									name="date" value="3month"> <span>3개월</span>
-								</label> <label class="test_obj"> <input type="radio"
-									name="date" value="1year"> <span>1년</span>
-								</label> <label class="test_obj"> <input type="radio"
-									name="date" value="total"> <span>전체</span>
-								</label> <label for="start-date-input"></label> <input type="date"
-									id="start-date-input" name="start-date" min="2021-01-01" max=""
-									value="" required oninput="restrictEndDate()"> <label
-									for="end-date-input"><a id="P">~</a></label> <input type="date"
-									id="end-date-input" name="end-date" min="" max="" value=""
-									required oninput="restrictStartDate()">
-								<button type="button" id="myButton" onclick="search()">검색</button>
-							</div>
-							<br>
-						</div>
-						<div>
-							<table class="results-table">
-								<thead>
-									<tr>
-										<th scope="col" id="usedate">구매 일자</th>
-										<th scope="col" id="tickettypename">식권 종류</th>
-										<th scope="col" id="quantity">수량</th>
-									</tr>
-								</thead>
 
-								<tbody id="saled">
-
-									<c:forEach items="${uList}" var="use">
-										<tr>
-											<td><fmt:formatDate value="${use.usedate}"
-													pattern="yyyy-MM-dd" /></td>
-											<td>${use.tickettypename}</td>
-											<td>${use.quantity}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</form>
-				<div id="page">
-					<div class="pagenation-wrapper">
-						<c:if test="${begin > pageNum }">
-							<a href="ticketuseform?p=${begin-1 }">[이전]</a>
-						</c:if>
-						<c:forEach begin="${begin }" end="${end }" var="i">
-							<a href="ticketuseform?p=${i }">${i }</a>
-						</c:forEach>
-						<c:if test="${end < totalPages }">
-							<a href="ticketuseform?p=${end+1 }">[다음]</a>
-						</c:if>
-					</div>
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
 				</div>
-				<c:if test="${count == 0 }">
- 	식권 사용 내역이 없습니다.
- 	</c:if>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Topbar End -->
+
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar End -->
+	<form
+		action="${pageContext.request.contextPath}/finance/filtered_data_t"
+		method="get">
+		<div>
+			<div>
+				<p>
+					<strong>식권 사용 내역</strong>
+				</p>
+				<br>
+				<table id="data-table">
+					<tr>
+						<th id="C">날짜</th>
+						<td id="I"><label class="test_obj"> <input
+								type="radio" name="date" value="today"> <span>오늘</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="1month"> <span>1개월</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="3month"> <span>3개월</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="1year"> <span>1년</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="total"> <span>전체</span>
+						</label> <label for="start-date-input"></label> <input type="date"
+							id="start-date-input" name="start-date" min="2021-01-01" max=""
+							value="" required oninput="restrictEndDate()"> <label
+							for="end-date-input"><a id="P">~</a></label> <input type="date"
+							id="end-date-input" name="end-date" min="" max="" value=""
+							required oninput="restrictStartDate()">
+							<button type="button" id="myButton" onclick="search()">검색</button>
+							<input type="radio" name="date" value="search" style="display: none">
+					</tr>
+				</table>
+				<br>
+			</div>
+			<div>
+				<table class="results-table">
+					<thead>
+						<tr>
+							<th scope="col" id="usedate">구매 일자</th>
+							<th scope="col" id="tickettypename">식권 종류</th>
+							<th scope="col" id="quantity">수량</th>
+						</tr>
+					</thead>
+
+					<tbody id="saled">
+
+						<c:forEach items="${uList}" var="use">
+							<tr>
+								<td><fmt:formatDate value="${use.usedate}"
+										pattern="yyyy-MM-dd" /></td>
+								<td>${use.tickettypename}</td>
+								<td>${use.quantity}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+
+	<div id="page">
+		<c:if test="${begin > pageNum }">
+			<a href="ticketuseform?p=${begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${begin }" end="${end }" var="i">
+			<a href="ticketuseform?p=${i }">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="ticketuseform?p=${end+1 }">[다음]</a>
+		</c:if>
+	</div>
+
+	<c:if test="${count == 0 }">
+ 	식권 사용 내역이 없습니다.
+ 	</c:if>
+
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		function search() {
+			$("#I > input[type=radio]:nth-child(11)").prop('checked', true);
 			var start_date = document.getElementById('start-date-input').value;
 			var end_date = document.getElementById('end-date-input').value;
 			var currentPage = 1;

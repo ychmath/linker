@@ -1,15 +1,15 @@
 @charset "UTF-8";
 
-body {
-	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+.center-wrapper {
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	height: 100vh;
-	margin: 0;
+	align-items: center;
+	background-color: #F5F5F5;
 }
 
-.container {
+.joinform {
+	margin-top: 5em;
+	margin-bottom: 5em;
 	width: 400px;
 	height: auto;
 	max-width: 100%;
@@ -17,9 +17,13 @@ body {
 	border-radius: 20px;
 	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#input, #result {
+#input,
+#result {
 	display: none;
 }
 
@@ -29,9 +33,9 @@ body {
 }
 
 .userjoin {
-	color: #f38181;
+	color: #AB7442;
 	font-weight: 700;
-	margin: 0 0 1.5rem 0;
+	margin-bottom: 1em;
 	text-align: center;
 }
 
@@ -44,7 +48,6 @@ info {
 	background-color: rgba(0, 0, 0, 0.05);
 	display: block;
 	font-size: 16px;
-	margin-bottom: 0;
 	outline: none;
 	padding: auto;
 	width: 100%;
@@ -68,7 +71,9 @@ info {
 }
 
 .btn {
-	background-color: #5C97FF;
+	color: white;
+	margin: auto;
+	background-color: #4274AB;
 	border: none;
 	border-radius: 5px;
 	color: white;
@@ -78,6 +83,7 @@ info {
 	padding: 12px;
 	width: 90%;
 	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 	transition: all 0.3s;
 }
 
@@ -87,8 +93,8 @@ info {
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login__input:focus ~ .floating-label, .login__input:not(:placeholder-shown) 
-	~ .floating-label {
+.login__input:focus~.floating-label,
+.login__input:not(:placeholder-shown)~.floating-label {
 	transform: translateY(-250%);
 	font-size: 0.75rem;
 	transition: all 400ms ease;
@@ -101,7 +107,7 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-	 margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #userid {
@@ -110,10 +116,9 @@ info {
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: 3px;	  
-	
-
+	border-bottom: 3px;
 }
+
 #password {
 	width: 300px;
 	height: 50px;
@@ -121,7 +126,7 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-	 margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #chk_password {
@@ -131,8 +136,8 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-		padding-top: 10px; 
-		 margin-bottom: 10px;
+	padding-top: 10px;
+	margin-bottom: 10px;
 }
 
 #email {
@@ -142,7 +147,6 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-
 }
 
 #phone {
@@ -152,5 +156,5 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
- 	 padding-top: 10px
+	padding-top: 10px
 }

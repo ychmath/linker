@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/user/notice.css">
+
 <title>공지사항</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,6 +22,8 @@
 <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -142,23 +144,11 @@
 		</div>
 	</nav>
 
-	<div id="search" class="table-spacing">
-		<form action="search">
-			<select name="searchn" id="searchn">
-				<option value="0">제목</option>
-				<option value="1">작성자</option>
-			</select> <input type="text" id="search_text" name="search" size="15"
-				maxlength="40" /> <input type="submit" id="search_btn"
-				name="search_btn" value="검색" />
-		</form>
-	</div>
 
-	<table class="table-spacing table-center">
 
-		<tr>
-			<th>공지사항</th>
-		</tr>
-	</table>
+	<p>
+		<strong>공지사항</strong>
+	</p>
 	<table>
 		<tr>
 			<th>게시글 번호</th>
@@ -172,13 +162,13 @@
 				<td>${notice.noticepostid}</td>
 				<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
 				<td>${notice.userid }</td>
-				<td><fmt:formatDate value="${notice.creationdate }"
-						dateStyle="short" /></td>
+				<td><fmt:formatDate value="${notice.creationdate }" dateStyle="short"  /></td>
 			</tr>
 		</c:forEach>
 
 	</table>
-	<div class="center-align" id="page " align="center">
+
+	<div id="page">
 		<c:if test="${begin > pageNum}">
 			<a href="notice?p=${begin-1 }">[이전]</a>
 		</c:if>
@@ -188,36 +178,46 @@
 		<c:if test="${end < totalPages }">
 			<a href="notice?p=${end+1 }">[다음]</a>
 		</c:if>
+
+		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+			<div id="write" class="write_ty">
+				<input type="button" id="write" value="글쓰기"
+					onclick="location.href='write'" />
+			</div>
+		</c:if>
 	</div>
 	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 
-	<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-		<div id="write" class="write_ty">
-			<input type="button" id="write" value="글쓰기"
-				onclick="location.href='write'" />
-		</div>
-	</c:if>
 
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+
+	<div id="search">
+		<form action="search">
+			<select name="searchn" id="searchn">
+				<option value="0">제목</option>
+				<option value="1">작성자</option>
+			</select> <input type="text" id="search_text" name="search" size="15"
+				maxlength="40" /> <input type="submit" id="search_btn"
+				name="search_btn" value="검색" />
+		</form>
+	</div>
+
+
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy;<a class="border-bottom" href="#">Linker</a>, All Right
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
-					</div>
-					<div class="col-md-6 text-center text-md-end">
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Footer End -->
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>

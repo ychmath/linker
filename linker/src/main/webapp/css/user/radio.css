@@ -1,0 +1,27 @@
+@charset "EUC-KR";
+
+.test_obj input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.test_obj span {
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.test_obj input[type="radio"]:checked+span {
+	background-color: #a39485; /* 체크 됐을 때 배경색 변경 */
+	 color: #ffffff;
+}
+
+.test_obj span:hover {
+	background-color: #e0e0e0;
+}

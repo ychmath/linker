@@ -13,12 +13,14 @@
 <link href="../../img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+	integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Libraries Stylesheet -->
 <link href="../../lib/animate/animate.min.css" rel="stylesheet">
@@ -31,67 +33,11 @@
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
-
-<style>
-.content {
-	width: 100%;
-	align-content: center;
-}
-
-.ticketlist {
-	width: 100%;
-	border: 1px solid gray;
-	border-collapse: collapse;
-	margin-top: 30px;
-	text-align: center;
-	font-size: 15px;
-	border-left: 2px solid;
-	border-bottom: 2px solid #000;
-	border-right: 2px solid #000;
-	border-top: 2px solid #000;
-}
-
-th {
-	text-align: center;
-	border-bottom: 1px solid gray;
-	border-collapse: collapse;
-	border: 1px solid #000;
-	height: 40px;
-	border-bottom: 2px solid #000;
-}
-
-#tickettable {
-	height: 460px;
-}
-
-#d {
-	margin-top: 20px;
-}
-
-td {
-	border-collapse: collapse;
-	border: 1px solid #ccc;
-}
-
-#tbody {
-	border-left: 1px solid;
-	border-bottom: 1px solid #000;
-	border-right: 1px solid #000;
-}
-</style>
+<link href="../../css/user/table.css" rel="stylesheet">
 
 </head>
 
 <body>
-	<!-- Spinner Start -->
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner-grow text-primary"
-			style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-	<!-- Spinner End -->
 
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
@@ -168,12 +114,13 @@ td {
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	
 	<div class="content">
 		<div class="container">
 			<div id="tickettable" class="about-text">
-				<h1 class="title">
+				<p>
 					<a href="/ticket/ticketlist">식권 목록</a>
-				</h1>
+				</p>
 				<div id="tickettable">
 					<table class="ticketlist" id="ticketlist">
 						<thead>
@@ -201,37 +148,22 @@ td {
 				</div>
 			</div>
 		</div>
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-			data-wow-delay="0.1s">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
-
-						<div class="col-md-6 text-center text-md-end">
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
-						</div>
+	</div>
+	
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- Footer End -->
-
-
-	<!-- Back to Top -->
-	<a href="#"
-		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
-
 
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

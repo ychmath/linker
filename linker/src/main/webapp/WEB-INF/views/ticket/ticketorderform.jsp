@@ -38,8 +38,8 @@ String end_date = request.getParameter("end_date");
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
-<link href="../../css/user/table.css" rel="stylesheet">
-
+<link href="../../css/comm/table.css" rel="stylesheet">
+<link href="../../css/user/radio.css" rel="stylesheet">
 </head>
 
 <body>
@@ -115,10 +115,7 @@ String end_date = request.getParameter("end_date");
 		action="${pageContext.request.contextPath}/finance/filtered_data_t"
 		method="get">
 		<div>
-			<!--  id="B" -->
 			<div>
-				<!-- style="display:flex; align-items:center;" -->
-
 				<p>
 					<strong>식권 구매 내역</strong>
 				</p>
@@ -143,6 +140,7 @@ String end_date = request.getParameter("end_date");
 							id="end-date-input" name="end-date" min="" max="" value=""
 							required oninput="restrictStartDate()">
 							<button type="button" id="myButton" onclick="search()">검색</button>
+							<input type="radio" name="date" value="search" style="display: none">
 					</tr>
 				</table>
 				<br>
@@ -168,9 +166,9 @@ String end_date = request.getParameter("end_date");
 								<td><fmt:formatDate value="${purchase.orderdate}"
 										pattern="yyyy-MM-dd" /></td>
 								<td>${purchase.tickettypename}</td>
-								<td>${purchase.price}</td>
+								<td><fmt:formatNumber value="${purchase.price}"/></td>
 								<td>${purchase.quantity}</td>
-								<td>${purchase.totalprice}</td>
+								<td><fmt:formatNumber value="${purchase.totalprice}"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -194,10 +192,9 @@ String end_date = request.getParameter("end_date");
 	<c:if test="${count == 0 }">
  	식권 구매 내역이 없습니다.
  	</c:if>
+
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-0 pt-0 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -205,19 +202,17 @@ String end_date = request.getParameter("end_date");
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		function search() {
+			$("#I > input[type=radio]:nth-child(11)").prop('checked', true);
 			var start_date = document.getElementById('start-date-input').value;
 			var end_date = document.getElementById('end-date-input').value;
 			var currentPage = 1;
@@ -373,9 +368,9 @@ String end_date = request.getParameter("end_date");
 				table_data += '<td>' + ticket.ticketorderid + '</td>';
 				table_data += "<td>" + koreanDate + "</td>";
 				table_data += '<td>' + ticket.tickettypename + '</td>';
-				table_data += '<td>' + ticket.price + '</td>';
+				table_data += '<td>' + ticket.price.toLocaleString() + '</td>';
 				table_data += '<td>' + ticket.quantity + '</td>';
-				table_data += '<td>' + ticket.totalprice + '</td>';
+				table_data += '<td>' + ticket.totalprice.toLocaleString() + '</td>';
 				table_data += '</tr>';
 
 				//기존 Date코드 (UTC+9여서 하루 늦게 반영됐었음. 현재 코드로 수정)

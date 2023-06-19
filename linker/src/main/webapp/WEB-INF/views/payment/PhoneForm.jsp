@@ -35,6 +35,20 @@
 			</table>
 		</form>
 
+		<!-- Footer Start -->
+		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+			<div class="container">
+				<div class="copyright">
+					<div class="row">
+						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+							Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer End -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			$(function() {

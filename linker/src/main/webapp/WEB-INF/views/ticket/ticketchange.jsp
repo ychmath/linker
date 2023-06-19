@@ -31,21 +31,11 @@
 
 <!-- Template Stylesheet -->
 <link href="../../css/style.css" rel="stylesheet">
+<link href="../../css/user/change.css" rel="stylesheet">
 
 </head>
-  
-<body>
-	<!-- Spinner Start -->
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner-grow text-primary"
-			style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-	<!-- Spinner End -->
 
-	<!-- Topbar Start -->
+<body>
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
@@ -65,8 +55,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- Topbar End -->
-
 	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -80,62 +68,122 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="feature.html" class="dropdown-item">Feature</a> <a
+								href="quote.html" class="dropdown-item">Free Quote</a> <a
+								href="team.html" class="dropdown-item">Our Team</a> <a
+								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
+								href="404.html" class="dropdown-item">404 Page</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/" class="dropdown-item">재고현황</a> <a href="/"
+								class="dropdown-item">발주내역</a> <a href="/" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-				
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> <a
+								href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a> <a
+								href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<a href="/updateform" style="text-decoration: noe; color: #333">
+						<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 			</div>
 		</div>
 	</nav>
-	<!-- Navbar End -->
-		
-			<h1><a class="title" href="/ticket/ticketupdateList">식권 목록</a></h1>
-			<div class="TicketUpdateController">
-			<p style="color: black;">
-				<b>식권 추가</b>
+
+	<div class="content">
+		<div class="container">
+			<div id="tickettable" class="about-text">
+				<p>
+					<a class="title" href="/ticket/ticketupdateList">식권 추가</a>
 				</p>
-				<form id="addTicket" action="/ticket/insert" method="post">
-					<span style="color: black;">식권 이름:&nbsp; &nbsp;</span><input name="tickettypename" required> 
-					<span style="color: black;">가격:&nbsp;&nbsp;</span><input name="price" required>
-					<input type="submit" id="add" class="button" value="식권등록" style="color: black;"/>
-					
-				</form>
-			
+				<div class="TicketUpdateController">
+					<p style="color: black;"></p>
+					<form id="addTicket" action="/ticket/insert" method="post">
+						<div id="intable">
+							<div id="tname">
+								<span style="color: black;">식권 이름&nbsp; &nbsp;</span><input
+									name="tickettypename" required>
+							</div>
+							<div id="tprice">
+								<span style="color: black;">가격&nbsp;&nbsp;</span><input
+									name="price" required>
+							</div>
+							<br>
+							<div class="frame">
+								<input type="submit" id="add" class="custom-btn btn-10"
+									value="등록" />
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
-			<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+		</div>
+	</div>
+
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -143,16 +191,11 @@
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
-
 
 	<!-- Back to Top -->
 	<a href="#"
