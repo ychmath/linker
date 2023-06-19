@@ -171,10 +171,8 @@
 		</c:if>
 
 		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-			<div id="write" class="write_ty">
-				<input type="button" id="write" value="글쓰기"
-					onclick="location.href='write'" />
-			</div>
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
 		</c:if>
 	</div>
 	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>

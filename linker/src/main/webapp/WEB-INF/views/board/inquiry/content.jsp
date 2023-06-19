@@ -148,44 +148,42 @@
 	</nav>
 	<!-- Navbar End -->
 	<div class="content-wrapper">
-	<div id="container">
-		<div class="card">
-			<div class="card-view">
-				<div class="title">
-					<h3>${dto.title}</h3>
+		<div id="container">
+			<div class="card">
+				<div class="card-view">
+					<div class="title">
+						<h3>${dto.title}</h3>
+					</div>
+					<div class="myinfo">
+						<dl>
+							<dt>작성자</dt>
+							<dd>${dto.userid}</dd>
+						</dl>
+						<dl>
+							<dt>작성일</dt>
+							<dd>
+								<fmt:formatDate value="${dto.creationdate }" />
+							</dd>
+						</dl>
+					</div>
+					<div class="cont">${dto.content }</div>
 				</div>
-				<div class="myinfo">
-					<dl>
-						<dt>작성자</dt>
-						<dd>${dto.userid}</dd>
-					</dl>
-					<dl>
-						<dt>작성일</dt>
-						<dd>
-							<fmt:formatDate value="${dto.creationdate }" />
-						</dd>
-					</dl>
-				</div>
-				<div class="cont">${dto.content }</div>
-			</div>
-			<div class="btn-view">
-				<c:if test="${user.userid == dto.userid }">
-					<a href="/inquiry/update/${dto.inquirypostid }">수정</a>
-					<a id="${dto.inquirypostid }" href="#">삭제</a>
-				</c:if>
-				<a href="../inquiry">목록 이동</a>
-			</div>
-		</div>
-		<div>
-			<span> <span id="role" style="display: none;">${ user.role }</span>
+				<div class="btn-view">
+					<c:if test="${user.userid == dto.userid }">
+						<a href="/inquiry/update/${dto.inquirypostid}">수정</a>
+						<a id="${dto.inquirypostid}" href="#">삭제</a>
+					</c:if>
+					<a href="../inquiry">목록 이동</a>
 
-				<input type="button" id="replyButton" value="답글쓰기"
-				style="display: none;"
-				onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&ref=${dto.ref }&restep=${dto.restep }&relevel=${dto.relevel }'" />
-			</span>
+					<div>
+						<span> <span id="role" style="display: none;">${user.role}</span>
+							<a href="/inquiry/writeComm?inquirypostid=${dto.inquirypostid}&ref=${dto.ref}&restep=${dto.restep}&relevel=${dto.relevel}">답글쓰기</a>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
