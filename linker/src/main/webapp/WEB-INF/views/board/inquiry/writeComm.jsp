@@ -28,17 +28,8 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/user/content.css" rel="stylesheet">
-<title>Insert title here</title>
-
-<style>
-textarea {
-	width: 50%;
-	height: 6.25em;
-	resize: none;
-	border: 2px solid black;
-}
-</style>
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
+<title>답글</title>
 
 </head>
 
@@ -156,44 +147,34 @@ textarea {
 	</nav>
 	<!-- Navbar End -->
 
-	<div id="container">
-		<div class="card">
-			<div class="card-view">
-				<div class="title">
-					<h3>
-						<c:if test="${dto.inquirypostid == 0 }">
-							<input type="text" name="title" maxlength="50" />
-						</c:if>
-						<c:if test="${dto.inquirypostid != 0 }">
-							<input type="text" name="title" class="title_in" maxlength="50"
-								value="[답변]" />
-						</c:if>
-					</h3>
-				</div>
-				<div class="myinfo">
-					<dl>
-						<dt>작성자</dt>
-						<dd>
-							${user.userid} <input type="hidden" name="inquirypostid"
-								value="${dto.inquirypostid}" /> <input type="hidden" name="ref"
-								value="${dto.ref}" /> <input type="hidden" name="re_step"
-								value="${dto.restep}" /> <input type="hidden" name="re_level"
-								value="${dto.relevel}" />
-						</dd>
-					</dl>
-				</div>
-				<div class="cont">
-					<p>내용</p>
-					<textarea name="content"></textarea>
-				</div>
-				<div class="btn-view">
-					<input type="submit" value="작성" /> <input type="reset"
-						value="다시 작성" /> <a href="inquiry">글목록</a>
+	<div class="content-wrapper">
+		<form method="post" id="title_validation" action="write"
+			style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
+			<div class="pt-1">
+				<input type="text" name="title" id="title" value="[답변]"
+					required style="border-radius: 5px; width: 100%; padding: 5px;">
+			</div>
+			<div class="pt-1">
+				<input name="userid" id="userid" value="${user.userid }"
+					style="border-radius: 5px; width: 100%;" readonly /> <input
+					type="hidden" name="inquirypostid" value="${dto.inquirypostid}" />
+				<input type="hidden" name="ref" value="${dto.ref}" /> <input
+					type="hidden" name="re_step" value="${dto.restep}" /> <input
+					type="hidden" name="re_level" value="${dto.relevel}" />
+			</div>
+			<div class="pt-1">
+				<div id="smarteditor">
+					<textarea name="content" id="editorTxt" rows="20" cols="10"
+						placeholder="내용을 입력해주세요" style="border-radius: 5px; width: 100%;"></textarea>
 				</div>
 			</div>
-		</div>
+			<div class="pt-1 text-right" colspan="2" align="right">
+				<!-- colspan: 셀을 가로로 합병 -->
+				<input type="submit" class="upload_btn" id="upload"
+					style="width: 10%; padding: 5px;" value="등록" />
+			</div>
+		</form>
 	</div>
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -223,6 +204,36 @@ textarea {
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"
+		charset="utf-8"></script>
+	<script src="/js/board/title_validation.js">
+		
+	</script>
+	<script>
+		let oEditors = [];
+
+		smartEditor = function() {
+			console.log("Naver SmartEditor");
+			nhn.husky.EZCreator.createInIFrame({
+				oAppRef : oEditors,
+				elPlaceHolder : "editorTxt",
+				sSkinURI : "/smarteditor/SmartEditor2Skin.html",
+				fCreator : "createSEditor2",
+			});
+		};
+
+		$(document).ready(
+				function() {
+					smartEditor();
+
+					$("#upload").click(
+							function() {
+								oEditors.getById["editorTxt"].exec(
+										"UPDATE_CONTENTS_FIELD", []);
+								$("#writenotice").submit();
+							});
+				});
+	</script>
 </body>
 
 </html>
