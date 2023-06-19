@@ -40,6 +40,8 @@ table {
 </style>
 </head>
 <body>
+
+	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
@@ -59,6 +61,9 @@ table {
 			</div>
 		</div>
 	</div>
+	<!-- Topbar End -->
+
+<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -83,19 +88,11 @@ table {
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="feature.html" class="dropdown-item">Feature</a> <a
-								href="quote.html" class="dropdown-item">Free Quote</a> <a
-								href="team.html" class="dropdown-item">Our Team</a> <a
-								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
-								href="404.html" class="dropdown-item">404 Page</a>
-						</div>
-					</div>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="${pageContext.request.contextPath}/logout"
-						class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -103,29 +100,27 @@ table {
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
-							관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
-								목록</a> <a href="/" class="dropdown-item">재고현황</a> <a href="/"
-								class="dropdown-item">발주내역</a> <a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-							관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> <a
-								href="/finance/sales" class="dropdown-item">매출내역</a> <a
-								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> 
+							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
+							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
+										<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -136,15 +131,14 @@ table {
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> <a
-								href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a> <a
-								href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -153,6 +147,8 @@ table {
 			</div>
 		</div>
 	</nav>
+	<!-- Navbar End -->
+	
 	<div id="container">
 		<div class="card">
 			<div class="card-view">

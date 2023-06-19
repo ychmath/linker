@@ -4,21 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
 <title>404 ERROR</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
 <link href="img/favicon.ico" rel="icon">
-
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
-	rel="stylesheet">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -39,9 +29,11 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -100,7 +92,6 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
-					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -108,7 +99,7 @@
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
 								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
-								href="/" class="dropdown-item">사용내역</a>
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
