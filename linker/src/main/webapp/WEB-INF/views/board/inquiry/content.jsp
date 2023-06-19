@@ -31,6 +31,7 @@
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/user/content.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
 <title>글 상세보기</title>
 </head>
 
@@ -146,7 +147,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-
+	<div class="content-wrapper">
 	<div id="container">
 		<div class="card">
 			<div class="card-view">
@@ -184,7 +185,7 @@
 			</span>
 		</div>
 	</div>
-
+</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

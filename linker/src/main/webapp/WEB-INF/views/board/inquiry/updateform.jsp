@@ -29,7 +29,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Topbar Start -->
@@ -143,7 +143,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+		<div class="content-wrapper">
 	<form method="post" id="title_validation" action="/inquiry/update"
 		style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
 
@@ -171,7 +171,7 @@
 				style="width: 10%; padding: 5px;" value="수정" />
 		</div>
 	</form>
-
+</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

@@ -49,7 +49,7 @@
 	</div>
 	<!-- Topbar End -->
 
-<!-- Navbar Start -->
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -86,27 +86,30 @@
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -119,12 +122,13 @@
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -134,7 +138,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+	<div class="content-wrapper">
 		<p>
 			<strong>'${search}' 검색결과입니다.</strong>
 		</p>
@@ -160,34 +164,38 @@
 				</c:forEach>
 			</table>
 
-			<div id="page">
-				<c:if test="${begin > pageNum }">
-					<a href="search?p=${begin-1 }&search=${search }&searchn=${searchn}">[이전]</a>
-				</c:if>
-				<c:forEach begin="${begin }" end="${end }" var="i">
-					<a href="search?p=${end+1 }&search=${search}&searchn=${searchn}">${i }</a>
-				</c:forEach>
-				<c:if test="${end < totalPages }">
-					<a href="search?p=${end+1 }&search=${search}&searchn=${searchn}">[다음]</a>
-				</c:if>
-			</div>
+
 		</c:if>
-		
+
 		<div id="center">
-		<c:if test="${count == 0 }"> 검색 조건에 맞는 글이 없습니다. </c:if>
+			<c:if test="${count == 0 }"> 검색 조건에 맞는 글이 없습니다. </c:if>
 		</div>
-		
-		<div id="search">
-			<form action="search">
-				<select name="searchn" id="searchn">
-					<option value="0">제목</option>
-					<option value="1">작성자</option>
-				</select> <input type="text" id="search_text" name="search" size="15"
-					maxlength="40" /> <input type="submit" id="search_btn"
-					name="search_btn" value="검색" />
-			</form>
-		</div>
-		
+	</div>
+	<div id="page">
+		<c:if test="${count != 0}">
+			<c:if test="${begin > pageNum}">
+				<a href="search?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin}" end="${end}" var="i">
+				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">${i}</a>
+			</c:forEach>
+			<c:if test="${end < totalPages}">
+				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">[다음]</a>
+			</c:if>
+		</c:if>
+	</div>
+
+	<div id="search">
+		<form action="search">
+			<select name="searchn" id="searchn">
+				<option value="0">제목</option>
+				<option value="1">작성자</option>
+			</select> <input type="text" id="search_text" name="search" size="15"
+				maxlength="40" /> <input type="submit" id="search_btn"
+				name="search_btn" value="검색" />
+		</form>
+	</div>
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
