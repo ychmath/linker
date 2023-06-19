@@ -1,12 +1,27 @@
 @charset "UTF-8";
 
+html,
 body {
+	height: 100%;
+}
+
+.content-wrapper {
+	flex: 1;
+}
+
+.footer {
+	flex-shrink: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
 	background: #f5f5f5;
 }
 
 p {
-	margin-top: 1em;
-	margin-bottom: 1em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 	font-size: 1.5em;
 	font-weight: bold;
 	text-align: center;
@@ -49,14 +64,13 @@ td {
 	text-align: center;
 }
 
-#page a.current {
-	font-weight: bold;
-	color: #000;
+.menu {
+	margin-bottom: 30px;
 }
 
 #page {
-	margin-top: 1em;
-	margin-bottom: 1em;
+
+	margin-bottom: 2em;
 	text-align: center;
 	color: #73685d;
 	position: relative;
@@ -73,6 +87,7 @@ td {
 }
 
 #search {
+	margin-bottom: 2em;
 	text-align: center;
 }
 
@@ -112,6 +127,12 @@ td {
 	margin-bottom: 10px;
 	border-radius: 10px;
 	text-align: center;
+}
+
+#I label,
+#I input[type="date"],
+#I button {
+	margin-right: 1.5%;
 }
 
 #write {
@@ -195,6 +216,4 @@ td {
 	td {
 		border-bottom: 1px solid #e5e5e5;
 	}
-
-
 }

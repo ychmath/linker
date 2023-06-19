@@ -7,137 +7,152 @@
 <head>
 <title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/login/deleteform.css" />
 
-<style>
-body {
-	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	margin: 0;
-}
+<!-- Favicon -->
+<link href="img/favicon.ico" rel="icon">
 
-.container {
-	width: 400px;
-	height: auto;
-	max-width: 100%;
-	padding: 20px 40px;
-	border-radius: 20px;
-	background-color: rgba(255, 255, 255, 0.8);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-}
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
 
-h3 {
-	font-size: 1.5rem;
-	color: #f38181;
-	font-weight: 700;
-	margin: 0 0 1.5rem 0;
-	text-align: center;
-}
+<!-- Libraries Stylesheet -->
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-h4 {
-	font-size: 1.5rem;
-	color: #f38181;
-	font-weight: 700;
-	margin: 0 0 1.5rem 0;
-	text-align: center;
-}
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-.login__field {
-	position: relative;
-	margin-bottom: 2.0rem;
-}
-
-.login__input {
-	background-color: rgba(0, 0, 0, 0.05);
-	border: 1px solid #ddd;
-	font-size: 16px;
-	width: 100%;
-	color: #666;
-	box-shadow: none !important;
-}
-
-.login__input::placeholder {
-	opacity: 0;
-	transition: all 400ms ease;
-}
-
-.login__input:focus::placeholder {
-	opacity: 0;
-	transition: all 400ms ease;
-}
-
-.login__input:focus {
-	outline: none;
-	border-color: #7369ac;
-	box-shadow: 0 0 5px rgba(115, 105, 172, 0.75);
-}
-
-table {
-	width: 100%;
-	text-align: left;
-	margin-bottom: 1rem;
-}
-
-td:first-child {
-	width: 30%;
-	padding-right: 10px;
-}
-
-.submit {
-	background-color: #5C97FF;
-	border: none;
-	border-radius: 5px;
-	color: white;
-	cursor: pointer;
-	font-size: 18px;
-	font-weight: 700;
-	padding: 10px;
-	width: 100%;
-	margin-top: 1rem;
-	transition: all 0.3s;
-}
-
-.submit:hover {
-	background-color: #4C85DC;
-	transform: translateY(-2px);
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.error-message {
-	color: red;
-	font-size: 0.8em;
-	margin-bottom: 1rem;
-}
-
-.center-text {
-	text-align: center;
-	cursor: default;
-}
-</style>
-
+<!-- Template Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/comm/basicform.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<h3>회원 탈퇴</h3>
-		<h4>비밀번호를 입력해주세요</h4>
-		<c:if test="${result == 'false'}">
-			<p class="error-message">입력하신 비밀번호는 틀렸습니다.</p>
-		</c:if>
-		<form method="post" onsubmit="checkVal()" action="delete">
-			<input type="hidden" name="_method" value="delete" /> <label
-				class="floating-label" for="passowrd">비밀번호</label> <input
-				type="password" name="formpw" id="password" class="login__input"
-				placeholder="비밀번호" required /> <input type="submit" value="탈퇴"
-				class="submit" />
-			<div class="center-text">
-				<br> <a href="/">홈으로 돌아가기</a>
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
+				</div>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Topbar End -->
+
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle active"
+							data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item ">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item active">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle active"
+							data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item ">회원정보
+								수정</a> <a href="/deleteform" class="dropdown-item active">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar End -->
+
+	<div class="center-wrapper content-wrapper">
+		<form method="post" onsubmit="return checkVal();" action="delete">
+			<div class="commform">
+				<h3>회원 탈퇴</h3>
+				<h5>비밀번호를 입력해주세요</h5>
+				<br>
+				<div class="comm_field">
+					<input type="hidden" name="_method" value="delete" /> <label
+						class="floating-label" for="password"></label> <input
+						type="password" name="formpw" id="password" class="comm_input"
+						required />
+				</div>
+				<input type="submit" value="탈퇴" class="submit" />
 			</div>
 		</form>
 	</div>
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -152,16 +167,33 @@ td:first-child {
 		</div>
 	</div>
 	<!-- Footer End -->
-	
-	<script>
-		function checkVal() {
-			let pw = document.querySelector("#password").value;
-			if (!pw) {
-				alert("비밀번호 입력하세요");
-				return false;
-			}
-		}
-	</script>
 
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/counterup/counterup.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="lib/lightbox/js/lightbox.min.js"></script>
+
+<c:if test="${not empty result}">
+    <script>
+    $(document).ready(function() {
+    	  var result = $("#result").val();
+    	  if (result === "success") {
+    	    alert("회원 탈퇴가 정상적으로 처리되었습니다.");
+    	  } else if (result === "false") {
+    	    alert("입력하신 비밀번호가 틀렸습니다.");
+    	  }
+    	  if (result !== "") {
+    	    window.location.href = "/";
+    	  }
+    	});
+    </script>
+</c:if>
 </body>
 </html>

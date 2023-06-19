@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +21,17 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 </head>
   
 <body>
@@ -71,10 +72,10 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
@@ -89,10 +90,10 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/write" class="nav-item nav-link active">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
@@ -121,10 +122,10 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
@@ -142,10 +143,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-
-		<div class="main">
-			<div class="container">
-				<div class="content">
+	<div class="content-wrapper">
 					<p>식단표 목록</p>
 					<!-- 현재 로그인한 user의 role 값이 seller인 경우 글 등록 가능 -->
 					<c:if test="${ user.role == 'seller' }">
@@ -169,6 +167,7 @@
 								</tr>
 							</c:forEach>
 						</table>
+							</div>
 						<div id="page">
 							<c:if test="${ begin > pageNum }">
 								<a href="list?p=${ begin-1 }">[이전]</a>
@@ -184,13 +183,8 @@
 					<c:if test="${ count == 0 }">
 						입력한 식단표가 존재하지 않습니다.
 					</c:if>
-				</div>
-				<%-- main > content end --%>
-			</div>
-			<%-- main > container end --%>
-		</div>
-		<%-- main end --%>
-	
+
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

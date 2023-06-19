@@ -138,14 +138,16 @@ public class LoginController {
 	                     @ModelAttribute("user") LoginDto dto,
 	                     SessionStatus status,
 	                     RedirectAttributes redirectAttributes) {
-		int i = service.deleteUser(formpw, dto);
-		if (i == 0) {
-			redirectAttributes.addFlashAttribute("result", "false");
-			return "redirect:/deleteform";
-		} else {
-			status.setComplete();
-			return "redirect:/";
-		}
+	    int i = service.deleteUser(formpw, dto);
+	    
+	    if (i == 0) {
+	        redirectAttributes.addFlashAttribute("result", "false");
+	        return "redirect:/deleteform";
+	    } else {
+	        redirectAttributes.addFlashAttribute("result", "success");
+	        status.setComplete();
+	        return "redirect:/";
+	    }
 	}
 
 	// 판매자 수 가져오기

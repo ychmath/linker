@@ -1,87 +1,98 @@
 @charset "UTF-8";
 
 .card-view {
-    text-align: center;
-    padding: 30px;
+	text-align: center;
+	padding: 30px;
 }
 
 .card-view .title {
-    margin-top: 30px;
-    margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .card-view .myinfo {
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #999;
-    margin: auto;
-    width: 400px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	margin: auto;
+	width: 400px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .card-view .myinfo dl {
-    display: inline-block;
+	display: inline-block;
 }
 
-.card-view .myinfo dl dt, dd {
-    display: inline-block;
-    font-size: small;
+.card-view .myinfo dl dt,
+dd {
+	display: inline-block;
+	font-size: small;
 }
 
 .card-view .myinfo dl dt {
-    margin-left: 5px;
-    color: #999;
+	margin-left: 5px;
+	color: #999;
 }
 
 .card-view .myinfo dl dd {
-    margin-right: 10px;
-    margin-left: 5px;
+	margin-right: 10px;
+	margin-left: 5px;
 }
 
 .cont {
-    margin-top: 30px;
-    padding-bottom: 30px;
+	margin-top: 30px;
+	padding-bottom: 30px;
 }
 
 .btn-view {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 10px;
-    margin: 10px 10px 20px 10px;
+	position: absolute;
+	right: 10%;
+	bottom: 0;
+	padding: 5px 10px;
+	margin: 10px 10px 20px 10px;
+	display: flex;
+	align-items: center;
 }
 
 .btn-view a {
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #4274AB;
-    color: #fff;
+	padding: 5px 10px;
+	border-radius: 10px;
+	background-color: #4274AB;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* 텍스트를 가로로 가운데로 정렬합니다 */
+	text-align: center;
+	/* 텍스트를 세로로 가운데로 정렬합니다 */
+	margin-right: 10px
 }
-    .myinfo {
-      font-family: "Arial", sans-serif;
-      margin-bottom: 20px;
-    }
-    
-    .myinfo dl {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
-    }
 
-    .myinfo dt,
-    .myinfo dd {
-      margin: 0;
-      padding: 5px 10px;
-      border-bottom: none;
-    }
-    
-    .myinfo dt {
-      font-weight: bold;
-      color: #333;
-    }
+.myinfo {
+	font-family: "Arial", sans-serif;
+	margin-bottom: 20px;
+}
 
-    .myinfo dd {
-      font-weight: normal;
-      color: #666;
-    }
+.myinfo dl {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+}
+
+.myinfo dt,
+.myinfo dd {
+	margin: 0;
+	padding: 5px 10px;
+	border-bottom: none;
+}
+
+.myinfo dt {
+	font-weight: bold;
+	color: #333;
+}
+
+.myinfo dd {
+	font-weight: normal;
+	color: #666;
+}
