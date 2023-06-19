@@ -200,7 +200,8 @@
 					<td>${inquiry.userid }</td>
 
 					<!-- 글 생성일을 출력합니다. -->
-					<td><fmt:formatDate value="${inquiry.creationdate }" /></td>
+					<td><fmt:formatDate value="${inquiry.creationdate }"
+							dateStyle="short" /></td>
 				</tr>
 
 			</c:forEach>
@@ -210,7 +211,7 @@
 	<div id="page">
 		<!-- 페이지 번호 -->
 		<c:if test="${begin > pageNum}">
-			<a href="inquiry?p=${begin - 1 }">[이전] 
+			<a href="inquiry?p=${begin - 1 }">[이전] </a>
 		</c:if>
 
 		<c:forEach begin="${begin }" end="${end }" var="i">
@@ -256,7 +257,17 @@
 
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
+	<script src="/js/main.js"></script>
 </body>
 
 </html>

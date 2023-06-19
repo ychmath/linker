@@ -30,15 +30,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<style>
-#upload_btn {
-	height: 30px;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: 3px;
-}
-</style>
+
 </head>
 
 <body>
@@ -155,11 +147,11 @@
 	</nav>
 	<!-- Navbar End -->
 
-	<form method="post" id="writenotice" action="write"
+	<form method="post" id="title_validation" action="write"
 		style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
 		<div class="pt-1">
 			<input type="text" name="title" id="title" placeholder="제목을 입력하세요"
-				required style="border-radius: 5px; padding: 5px;">
+				required style="border-radius: 5px; width: 100%; padding: 5px;">
 		</div>
 		<div class="pt-1">
 			<input name="userid" id="userid" value="${user.userid }"
@@ -168,8 +160,7 @@
 		<div class="pt-1">
 			<div id="smarteditor">
 				<textarea name="content" id="editorTxt" rows="20" cols="10"
-					placeholder="내용을 입력해주세요" required
-					style="border-radius: 5px; width: 100%;"></textarea>
+					placeholder="내용을 입력해주세요" style="border-radius: 5px; width: 100%;"></textarea>
 			</div>
 		</div>
 		<div class="pt-1 text-right" colspan="2" align="right">
@@ -198,19 +189,21 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/lib/wow/wow.min.js"></script>
-	<script src="/lib/easing/easing.min.js"></script>
-	<script src="/lib/waypoints/waypoints.min.js"></script>
-	<script src="/lib/counterup/counterup.min.js"></script>
-	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-	<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/counterup/counterup.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="lib/lightbox/js/lightbox.min.js"></script>
 
 	<!-- Template Javascript -->
-	<script src="/js/main.js"></script>
-
+	<script src="js/main.js"></script>
 	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"
 		charset="utf-8"></script>
+	<script src="/js/board/title_validation.js">
+		
+	</script>
 	<script>
 		let oEditors = [];
 

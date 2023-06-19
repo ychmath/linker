@@ -162,7 +162,7 @@
 				<td>${notice.noticepostid}</td>
 				<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
 				<td>${notice.userid }</td>
-				<td><fmt:formatDate value="${notice.creationdate }" /></td>
+				<td><fmt:formatDate value="${notice.creationdate }" dateStyle="short"  /></td>
 			</tr>
 		</c:forEach>
 

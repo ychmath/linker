@@ -135,7 +135,7 @@ public class UseDetailController {
 	}
 	
 	// 식자재 이름별로 인벤토리 반환
-	@RequestMapping("/getInvenIngredient")
+	@RequestMapping("/inventory/getInvenIngredient")
 	@ResponseBody
 	public String getInvenbyIngredient(int ingredientid, Model m) {
 		m.addAttribute("ingredientid", ingredientid);
@@ -155,10 +155,36 @@ public class UseDetailController {
 		return "redirect:/inventory/useDetailList";
 	}
 	
-	
 	// 삭제 내역 추가 폼 반환
 	@GetMapping("/inventory/deleteUseDetail")
-	public String deleteUseDetail() {
+	public String deleteUseDetail(@RequestParam(name = "p", defaultValue = "1")int page, Model m) {
+		int count = service.useCount();
+		
+		if (count > 0) {
+			int perPage = 10; // 한 페이지 당 보일 글의 개수
+			int startRow = (page - 1) * perPage;
+
+			List<UseDetailDto> useList = service.useList(startRow);
+
+			m.addAttribute("useList", useList);
+
+			int pageNum = 10;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+		}
+		
+		m.addAttribute("count", count);
+		
 		return "/usedetail/deleteUseDetail";
 	}
 

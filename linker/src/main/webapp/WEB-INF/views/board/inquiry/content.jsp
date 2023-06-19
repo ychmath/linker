@@ -181,43 +181,12 @@
 				<input type="button" id="replyButton" value="답글쓰기"
 				style="display: none;"
 				onclick="location.href='/inquiry/writeComm?inquirypostid=${dto.inquirypostid }&ref=${dto.ref }&restep=${dto.restep }&relevel=${dto.relevel }'" />
-			</span> <span> <input type="button" value="목록"
-				onclick="location.href='../inquiry'" />
 			</span>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(function() {
-			// 권한 가져오기
-			var role = $("#role").text();
 
-			// 답글쓰기 버튼이 admin, seller 권한에만 보이게 함
-			if (role == 'admin' || role == 'seller') {
-				$("#replyButton").show();
-			} else {
-				$("#replyButton").hide();
-			}
-
-			// 해당하는 태그를 여기에 넣습니다.
-			$("a[id]").click(function() {
-				let no = $(this).attr("id");
-				$.ajax({
-					url : "/inquiry/delete",
-					data : "inquirypostid=" + no,
-					method : "delete",
-				}).done(function() {
-					location.href = "../inquiry";
-				});
-				return false; //하이퍼링크 이동x
-			});
-
-		});
-	</script>
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -225,17 +194,14 @@
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
 
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -248,6 +214,9 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
+	<!-- Function JavaScript -->
+	<script src="/js/board/inquiry/content.js"></script>
 </body>
 
 </html>

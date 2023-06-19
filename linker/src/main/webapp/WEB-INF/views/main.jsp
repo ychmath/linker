@@ -349,39 +349,6 @@
 	<!-- Template Javascript -->
 	<script src="js/main.js"></script>
 	
-	<script>
-    $(document).ready(function () {
-        $.get('/sellerCount', function (data) {
-            countAnimation("sellerCount", data.userCount, 1000);
-        });
-
-        $.get('/buyerCount', function (data) {
-            countAnimation("buyerCount", data.userCount, 1000);
-        });
-    });
-
-	function countAnimation(id, endValue, duration) {
-	    const element = document.getElementById(id);
-	    let startValue = 0;
-	    let startTime = null;
-	    
-	    function render(currentTime) {
-	        if (startTime === null) {
-	            startTime = currentTime;
-	        }
-	        const elapsedTime = currentTime - startTime;
-	        const progress = Math.min(elapsedTime / duration, 1);
-	        const currentValue = Math.floor(startValue + (endValue - startValue) * progress);
-	        element.textContent = currentValue;
-	        if (elapsedTime < duration) {
-	            requestAnimationFrame(render);
-	        }
-	    }
-	    
-	    requestAnimationFrame(render);
-	}
-	
-</script>
 </body>
 
 </html>

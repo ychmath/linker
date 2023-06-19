@@ -97,7 +97,6 @@ td {
 </style>
 </head>
 <body>
-<body>
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -199,7 +198,7 @@ td {
 								<b>사용내역 추가</b>
 							</p>
 							<span>식자재명:&nbsp;</span>
-							<select name="ingredientid" required>
+							<select name="ingredientid" id="ingredientid" required>
 								<c:forEach items="${ inventoryIngredient }" var="IngredientList">
 									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
 								</c:forEach>
@@ -207,26 +206,37 @@ td {
 							<button class="btn" type="button" id="search">검색</button>
 						</form>
 						<form id="addUse" action="/inventory/addUse" method="post">
-							<span>공급자:&nbsp;</span><input name="supplier" required>
-							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
-							<span>주문가격:&nbsp;</span><input name="orderprice" required>
-							<span>주문일:&nbsp;</span><input name="orderdate" type="date" required>
+							<table id="useList">
+								<thead>
+									<tr>
+										<th>
+											&nbsp;
+										</th>
+										<th>
+											식자재명
+										</th>
+										<th>
+											재고량
+										</th>
+										<th>
+											수령일
+										</th>
+										<th>
+											사용량
+										</th>
+										<th>
+											사용일
+										</th>
+									</tr>
+								</thead>
+								<tbody id="tabledata">
+								</tbody>
+							</table>
 							<div>
 								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
 							</div>
 						</form>
 					</div>
-							<div class="pageController">
-								<c:if test="${ begin > end }">
-									<a href="updateUseDetail?p=${ begin-1 }">[이전]</a>
-								</c:if>
-								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="updateUseDetail?p=${ i }">${ i }</a>
-								</c:forEach>
-								<c:if test="${ end < totalPages }">
-									<a href="updateUseDetail?p=${ end + 1 }">[다음]</a>
-								</c:if>
-							</div>
 					<%-- main > content end --%>
 				</div>
 			</div> <!-- container end -->
@@ -270,6 +280,7 @@ td {
 	</div>
 
 		<!-- JavaScript Libraries -->
+	<div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -298,36 +309,69 @@ td {
 			}
 
 			$("#add").on("click", function(event) {
-						// 바로 전송 차단
-						event.preventDefault;
+				  event.preventDefault();
 
-						// 하나라도 값이 입력되지 않은 경우
-						if (!$("input[name='supplier']").val()
-								|| !$("select[name='ingredientid']").val()
-								|| !$("input[name='orderquantity']").val()
-								|| !$("input[name='orderprice']").val()
-								|| !$("input[name='orderdate']").val()
-								) {
-							// submit 하지 않고 alert 출력
-							alert("필수 항목을 전부 입력해 주십시오.");
-						} else {
-							// 전부 입력했다면 submit
-							alert("등록이 완료되었습니다.");
-							$("#addOrder").submit();
-						}
+				  var isAnyEmpty = false;
+
+				  // input 값 확인
+				  $("input[name='inventoryid']:checked").each(function() {
+				    var ingredientUsageInput = $(this).closest("tr").find("input[name='ingredientusage']");
+				    
+				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val()) {
+				      isAnyEmpty = true;
+				      return false; // input 값에 disabled를 제외하고 비어있는 것이 있다면 false return
+				    }
+
+				  });
+
+				  if (isAnyEmpty) {
+				    // 비어있다면 경고창
+				    alert("필수 항목을 전부 입력해 주십시오.");
+				  } else {
+				    // 비어있지 않다면 전송
+				    alert("등록이 완료되었습니다.");
+				    $("#addUse").submit();
+				  }
 				});
 			
 			$("#search").click(function(){
-				var useList = [];
-				
-				$.when(
-					$(getJSON("/getInvenIngredient", { ingredientid : $("#ingredientid").val() }, function(data)
-						$.each(data, function(index, obj){
-							
-						})
-				))).done()
-			})
+				  $('#tabledata').empty();
+				  
+				  $.getJSON("/inventory/getInvenIngredient", { ingredientid : $('#ingredientid').val() }, function(data){
+				   
+					  var tabledata = "";	// 테이블 데이터를 저장할 변수
 
+				    $.each(data, function(index, obj){
+				    	
+				      tabledata += "<tr>";
+				      tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>';
+				      tabledata += '<td>' + obj.ingredientname + '</td>';
+				      tabledata += '<td>' + obj.quantity + '</td>';
+				      tabledata += '<td>' + obj.receivedate + '</td>';
+				      tabledata += '<td><input name="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
+				      tabledata += '<td><input name="usedate" type="date" disabled></td>'
+				      tabledata += '</tr>';
+
+				    });
+					  
+				    $('#tabledata').append(tabledata);
+				    
+				  });
+				  
+				});	// click end
+
+			$(document).on('change', 'input[name="inventoryid"]', function() {
+				  var selectedValue = $('input[name="inventoryid"]:checked').val();
+				  
+				  $('input[name="usedate"]').prop('disabled', true);
+				  $('input[name="ingredientusage"]').prop('disabled', true);
+				  
+				  if (selectedValue !== 'select') {
+					  // 라디오박스로 선택되었다면 사용 수량과 날짜 입력 가능
+				    $(this).closest('tr').find('input[name="ingredientusage"]').prop('disabled', false);
+				    $(this).closest('tr').find('input[name="usedate"]').prop('disabled', false); 
+				  }
+				});
 		}); // ready end
 	</script>
 </body>

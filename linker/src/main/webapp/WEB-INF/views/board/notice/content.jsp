@@ -19,18 +19,18 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-<link href="css/user/content.css" rel="stylesheet">
-<link href="css/comm/table.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/user/content.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 <title>글 상세보기</title>
 <style>
@@ -182,27 +182,9 @@ table {
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(function() {
-			$("a[id]").click(function() {
-				// a[id]: a 태그 중에서 'id' 속성을 가진 모든 요소들을 선택하는 것을 의미
-				let no = $(this).attr("id"); //삭제하려는 글번호. attr(): 선택된 요소의 속성 값을 가져오거나 설정하는 메소드
-				$.ajax({
-					url : "/notice/delete",
-					data : "noticepostid=" + no,
-					method : "delete",
-				}).done(function() {
-					location.href = "/notice/notice";
-				});
-				return false; //하이퍼링크 이동 x
-			}); //click
-		});
-	</script>
+
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -210,28 +192,29 @@ table {
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
 
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/lib/wow/wow.min.js"></script>
-	<script src="/lib/easing/easing.min.js"></script>
-	<script src="/lib/waypoints/waypoints.min.js"></script>
-	<script src="/lib/counterup/counterup.min.js"></script>
-	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-	<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/counterup/counterup.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="lib/lightbox/js/lightbox.min.js"></script>
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
+	<!-- Function JavaScript -->
+	<script src="/js/board/notice/content.js"></script>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,7 @@ th {
 }
 
 td {
-	padding: 8px;
+	padding : 8px;
 }
 
 .searchController {
@@ -152,19 +152,20 @@ td {
 							<div class="nav-link dropdown-toggle active"
 								data-bs-toggle="dropdown">식자재 관리</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/ingredient/ingredientList" class="dropdown-item">식자재
-									목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
-								<a href="/inventory/orderList" class="dropdown-item active">발주내역</a>
+								<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a> 
+								<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+								<a href="/inventory/orderList" class="dropdown-item active">발주내역</a> 
 								<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
 							<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-								비용관리</div>
+								비용관리
+							</div>
 							<div class="dropdown-menu fade-up m-0">
-								<a href="/profitChart" class="dropdown-item">요약</a> <a
-									href="/finance/sales" class="dropdown-item">매출내역</a> <a
-									href="/finance/expenditure" class="dropdown-item">지출내역</a>
+								<a href="/profitChart" class="dropdown-item">요약</a>
+								<a href="/finance/sales" class="dropdown-item">매출내역</a>
+								<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
@@ -197,78 +198,83 @@ td {
 							<p>
 								<b>발주내역 추가</b>
 							</p>
-							<span>식자재명:&nbsp;</span> <select name="ingredientid" required>
+							<span>식자재명:&nbsp;</span>
+							<select name="ingredientid" required>
 								<c:forEach items="${ IngredientList }" var="IngredientList">
 									<option value="${ IngredientList.ingredientid }">${ IngredientList.ingredientname }</option>
 								</c:forEach>
-							</select> <span>공급자:&nbsp;</span><input name="supplier" required>
-							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number"
-								required> <span>주문가격:&nbsp;</span><input
-								name="orderprice" required> <span>주문일:&nbsp;</span><input
-								name="orderdate" type="date" required>
+							</select>
+							<span>공급자:&nbsp;</span><input name="supplier" required>
+							<span>주문수량:&nbsp;</span><input name="orderquantity" type="number" required>
+							<span>주문가격:&nbsp;</span><input name="orderprice" required>
+							<span>주문일:&nbsp;</span><input name="orderdate" type="date" required>
 							<div>
-								<input type="button" id="add" class="button btn btn-primary"
-									value="식자재 등록" />
+								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
 							</div>
 						</form>
 					</div>
 					<div class="deleteController">
-						<table class="InvenList" id="InvenList">
-							<thead>
-								<tr>
-									<th style="width: 5%;"></th>
-									<th>식자재명</th>
-									<th>공급자</th>
-									<th>주문수량</th>
-									<th>주문가격</th>
-									<th>주문일</th>
-								</tr>
-							</thead>
-							<tbody>
+							<table class="InvenList" id="InvenList">
+								<thead>
+									<tr>
+										<th style="width: 5%;"></th>
+										<th>식자재명</th>
+										<th>공급자</th>
+										<th>주문수량</th>
+										<th>주문가격</th>
+										<th>주문일</th>
+									</tr>
+								</thead>
+								<tbody>
 								<c:forEach items="${ orderList }" var="orderList">
 									<tr class="orders">
-										<td><input type="checkbox" name="checkList"
-											class="checkList" value="${ orderList.orderid }"></td>
+										<td>
+											<input type="checkbox" name="checkList" class="checkList" value="${ orderList.orderid }">
+										</td>
 										<td>${ orderList.ingredientname }</td>
 										<td>${ orderList.supplier }</td>
 										<td>${ orderList.orderquantity }</td>
 										<td>${ orderList.orderprice }</td>
-										<td><fmt:formatDate dateStyle="long"
-												value="${ orderList.orderdate }"></fmt:formatDate></td>
+										<td><fmt:formatDate dateStyle="long" value="${ orderList.orderdate }"></fmt:formatDate></td>
 									</tr>
 								</c:forEach>
-							</tbody>
-						</table>
-						<div>
-							<input class="btn btn-primary" type="button" id="deleteOrder"
-								value="선택 내역 삭제" />
-						</div>
+								</tbody>
+							</table>
+							<div>
+								<input class="btn btn-primary" type="button" id="deleteOrder" value="선택 내역 삭제" />
+							</div>
 					</div>
-					<div class="pageController">
-						<c:if test="${ begin > end }">
-							<a href="changeOrder?p=${ begin-1 }">[이전]</a>
-						</c:if>
-						<c:forEach begin="${ begin }" end="${ end }" var="i">
-							<a href="changeOrder?p=${ i }">${ i }</a>
-						</c:forEach>
-						<c:if test="${ end < totalPages }">
-							<a href="changeOrder?p=${ end + 1 }">[다음]</a>
-						</c:if>
-					</div>
+							<div class="pageController">
+								<c:if test="${ begin > end }">
+									<a href="changeOrder?p=${ begin-1 }">[이전]</a>
+								</c:if>
+								<c:forEach begin="${ begin }" end="${ end }" var="i">
+									<a href="changeOrder?p=${ i }">${ i }</a>
+								</c:forEach>
+								<c:if test="${ end < totalPages }">
+									<a href="changeOrder?p=${ end + 1 }">[다음]</a>
+								</c:if>
+							</div>
 					<%-- main > content end --%>
 				</div>
-			</div>
-			<!-- container end -->
+			</div> <!-- container end -->
 		</div>
 
 		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div
+			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+			data-wow-delay="0.1s">
 			<div class="container">
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 							Reserved.
+						</div>
+						<div class="col-md-6 text-center text-md-end">
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+								Codex</a>
 						</div>
 					</div>
 				</div>
@@ -291,6 +297,24 @@ td {
 		<!-- Template Javascript -->
 		<script src="/js/main.js"></script>
 	</div>
+
+<div>
+		<!-- JavaScript Libraries -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/lib/wow/wow.min.js"></script>
+		<script src="/lib/easing/easing.min.js"></script>
+		<script src="/lib/waypoints/waypoints.min.js"></script>
+		<script src="/lib/counterup/counterup.min.js"></script>
+		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+		<script src="/lib/lightbox/js/lightbox.min.js"></script>
+
+		<!-- Template Javascript -->
+		<script src="/js/main.js"></script>
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
@@ -324,9 +348,7 @@ td {
 				location.replace("/inventory/orderList/updateOrder");
 			});
 
-			$("#add").on(
-					"click",
-					function(event) {
+			$("#add").on("click", function(event) {
 						// 바로 전송 차단
 						event.preventDefault;
 
@@ -335,7 +357,8 @@ td {
 								|| !$("select[name='ingredientid']").val()
 								|| !$("input[name='orderquantity']").val()
 								|| !$("input[name='orderprice']").val()
-								|| !$("input[name='orderdate']").val()) {
+								|| !$("input[name='orderdate']").val()
+								) {
 							// submit 하지 않고 alert 출력
 							alert("필수 항목을 전부 입력해 주십시오.");
 						} else {

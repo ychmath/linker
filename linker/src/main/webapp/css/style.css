@@ -621,3 +621,10 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+.upload_btn {
+	height: 10%;
+	width: 7.5%;
+	border: 20px;
+	margin-bottom: 10px;
+}
