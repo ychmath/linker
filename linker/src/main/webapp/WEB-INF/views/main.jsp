@@ -98,7 +98,7 @@
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
 							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
