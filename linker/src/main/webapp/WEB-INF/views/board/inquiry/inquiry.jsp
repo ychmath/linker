@@ -147,59 +147,60 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	<div class="content-wrapper">
+		<p>
+			<strong>문의사항</strong>
+		</p>
 
-	<p>
-		<strong>문의사항</strong>
-	</p>
+		<table>
+			<tr>
+				<th>게시글 번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+			</tr>
+			<c:if test="${count > 0 }">
+				<!-- count 값이 0보다 클 경우에만 아래 내용이 실행됩니다. -->
 
-	<table>
-		<tr>
-			<th>게시글 번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
-		<c:if test="${count > 0 }">
-			<!-- count 값이 0보다 클 경우에만 아래 내용이 실행됩니다. -->
+				<c:forEach items="${iList }" var="inquiry">
+					<!-- forEach 루프를 사용하여 iList에 있는 아이템들을 반복합니다. -->
 
-			<c:forEach items="${iList }" var="inquiry">
-				<!-- forEach 루프를 사용하여 iList에 있는 아이템들을 반복합니다. -->
+					<tr>
+						<td><c:out value="${start}" /> <!-- 'start' 변수 값을 현재 셀에 출력하기 위한 태그입니다. -->
 
-				<tr>
-					<td><c:out value="${start}" /> <!-- 'start' 변수 값을 현재 셀에 출력하기 위한 태그입니다. -->
+							<c:set var="start" value="${start+1 }" /> <!-- 'start' 변수 값을 1 증가시키기 위한 태그입니다. -->
+						</td>
 
-						<c:set var="start" value="${start+1 }" /> <!-- 'start' 변수 값을 1 증가시키기 위한 태그입니다. -->
-					</td>
+						<td><a href="content/${inquiry.inquirypostid }"> <c:if
+									test="${inquiry.relevel > 0 }">
+									<!-- 답변글이 있는 경우(relevel 값이 0보다 클 경우), 다음 내용을 실행합니다. -->
 
-					<td><a href="content/${inquiry.inquirypostid }"> <c:if
-								test="${inquiry.relevel > 0 }">
-								<!-- 답변글이 있는 경우(relevel 값이 0보다 클 경우), 다음 내용을 실행합니다. -->
+									<span class="icon"> <!-- relevel 값에 10을 곱한 결과에 따라 이미지의 너비를 조절합니다. -->
+										<i class="bi bi-arrow-return-right"
+										width="${inquiry.relevel * 10}" alt="답변" /></i>
+									</span>
+								</c:if> ${inquiry.title } <c:if test="${inquiry.readcount >= 20 }">
+									<!-- 조회수(readcount)가 20 이상인 경우 다음 내용을 실행합니다. -->
 
-								<span class="icon"> <!-- relevel 값에 10을 곱한 결과에 따라 이미지의 너비를 조절합니다. -->
-									<i class="bi bi-arrow-return-right"
-									width="${inquiry.relevel * 10}" alt="답변" /></i>
-								</span>
-							</c:if> ${inquiry.title } <c:if test="${inquiry.readcount >= 20 }">
-								<!-- 조회수(readcount)가 20 이상인 경우 다음 내용을 실행합니다. -->
+									<span class="icon"> <img src="/img/hot.gif" alt="인기글" />
+										<!-- 인기글을 나타내는 'hot' 이미지를 표시합니다. -->
+									</span>
+								</c:if>
+						</a></td>
 
-								<span class="icon"> <img src="/img/hot.gif" alt="인기글" />
-									<!-- 인기글을 나타내는 'hot' 이미지를 표시합니다. -->
-								</span>
-							</c:if>
-					</a></td>
+						<!-- 글 작성자의 ID를 출력합니다. -->
+						<td>${inquiry.userid }</td>
 
-					<!-- 글 작성자의 ID를 출력합니다. -->
-					<td>${inquiry.userid }</td>
+						<!-- 글 생성일을 출력합니다. -->
+						<td><fmt:formatDate value="${inquiry.creationdate }"
+								dateStyle="short" /></td>
+					</tr>
 
-					<!-- 글 생성일을 출력합니다. -->
-					<td><fmt:formatDate value="${inquiry.creationdate }"
-							dateStyle="short" /></td>
-				</tr>
+				</c:forEach>
 
-			</c:forEach>
-	</table>
-	</c:if>
-
+			</c:if>
+		</table>
+	</div>
 	<div id="page">
 		<!-- 페이지 번호 -->
 		<c:if test="${begin > pageNum}">

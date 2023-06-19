@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+html,
+body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.content-wrapper {
+	flex: 1;
+}
+
+.footer {
+	flex-shrink: 0;
+}
+
 .center-wrapper {
 	display: flex;
 	flex-direction: column;

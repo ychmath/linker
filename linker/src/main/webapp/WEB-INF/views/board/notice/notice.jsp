@@ -134,6 +134,8 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	
+	<div class="content-wrapper">
 	<p>
 		<strong>공지사항</strong>
 	</p>
@@ -156,7 +158,7 @@
 		</c:forEach>
 
 	</table>
-
+</div>
 	<div id="page">
 		<c:if test="${begin > pageNum}">
 			<a href="notice?p=${begin-1 }">[이전]</a>

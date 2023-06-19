@@ -143,10 +143,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-
-		<div class="main">
-			<div class="container">
-				<div class="content">
+	<div class="content-wrapper">
 					<p>식단표 목록</p>
 					<!-- 현재 로그인한 user의 role 값이 seller인 경우 글 등록 가능 -->
 					<c:if test="${ user.role == 'seller' }">
@@ -170,6 +167,7 @@
 								</tr>
 							</c:forEach>
 						</table>
+							</div>
 						<div id="page">
 							<c:if test="${ begin > pageNum }">
 								<a href="list?p=${ begin-1 }">[이전]</a>
@@ -185,13 +183,8 @@
 					<c:if test="${ count == 0 }">
 						입력한 식단표가 존재하지 않습니다.
 					</c:if>
-				</div>
-				<%-- main > content end --%>
-			</div>
-			<%-- main > container end --%>
-		</div>
-		<%-- main end --%>
-	
+
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

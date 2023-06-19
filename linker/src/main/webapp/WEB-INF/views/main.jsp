@@ -331,20 +331,13 @@
 	<!-- About End -->
 
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
-					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
 					</div>
 				</div>
 			</div>
@@ -367,39 +360,6 @@
 	<!-- Template Javascript -->
 	<script src="js/main.js"></script>
 
-	<script>
-		$(document).ready(function() {
-			$.get('/sellerCount', function(data) {
-				countAnimation("sellerCount", data.userCount, 1000);
-			});
-
-			$.get('/buyerCount', function(data) {
-				countAnimation("buyerCount", data.userCount, 1000);
-			});
-		});
-
-		function countAnimation(id, endValue, duration) {
-			const element = document.getElementById(id);
-			let startValue = 0;
-			let startTime = null;
-
-			function render(currentTime) {
-				if (startTime === null) {
-					startTime = currentTime;
-				}
-				const elapsedTime = currentTime - startTime;
-				const progress = Math.min(elapsedTime / duration, 1);
-				const currentValue = Math.floor(startValue
-						+ (endValue - startValue) * progress);
-				element.textContent = currentValue;
-				if (elapsedTime < duration) {
-					requestAnimationFrame(render);
-				}
-			}
-
-			requestAnimationFrame(render);
-		}
-	</script>
 </body>
 
 </html>
