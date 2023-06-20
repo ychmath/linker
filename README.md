@@ -13,7 +13,7 @@
 ---
 ## 메인화면
 
-![main]()
+![main](./linker/src/main/webapp/img/main.png)
 
 
 ## Table of Contents
