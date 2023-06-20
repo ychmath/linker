@@ -90,7 +90,7 @@ ID :
 PW :  
 
 ## license
-- [HTML Codex](https://htmlcodex.com/): Template License 
-  
+- [HTML Codex](./TEMPLATE LICENSE)
+- [MIT license](./LICENSE)
 ## About
 Authored and maintained by **linker**
