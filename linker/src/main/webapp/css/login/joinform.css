@@ -81,7 +81,7 @@ info {
 	font-size: 16px;
 	font-weight: 700;
 	padding: 12px;
-	width: 90%;
+	width: 75%;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	transition: all 0.3s;
@@ -147,8 +147,8 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-		padding-top: 10px; 
-		 margin-bottom: 10px;
+	padding-top: 10px; 
+	margin-bottom: 10px;
 }
 
 #email {
