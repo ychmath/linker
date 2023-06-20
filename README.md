@@ -14,7 +14,7 @@
 ## 메인화면
 
 ![main](./linker/src/main/webapp/img/main.png)
-
+![main2](./linker/src/main/webapp/img/main2.png)
 
 ## Table of Contents
 
