@@ -1,17 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%String start_date = request.getParameter("start_date"); String end_date = request.getParameter("end_date");%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%
+String start_date = request.getParameter("start_date");
+String end_date = request.getParameter("end_date");
+%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>매출 내역</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="../../img/favicon.ico" rel="icon">
+<link href="img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -22,22 +26,23 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="/lib/animate/animate.min.css" rel="stylesheet">
-<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
-
+<link href="css/style.css" rel="stylesheet">
 
 </head>
+  
 <body>
-<div class="container-fluid bg-light p-0">
+
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
 			<div class="col-lg-7 px-5 text-start">
 				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
@@ -56,6 +61,8 @@
 			</div>
 		</div>
 	</div>
+	<!-- Topbar End -->
+
 	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -81,18 +88,11 @@
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="feature.html" class="dropdown-item">Feature</a> <a
-								href="quote.html" class="dropdown-item">Free Quote</a> <a
-								href="team.html" class="dropdown-item">Our Team</a> <a
-								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
-								href="404.html" class="dropdown-item">404 Page</a>
-						</div>
-					</div>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -103,9 +103,9 @@
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -124,206 +124,249 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<a href="/updateform" style="text-decoration:noe; color:#333">
-					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
 	</nav>
+	<!-- Navbar End -->
 
- <%-- <form:form> --%>
-   <form action="${pageContext.request.contextPath}/finance/filtered_data_sa" method="get">
-<div> <!--  id="B" --> 
-  <div> <!-- style="display:flex; align-items:center;" -->
-  
-  <p><strong>매출 내역</strong></p><br>
-    <table id="data-table">
-      <tr>
-        <th id="C">날짜</th>
-      <td id="I">
-   <label class="test_obj">
-    <input type="radio" name="date" value="today">
-    <span>오늘</span>
-</label>
- 
-<label class="test_obj">
-    <input type="radio" name="date" value="1month">
-    <span>1개월</span>
-</label>
- 
-<label class="test_obj">
-    <input type="radio" name="date" value="3month">
-    <span>3개월</span>
-</label>
-<label class="test_obj">
-    <input type="radio" name="date" value="1year">
-    <span>1년</span>
-</label>
- <label for="start-date-input"></label>
-<input type="date" id="start-date-input" name="start-date" min="2021-01-01" max="" value="" required>
+	<%-- <form:form> --%>
+	<form
+		action="${pageContext.request.contextPath}/finance/filtered_data_sa"
+		method="get">
+		<div>
+			<!--  id="B" -->
+			<div>
+				<!-- style="display:flex; align-items:center;" -->
 
-<label for="end-date-input"><a id="P">~</a></label>
-<input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
+				<p>
+					<strong>매출 내역</strong>
+				</p>
+				<br>
+				<table id="data-table">
+					<tr>
+						<th id="C">날짜</th>
+						<td id="I"><label class="test_obj"> <input
+								type="radio" name="date" value="today"> <span>오늘</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="1month"> <span>1개월</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="3month"> <span>3개월</span>
+						</label> <label class="test_obj"> <input type="radio" name="date"
+								value="1year"> <span>1년</span>
+						</label> <label for="start-date-input"></label> <input type="date"
+							id="start-date-input" name="start-date" min="2021-01-01" max=""
+							value="" required> <label for="end-date-input"><a
+								id="P">~</a></label> <input type="date" id="end-date-input"
+							name="end-date" min="" max="" value="" required> <script
+								src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <script>
+									function search() {
+										var start_date = document
+												.getElementById('start-date-input').value;
+										var end_date = document
+												.getElementById('end-date-input').value;
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function search() {
-    var start_date = document.getElementById('start-date-input').value;
-    var end_date = document.getElementById('end-date-input').value;
+										//window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
+										showSaledResult(start_date, end_date);
+									}
+								</script>
+							<button type="button" id="myButton" onclick="search()">검색
+							</button> <script>
+								function resetSearch() {
 
-    //window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
-    showSaledResult(start_date, end_date);   
-}
+									location
+											.assign("${pageContext.request.contextPath}/finance/sales");
 
-</script>
-<button type="button" id="myButton" onclick="search()">검색 </button>
+								}
 
-<script>
+								$(function() {
+									$("input[type='radio'][name='date']")
+											.on(
+													"change",
+													function() {
+														var dateRange = $(this)
+																.val();
+														var startDate = "";
+														var endDate = "";
 
-function resetSearch(){
-	
-	location.assign("${pageContext.request.contextPath}/finance/sales");
+														// dateRange에 따라 startDate와 endDate값을 설정합니다.
+														switch (dateRange) {
+														case "today":
+															startDate = new Date();
+															endDate = new Date();
+															break;
+														case "1month":
+															startDate = new Date();
+															startDate
+																	.setMonth(startDate
+																			.getMonth() - 1);
+															endDate = new Date();
+															break;
+														case "3month":
+															startDate = new Date();
+															startDate
+																	.setMonth(startDate
+																			.getMonth() - 3);
+															endDate = new Date();
+															break;
+														case "1year":
+															startDate = new Date();
+															startDate
+																	.setFullYear(startDate
+																			.getFullYear() - 1);
+															endDate = new Date();
+															break;
+														}
 
-}
+														var startYear = startDate
+																.getFullYear();
+														var startMonth = startDate
+																.getMonth() + 1 < 10 ? "0"
+																+ (startDate
+																		.getMonth() + 1)
+																: startDate
+																		.getMonth() + 1;
+														var startDateNum = startDate
+																.getDate() < 10 ? "0"
+																+ startDate
+																		.getDate()
+																: startDate
+																		.getDate();
+														var endYear = endDate
+																.getFullYear();
+														var endMonth = endDate
+																.getMonth() + 1 < 10 ? "0"
+																+ (endDate
+																		.getMonth() + 1)
+																: endDate
+																		.getMonth() + 1;
+														var endDateNum = endDate
+																.getDate() < 10 ? "0"
+																+ endDate
+																		.getDate()
+																: endDate
+																		.getDate();
 
-$(function(){
-    $("input[type='radio'][name='date']").on("change", function(){
-        var dateRange =  $(this).val();
-        var startDate = "";
-        var endDate = "";
+														var startDateStr = startYear
+																+ "-"
+																+ startMonth
+																+ "-"
+																+ startDateNum;
+														var endDateStr = endYear
+																+ "-"
+																+ endMonth
+																+ "-"
+																+ endDateNum;
 
-        // dateRange에 따라 startDate와 endDate값을 설정합니다.
-        switch (dateRange) {
-          case "today":
-            startDate = new Date();
-            endDate = new Date();
-            break;
-          case "1month":
-            startDate = new Date();
-            startDate.setMonth(startDate.getMonth() - 1);
-            endDate = new Date();
-            break;
-          case "3month":
-            startDate = new Date();
-            startDate.setMonth(startDate.getMonth() - 3);
-            endDate = new Date();
-            break;
-          case "1year":
-            startDate = new Date();
-            startDate.setFullYear(startDate.getFullYear() - 1);
-            endDate = new Date();
-            break;
-        }
+														showSaledResult(
+																startDateStr,
+																endDateStr);
+													});
+								});
 
-        var startYear = startDate.getFullYear();
-        var startMonth = startDate.getMonth() + 1 < 10 ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1;
-        var startDateNum = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate();
-        var endYear = endDate.getFullYear();
-        var endMonth = endDate.getMonth() + 1 < 10 ? "0" + (endDate.getMonth() + 1) : endDate.getMonth() + 1;
-        var endDateNum = endDate.getDate() < 10 ? "0" + endDate.getDate() : endDate.getDate();
+								function showSaledResult(start, end) {
+									$.ajax({
+										url : "./filtered_data_sa",
+										data : {
+											"start-date" : start,
+											"end-date" : end
+										},
+										type : "GET",
+										dataType : "json",
+										success : function(data) {
+											updateTableWithNewData(data);
+										},
+										error : function(error) {
+											console.log(error);
+										}
+									});
+								}
 
-        var startDateStr = startYear + "-" + startMonth + "-" + startDateNum;
-        var endDateStr = endYear + "-" + endMonth + "-" + endDateNum;
+								function updateTableWithNewData(data) {
+									var table_data = '';
+									//$.each(data, function (index, sales) {
 
-        showSaledResult(startDateStr, endDateStr);
-    });
-});
+									for (var i = 0; i < data.length; i++) {
+										let sales = data[i];
+										table_data += '<tr>';
+										table_data += '<td>'
+												+ sales.ticketorderid + '</td>';
+										table_data += '<td>'
+												+ sales.tickettypename
+												+ '</td>';
+										table_data += '<td>' + sales.quantity
+												+ '</td>';
+										table_data += '<td>' + sales.price
+												+ '</td>';
+										table_data += "<td>"
+												+ new Date(sales.orderdate)
+														.toISOString().split(
+																'T')[0]
+												+ "</td>";
 
-function showSaledResult(start, end) {
-	
-	 $.ajax({
-	        url: "./filtered_data_sa",
-	        data: {
-	            "start-date": start,
-	            "end-date": end
-	        },
-	        type: "GET",
-	        dataType:"json",
-	        success: function (data) {
-	            updateTableWithNewData(data);
-	        },
-	        error: function (error) {   
-	            console.log(error);
-	        }
-	    });
-	}
+										table_data += '</tr>';
+									}
+									//});
 
-	function updateTableWithNewData(data) {
-	    var table_data = '';
-	    //$.each(data, function (index, sales) {
-	    	
-	    	for (var i = 0; i < data.length; i++){
-	        let sales = data[i];
-	    	table_data += '<tr>';
-	        table_data += '<td>'+ sales.ticketorderid+'</td>';
-	        table_data += '<td>'+ sales.tickettypename +'</td>';
-	        table_data += '<td>'+ sales.quantity+'</td>';
-	        table_data += '<td>'+ sales.price +'</td>';
-	        table_data += "<td>"+ new Date(sales.orderdate).toISOString().split('T')[0] +"</td>";
-	        
-	        table_data += '</tr>';
-	    	}
-	    //});
+									$("#saled").empty();
+									$("#saled").append(table_data);
+								}
+							</script>
+							<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+					</tr>
+				</table>
+				<br>
+			</div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">식권주문ID</th>
+							<th scope="col">식권종류</th>
+							<th scope="col">수량</th>
+							<th scope="col">총 가격</th>
+							<th scope="col">주문 일자</th>
+						</tr>
+					</thead>
+					<tbody id="saled">
+						<c:forEach items="${slist}" var="sales">
+							<tr>
+								<td>${sales.ticketorderid}</td>
+								<td>${sales.tickettypename}</td>
+								<td>${sales.quantity}</td>
+								<td>${sales.price}</td>
+								<td><fmt:formatDate value="${sales.orderdate}"
+										pattern="yyyy-MM-dd" /></td>
 
-	    $("#saled").empty();
-	    $("#saled").append(table_data);
-	}
-	</script>
-	<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-	
-   </tr>
-   </table> <br>
-  </div>
-	<div>
-	<table>
-	<thead>
-		<tr>
-		<th scope="col">식권주문ID</th>
-		<th scope="col">식권종류</th>
-		<th scope="col">수량</th>
-		<th scope="col">총 가격</th>
-		<th scope="col">주문 일자</th>
-	</tr>
-	</thead>
-	<tbody id = "saled">
-	<c:forEach items="${slist}" var="sales">
-	<tr>
-		<td>${sales.ticketorderid}</td>
-		<td>${sales.tickettypename}</td>
-		<td>${sales.quantity}</td>    
-		<td>${sales.price}</td>
-		<td><fmt:formatDate value="${sales.orderdate}" pattern="yyyy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-	</tr>
-	</c:forEach>
-	</tbody>
-	</table>
-	</div>
-</div>
-
- </form>
- 		<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	</form>
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -331,24 +374,13 @@ function showSaledResult(start, end) {
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
 
-
-	<!-- Back to Top -->
-	<a href="#"
-		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
- 
-
-		<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
 	<script src="/lib/easing/easing.min.js"></script>

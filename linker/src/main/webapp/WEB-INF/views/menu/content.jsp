@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Linker</title>
+<title>식단표</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -31,18 +30,11 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
-
+<link href="/css/comm/table.css" rel="stylesheet">
 </head>
-  
+
 <body>
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner-grow text-primary"
-			style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -79,10 +71,10 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
@@ -90,152 +82,136 @@
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="feature.html" class="dropdown-item">Feature</a> <a
-								href="quote.html" class="dropdown-item">Free Quote</a> <a
-								href="team.html" class="dropdown-item">Our Team</a> <a
-								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
-								href="404.html" class="dropdown-item">404 Page</a>
-						</div>
-					</div>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/write" class="nav-item nav-link active">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<a href="/updateform" style="text-decoration:noe; color:#333">
-					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
 	</nav>
+	<!-- Navbar End -->
 
-		<div id="fh5co-slider" class="fh5co-section animate-box">
-			<div class="fh5co-cover" style="height: 200px"></div>
+		<div class="main">
+			<div class="container">
+				<div class="content">
+					<p>${ dto.title }</p>
+					<table class="menu">
+						<tr>
+							<td class="orange">작성자</td>
+							<td>${ dto.userID }</td>
+						</tr>
+						<tr>
+							<td class="orange">등록일</td>
+							<td><fmt:formatDate value="${ dto.creationDate }"
+									dateStyle="long" /></td>
+						</tr>
+						<tr>
+							<td class="orange">내용</td>
+							<td>${ dto.content }</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right">
+								<!-- 작성자의 id와 현재 게시글의 id가 같을 경우 --> <c:if
+									test="${ dto.userID == user.userid }">
+									<a href="/menu/update/${ dto.menuID }">글 수정</a>
+									<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
+								</c:if> <a href="../list">목록 이동</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<%-- main > content end --%>
+			</div>
+			<%-- main > container end --%>
+		</div>
+		<%-- main end --%>
 
-			<div class="main">
-				<div class="container">
-					<div class="content">
-						<h1 class="title">${ dto.title }</h1>
-							<table class="menu">
-								<tr>
-									<td class="orange">작성자</td>
-									<td>${ dto.userID }</td>
-								</tr>
-								<tr>
-									<td class="orange">등록일</td>
-									<td><fmt:formatDate value="${ dto.creationDate }" dateStyle="long"/></td>
-								</tr>
-								<tr>
-									<td class="orange">내용</td>
-									<td>${ dto.content }</td>
-								</tr>
-								<tr>
-									<td colspan="2" align="right">
-									<!-- 작성자의 id와 현재 게시글의 id가 같을 경우 -->
-									<c:if test="${ dto.userID == user.userid }">
-										<a href="/menu/update/${ dto.menuID }">글 수정</a>
-										<a id="delete" href="/menu/delete/${ dto.menuID }">글 삭제</a>
-									</c:if>
-										<a href="../list">목록 이동</a> 
-									</td>
-								</tr>
-							</table>
-				</div>	<%-- main > content end --%>
-				</div>	<%-- main > container end --%>
-			</div>	<%-- main end --%>
-
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
-		<div class="container">
-			<div class="copyright">
-				<div class="row">
-					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-						Reserved.
-					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+		<!-- Footer Start -->
+		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+			<div class="container">
+				<div class="copyright">
+					<div class="row">
+						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+							Reserved.
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Footer End -->
+		<!-- Footer End -->
 
+		<!-- JavaScript Libraries -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/lib/wow/wow.min.js"></script>
+		<script src="/lib/easing/easing.min.js"></script>
+		<script src="/lib/waypoints/waypoints.min.js"></script>
+		<script src="/lib/counterup/counterup.min.js"></script>
+		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+		<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-	<!-- Back to Top -->
-	<a href="#"
-		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
-			</div>	<%-- footer > container end --%>
-
-		
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/lib/wow/wow.min.js"></script>
-	<script src="/lib/easing/easing.min.js"></script>
-	<script src="/lib/waypoints/waypoints.min.js"></script>
-	<script src="/lib/counterup/counterup.min.js"></script>
-	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-	<script src="/lib/lightbox/js/lightbox.min.js"></script>
-
-	<!-- Template Javascript -->
-	<script src="/js/main.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
+		<!-- Template Javascript -->
+		<script src="/js/main.js"></script>
+		<script>
 	$(function(){
 		$("#delete").click(function(){
 			var menuID = ${ dto.menuID };
@@ -253,6 +229,5 @@
 			
 	});
 	</script>
-	
 </body>
 </html>

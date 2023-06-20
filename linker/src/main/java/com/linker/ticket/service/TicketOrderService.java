@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linker.login.dto.LoginDto;
 import com.linker.ticket.dao.TicketOrderDao;
 import com.linker.ticket.dto.TicketOrderDto;
 
@@ -29,7 +28,6 @@ public class TicketOrderService {
 		m.put("userid", userid);
 		return dao.selectAll(m);
 	}
-	
 	
 	public int count(String userid) {
 		return dao.count(userid);
@@ -54,8 +52,5 @@ public class TicketOrderService {
 		m.put("userid", userid);
 		
 		return dao.selectByDateCount(m);
-		
 	}
-
-	
 }

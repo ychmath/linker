@@ -5,43 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/user/notice.css">
+
 <title>공지사항</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Favicon -->
 <link href="img/favicon.ico" rel="icon">
-
-<!-- Icon Font Stylesheet -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 	rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
-
-<!-- Libraries Stylesheet -->
 <link href="/lib/animate/animate.min.css" rel="stylesheet">
 <link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-<!-- Customized Bootstrap Stylesheet -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 </head>
-  
+
 <body>
-	<div id="spinner"
-		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		<div class="spinner-grow text-primary"
-			style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -64,7 +49,7 @@
 	</div>
 	<!-- Topbar End -->
 
-	<!-- Navbar Start -->
+<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -78,42 +63,35 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="feature.html" class="dropdown-item">Feature</a> <a
-								href="quote.html" class="dropdown-item">Free Quote</a> <a
-								href="team.html" class="dropdown-item">Our Team</a> <a
-								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
-								href="404.html" class="dropdown-item">404 Page</a>
-						</div>
-					</div>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -135,29 +113,73 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/menu/list" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticket" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticket" class="dropdown-item">식권 사용내역</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
 							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
 							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
-					<a href="/updateform" style="text-decoration:noe; color:#333">
-					<span class="nav-item nav-link" >${user.userid} 구매자님 환영합니다.</span></a>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
 	</nav>
+	<!-- Navbar End -->
+	
+	<div class="content-wrapper">
+	<p>
+		<strong>공지사항</strong>
+	</p>
+	<table>
+		<tr>
+			<th>게시글 번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
 
-	<div id="search" class="table-spacing ">
+		<c:forEach items="${nList }" var="notice">
+			<tr>
+				<td>${notice.noticepostid}</td>
+				<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
+				<td>${notice.userid }</td>
+				<td><fmt:formatDate value="${notice.creationdate }"
+						dateStyle="short" /></td>
+			</tr>
+		</c:forEach>
+
+	</table>
+</div>
+	<div id="page">
+		<c:if test="${begin > pageNum}">
+			<a href="notice?p=${begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${begin }" end="${end }" var="i">
+			<a href="notice?p=${i }">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="notice?p=${end+1 }">[다음]</a>
+		</c:if>
+
+		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+		</c:if>
+	</div>
+	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
+
+
+
+	<div id="search">
 		<form action="search">
 			<select name="searchn" id="searchn">
 				<option value="0">제목</option>
@@ -168,67 +190,9 @@
 		</form>
 	</div>
 
-	<table class="table-spacing table-center">
 
-		<tr>
-			<th class="custom-button" onclick="location.href='../notice/notice'">공지사항</th>
-			<th id="inquiry" class="custom-button" onclick="location.href='../inquiry/inquiry'">
-				문의사항</th>
-		</tr>
-	</table>
-
-	<table>
-		<tr>
-			<th>게시글 번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
-		
-		<c:forEach items="${nList }" var="notice">
-    <!-- 이 태그는 "forEach" 루프를 사용하여 nList에 있는 아이템들을 반복합니다
-    "items" 속성에는 반복할 컬렉션 또는 배열을 지정합니다. 여기서는 "${nList}"를 지정했습니다.
-    "var" 속성에는 현재 반복 항목을 참조할 변수명을 지정합니다. 여기서는 "notice"를 사용합니다.
-    "${nList}"는 모델에 저장된 nList 속성을 참조합니다. nList는 반복할 컬렉션이나 배열을 의미합니다.
-    "notice" 변수로 참조합니다. 이는 반복문 내에서 사용할 수 있는 변수입니다.
-     -->
-
-    <tr>
-        <td>${notice.noticepostid}</td>
-        <!-- 'noticepostid'를 가져와서 테이블의 첫 번째 셀에 표시합니다. -->
-        <td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
-        <!-- 제목을 가져와서 하이퍼링크로 표시하고, 클릭 시 content/noticepostid 페이지로 연결합니다. -->
-        <td>${notice.userid }</td>
-        <!-- 사용자 ID를 가져와서 테이블의 세 번째 셀에 표시합니다. -->
-        <td><fmt:formatDate value="${notice.creationdate }"
-                dateStyle="short" /></td>
-        <!-- 'creationdate'를 가져와서 "short" 형식으로 날짜를 표시하는 태그입니다. -->
-    </tr>
-</c:forEach>
-
-	</table>
-	<div class="center-align" id="page " align="center">
-		<c:if test="${begin > pageNum}">
-			<a href="notice?p=${begin-1 }">[이전]</a>
-			<!-- '?'는 URL에서 쿼리 문자열을 나타내는 부분의 시작을 표시하는 데 사용되는 특수 문자 -->
-		</c:if>
-		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="notice?p=${i }">${i }</a>
-		</c:forEach>
-		<c:if test="${end < totalPages }">
-			<a href="notice?p=${end+1 }">[다음]</a>
-		</c:if>
-	</div>
-	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
-
-	<div id="write" class="write_ty">
-		<input type="button" id="write" value="글쓰기"
-			onclick="location.href='write'" />
-	</div>
-		<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -236,25 +200,14 @@
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
 
-
-	<!-- Back to Top -->
-	<a href="#"
-		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
-
-
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>

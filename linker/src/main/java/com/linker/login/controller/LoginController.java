@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.linker.login.dto.LoginDto;
 import com.linker.login.service.LoginService;
@@ -51,7 +52,7 @@ public class LoginController {
 	public String login(@ModelAttribute("command") @Valid LoginDto dto, BindingResult error, Model m) {
 		LoginDto resultDto = service.login(dto); // service.login(dto) -> 로그인 성공한 경우 LoginDto 객체를 반환하고, 실패한 경우 null을 반환함
 		if (resultDto == null) {
-			m.addAttribute("loginError","아이디나 비밀번호가 틀렸습니다.");
+			m.addAttribute("loginError", "아이디나 비밀번호가 틀렸습니다.");
 			return "login/loginform";
 		} else {// 로그인 성공
 			m.addAttribute("user", resultDto);
@@ -76,11 +77,10 @@ public class LoginController {
 
 	@PostMapping("/joinform")
 	public String insert(LoginDto dto, @RequestParam("phone") String phone) {
-	    dto.setPhone(phone);
-	    service.insertUser(dto);
-	    return "redirect:loginform";
+		dto.setPhone(phone);
+		service.insertUser(dto);
+		return "redirect:loginform";
 	}
-
 
 	@PostMapping("/auth/joinProc")
 	public String joinProc(@Valid LoginDto dto, BindingResult bindingResult, Model model) {
@@ -133,16 +133,46 @@ public class LoginController {
 		return "login/deleteform";
 	}
 
-	// 탈퇴 처리
 	@DeleteMapping("/delete")
-	public String delete(String formpw, @ModelAttribute("user") LoginDto dto, SessionStatus status) {
-		int i = service.deleteUser(formpw, dto);
-		if (i == 0) {
-			return "redirect:/delete?result=false";
-		} else {
-			status.setComplete();
-			return "redirect:/";
-		}
+	public String delete(@RequestParam String formpw,
+	                     @ModelAttribute("user") LoginDto dto,
+	                     SessionStatus status,
+	                     RedirectAttributes redirectAttributes) {
+	    int i = service.deleteUser(formpw, dto);
+	    
+	    if (i == 0) {
+	        redirectAttributes.addFlashAttribute("result", "false");
+	        return "redirect:/deleteform";
+	    } else {
+	        redirectAttributes.addFlashAttribute("result", "success");
+	        status.setComplete();
+	        return "redirect:/";
+	    }
+	}
+
+	// 판매자 수 가져오기
+	// 구매자 수 가져오기
+	@GetMapping("/sellerCount")
+	@ResponseBody
+	public Map<String, Integer> getSellerCount() {
+		int sellerCount = service.getSellerCount();
+
+		Map<String, Integer> response = new HashMap<>();
+		response.put("userCount", sellerCount);
+
+		return response;
+	}
+
+	// 구매자 수 가져오기
+	@GetMapping("/buyerCount")
+	@ResponseBody
+	public Map<String, Integer> getBuyerCount() {
+		int buyerCount = service.getBuyerCount();
+
+		Map<String, Integer> response = new HashMap<>();
+		response.put("userCount", buyerCount);
+
+		return response;
 	}
 	
 	// 판매자 수 가져오기

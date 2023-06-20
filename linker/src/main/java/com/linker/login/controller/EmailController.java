@@ -25,25 +25,26 @@ public class EmailController {
 		String subject = "Email 제목";
 
 		String number = makeRandom();
-		
-		String content = "인증 번호는 "+number+"입니다.";
-		
+
+		String content = "인증 번호는 " + number + "입니다.";
+
 		email.setReceiver(receiver);
 		email.setSubject(subject);
 		email.setContent(content);
 
 		Boolean result = emailService.sendMail(email);
 
-		return new String[] {number, result.toString()};
+		return new String[] { number, result.toString() };
 
 	}
+
 	private String makeRandom() {
 		Random r = new Random();
 		String number = "";
-		for(int i = 0;i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			number += r.nextInt(10);
 		}
-		System.out.println("number:"+number);
+		System.out.println("number:" + number);
 		return number;
 	}
 

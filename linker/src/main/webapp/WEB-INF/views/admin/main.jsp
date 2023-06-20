@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +9,9 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" type="text/css" href="../css/admin/adminmain.css">
 <style>
-  .menu {
-    padding: auto;;   /* 왼쪽 간격을 조절합니다. 원하는 값으로 지정할 수 있습니다. */
-  }
+.menu {
+	padding: auto;; /* 왼쪽 간격을 조절합니다. 원하는 값으로 지정할 수 있습니다. */
+}
 </style>
 </head>
 <body>
@@ -19,19 +19,22 @@
 		<h1 align="center">관리자 페이지</h1>
 	</div>
 	<div class="main">
-		<div class="menu"  align="center">
-			<a href="/admin/user" style="text-decoration:none">회원 관리</a>
-			<a href="/admin/notice" style="text-decoration:none" >문의사항 관리</a>
-			<a href="/admin/inquiry" style="text-decoration:none" >공지사항 관리</a>
-			<a href ="/">홈으로 돌아가기</a>
+		<div class="menu" align="center">
+			<a href="/admin/user" style="text-decoration: none">회원 관리</a> <a
+				href="/admin/notice" style="text-decoration: none">문의사항 관리</a> <a
+				href="/admin/inquiry" style="text-decoration: none">공지사항 관리</a> <a
+				href="/">홈으로 돌아가기</a>
 		</div>
 		<div class="noticeTemp">
 			<c:if test="${ tempCount !=0 }">
-				<a href="/admin/user/approve"><b>${ tempCount }명의 사용자가 승인 대기중입니다.</b></a>
+				<a href="/admin/user/approve"><b>${ tempCount }명의 사용자가 승인
+						대기중입니다.</b></a>
 			</c:if>
 		</div>
 		<div class="userList">
-			<p><b>최근 가입한 사용자</b></p>
+			<p>
+				<b>최근 가입한 사용자</b>
+			</p>
 			<c:if test="${ userCount != 0 }">
 				<table>
 					<tr>
@@ -49,7 +52,8 @@
 							<td>${ user.email }</td>
 							<td>${ user.phone }</td>
 							<td>${ user.role }</td>
-							<td><fmt:formatDate value="${ user.signupdate }" dateStyle="short"/></td>
+							<td><fmt:formatDate value="${ user.signupdate }"
+									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -59,7 +63,9 @@
 			</c:if>
 		</div>
 		<div class="inquiryList">
-			<p><b>최근 올라온 문의사항</b></p>
+			<p>
+				<b>최근 올라온 문의사항</b>
+			</p>
 			<c:if test="${ inquiryCount != 0 }">
 				<table>
 					<tr>
@@ -71,7 +77,8 @@
 						<tr>
 							<td>${ inquiry.userid }</td>
 							<td>${ inquiry.title }</td>
-							<td><fmt:formatDate value="${ inquiry.creationdate }" dateStyle="short"/></td>
+							<td><fmt:formatDate value="${ inquiry.creationdate }"
+									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -81,7 +88,9 @@
 			</c:if>
 		</div>
 		<div class="noticeList">
-			<p><b>최근 올라온 공지사항</b></p>
+			<p>
+				<b>최근 올라온 공지사항</b>
+			</p>
 			<c:if test="${ noticeCount != 0 }">
 				<table>
 					<tr>
@@ -93,7 +102,8 @@
 						<tr>
 							<td>${ notice.userid }</td>
 							<td>${ notice.title }</td>
-							<td><fmt:formatDate value="${ notice.creationdate }" dateStyle="short"/></td>
+							<td><fmt:formatDate value="${ notice.creationdate }"
+									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -103,5 +113,19 @@
 			</c:if>
 		</div>
 	</div>
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 </body>
 </html>

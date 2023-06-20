@@ -4,32 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
 <title>Linker</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
-<!-- Favicon -->
-<link href="../../img/favicon.ico" rel="icon">
-
-<!-- Icon Font Stylesheet -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-	rel="stylesheet">
-
-<!-- Libraries Stylesheet -->
-<link href="../../lib/animate/animate.min.css" rel="stylesheet">
-<link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
-	rel="stylesheet">
-<link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-<!-- Customized Bootstrap Stylesheet -->
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Template Stylesheet -->
-<link href="../../css/style.css" rel="stylesheet">
 
 <style>
 .content {
@@ -58,6 +33,7 @@ th {
 
 .title {
 	width: 700px;
+	text-align:left;
 	margin-bottom: 30px;
 }
 
@@ -77,44 +53,58 @@ th {
 	margin-top: 10px;
 }
 </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link href="img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+
 </head>
+  
 <body>
-<body>
 
-<!--     Spinner Start
- -->    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-<!--     Spinner End
- -->    
-        <!-- Topbar Start -->
-    <div class="container-fluid bg-light p-0">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>서울특별시 종로구 종로12길 15 코아빌딩1</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>월 - 일 : 09.30 AM - 10.00 PM</small>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>02-6901-7001</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
+				</div>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Topbar End -->
 
-<div id="page">
-
-    <!-- Navbar Start -->
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -135,18 +125,28 @@ th {
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item active">식자재 목록</a>
-							<a href="/" class="dropdown-item">재고현황</a> 
-							<a href="/" class="dropdown-item">발주내역</a> 
-							<a href="/" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
+							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
+							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
@@ -165,12 +165,30 @@ th {
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="logout" class="nav-item nav-link">로그아웃</a>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
+							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
+							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
 		</div>
 	</nav>
-    <!-- Navbar End -->	
+	<!-- Navbar End -->
 
 		<span id="role" style="display: none;">${ user.role }</span>
 
@@ -187,9 +205,8 @@ th {
 							<p>
 								<b>이름별 검색</b>
 							</p>
-							<input type="search" name="name" id="name"> <input
-								class="btn btn-primary" type="button" id="search-name"
-								value="검색">
+							<input type="search" name="name" id="name"> 
+							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
 						<form id="searchByDate" action="/ingredient/searchbydate/result"
@@ -197,11 +214,9 @@ th {
 							<p>
 								<b>유통기한별 검색</b>
 							</p>
-							<input type="date" class="exp" name="startDay" id="startDay">
-							<span style="color: white">-</span> <input type="date"
-								class="exp" name="endDay" id="endDay"> <input
-								class="btn btn-primary" type="button" id="search-date"
-								value="검색">
+							<input type="date" name="startDay" id="startDay"> <span>-</span>
+							<input type="date" name="endDay" id="endDay">
+							<input class="btn btn-primary" type="button" id="search-date" value="검색">
 						</form>
 					</div>
 					<div class="content">
@@ -221,8 +236,9 @@ th {
 											<td>${ ingredient.ingredientname }</td>
 											<td>${ ingredient.unit }</td>
 											<td>${ ingredient.exp }</td>
-											<td><button class="update btn"
-													value="${ ingredient.ingredientid }">수정</button></td>
+											<td>
+												<button class="update btn" value="${ ingredient.ingredientid }">수정</button>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -243,10 +259,9 @@ th {
 							</div>
 						</c:if>
 						<c:if test="${ count == 0 }">
-					입력된 식자재가 존재하지 않습니다.
+							입력된 식자재가 존재하지 않습니다.
 						<input class="btn" type="button" id="changeIngredient"
-								value="목록 추가 / 삭제" onclick="location.href='change';"
-								style="color: black;" />
+								value="목록 추가 / 삭제" onclick="location.href='change';" />
 						</c:if>
 					</div>
 					<%-- main > content end --%>
@@ -255,9 +270,7 @@ th {
 		</div>
 
 		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-			data-wow-delay="0.1s">
+		<div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
 			<div class="container">
 				<div class="copyright">
 					<div class="row">
@@ -276,16 +289,9 @@ th {
 		</div>
 		<!-- Footer End -->
 
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
-
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="/lib/wow/wow.min.js"></script>
 		<script src="/lib/easing/easing.min.js"></script>
 		<script src="/lib/waypoints/waypoints.min.js"></script>
@@ -352,15 +358,11 @@ th {
 							var _top = Math
 									.ceil((window.screen.height - 600) / 2);
 
-							window
-									.open(
-											'update/' + targetid,
+							window.open('update/' + targetid,
 											'식자재 수정하기',
-											'top='
-													+ _top
-													+ ', left='
-													+ _left
-													+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
+											'top=' + _top
+											+ ', left=' + _left
+											+ ', width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');
 						}); // update click end
 	</script>
 </body>
