@@ -1,4 +1,4 @@
-<script>
+
 $("#userid").on("keyup", function () {
     $("#id_msg").html("");
 });
@@ -217,4 +217,3 @@ $("#phone").on("keyup", function () {
 
                 });
             }); //ready
-        </script>
