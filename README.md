@@ -21,7 +21,6 @@
 - [식권 구매 및 식자재 관리 시스템]
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
-  - [사용기술]
   - [ERD 다이어그램](#erd-다이어그램)
   - [My Role](#my-role)
   - [Prerequisite](#prerequisite)
