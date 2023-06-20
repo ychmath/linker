@@ -152,7 +152,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/breakfast.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -175,7 +175,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/lunch.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -198,7 +198,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/dinner.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">

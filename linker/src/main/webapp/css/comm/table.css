@@ -64,6 +64,12 @@ td {
 	text-align: center;
 }
 
+.searchController {
+	text-align: center;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
 .menu {
 	margin-bottom: 30px;
 }
