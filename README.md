@@ -59,7 +59,7 @@ linker(soldesk project)
 ## Prerequisite
 Most team members have no prior coding experience.<br/>
 Therefore, we used only the skills and code languages we had learned over the previous three months from academy to test our knowledges.
-- [Eclipse](https://www.eclipse.org/downloads/): We use Eclipse and its addon(Spring 4) to complete the project.
+- [Eclipse](https://www.eclipse.org/downloads/): We use Eclipse and its addon(aka Spring Tool Suite 4) to complete the project.
   
 ## Development
 ### Install
