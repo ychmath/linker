@@ -84,13 +84,8 @@ $ git push
 - 하승재
 - 김태균
 
-## Demo
-URL:  
-ID :  
-PW :  
-
 ## license
-- [HTML Codex](./TEMPLATE LICENSE)
+- [HTML Codex](./TEMPLATE_LICENSE)
 - [MIT license](./LICENSE)
 ## About
 Authored and maintained by **linker**
