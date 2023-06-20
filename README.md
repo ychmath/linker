@@ -48,7 +48,7 @@ linker(soldesk project)
 
 ## ERD 다이어그램
 
-![ERD]()
+![ERD](./linker/src/main/webapp/img/erd.png)
 
 ##  My Role
 
