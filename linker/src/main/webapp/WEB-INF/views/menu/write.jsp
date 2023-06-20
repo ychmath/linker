@@ -157,7 +157,7 @@
 					<table border="1" style="color: black;">
 						<tr>
 							<td class="orange">제목</td>
-							<td><input name="title" style="background-color: inherit;"
+							<td><input name="title" id="title" style="background-color: inherit;"
 								required /></td>
 							<td class="orange">작성자</td>
 							<td><input name="userID"
@@ -321,18 +321,22 @@
 			$("#save").click(function(event) {
 				// 클릭했을 경우 바로 submit하지 않고 정지
 				event.preventDefault();
+				
+				if(!$('#title').val() || !$('#title').val().trim()){
+					alert('제목을 입력해 주세요.')
+				} else {
+					// 수정 가능 여부, css 여부 삭제
+					$("div").removeClass("bg-warning");
+					$("div").removeAttr("contenteditable");
 
-				// 수정 가능 여부, css 여부 삭제
-				$("div").removeClass("bg-warning");
-				$("div").removeAttr("contenteditable");
+					// 전송할 content에 수정된 table의 html을 가져온다.
+					$("#content").val(table.outerHTML);
+					// disabled였던 content를 false로 바꾸면서 전송 가능하도록 한다.
+					$("#content").attr("disabled", false);
 
-				// 전송할 content에 수정된 table의 html을 가져온다.
-				$("#content").val(table.outerHTML);
-				// disabled였던 content를 false로 바꾸면서 전송 가능하도록 한다.
-				$("#content").attr("disabled", false);
-
-				// 폼 submit
-				$("#writeform").submit();
+					// 폼 submit
+					$("#writeform").submit();
+				}
 
 			});
 
