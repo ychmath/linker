@@ -19,11 +19,6 @@
 	text-align: center;
 }
 
-th {
-	text-align: center;
-	border-bottom: 1px solid gray;
-}
-
 .searchController {
 	width: 100%;
 	align-self: flex-start;
@@ -33,7 +28,7 @@ th {
 
 .title {
 	width: 700px;
-	text-align:left;
+	text-align:center;
 	margin-bottom: 30px;
 }
 
@@ -67,17 +62,17 @@ th {
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 </head>
   
 <body>
