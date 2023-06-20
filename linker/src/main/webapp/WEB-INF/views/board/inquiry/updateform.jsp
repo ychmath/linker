@@ -89,7 +89,7 @@
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -143,35 +143,37 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-		<div class="content-wrapper">
-	<form method="post" id="title_validation" action="/inquiry/update"
-		style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
 
-		<input type="hidden" name="_method" value="put" /> <input
-			type="hidden" name="inquirypostid" value="${dto.inquirypostid }" />
-		<div class="pt-1">
-			<input type="text" name="title" id="title" value="${dto.title}"
-				placeholder="제목을 입력하세요" required
-				style="border-radius: 5px; width: 100%; padding: 5px;">
-		</div>
-		<div class="pt-1">
-			<input name="userid" id="userid" value="${user.userid }"
-				style="border-radius: 5px; width: 100%; padding: 5px;" readonly />
-		</div>
-		<div class="pt-1">
-			<div id="smarteditor">
-				<textarea name="content" id="editorTxt" rows="20" cols="10"
-					placeholder="내용을 입력해주세요" required
-					style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+	<div class="content-wrapper">
+		<form method="post" id="title_validation" action="/inquiry/update"
+			style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
+
+			<input type="hidden" name="_method" value="put" /> <input
+				type="hidden" name="inquirypostid" value="${dto.inquirypostid }" />
+			<div class="pt-1">
+				<input type="text" name="title" id="title" value="${dto.title}"
+					placeholder="제목을 입력하세요" required
+					style="border-radius: 5px; width: 100%; padding: 5px;">
 			</div>
-		</div>
-		<div class="pt-1 text-right" colspan="2" align="right">
-			<!-- colspan: 셀을 가로로 합병 -->
-			<input type="submit" class="upload_btn" id="upload"
-				style="width: 10%; padding: 5px;" value="수정" />
-		</div>
-	</form>
-</div>
+			<div class="pt-1">
+				<input name="userid" id="userid" value="${user.userid }"
+					style="border-radius: 5px; width: 100%; padding: 5px;" readonly />
+			</div>
+			<div class="pt-1">
+				<div id="smarteditor">
+					<textarea name="content" id="editorTxt" rows="20" cols="10"
+						placeholder="내용을 입력해주세요" required
+						style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+				</div>
+			</div>
+			<div class="pt-1 text-right" colspan="2" align="right">
+				<!-- colspan: 셀을 가로로 합병 -->
+				<input type="submit" class="upload_btn" id="upload"
+					style="width: 10%; padding: 5px;" value="수정" />
+			</div>
+		</form>
+	</div>
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

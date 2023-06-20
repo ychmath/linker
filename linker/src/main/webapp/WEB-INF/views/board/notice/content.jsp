@@ -4,7 +4,9 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
+<title>글 상세보기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -31,12 +33,8 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/user/content.css" rel="stylesheet">
 <link href="/css/comm/fixedfooter.css" rel="stylesheet">
-<title>글 상세보기</title>
-<style>
-table {
-	width: 100%;
-}
-</style>
+
+
 </head>
 <body>
 
@@ -62,7 +60,7 @@ table {
 	</div>
 	<!-- Topbar End -->
 
-<!-- Navbar Start -->
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -97,29 +95,32 @@ table {
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -132,12 +133,13 @@ table {
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -146,38 +148,40 @@ table {
 			</div>
 		</div>
 	</nav>
+	
 	<!-- Navbar End -->
-		<div class="content-wrapper">
-	<div id="container">
-		<div class="card">
-			<div class="card-view">
-				<div class="title">
-					<h3>${dto.title}</h3>
+	<div class="content-wrapper">
+		<div id="container">
+			<div class="card">
+				<div class="card-view">
+					<div class="title">
+						<h3>${dto.title}</h3>
+					</div>
+					<div class="myinfo">
+						<dl>
+							<dt>작성자</dt>
+							<dd>${dto.userid}</dd>
+						</dl>
+						<dl>
+							<dt>작성일</dt>
+							<dd>
+								<fmt:formatDate value="${dto.creationdate }" />
+							</dd>
+						</dl>
+					</div>
+					<div class="cont">${dto.content }</div>
 				</div>
-				<div class="myinfo">
-					<dl>
-						<dt>작성자</dt>
-						<dd>${dto.userid}</dd>
-					</dl>
-					<dl>
-						<dt>작성일</dt>
-						<dd>
-							<fmt:formatDate value="${dto.creationdate }" />
-						</dd>
-					</dl>
+				<div class="btn-view">
+					<c:if test="${user.userid == dto.userid }">
+						<a href="/notice/update/${dto.noticepostid}">수정</a>
+						<a id="${dto.noticepostid}" href="#">삭제</a>
+					</c:if>
+					<a href="../notice">목록 이동</a>
 				</div>
-				<div class="cont">${dto.content }</div>
-			</div>
-			<div class="btn-view">
-				<c:if test="${user.userid == dto.userid }">
-					<a href="/notice/update/${dto.noticepostid}">수정</a>
-					<a id="${dto.inquirypostid }" href="#">삭제</a>
-				</c:if>
-				<a href="../notice">목록 이동</a>
 			</div>
 		</div>
 	</div>
-</div>
+	
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -197,13 +201,13 @@ table {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="lib/wow/wow.min.js"></script>
-	<script src="lib/easing/easing.min.js"></script>
-	<script src="lib/waypoints/waypoints.min.js"></script>
-	<script src="lib/counterup/counterup.min.js"></script>
-	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="lib/isotope/isotope.pkgd.min.js"></script>
-	<script src="lib/lightbox/js/lightbox.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
