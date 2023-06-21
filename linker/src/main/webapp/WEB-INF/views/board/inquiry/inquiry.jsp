@@ -203,6 +203,10 @@
 		<div id="center">
 			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 		</div>
+		<c:if test="${ user.role == 'buyer'}">
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+		</c:if>
 	</div>
 
 	<div id="page">
@@ -215,11 +219,6 @@
 			</c:forEach>
 			<c:if test="${end < totalPages }">
 				<a href="notice?p=${end+1 }">[다음]</a>
-			</c:if>
-
-			<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-				<input type="button" id="write" value="글쓰기"
-					onclick="location.href='write'" />
 			</c:if>
 		</c:if>
 	</div>
