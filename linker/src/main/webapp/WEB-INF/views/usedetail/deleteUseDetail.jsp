@@ -231,7 +231,7 @@ td {
 								<c:forEach items="${ useList }" var="useList">
 									<tr class="orders">
 										<td>
-											<input type="checkbox" name="checkList" class="checkList" value="${ useList.inventoryid }">
+											<input type="checkbox" name="checkList" class="checkList" value="${ useList.usedetailid }">
 										</td>
 										<td>${ useList.ingredientname }</td>
 										<td>${ useList.ingredientusage }</td>
@@ -326,8 +326,8 @@ td {
 				location.href = "/main";
 			}
 
-			$("#deleteUse").on("click", function() {
-				// 체크박스에 체크된 식자재 id 번호 값 찾기
+			$("#deleteUse").on("click", function(event) {
+				// 체크박스에 체크된 사용내역 id 번호 값 찾기
 				$(".checkList:checked").each(function(i, item) {
 					// target에 id값 저장
 					var target = item.value;
@@ -336,7 +336,7 @@ td {
 						url : "/inventory/deleteUse/" + target,
 						method : "delete",
 						data : {
-							'inventoryid' : target
+							'usedetailid' : target
 						}
 					}).done(function(result) {
 

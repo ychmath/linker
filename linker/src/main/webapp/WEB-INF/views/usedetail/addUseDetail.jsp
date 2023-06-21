@@ -258,7 +258,7 @@ td {
 								</tbody>
 							</table>
 							<div>
-								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
+								<input type="button" id="add" class="button btn btn-primary" value="사용 내역 추가" />
 							</div>
 						</form>
 					</div>
@@ -341,8 +341,10 @@ td {
 				  // input 값 확인
 				  $("input[name='inventoryid']:checked").each(function() {
 				    var ingredientUsageInput = $(this).closest("tr").find("input[name='ingredientusage']");
+				    var ingredientUseDateInput = $(this).closest("tr").find("input[name='usedate']")
 				    
-				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val()) {
+				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val() || 
+				    		!ingredientUseDateInput.prop("disabled") && !ingredientUseDateInput.val()) {
 				      isAnyEmpty = true;
 				      return false; // input 값에 disabled를 제외하고 비어있는 것이 있다면 false return
 				    }
@@ -352,6 +354,8 @@ td {
 				  if (isAnyEmpty) {
 				    // 비어있다면 경고창
 				    alert("필수 항목을 전부 입력해 주십시오.");
+				  } else if (parseInt($('#ingredientusage').val()) > parseInt($('#ingredientusage').attr('max'))) {
+					  alert('사용할 수 있는 최대값을 초과했습니다.');
 				  } else {
 				    // 비어있지 않다면 전송
 				    alert("등록이 완료되었습니다.");
@@ -373,8 +377,8 @@ td {
 				      tabledata += '<td>' + obj.ingredientname + '</td>';
 				      tabledata += '<td>' + obj.quantity + '</td>';
 				      tabledata += '<td>' + obj.receivedate + '</td>';
-				      tabledata += '<td><input name="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
-				      tabledata += '<td><input name="usedate" type="date" disabled></td>'
+				      tabledata += '<td><input name="ingredientusage" id="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
+				      tabledata += '<td><input name="usedate" id="usedate" type="date" disabled></td>'
 				      tabledata += '</tr>';
 
 				    });
