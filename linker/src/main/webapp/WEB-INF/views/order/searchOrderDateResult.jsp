@@ -199,6 +199,8 @@ td {
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	
+	<div>
 
 		<span id="role" style="display: none;">${ user.role }</span>
 

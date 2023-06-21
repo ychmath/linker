@@ -200,7 +200,8 @@
 								<li class="signup"><a href="/joinform">회원가입</a></li>
 							</c:if>
 							<c:if test="${ user != null }">
-								<li class="myinfo"><span id="userid">${ user.userid }</span>
+								<li class="myinfo">
+								<span id="userid">${ user.userid }</span>
 									회원님 환영합니다!</li>
 								<li class="logout"><a href="/logout">로그아웃</a></li>
 							</c:if>
@@ -303,7 +304,9 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
-	
+
+	<!--  스크립트 수정 X!!! -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -317,7 +320,7 @@
 
 			var writer = $("#userID");
 
-			if (writer != $("#userid").text()) {
+			if (writer != $("#userid").val()) {
 				alert("수정 권한이 없습니다.");
 				location.href = "/main";
 			}

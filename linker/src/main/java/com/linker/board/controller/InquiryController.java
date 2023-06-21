@@ -119,7 +119,7 @@ public class InquiryController {
 		if (count > 0) {
 			int perPage = 10;
 			int startRow = (page - 1) * perPage; // 게시글 시작 순서
-			int endRow = page * perPage; // 게시글 마지막 순서
+			// int endRow = page * perPage; // 게시글 마지막 순서
 
 			List<InquiryDto> inquiryList = service.inquiryListSearch(searchn, search, startRow);
 			m.addAttribute("iList", inquiryList);
