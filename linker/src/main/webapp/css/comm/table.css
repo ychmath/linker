@@ -75,8 +75,8 @@ td {
 }
 
 #page {
-
-	margin-bottom: 2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	text-align: center;
 	color: #73685d;
 	position: relative;
@@ -146,13 +146,14 @@ td {
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: 3px;
+	border-bottom: none;
 	position: absolute;
 	right: 10%;
-	bottom: 0;
 	border-radius: 10px;
 	background-color: #4274AB;
 	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 .write_ty {

@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 .test_obj input[type="radio"] {
 	position: absolute;
@@ -6,22 +6,42 @@
 	pointer-events: none;
 }
 
-.test_obj span {
-	display: inline-block;
-	border: 1px solid #dfdfdf;
+.test_obj span,
+#myButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #4274AB;
 	background-color: #ffffff;
 	text-align: center;
 	cursor: pointer;
 	width: 60px;
 	height: 30px;
-	line-height: 30px;
 }
 
-.test_obj input[type="radio"]:checked+span {
-	background-color: #a39485; /* 체크 됐을 때 배경색 변경 */
-	 color: #ffffff;
+#start-date-input,
+#end-date-input {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #4274AB;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	height: 30px;
+	width: auto;
 }
 
-.test_obj span:hover {
-	background-color: #e0e0e0;
+.test_obj span label,
+#myButton,
+#start-date-input,
+#end-date-input {
+	display: inline-block;
+}
+
+.test_obj span:hover,
+#myButton:hover,
+#start-date-input:hover,
+#end-date-input:hover {
+	background-color: #ece6cc;
 }

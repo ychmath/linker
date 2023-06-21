@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Linker</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -31,8 +29,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/comm/table.css" rel="stylesheet">
-
+<link href="/css/comm/basicform.css" rel="stylesheet">
 </head>
 
 <body>
@@ -120,72 +117,29 @@
 	</nav>
 	<!-- Navbar End -->
 
-	<span id="role" style="display: none;">${ user.role }</span>
+	<div class="center-wrapper content-wrapper">
+		<form id="addTicket" action="/ticket/insert" method="post">
+			<div id="tickettable" class="commform">
+				<h2>식권 추가</h2>
+				<div id="tname" class="comm_field">
+					<input type="text" id="tickettypename" class="comm_input"
+						name="tickettypename" placeholder="tickettypename" required
+						autocomplete="off"> <label class="floating-label"
+						for="tickettypename">식권 이름</label>
 
-	<div class="content-wrapper">
-		<p>재고 목록</p>
-		<div class="searchController">
-			<form id="searchByName" action="/inventory/searchbyname/result"
-				method="get" style="display: inline-block;">
-				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="btn btn-primary"
-					type="submit" id="search-name" value="검색">
-			</form>
-			&nbsp; &nbsp;
-			<form id="searchByReceive"
-				action="/ingredient/searchbyreceive/result" method="get"
-				style="display: inline-block;">
-				<b>입고일별 검색</b> <input type="date" name="startDay"> <span>-</span>
-				<input type="date" name="endDay"> <input
-					class="btn btn-primary" type="submit" id="search-receive"
-					value="검색">
-			</form>
-		</div>
-		<div class="container">
-			<p>
-				'<%=request.getParameter("ingredientname")%>'에 대한 검색 결과입니다.
-			</p>
-		</div>
-		<c:if test="${ count != 0 }">
-			<table class="InvenList">
-				<tr>
-					<th>식자재명</th>
-					<th>수량</th>
-					<th>유통기한</th>
-					<th>수령일</th>
-				</tr>
-				<c:forEach items="${ nameSearchResult }" var="result">
-					<tr>
-						<td>${ result.ingredientname }</td>
-						<td>${ result.quantity }</td>
-						<td><fmt:formatDate dateStyle="long" value="${ result.exp }"></fmt:formatDate></td>
-						<td><fmt:formatDate dateStyle="long"
-								value="${ result.receivedate }"></fmt:formatDate></td>
-					</tr>
-				</c:forEach>
-			</table>
-
-			<div id="page">
-				<c:if test="${ begin > end }">
-					<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
-				</c:if>
-				<c:forEach begin="${ begin }" end="${ end }" var="i">
-					<a href="searchNameResult?p=${ i }">${ i }</a>
-				</c:forEach>
-				<c:if test="${ end < totalPages }">
-					<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
-				</c:if>
+				</div>
+				<div id="tprice" class="comm_field">
+					<input type="text" id="price" class="comm_input" name="price"
+						placeholder="아이디" required autocomplete="off"
+						oninput="validatePrice(this)"> <label
+						class="floating-label" for="price">가격</label>
+					<div id="priceError" style="display: none; color: red;">숫자만
+						입력해주세요.</div>
+				</div>
+				<button type="submit" class="submit" id="add">등록</button>
 			</div>
-
-		</c:if>
-
-		<div id="center">
-			<c:if test="${ count == 0 }">
-						해당 식자재가 존재하지 않습니다.
-					</c:if>
-		</div>
+		</form>
 	</div>
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -215,47 +169,20 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
 	<script>
-		$(function() {
-			// 권한 가져오기
-			var role = $("#role").text();
+		function validatePrice(input) {
+			var price = input.value.trim();
+			var priceError = document.getElementById("priceError");
 
-			// 열람 권한이 없다면 페이지 이동.
-			if (!(role != 'seller' || role != 'admin')) {
-				alert("열람 권한이 없는 페이지입니다.");
-				location.href = "/main";
+			if (!/^\d+$/.test(price)) {
+				priceError.style.display = "block";
+				input.setCustomValidity("숫자만 입력해주세요.");
+			} else {
+				priceError.style.display = "none";
+				input.setCustomValidity("");
 			}
-
-			$("#search-name").click(function() {
-
-				let name = $("#ingredientname").val();
-
-				if (!name || name.replace(/\s+/g, "") == "") {
-					alert("검색값을 입력해 주세요.");
-					$("#ingredientname").focus();
-					return false;
-				}
-
-				$("#searchByName").submit();
-
-			}); // search click end
-
-			$("#search-receive").click(function() {
-
-				let startDay = $("#startDay").val();
-				let endDay = $("#endDay").val();
-
-				if (!startDay || !endDay || endDay < startDay) {
-					alert("올바른 날짜값을 입력해 주세요.");
-					$("#startDay").focus();
-					return false;
-				}
-
-				$("#searchByReceive").submit();
-
-			}); // search click end
-
-		}); // ready end
+		}
 	</script>
 </body>
 </html>

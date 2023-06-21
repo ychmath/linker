@@ -78,16 +78,6 @@
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
@@ -123,25 +113,6 @@
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
-								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
-								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
-						</div>
-					</div>
-					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 			</div>
 		</div>
 	</nav>
@@ -149,75 +120,75 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
-	<div id="fh5co-about" class="fh5co-section">
-		<div class="container">
-			<div class="about-text">
-				<p>식자재 목록</p>
-				<div class="searchController">
-					<form id="searchByName" action="/ingredient/searchbyname/result"
-						method="get" style="display: inline-block;">
-						<b>이름별 검색</b>
-						<input type="search" name="name" id="name"> <input
-							class="btn btn-primary" type="button" id="search-name" value="검색">
-					</form>
-					&nbsp; &nbsp;
-					<form id="searchByDate" action="/ingredient/searchbydate/result"
-						method="get" style="display: inline-block;">
-						<b>유통기한별 검색</b>
-						<input type="date" name="startDay" id="startDay"> <span>-</span>
-						<input type="date" name="endDay" id="endDay"> <input
-							class="btn btn-primary" type="button" id="search-date" value="검색">
-					</form>
-				</div>
-				<div class="content">
-					<c:if test="${ count != 0 }">
-						<table class="IngredientList" id="IngredientList">
-							<thead>
-								<tr>
-									<th>식자재명</th>
-									<th>단위</th>
-									<th>유통기한</th>
-									<th style="width: 10%;"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${ ingredientList }" var="ingredient">
-									<tr>
-										<td>${ ingredient.ingredientname }</td>
-										<td>${ ingredient.unit }</td>
-										<td>${ ingredient.exp }</td>
-										<td>
-											<button class="update btn"
-												value="${ ingredient.ingredientid }">수정</button>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<input class="search_btn" type="button" id="changeIngredient"
-							value="목록 추가 / 삭제" onclick="location.href='change';" />
-						<div id="page">
-							<c:if test="${ begin > end }">
-								<a href="ingredientList?p=${ begin-1 }">[이전]</a>
-							</c:if>
-							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="ingredientList?p=${ i }">${ i }</a>
-							</c:forEach>
-							<c:if test="${ end < totalPages }">
-								<a href="ingredientList?p=${ end + 1 }">[다음]</a>
-							</c:if>
-						</div>
-					</c:if>
-					<c:if test="${ count == 0 }">
-							입력된 식자재가 존재하지 않습니다.
-						<input class="search_btn" type="button" id="changeIngredient"
-							value="목록 추가 / 삭제" onclick="location.href='change';" />
-					</c:if>
-				</div>
-				<%-- main > content end --%>
-			</div>
-		</div>
+	<p>식자재 목록</p>
+	<div class="searchController">
+		<form id="searchByName" action="/ingredient/searchbyname/result"
+			method="get" style="display: inline-block;">
+			<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
+				class="btn btn-primary" type="button" id="search-name" value="검색">
+		</form>
+		<form id="searchByDate" action="/ingredient/searchbydate/result"
+			method="get" style="display: inline-block;">
+			<b>유통기한별 검색</b> <input type="date" name="startDay" id="startDay">
+			<span>-</span> <input type="date" name="endDay" id="endDay">
+			<input class="btn btn-primary" type="button" id="search-date"
+				value="검색">
+		</form>
 	</div>
+	<div class="content-wrapper">
+
+		<c:if test="${ count != 0 }">
+			<table class="IngredientList" id="IngredientList">
+				<thead>
+					<tr>
+						<th>식자재명</th>
+						<th>단위</th>
+						<th>유통기한</th>
+						<th style="width: 10%;"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${ ingredientList }" var="ingredient">
+						<tr>
+							<td>${ ingredient.ingredientname }</td>
+							<td>${ ingredient.unit }</td>
+							<td>${ ingredient.exp }</td>
+							<td>
+								<button class="update btn" value="${ ingredient.ingredientid }">수정</button>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+		<div id="center">
+			<c:if test="${ count == 0 }">
+							입력된 식자재가 존재하지 않습니다.
+				</c:if>
+		</div>
+		<c:if test="${user.role =='seller' }">
+			<input class="search_btn" type="button" id="write" value="목록 추가 / 삭제"
+				onclick="location.href='change'" />
+		</c:if>
+	</div>
+
+	<div id="page">
+		<c:if test="${count != 0}">
+			<c:if test="${begin > pageNum}">
+				<a href="notice?p=${begin-1 }">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin }" end="${end }" var="i">
+				<a href="notice?p=${i }">${i }</a>
+			</c:forEach>
+			<c:if test="${end < totalPages }">
+				<a href="notice?p=${end+1 }">[다음]</a>
+			</c:if>
+		</c:if>
+	</div>
+
+
+
+	<%-- main > content end --%>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

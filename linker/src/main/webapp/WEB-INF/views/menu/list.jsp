@@ -168,12 +168,12 @@
 				</c:forEach>
 			</table>
 		</c:if>
+
+		<c:if test="${ user.role == 'seller' }">
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+		</c:if>
 	</div>
-	<c:if test="${ user.role == 'seller' }">
-		<div class="write" align="right">
-			<a href="write">새 글 등록</a>
-		</div>
-	</c:if>
 	<div id="page">
 		<c:if test="${ begin > pageNum }">
 			<a href="list?p=${ begin-1 }">[이전]</a>

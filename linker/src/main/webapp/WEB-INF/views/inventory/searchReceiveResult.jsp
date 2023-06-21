@@ -123,72 +123,68 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
-<div class="content-wrapper">
-				<p>
-					<a href="/inventory/inventoryList">재고 목록</a>
-				</p>
-				<div class="searchController">
-					<form id="searchByName" action="/inventory/searchbyname/result"
-						method="get" style="display: inline-block;">
-							<b>이름별 검색</b>
-						<input type="search" name="ingredientname" id="ingredientname">
-						<input class="btn btn-primary" type="button" id="search-name"
-							value="검색">
-					</form>
-					&nbsp; &nbsp;
-					<form id="searchByReceive"
-						action="/inventory/searchbyreceive/result" method="get"
-						style="display: inline-block;">
-							<b>수령기간별 검색</b>
-						<input type="date" name="startDay" id="startDay"> <span>-</span>
-						<input type="date" name="endDay" id="endDay"> <input
-							class="btn btn-primary" type="button" id="search-receive"
-							value="검색">
-					</form>
-				</div>
-				<div class="content">
-					<p>해당 수령기간에 대한 재고 검색 결과입니다.</p>
-				</div>
-				<c:if test="${ count != 0 }">
-					<table class="InvenList" id="InvenList">
-						<thead>
-							<tr>
-								<th>식자재명</th>
-								<th>수량</th>
-								<th>유통기한</th>
-								<th>수령일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${ receiveSearchResult }" var="result">
-								<tr>
-									<td>${ result.ingredientname }</td>
-									<td>${ result.quantity }</td>
-									<td><fmt:formatDate dateStyle="long"
-											value="${ result.exp }"></fmt:formatDate></td>
-									<td><fmt:formatDate dateStyle="long"
-											value="${ result.receivedate }"></fmt:formatDate></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<div class="page">
-						<c:if test="${ begin > end }">
-							<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
-						</c:if>
-						<c:forEach begin="${ begin }" end="${ end }" var="i">
-							<a href="searchReceiveResult?p=${ i }">${ i }</a>
-						</c:forEach>
-						<c:if test="${ end < totalPages }">
-							<a href="searchReceiveResult?p=${ end + 1 }">[다음]</a>
-						</c:if>
-					</div>
+	<div class="content-wrapper">
+		<p>
+			<a href="/inventory/inventoryList">재고 목록</a>
+		</p>
+		<div class="searchController">
+			<form id="searchByName" action="/inventory/searchbyname/result"
+				method="get" style="display: inline-block;">
+				<b>이름별 검색</b> <input type="search" name="ingredientname"
+					id="ingredientname"> <input class="btn btn-primary"
+					type="button" id="search-name" value="검색">
+			</form>
+			&nbsp; &nbsp;
+			<form id="searchByReceive" action="/inventory/searchbyreceive/result"
+				method="get" style="display: inline-block;">
+				<b>수령기간별 검색</b> <input type="date" name="startDay" id="startDay">
+				<span>-</span> <input type="date" name="endDay" id="endDay">
+				<input class="btn btn-primary" type="button" id="search-receive"
+					value="검색">
+			</form>
+		</div>
+		<div class="content">
+			<p>해당 수령기간에 대한 재고 검색 결과입니다.</p>
+		</div>
+		<c:if test="${ count != 0 }">
+			<table class="InvenList" id="InvenList">
+				<thead>
+					<tr>
+						<th>식자재명</th>
+						<th>수량</th>
+						<th>유통기한</th>
+						<th>수령일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${ receiveSearchResult }" var="result">
+						<tr>
+							<td>${ result.ingredientname }</td>
+							<td>${ result.quantity }</td>
+							<td><fmt:formatDate dateStyle="long" value="${ result.exp }"></fmt:formatDate></td>
+							<td><fmt:formatDate dateStyle="long"
+									value="${ result.receivedate }"></fmt:formatDate></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="page">
+				<c:if test="${ begin > end }">
+					<a href="searchReceiveResult?p=${ begin-1 }">[이전]</a>
 				</c:if>
-				<c:if test="${ count == 0 }">
+				<c:forEach begin="${ begin }" end="${ end }" var="i">
+					<a href="searchReceiveResult?p=${ i }">${ i }</a>
+				</c:forEach>
+				<c:if test="${ end < totalPages }">
+					<a href="searchReceiveResult?p=${ end + 1 }">[다음]</a>
+				</c:if>
+			</div>
+		</c:if>
+		<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
 						</c:if>
-			</div>
-			<%-- main > content end --%>
+	</div>
+	<%-- main > content end --%>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

@@ -122,74 +122,67 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
-		<div class="content-wrapper">
-				<p>
-					재고 현황
-				</p>
-				<div class="searchController">
-					<form id="searchByName" action="/inventory/searchbyname/result"
-						method="get" style="display: inline-block;">
-						
-							<b>이름별 검색</b>
-						
-						<input type="search" name="ingredientname" id="ingredientname">
-						<input class="btn btn-primary" type="button" id="search-name"
-							value="검색">
-					</form>
-					&nbsp; &nbsp;
-					<form id="searchByReceive"
-						action="/inventory/searchbyreceive/result" method="get"
-						style="display: inline-block;">
-					
-							<b>수령기간별 검색</b>
-						
-						<input type="date" id="startDay" name="startDay"> <span>-</span>
-						<input type="date" id="endDay" name="endDay"> <input
-							class="btn btn-primary" type="button" id="search-receive"
-							value="검색">
-					</form>
-				</div>
-					<c:if test="${ count != 0 }">
-						<table class="InvenList" id="InvenList">
-							<thead>
-								<tr>
-									<th>식자재명</th>
-									<th>수량</th>
-									<th>유통기한</th>
-									<th>수령일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${ invenList }" var="invenList">
-									<tr>
-										<td>${ invenList.ingredientname }</td>
-										<td>${ invenList.quantity }</td>
-										<td><fmt:formatDate dateStyle="long"
-												value="${ invenList.exp }"></fmt:formatDate></td>
-										<td><fmt:formatDate dateStyle="long"
-												value="${ invenList.receivedate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-							</div>
-						<div id="page">
-							<c:if test="${ begin > end }">
-								<a href="inventoryList?p=${ begin-1 }">[이전]</a>
-							</c:if>
-							<c:forEach begin="${ begin }" end="${ end }" var="i">
-								<a href="inventoryList?p=${ i }">${ i }</a>
-							</c:forEach>
-							<c:if test="${ end < totalPages }">
-								<a href="inventoryList?p=${ end + 1 }">[다음]</a>
-							</c:if>
-						</div>
-					</c:if>
-					<c:if test="${ count == 0 }">
+	<div class="content-wrapper">
+		<p>재고 현황</p>
+		<div class="searchController">
+			<form id="searchByName" action="/inventory/searchbyname/result"
+				method="get" style="display: inline-block;">
+
+				<b>이름별 검색</b> <input type="search" name="ingredientname"
+					id="ingredientname"> <input class="btn btn-primary"
+					type="button" id="search-name" value="검색">
+			</form>
+			&nbsp; &nbsp;
+			<form id="searchByReceive" action="/inventory/searchbyreceive/result"
+				method="get" style="display: inline-block;">
+
+				<b>수령기간별 검색</b> <input type="date" id="startDay" name="startDay">
+				<span>-</span> <input type="date" id="endDay" name="endDay">
+				<input class="btn btn-primary" type="button" id="search-receive"
+					value="검색">
+			</form>
+		</div>
+		<c:if test="${ count != 0 }">
+			<table class="InvenList" id="InvenList">
+				<thead>
+					<tr>
+						<th>식자재명</th>
+						<th>수량</th>
+						<th>유통기한</th>
+						<th>수령일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${ invenList }" var="invenList">
+						<tr>
+							<td>${ invenList.ingredientname }</td>
+							<td>${ invenList.quantity }</td>
+							<td><fmt:formatDate dateStyle="long"
+									value="${ invenList.exp }"></fmt:formatDate></td>
+							<td><fmt:formatDate dateStyle="long"
+									value="${ invenList.receivedate }"></fmt:formatDate></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+	</div>
+	<div id="page">
+		<c:if test="${ begin > end }">
+			<a href="inventoryList?p=${ begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${ begin }" end="${ end }" var="i">
+			<a href="inventoryList?p=${ i }">${ i }</a>
+		</c:forEach>
+		<c:if test="${ end < totalPages }">
+			<a href="inventoryList?p=${ end + 1 }">[다음]</a>
+		</c:if>
+	</div>
+	</c:if>
+	<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
 						</c:if>
-					
-			<!-- container end -->
+
+	<!-- container end -->
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
@@ -259,7 +252,6 @@
 				$("#searchByReceive").submit();
 
 			}); // search click end
-
 		}); // ready end
 	</script>
 </body>

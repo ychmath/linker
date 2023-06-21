@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@ th {
 }
 
 td {
-	padding : 8px;
+	padding: 8px;
 }
 
 .searchController {
@@ -96,7 +96,7 @@ td {
 <link href="css/style.css" rel="stylesheet">
 
 </head>
-  
+
 <body>
 
 	<!-- Topbar Start -->
@@ -158,27 +158,30 @@ td {
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -191,12 +194,13 @@ td {
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -207,98 +211,100 @@ td {
 	</nav>
 	<!-- Navbar End -->
 
-		<span id="role" style="display: none;">${ user.role }</span>
+	<span id="role" style="display: none;">${ user.role }</span>
 
-		<div id="fh5co-about" class="fh5co-section">
-			<div class="fh5co-cover" style="height: 50px"></div>
-			<div class="container">
-				<div class="about-text">
-					<h1 class="title">
-						<a href="/inventory/useDetailList">사용 내역</a>
-					</h1>
-					<b>사용 내역 삭제</b>
-					<div class="deleteController">
-							<table class="InvenList" id="InvenList">
-								<thead>
-									<tr>
-										<th style="width: 5%;"></th>
-										<th>식자재명</th>
-										<th>사용량</th>
-										<th>사용일</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach items="${ useList }" var="useList">
-									<tr class="orders">
-										<td>
-											<input type="checkbox" name="checkList" class="checkList" value="${ useList.inventoryid }">
-										</td>
-										<td>${ useList.ingredientname }</td>
-										<td>${ useList.ingredientusage }</td>
-										<td><fmt:formatDate dateStyle="long" value="${ useList.usedate }"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-							<div>
-								<input class="btn btn-primary" type="button" id="deleteUse" value="선택 내역 삭제" />
-							</div>
-						</div>
-							<div class="pageController">
-								<c:if test="${ begin > end }">
-									<a href="deleteUseDetail?p=${ begin-1 }">[이전]</a>
-								</c:if>
-								<c:forEach begin="${ begin }" end="${ end }" var="i">
-									<a href="deleteUseDetail?p=${ i }">${ i }</a>
-								</c:forEach>
-								<c:if test="${ end < totalPages }">
-									<a href="deleteUseDetail?p=${ end + 1 }">[다음]</a>
-								</c:if>
-							</div>
-					<%-- main > content end --%>
+	<div id="fh5co-about" class="fh5co-section">
+		<div class="fh5co-cover" style="height: 50px"></div>
+		<div class="container">
+			<div class="about-text">
+				<h1 class="title">
+					<a href="/inventory/useDetailList">사용 내역</a>
+				</h1>
+				<b>사용 내역 삭제</b>
+				<div class="deleteController">
+					<table class="InvenList" id="InvenList">
+						<thead>
+							<tr>
+								<th style="width: 5%;"></th>
+								<th>식자재명</th>
+								<th>사용량</th>
+								<th>사용일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${ useList }" var="useList">
+								<tr class="orders">
+									<td><input type="checkbox" name="checkList"
+										class="checkList" value="${ useList.inventoryid }"></td>
+									<td>${ useList.ingredientname }</td>
+									<td>${ useList.ingredientusage }</td>
+									<td><fmt:formatDate dateStyle="long"
+											value="${ useList.usedate }"></fmt:formatDate></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<div>
+						<input class="btn btn-primary" type="button" id="deleteUse"
+							value="선택 내역 삭제" />
+					</div>
 				</div>
-			</div> <!-- container end -->
+				<div class="pageController">
+					<c:if test="${ begin > end }">
+						<a href="deleteUseDetail?p=${ begin-1 }">[이전]</a>
+					</c:if>
+					<c:forEach begin="${ begin }" end="${ end }" var="i">
+						<a href="deleteUseDetail?p=${ i }">${ i }</a>
+					</c:forEach>
+					<c:if test="${ end < totalPages }">
+						<a href="deleteUseDetail?p=${ end + 1 }">[다음]</a>
+					</c:if>
+				</div>
+				<%-- main > content end --%>
+			</div>
 		</div>
+		<!-- container end -->
+	</div>
 
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-			data-wow-delay="0.1s">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
-						</div>
+	<!-- Footer Start -->
+	<div
+		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+							Codex</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+	</div>
+	<!-- Footer End -->
 
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="/lib/wow/wow.min.js"></script>
-		<script src="/lib/easing/easing.min.js"></script>
-		<script src="/lib/waypoints/waypoints.min.js"></script>
-		<script src="/lib/counterup/counterup.min.js"></script>
-		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-		<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-		<!-- Template Javascript -->
-		<script src="/js/main.js"></script>
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
 	</div>
 
-<div>
+	<div>
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script

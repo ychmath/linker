@@ -147,20 +147,20 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper">
 		<p>
 			<strong>문의사항</strong>
 		</p>
+		<c:if test="${count > 0 }">
+			<table>
+				<tr>
+					<th>게시글 번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+				</tr>
 
-		<table>
-			<tr>
-				<th>게시글 번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			<c:if test="${count > 0 }">
 				<!-- count 값이 0보다 클 경우에만 아래 내용이 실행됩니다. -->
 
 				<c:forEach items="${iList }" var="inquiry">
@@ -198,28 +198,29 @@
 					</tr>
 
 				</c:forEach>
-
-			</c:if>
-		</table>
+			</table>
+		</c:if>
+		<div id="center">
+			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
+		</div>
 	</div>
+
 	<div id="page">
-		<!-- 페이지 번호 -->
-		<c:if test="${begin > pageNum}">
-			<a href="inquiry?p=${begin - 1 }">[이전] </a>
-		</c:if>
+		<c:if test="${count != 0}">
+			<c:if test="${begin > pageNum}">
+				<a href="notice?p=${begin-1 }">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin }" end="${end }" var="i">
+				<a href="notice?p=${i }">${i }</a>
+			</c:forEach>
+			<c:if test="${end < totalPages }">
+				<a href="notice?p=${end+1 }">[다음]</a>
+			</c:if>
 
-		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="inquiry?p=${i }">${i }</a>
-		</c:forEach>
-
-		<c:if test="${end < totalPages }">
-			<a href="inquiry?p=${end+1}">[다음]</a>
-		</c:if>
-
-		<c:if test="${ user.role == 'buyer'}">
-
-			<input type="button" id="write" value="글쓰기"
-				onclick="location.href='write'" />
+			<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+				<input type="button" id="write" value="글쓰기"
+					onclick="location.href='write'" />
+			</c:if>
 		</c:if>
 	</div>
 

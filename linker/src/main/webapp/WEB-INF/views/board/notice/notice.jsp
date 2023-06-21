@@ -166,7 +166,12 @@
 		<div id="center">
 			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 		</div>
+		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+		</c:if>
 	</div>
+
 	<div id="page">
 		<c:if test="${count != 0}">
 			<c:if test="${begin > pageNum}">
@@ -178,16 +183,8 @@
 			<c:if test="${end < totalPages }">
 				<a href="notice?p=${end+1 }">[다음]</a>
 			</c:if>
-
-			<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-				<input type="button" id="write" value="글쓰기"
-					onclick="location.href='write'" />
-			</c:if>
 		</c:if>
 	</div>
-
-
-
 
 	<div id="search">
 		<form action="search">
@@ -199,7 +196,6 @@
 				name="search_btn" value="검색" />
 		</form>
 	</div>
-
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
