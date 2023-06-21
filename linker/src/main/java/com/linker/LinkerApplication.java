@@ -12,11 +12,12 @@ public class LinkerApplication {
 		SpringApplication.run(LinkerApplication.class, args);
 	}
 
-	 @Bean
-	    public HiddenHttpMethodFilter httpMethodFilter() {
-	        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
-	        return hiddenHttpMethodFilter;
-	    }
+	@Bean
+    public HiddenHttpMethodFilter httpMethodFilter() {
+        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+        return hiddenHttpMethodFilter;
+    }
+
 
 }
   
