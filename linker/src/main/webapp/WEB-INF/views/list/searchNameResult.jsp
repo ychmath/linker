@@ -78,16 +78,6 @@
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
@@ -121,25 +111,6 @@
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
-				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
-								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
-								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
-						</div>
-					</div>
-					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 			</div>
@@ -196,7 +167,9 @@
 					<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
 				</c:if>
 			</div>
+			
 		</c:if>
+		
 		<div id="center">
 			<c:if test="${ count == 0 }">
 						해당 식자재가 존재하지 않습니다.
