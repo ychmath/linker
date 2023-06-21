@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.linker.login.dto.LoginDto;
 
 @Mapper
+
 public interface LoginDao {
 
 	public int insertUser(LoginDto dto);
@@ -14,6 +15,8 @@ public interface LoginDao {
 	public int updateUser(LoginDto dto);
 
 	public int deleteUser(String userid);
+	
+	public int deleteInquiryPost(String userid);
 
 	public String idCheck(String userid);
 
