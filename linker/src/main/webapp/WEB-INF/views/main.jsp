@@ -92,6 +92,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -152,7 +153,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/breakfast.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -175,7 +176,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/lunch.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">
@@ -198,7 +199,7 @@
 			<div class="owl-carousel-item position-relative"
 				style="display: flex; justify-content: center;">
 				<img class="img-fluid" src="img/dinner.jpg" alt=""
-					style="width: 60%; height: auto;">
+					style="width: 65%; height: auto;">
 				<div
 					class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
 					style="background: rgba(53, 53, 53, .7);">

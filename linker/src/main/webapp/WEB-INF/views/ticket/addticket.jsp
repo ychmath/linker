@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Linker</title>
-
-</head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -33,8 +29,7 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/menu/menu_write.css" rel="stylesheet">
-<link href="/css/comm/fixedfooter.css" rel="stylesheet">
+<link href="/css/comm/basicform.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,28 +70,18 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link active">식단표</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link active">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -131,45 +116,29 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	<div class="content-wrapper">
-		<div class="main" style="margin-top: 3em;">
-			<div class="container">
-				<div class="content">
-					<form method="post" id="updateform"
-						action="/menu/update/${ dto.menuID }">
-						<input type="hidden" name="_method" value="put" />
-						<table border="1" style="color: black;">
-							<tr>
-								<td class="orange">제목</td>
-								<td><input name="title" style="background-color: inherit;"
-									value="${ dto.title }" /></td>
-							</tr>
-							<tr>
-								<td class="orange">작성자</td>
-								<td><input id="userID" name="userID"
-									style="background-color: inherit;" value="${ dto.userID }"
-									readonly></td>
-							</tr>
-							<tr>
-								<td class="orange">내용</td>
-								<td>
-									<!-- 아래 content input 태그에 html 코드가 들어갑니다. --> <input
-									name="content" id="content" disabled style="display: none;" />
-									${ dto.content }
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center"><input type="button"
-									id="save" value="글 수정 완료" style="margin-left: auto;"></td>
-							</tr>
-						</table>
-					</form>
+
+	<div class="center-wrapper content-wrapper">
+		<form id="addTicket" action="/ticket/insert" method="post">
+			<div id="tickettable" class="commform">
+				<h2>식권 추가</h2>
+				<div id="tname" class="comm_field">
+					<input type="text" id="tickettypename" class="comm_input"
+						name="tickettypename" placeholder="tickettypename" required
+						autocomplete="off"> <label class="floating-label"
+						for="tickettypename">식권 이름</label>
+
 				</div>
-				<%-- main > content end --%>
+				<div id="tprice" class="comm_field">
+					<input type="text" id="price" class="comm_input" name="price"
+						placeholder="아이디" required autocomplete="off"
+						oninput="validatePrice(this)"> <label
+						class="floating-label" for="price">가격</label>
+					<div id="priceError" style="display: none; color: red;">숫자만
+						입력해주세요.</div>
+				</div>
+				<button type="submit" class="submit" id="add">등록</button>
 			</div>
-			<%-- main > container end --%>
-		</div>
-		<%-- main end --%>
+		</form>
 	</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
@@ -200,52 +169,20 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
 	<script>
-		$(function() {
+		function validatePrice(input) {
+			var price = input.value.trim();
+			var priceError = document.getElementById("priceError");
 
-			var writer = $("#userID").val();
-
-			if (writer !== "${ user.userid }") {
-				alert("수정 권한이 없습니다.");
-				location.href = "/main";
+			if (!/^\d+$/.test(price)) {
+				priceError.style.display = "block";
+				input.setCustomValidity("숫자만 입력해주세요.");
+			} else {
+				priceError.style.display = "none";
+				input.setCustomValidity("");
 			}
-
-			// make div editable > start
-			$(document).on("click", ".row_data", function() {
-				// 기존 table html 코드에 클릭하면 수정할 수 있는 기능 추가
-				// make div editable
-				$(this).closest("div").attr("contenteditable", "true");
-				// add bg css
-				$(this).addClass("bg-warning").css("padding", "5px");
-
-				$(this).focus();
-
-			});//on 
-			// make div editable > end
-
-			$("#save").click(function(event) {
-				// 바로 submit하지 않도록 설정
-				event.preventDefault();
-
-				if(!$('#title').val() || !$('#title').val().trim()){
-					alert('제목을 입력해 주세요.')
-				} else {
-					// 수정 가능 여부 / css 삭제
-					$("div").removeClass("bg-warning");
-					$("div").removeAttr("contenteditable");
-
-					// content에 table html 코드 저장
-					$("#content").val(table.outerHTML);
-					// content의 disabled를 false로 넣어 전송 가능하게 변경
-					$("#content").attr("disabled", false);
-
-					// 전송
-					$("#updateform").submit();
-				}
-
-			});//click
-
-		}); // ready end
+		}
 	</script>
 </body>
 </html>

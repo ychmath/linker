@@ -66,7 +66,7 @@ public class NoticeController {
 			if (end > totalPages) {
 				end = totalPages;
 			}
-
+			m.addAttribute("start", startRow + 1);
 			m.addAttribute("pageNum", pageNum);
 			m.addAttribute("totalPages", totalPages);
 			m.addAttribute("begin", begin);
@@ -85,7 +85,7 @@ public class NoticeController {
 	@PostMapping("/notice/write")
 	public String writenotice(NoticeDto dto) {
 		service.insertNotice(dto);
-		return "redirect:/board/notice/notice";
+		return "redirect:/notice/notice";
 	}
 
 	@GetMapping("/notice/content/{noticepostid}")
@@ -109,7 +109,7 @@ public class NoticeController {
 	// @PutMapping: 클라이언트가 서버에게 업데이트할 데이터를 제공하고, 해당 데이터로 리소스를 생긴하거나 새로 만듦
 	public String update(NoticeDto dto) {
 		service.updateNotice(dto);
-		return "redirect:board/notice/notice";
+		return "redirect:/notice/notice";
 	}
 
 	@DeleteMapping("/notice/delete")

@@ -34,7 +34,6 @@
 <link href="/css/user/content.css" rel="stylesheet">
 <link href="/css/comm/fixedfooter.css" rel="stylesheet">
 
-
 </head>
 <body>
 

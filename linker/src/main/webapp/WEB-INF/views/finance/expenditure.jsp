@@ -37,6 +37,8 @@ String end_date = request.getParameter("end_date");
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/comm/table.css" rel="stylesheet">
+<link href="/css/comm/radio.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -194,13 +196,6 @@ String end_date = request.getParameter("end_date");
 								</script>
 							<button type="button" id="myButton" onclick="search()">검색
 							</button> <script>
-								function resetSearch() {
-
-									location
-											.assign("${pageContext.request.contextPath}/finance/expenditure");
-
-								}
-
 								$(function() {
 									$("input[type='radio'][name='date']")
 											.on(
@@ -331,7 +326,6 @@ String end_date = request.getParameter("end_date");
 									$("#saled").append(table_data);
 								}
 							</script>
-							<button type="button" class="resetButton" onclick="resetSearch()">X</button>
 					</tr>
 				</table>
 				<br>
@@ -361,28 +355,23 @@ String end_date = request.getParameter("end_date");
 				</table>
 			</div>
 		</div>
-		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
+	</form>
+	
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
-
-
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
-	</form>
+	</div>
+	<!-- Footer End -->
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
