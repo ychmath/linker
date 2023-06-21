@@ -211,6 +211,7 @@ td {
 	</nav>
 	<!-- Navbar End -->
 
+
 	<span id="role" style="display: none;">${ user.role }</span>
 
 	<div id="fh5co-about" class="fh5co-section">
@@ -248,6 +249,7 @@ td {
 						<input class="btn btn-primary" type="button" id="deleteUse"
 							value="선택 내역 삭제" />
 					</div>
+
 				</div>
 				<div class="pageController">
 					<c:if test="${ begin > end }">
@@ -285,6 +287,7 @@ td {
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<!-- Footer End -->
 
@@ -303,6 +306,7 @@ td {
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
 	</div>
+
 
 	<div>
 		<!-- JavaScript Libraries -->
@@ -333,8 +337,8 @@ td {
 				location.href = "/main";
 			}
 
-			$("#deleteUse").on("click", function() {
-				// 체크박스에 체크된 식자재 id 번호 값 찾기
+			$("#deleteUse").on("click", function(event) {
+				// 체크박스에 체크된 사용내역 id 번호 값 찾기
 				$(".checkList:checked").each(function(i, item) {
 					// target에 id값 저장
 					var target = item.value;
@@ -343,7 +347,7 @@ td {
 						url : "/inventory/deleteUse/" + target,
 						method : "delete",
 						data : {
-							'inventoryid' : target
+							'usedetailid' : target
 						}
 					}).done(function(result) {
 

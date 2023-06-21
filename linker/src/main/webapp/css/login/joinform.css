@@ -81,7 +81,7 @@ info {
 	font-size: 16px;
 	font-weight: 700;
 	padding: 12px;
-	width: 90%;
+	width: 75%;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	transition: all 0.3s;
@@ -110,15 +110,26 @@ info {
 	margin-bottom: 10px;
 }
 
-#userid {
+#name {
 	width: 300px;
 	height: 50px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
+	 margin-bottom: 10px;
 }
 
+#userid {
+	width: 300px;
+	height: 50px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px;	  
+	
+
+}
 #password {
 	width: 300px;
 	height: 50px;
@@ -126,7 +137,7 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-	margin-bottom: 10px;
+	 margin-bottom: 10px;
 }
 
 #chk_password {
@@ -136,7 +147,7 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-	padding-top: 10px;
+	padding-top: 10px; 
 	margin-bottom: 10px;
 }
 
@@ -147,6 +158,7 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
+
 }
 
 #phone {
@@ -156,5 +168,8 @@ info {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px;
-	padding-top: 10px
+ 	 padding-top: 10px
+}
+#agrrretype{
+	
 }

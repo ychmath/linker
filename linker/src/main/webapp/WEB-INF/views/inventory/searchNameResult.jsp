@@ -181,6 +181,7 @@
 
 		<div id="center">
 			<c:if test="${ count == 0 }">
+
 						해당 식자재가 존재하지 않습니다.
 					</c:if>
 		</div>
@@ -220,11 +221,11 @@
 			// 권한 가져오기
 			var role = $("#role").text();
 
-			// 열람 권한이 없다면 페이지 이동.
-			if (!(role != 'seller' || role != 'admin')) {
-				alert("열람 권한이 없는 페이지입니다.");
-				location.href = "/main";
-			}
+		// 열람 권한이 없다면 페이지 이동.
+		if (!(role != 'seller' || role != 'admin')) {
+			alert("열람 권한이 없는 페이지입니다.");
+			location.href = "/main";
+		}
 
 			$("#search-name").click(function() {
 
