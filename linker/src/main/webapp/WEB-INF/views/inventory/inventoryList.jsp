@@ -85,6 +85,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -122,26 +123,25 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
-	<div class="content-wrapper">
 		<p>재고 현황</p>
 		<div class="searchController">
 			<form id="searchByName" action="/inventory/searchbyname/result"
 				method="get" style="display: inline-block;">
 
 				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="btn btn-primary"
+					id="ingredientname"> <input class="search_btn"
 					type="button" id="search-name" value="검색">
 			</form>
-			&nbsp; &nbsp;
-			<form id="searchByReceive" action="/inventory/searchbyreceive/result"
+			<form id="searchByDate" action="/inventory/searchbyreceive/result"
 				method="get" style="display: inline-block;">
 
 				<b>수령기간별 검색</b> <input type="date" id="startDay" name="startDay">
 				<span>-</span> <input type="date" id="endDay" name="endDay">
-				<input class="btn btn-primary" type="button" id="search-receive"
+				<input class="search_btn" type="button" id="search-receive"
 					value="검색">
 			</form>
 		</div>
+			<div class="content-wrapper">
 		<c:if test="${ count != 0 }">
 			<table class="InvenList" id="InvenList">
 				<thead>
@@ -165,6 +165,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			</c:if>
 	</div>
 	<div id="page">
 		<c:if test="${ begin > end }">
@@ -177,7 +178,6 @@
 			<a href="inventoryList?p=${ end + 1 }">[다음]</a>
 		</c:if>
 	</div>
-	</c:if>
 	<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
 						</c:if>

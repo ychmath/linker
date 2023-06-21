@@ -85,6 +85,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -121,40 +122,35 @@
 	<!-- Navbar End -->
 
 	<div class="content-wrapper">
-	<div class="content">
-		<div class="container">
-			<div id="tickettable" class="about-text">
-				<p>
-					<a href="/ticket/ticketlist">식권 목록</a>
-				</p>
-				<div id="tickettable">
-					<table class="ticketlist" id="ticketlist">
-						<thead>
-							<tr>
-								<th>식권 이름</th>
-								<th>가격</th>
-								<th style="width: 10%"></th>
-							</tr>
-						</thead>
-						<tbody id="tbody">
-							<c:forEach items="${ticketList}" var="ticket">
+		<div class="content">
+					<p>
+						<a href="/ticket/ticketlist">식권 목록</a>
+					</p>
+					<div id="tickettable">
+						<table class="ticketlist" id="ticketlist">
+							<thead>
 								<tr>
-									<td>${ticket.tickettypename}</td>
-									<td>${ticket.price}</td>
-									<td><button class="update btn"
-											value="${ticket.tickettypeid}">수정</button></td>
+									<th>식권 이름</th>
+									<th>가격</th>
+									<th style="width: 10%"></th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+							</thead>
+							<tbody id="tbody">
+								<c:forEach items="${ticketList}" var="ticket">
+									<tr>
+										<td>${ticket.tickettypename}</td>
+										<td>${ticket.price}</td>
+										<td><button class="update btn"
+												value="${ticket.tickettypeid}">수정</button></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 
-					<button id="d" class="btn btn-primary"
-						value="${ticket.tickettypeid}"
-						onclick="location.href='/ticket/add'" style="margin-top: 5%; margin-bottom: 30px;">등록</button>
-				</div>
-			</div>
+						<button id="write" value="${ticket.tickettypeid}"
+							onclick="location.href='/ticket/add'" style="postion:relative; margin: 1% auto">등록</button>
+					</div>
 		</div>
-	</div>
 	</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
