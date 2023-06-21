@@ -122,19 +122,19 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 	<div class="content-wrapper">
-		<p>사용 내역
+		<p>사용 내역</p>
 		<div class="searchController">
 			<form id="searchByName" action="/inventory/useSearchByName/result"
 				method="get" style="display: inline-block;">
 				<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
-					class="btn btn-primary" type="button" id="search-name" value="검색">
+					class="search_btn" type="button" id="search-name" value="검색">
 			</form>
 			&nbsp; &nbsp;
 			<form id="searchByUseDate" action="/inventory/SearchByUseDate/result"
 				method="get" style="display: inline-block;">
 				<b>사용일자별 검색</b> <input type="date" id="startDay" name="startDay">
 				<span>-</span> <input type="date" id="endDay" name="endDay">
-				<input class="btn btn-primary" type="button" id="search-useDate"
+				<input class="search_btn" type="button" id="search-useDate"
 					value="검색">
 			</form>
 		</div>
@@ -158,16 +158,16 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<input class="btn btn-primary" type="button" id="addUseDetail"
-				value="사용 내역 추가" onclick="location.href='/inventory/addUseDetail';" />
-			<input class="btn btn-primary" type="button" id="deleteUseDetail"
+			<input type="button" id="write"
+				value="사용 내역 추가" onclick="location.href='/inventory/addUseDetail';" style="right:17%" />
+			<input type="button" id="write"
 				value="사용 내역 삭제"
 				onclick="location.href='/inventory/deleteUseDetail';" />
 
 		</c:if>
 		<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
-							<input class="btn" type="button" id="changeUseDetail"
+							<input type="button" id="write"
 				value="사용 내역 추가 / 삭제"
 				onclick="location.href='/inventory/updateUseDetailForm';" />
 		</c:if>
@@ -215,10 +215,7 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
-	</div>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기

@@ -191,7 +191,7 @@
 		</c:if>
 	</div>
 
-	<div id="search">
+	<div id="center">
 		<form action="search">
 			<select name="searchn" id="searchn">
 				<option value="0">제목</option>

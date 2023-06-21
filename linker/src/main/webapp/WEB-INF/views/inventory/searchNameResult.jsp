@@ -129,16 +129,15 @@
 			<form id="searchByName" action="/inventory/searchbyname/result"
 				method="get" style="display: inline-block;">
 				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="btn btn-primary"
+					id="ingredientname"> <input class="search_btn"
 					type="submit" id="search-name" value="검색">
 			</form>
-			&nbsp; &nbsp;
-			<form id="searchByReceive"
+			<form id="searchByDate"
 				action="/ingredient/searchbyreceive/result" method="get"
 				style="display: inline-block;">
-				<b>입고일별 검색</b> <input type="date" name="startDay"> <span>-</span>
-				<input type="date" name="endDay"> <input
-					class="btn btn-primary" type="submit" id="search-receive"
+				<b>입고일별 검색</b> <input type="date" name="startDay" id="startDay">
+			<span>-</span> <input type="date" name="endDay" id="endDay"> <input
+					type="submit" class="search_btn" id="search-receive"
 					value="검색">
 			</form>
 		</div>

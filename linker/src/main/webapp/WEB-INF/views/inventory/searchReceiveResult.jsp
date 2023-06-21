@@ -132,15 +132,15 @@
 			<form id="searchByName" action="/inventory/searchbyname/result"
 				method="get" style="display: inline-block;">
 				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="btn btn-primary"
+					id="ingredientname"> <input class="search_btn"
 					type="button" id="search-name" value="검색">
 			</form>
 			&nbsp; &nbsp;
-			<form id="searchByReceive" action="/inventory/searchbyreceive/result"
+			<form id="searchByDate" action="/inventory/searchbyreceive/result"
 				method="get" style="display: inline-block;">
 				<b>수령기간별 검색</b> <input type="date" name="startDay" id="startDay">
 				<span>-</span> <input type="date" name="endDay" id="endDay">
-				<input class="btn btn-primary" type="button" id="search-receive"
+				<input class="search_btn" type="button" id="search-receive"
 					value="검색">
 			</form>
 		</div>
@@ -181,10 +181,13 @@
 				</c:if>
 			</div>
 		</c:if>
-		<c:if test="${ count == 0 }">
+
+		<div id="center">
+			<c:if test="${ count == 0 }">
 
 							입력된 재고가 존재하지 않습니다.
 						</c:if>
+		</div>
 	</div>
 	<%-- main > content end --%>
 
@@ -253,7 +256,7 @@
 					return false;
 				}
 
-				$("#searchByReceive").submit();
+				$("#searchByDate").submit();
 
 			}); // search click end
 
