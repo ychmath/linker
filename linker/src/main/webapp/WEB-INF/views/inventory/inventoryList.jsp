@@ -249,7 +249,7 @@
 					return false;
 				}
 
-				$("#searchByReceive").submit();
+				$("#searchByDate").submit();
 
 			}); // search click end
 		}); // ready end

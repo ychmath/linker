@@ -1,32 +1,47 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%
+String start_date = request.getParameter("start_date");
+String end_date = request.getParameter("end_date");
+%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>공지사항 검색결과</title>
+<title>지출 내역</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Favicon -->
 <link href="img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 	rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
 <link href="/lib/animate/animate.min.css" rel="stylesheet">
 <link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/comm/table.css" rel="stylesheet">
-
+<link href="/css/comm/radio.css" rel="stylesheet">
 </head>
 
 <body>
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -63,16 +78,16 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
@@ -80,7 +95,7 @@
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-			<c:if test="${ user.role == 'seller' }">
+				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
@@ -117,8 +132,8 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
@@ -139,63 +154,87 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+
+
 	<div class="content-wrapper">
-		<p>
-			<strong>'${search}' 검색결과입니다.</strong>
-		</p>
+		<%-- <form:form> --%>
+		<form
+			action="${pageContext.request.contextPath}/finance/filtered_data_ex"
+			method="get">
+			<div>
+				<div>
+					<p>
+						<strong>지출내역</strong>
+					</p>
 
+					<table id="data-table">
+						<tr>
+							<th id="C">날짜</th>
+							<td id="I"><label class="test_obj"> <input
+									type="radio" name="date" value="today"> <span>오늘</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1month"> <span>1개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="3month"> <span>3개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1year"> <span>1년</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="total"> <span>전체</span>
+							</label> <label for="start-date-input"></label> <input type="date"
+								id="start-date-input" name="start-date" min="2021-01-01" max=""
+								value="" required oninput="restrictEndDate()"> <label
+								for="end-date-input"><a id="P">~</a></label> <input type="date"
+								id="end-date-input" name="end-date" min="" max="" value=""
+								required oninput="restrictStartDate()">
+								<button type="button" id="myButton" onclick="search()">검색</button>
+								<input type="radio" name="date" value="search"
+								style="display: none">
+						</tr>
+					</table>
+					<br>
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th scope="col">발주 번호</th>
+								<th scope="col">식자재 이름</th>
+								<th scope="col">총 가격</th>
+								<th scope="col">주문 일자</th>
 
-		<c:if test="${count != 0 }">
-			<table>
-				<tr>
-					<th>게시글 번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-				</tr>
-				<c:forEach items="${nList }" var="notice">
-					<tr>
-						<td>${notice.noticepostid }</td>
-						<td><a href="content/${notice.noticepostid }">${notice.title }</a>
-						</td>
-						<td>${notice.userid }</td>
-						<td><fmt:formatDate value="${notice.creationdate }"
-								dateStyle="short" /></td>
-					</tr>
-				</c:forEach>
-			</table>
-
-
-		</c:if>
-
-		<div id="center">
-			<c:if test="${count == 0 }"> 검색 조건에 맞는 글이 없습니다. </c:if>
-		</div>
-	</div>
-	<div id="page">
-		<c:if test="${count != 0}">
-			<c:if test="${begin > pageNum}">
-				<a href="search?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
-			</c:if>
-			<c:forEach begin="${begin}" end="${end}" var="i">
-				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">${i}</a>
-			</c:forEach>
-			<c:if test="${end < totalPages}">
-				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">[다음]</a>
-			</c:if>
-		</c:if>
-	</div>
-
-	<div id="center">
-		<form action="search">
-			<select name="searchn" id="searchn">
-				<option value="0">제목</option>
-				<option value="1">작성자</option>
-			</select> <input type="text" id="search_text" name="search" size="15"
-				maxlength="40" /> <input type="submit" id="search_btn"
-				name="search_btn" value="검색" />
+							</tr>
+						</thead>
+						<tbody id="saled">
+							<c:forEach items="${elist}" var="expenditure">
+								<tr>
+									<td>${expenditure.orderid}</td>
+									<td>${expenditure.ingredientname}</td>
+									<td><fmt:formatNumber value="${expenditure.price}" /></td>
+									<td><fmt:formatDate value="${expenditure.orderdate}"
+											pattern="yyyy-MM-dd" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</form>
 	</div>
+	<div id="page">
+		<c:if test="${begin > pageNum }">
+			<a href="expenditure?p=${begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${begin }" end="${end }" var="i">
+			<a href="expenditure?p=${i }">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="expenditure?p=${end+1 }">[다음]</a>
+		</c:if>
+	</div>
+
+	<c:if test="${count == 0 }">
+ 	지출 내역이 없습니다.
+ 	</c:if>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
@@ -212,8 +251,6 @@
 	</div>
 	<!-- Footer End -->
 
-	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -226,5 +263,107 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+	<script>
+		function search() {
+			var start_date = document.getElementById('start-date-input').value;
+			var end_date = document.getElementById('end-date-input').value;
+
+			//window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
+			showSaledResult(start_date, end_date);
+		}
+	</script>
+	<button type="button" id="myButton" onclick="search()">검색</button>
+	<script>
+		$(function() {
+			$("input[type='radio'][name='date']").on(
+					"change",
+					function() {
+						var dateRange = $(this).val();
+						var startDate = "";
+						var endDate = "";
+
+						switch (dateRange) {
+						case "today":
+							startDate = new Date();
+							endDate = new Date();
+							break;
+						case "1month":
+							startDate = new Date();
+							startDate.setMonth(startDate.getMonth() - 1);
+							endDate = new Date();
+							break;
+						case "3month":
+							startDate = new Date();
+							startDate.setMonth(startDate.getMonth() - 3);
+							endDate = new Date();
+							break;
+						case "1year":
+							startDate = new Date();
+							startDate.setFullYear(startDate.getFullYear() - 1);
+							endDate = new Date();
+							break;
+						}
+						var startYear = startDate.getFullYear();
+						var startMonth = startDate.getMonth() + 1 < 10 ? "0"
+								+ (startDate.getMonth() + 1) : startDate
+								.getMonth() + 1;
+						var startDateNum = startDate.getDate() < 10 ? "0"
+								+ startDate.getDate() : startDate.getDate();
+						var endYear = endDate.getFullYear();
+						var endMonth = endDate.getMonth() + 1 < 10 ? "0"
+								+ (endDate.getMonth() + 1)
+								: endDate.getMonth() + 1;
+						var endDateNum = endDate.getDate() < 10 ? "0"
+								+ endDate.getDate() : endDate.getDate();
+
+						var startDateStr = startYear + "-" + startMonth + "-"
+								+ startDateNum;
+						var endDateStr = endYear + "-" + endMonth + "-"
+								+ endDateNum;
+
+						showSaledResult(startDateStr, endDateStr);
+					});
+		});
+
+		function showSaledResult(start, end) {
+			$.ajax({
+				url : "./filtered_data_ex",
+				data : {
+					"start-date" : start,
+					"end-date" : end
+				},
+				type : "GET",
+				dataType : "json",
+				success : function(data) {
+					updateTableWithNewData(data);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		}
+
+		function updateTableWithNewData(data) {
+			var table_data = '';
+			//$.each(data, function (index, expenditure) {
+
+			for (var i = 0; i < data.length; i++) {
+				let expenditure = data[i];
+				table_data += '<tr>';
+				table_data += '<td>' + expenditure.orderid + '</td>';
+				table_data += '<td>' + expenditure.ingredientname + '</td>';
+				table_data += '<td>' + expenditure.price + '</td>';
+				table_data += "<td>"
+						+ new Date(expenditure.orderdate).toISOString().split(
+								'T')[0] + "</td>";
+
+				table_data += '</tr>';
+			}
+			//});
+
+			$("#saled").empty();
+			$("#saled").append(table_data);
+		}
+	</script>
 </body>
 </html>

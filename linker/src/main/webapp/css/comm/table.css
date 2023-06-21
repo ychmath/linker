@@ -64,7 +64,8 @@ td {
 	text-align: center;
 }
 
-.searchController {
+.searchController,
+.UsedetailController {
 	gap: 2%;
 	display: flex;
 	justify-content: center;
@@ -72,7 +73,9 @@ td {
 	margin-bottom: 1.5em;
 }
 
-.search_btn {
+.search_btn,
+.search-orderDate,
+.search-date {
 	height: 30px;
 	border-top: none;
 	border-left: none;
@@ -102,7 +105,7 @@ td {
 
 #startDay,
 #endDay {
-text-align: center;
+	text-align: center;
 }
 
 .menu {
@@ -127,7 +130,27 @@ text-align: center;
 	vertical-align: middle;
 }
 
-#search {
+.write {
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	position: absolute;
+	right: 10%;
+	border-radius: 10px;
+	background-color: #4274AB;
+	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.write_ty {
+	text-align: center;
+	width: 100%;
+}
+
+arch {
 	margin-bottom: 2em;
 	text-align: center;
 }

@@ -128,15 +128,14 @@
 			<form id="searchByName" action="/inventory/orderSearchByName/result"
 				method="get" style="display: inline-block;">
 				<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
-					class="btn btn-primary" type="button" id="search-name" value="검색">
+					class="search_btn" type="button" id="search-name" value="검색">
 			</form>
-			&nbsp; &nbsp;
-			<form id="searchByOrderDate"
+			<form id="searchByDate"
 				action="/inventory/orderSearchByDate/result" method="get"
 				style="display: inline-block;">
 				<b>주문기간별 검색</b> <input type="date" id="startDay" name="startDay">
 				<span>-</span> <input type="date" id="endDay" name="endDay">
-				<input class="btn btn-primary" type="button" id="search-orderDate"
+				<input class="search_btn" type="button" id="search-orderDate"
 					value="검색">
 			</form>
 		</div>
@@ -165,13 +164,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<input class="btn btn-primary" type="button" id="newOrder"
+				<input type="button" id="write"
 					value="주문 내역 추가/삭제"
 					onclick="location.href='/inventory/orderList/updateOrder';" />
 			</c:if>
 			<c:if test="${ count == 0 }">
 							입력된 주문 내역이 존재하지 않습니다.
-							<input class="btn" type="button" id="changeOrder"
+							<input type="button" id="write"
 					value="주문 내역 추가 / 삭제"
 					onclick="location.href='/inventory/orderList/updateOrder';" />
 			</c:if>

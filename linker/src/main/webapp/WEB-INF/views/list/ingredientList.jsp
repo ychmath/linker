@@ -176,13 +176,13 @@
 	<div id="page">
 		<c:if test="${count != 0}">
 			<c:if test="${begin > pageNum}">
-				<a href="notice?p=${begin-1 }">[이전]</a>
+				<a href="ingredientList?p=${begin-1 }">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin }" end="${end }" var="i">
-				<a href="notice?p=${i }">${i }</a>
+				<a href="ingredientList?p=${i }">${i }</a>
 			</c:forEach>
 			<c:if test="${end < totalPages }">
-				<a href="notice?p=${end+1 }">[다음]</a>
+				<a href="ingredientList?p=${end+1 }">[다음]</a>
 			</c:if>
 		</c:if>
 	</div>

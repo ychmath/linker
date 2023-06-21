@@ -158,17 +158,13 @@ String end_date = request.getParameter("end_date");
 	<div class="content-wrapper">
 		<%-- <form:form> --%>
 		<form
-			action="${pageContext.request.contextPath}/finance/filtered_data_sa"
+			action="${pageContext.request.contextPath}/finance/filtered_data_t"
 			method="get">
 			<div>
-				<!--  id="B" -->
 				<div>
-					<!-- style="display:flex; align-items:center;" -->
-
 					<p>
 						<strong>매출 내역</strong>
 					</p>
-					<br>
 					<table id="data-table">
 						<tr>
 							<th id="C">날짜</th>
@@ -199,20 +195,21 @@ String end_date = request.getParameter("end_date");
 					<table>
 						<thead>
 							<tr>
-								<th scope="col">식권주문ID</th>
-								<th scope="col">식권종류</th>
-								<th scope="col">수량</th>
-								<th scope="col">총 가격</th>
-								<th scope="col">주문 일자</th>
+								<th scope="col" id="ticketorderid">식권주문ID</th>
+								<th scope="col" id="tickettypename">식권종류</th>
+								<th scope="col" id="quantity">수량</th>
+								<th scope="col" id="price">총 가격</th>
+								<th scope="col" id="orderdate">주문 일자</th>
 							</tr>
 						</thead>
+
 						<tbody id="saled">
 							<c:forEach items="${slist}" var="sales">
 								<tr>
 									<td>${sales.ticketorderid}</td>
 									<td>${sales.tickettypename}</td>
 									<td>${sales.quantity}</td>
-									<td>${sales.price}</td>
+									<td><fmt:formatNumber value="${sales.price}" /></td>
 									<td><fmt:formatDate value="${sales.orderdate}"
 											pattern="yyyy-MM-dd" /></td>
 
@@ -224,6 +221,22 @@ String end_date = request.getParameter("end_date");
 			</div>
 		</form>
 	</div>
+
+	<div id="page">
+		<c:if test="${begin > pageNum }">
+			<a href="sales?p=${begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${begin }" end="${end }" var="i">
+			<a href="sales?p=${i }">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="sales?p=${end+1 }">[다음]</a>
+		</c:if>
+	</div>
+
+	<c:if test="${count == 0 }">
+ 	매출 내역이 없습니다.
+ 	</c:if>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
@@ -254,6 +267,7 @@ String end_date = request.getParameter("end_date");
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
 	<script>
 		function search() {
 			$("#I > input[type=radio]:nth-child(11)").prop('checked', true);
@@ -365,7 +379,7 @@ String end_date = request.getParameter("end_date");
 
 		function showSaledResult(start, end, page) {
 			$.ajax({
-				url : "./filtered_data_sa",
+				url : "./filtered_data_t",
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
 					"end-date" : end,
@@ -388,19 +402,25 @@ String end_date = request.getParameter("end_date");
 			currentPage = page; //지정된 페이지 번호를 현재 페이지로 설정
 			search(); //검색 함수를 호출하여 결과를 가져옴
 		}
+
 		function updateTableWithNewData(data) {
 			var table_data = '';
 			//$.each(data, function (index, sales) {
 
 			for (var i = 0; i < data.length; i++) {
 				let sales = data[i];
+
+				let orderDate = new Date(sales.orderDate);
+				orderDate.setHours(orderDate.getHours() + 9);
+				let koreanDate = orderDate.toISOString().split('T')[0];
+
 				table_data += '<tr>';
 				table_data += '<td>' + sales.ticketorderid + '</td>';
 				table_data += '<td>' + sales.tickettypename + '</td>';
 				table_data += '<td>' + sales.quantity + '</td>';
 				table_data += '<td>' + sales.price + '</td>';
 				table_data += "<td>"
-						+ new Date(sales.orderdate).toISOString().split('T')[0]
+						+ new Date(sales.orderDate).toISOString().split('T')[0]
 						+ "</td>";
 
 				table_data += '</tr>';
@@ -409,6 +429,37 @@ String end_date = request.getParameter("end_date");
 
 			$("#saled").empty();
 			$("#saled").append(table_data);
+
+			$("#page").empty();
+			//[{"totalPages":6,"count":55,"end":5,"pageNum":5,"begin":1},
+
+			var pageData = data[0];
+			var page_str = ""; //사용될 HTML 문자열을 저장할 page_str 변수를 선언하고 빈 문자열을 할당함
+			//console.log(pageData.begin);
+
+			if (pageData.begin > pageData.pageNum) {
+
+				page_str += "<span onclick=showSaledResult('"
+						+ pageData.startDate + "','" + pageData.endDate + "','"
+						+ (pageData.begin - 1) + "')> 이전 </span> ";
+			}
+
+			for (index = pageData.begin; index <= pageData.end; index++) {
+
+				page_str += "<span onclick=showSaledResult('"
+						+ pageData.startDate + "','" + pageData.endDate + "','"
+						+ index + "')>" + index + ' </span> ';
+
+			}
+
+			if (pageData.end < pageData.totalPages) {
+
+				page_str += "<span onclick=showSaledResult('"
+						+ pageData.startDate + "','" + pageData.endDate + "','"
+						+ (pageData.end + 1) + "')> 다음 </span> ";
+			}
+
+			$("#page").append(page_str);
 		}
 	</script>
 </body>

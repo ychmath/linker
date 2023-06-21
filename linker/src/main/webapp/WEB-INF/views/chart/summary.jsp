@@ -150,24 +150,22 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 <div class="content-wrapper">
-	<div id="fh5co-about" class="fh5co-section">
 		<div class="container">
-			<div class="about-text">
 				<form id="searchYear">
 					<h1 class="section-title">비용 관리</h1>
 					<p>*최근 3년간의 결과만 조회 가능합니다.</p>
 					<br> <select name="targetYear" id="targetYear"></select>
-					<button class="btn" type="button" id="search_btn">검색</button>
+					<button class="search_btn" type="submit" >검색</button>
 				</form>
-			</div>
+		
 			<hr>
+			<br>
 			<h1 class="section-title.text-start">연간 요약</h1>
 			<div class="feature-text">
 				<%-- 차트가 들어갈 캔버스 생성 --%>
 				<canvas width="600" height="400" id="myChart"></canvas>
 			</div>
 		</div>
-	</div>
 </div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

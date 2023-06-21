@@ -121,18 +121,20 @@
 	<span id="role" style="display: none;">${ user.role }</span>
 
 	<div class="content-wrapper">
+		<p>
+			<a href="/ingredient/ingredientList">식자재 목록</a>
+		</p>
 		<div class="searchController">
 			<form id="searchByName" action="/ingredient/searchbyname/result"
 				method="get" style="display: inline-block;">
 				<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
-					type="submit" id="search_btn" value="검색">
+					type="submit" id="search-date" value="검색">
 			</form>
 			<form id="searchByDate" action="/ingredient/searchbydate/result"
 				method="get" style="display: inline-block;">
-					<b>유통기한별 검색</b>
-				<input type="date" name="startDay" id="startDay"> - <input
-					type="date" name="endDay" id="endDay"> <input type="submit"
-					id="search_btn" value="검색">
+				<b>유통기한별 검색</b> <input type="date" name="startDay" id="startDay">
+				- <input type="date" name="endDay" id="endDay"> <input
+					type="submit" id="search-date" value="검색">
 			</form>
 		</div>
 		<div class="container">
@@ -167,16 +169,16 @@
 					<a href="searchNameResult?p=${ end + 1 }">[다음]</a>
 				</c:if>
 			</div>
-			
+
 		</c:if>
-		
+
 		<div id="center">
 			<c:if test="${ count == 0 }">
 						해당 식자재가 존재하지 않습니다.
 					</c:if>
 		</div>
 	</div>
-	
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
