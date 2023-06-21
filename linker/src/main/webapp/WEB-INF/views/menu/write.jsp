@@ -148,41 +148,44 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+
 	<div class="content-wrapper">
-  <p>식단표 등록</p>
-  <div id="fh5co-about" class="fh5co-section">
-    <div class="container">
-      <form method="post" id="writeform" action="write">
-        <table border="1" style="color: black;">
-          <tr>
-            <td class="orange">제목</td>
-            <td><input name="title" style="background-color: inherit;" required /></td>
-            <td class="orange">작성자</td>
-            <td><input name="userID" style="background-color: inherit; color: black;" value="${user.userid}" readonly></td>
-          </tr>
-        </table>
-        <table border="1" style="color: black;">
-          <tr>
-            <td class="orange">내용</td>
-            <td>
-              <!-- 아래 content에 table 내용이 들어갑니다. -->
-              <input name="content" id="content" disabled style="display: none;" />
-              <div class="panel panel-default" id="table">
-                <div class="panel-heading">
-                  <b>식단표</b>
-                </div>
-                <div class="panel-body">
-                  <div class="tbl_user_data"></div>
-                </div>
-              </div>
-              <input type="submit" id="save" value="새 식단표 등록" style="margin-left: auto;">
-            </td>
-          </tr>
-        </table>
-      </form>
-    </div>
-  </div>
-</div>
+		<p>식단표 등록</p>
+		<div id="fh5co-about" class="fh5co-section">
+			<div class="container">
+				<form method="post" id="writeform" action="write">
+					<table border="1" style="color: black;">
+						<tr>
+							<td class="orange">제목</td>
+							<td><input name="title" style="background-color: inherit;"
+								required /></td>
+							<td class="orange">작성자</td>
+							<td><input name="userID"
+								style="background-color: inherit; color: black;"
+								value="${user.userid}" readonly></td>
+						</tr>
+					</table>
+					<table border="1" style="color: black;">
+						<tr>
+							<td class="orange">내용</td>
+							<td>
+								<!-- 아래 content에 table 내용이 들어갑니다. --> <input name="content"
+								id="content" disabled style="display: none;" />
+								<div class="panel panel-default" id="table">
+									<div class="panel-heading">
+										<b>식단표</b>
+									</div>
+									<div class="panel-body">
+										<div class="tbl_user_data"></div>
+									</div>
+								</div> <input type="submit" id="save" value="새 식단표 등록">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

@@ -5,12 +5,31 @@
 <html>
 <head>
 <title>글 수정</title>
-<style>
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link href="/img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
 </head>
 <body>
 
@@ -36,7 +55,7 @@ table {
 	</div>
 	<!-- Topbar End -->
 
-<!-- Navbar Start -->
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -71,29 +90,32 @@ table {
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -106,12 +128,13 @@ table {
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -121,35 +144,36 @@ table {
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
-	<form method="post" id="updateform" action="/notice/update">
-		<input type="hidden" name="_method" value="put" /> <input
-			type="hidden" name="noticepostid" value="${dto.noticepostid }" />
 
-		<table border="1">
-			<tr>
-				<td>제목</td>
-				<td><input name="title" value="${dto.title }" /></td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td><input name="userid" value="${dto.userid }" readonly /></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-					<div id="smarteditor">
-						<textarea name="content" id="editorTxt" rows="20" cols="10"
-							style="width: 100%"></textarea>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><input type="button" id="upload"
-					value="수정" /></td>
-			</tr>
-		</table>
-	</form>
+	<div class="content-wrapper">
+		<form method="post" id="title_validation" action="/notice/update"
+			style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
+
+			<input type="hidden" name="_method" value="put" /> <input
+				type="hidden" name="noticepostid" value="${dto.noticepostid }" />
+			<div class="pt-1">
+				<input type="text" name="title" id="title" value="${dto.title}"
+					placeholder="제목을 입력하세요" required
+					style="border-radius: 5px; width: 100%; padding: 5px;">
+			</div>
+			<div class="pt-1">
+				<input name="userid" id="userid" value="${user.userid }"
+					style="border-radius: 5px; width: 100%; padding: 5px;" readonly />
+			</div>
+			<div class="pt-1">
+				<div id="smarteditor">
+					<textarea name="content" id="editorTxt" rows="20" cols="10"
+						placeholder="내용을 입력해주세요" required
+						style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+				</div>
+			</div>
+			<div class="pt-1 text-right" colspan="2" align="right">
+				<!-- colspan: 셀을 가로로 합병 -->
+				<input type="submit" class="upload_btn" id="upload"
+					style="width: 10%; padding: 5px;" value="수정" />
+			</div>
+		</form>
+	</div>
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
@@ -182,7 +206,8 @@ table {
 	<script src="/js/main.js"></script>
 	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"
 		charset="utf-8"></script>
-	<script>
+	<script src="/js/board/title_validation.js">
+		<script>
 		let oEditors = [];
 
 		smartEditor = function() {

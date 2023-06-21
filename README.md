@@ -13,15 +13,14 @@
 ---
 ## 메인화면
 
-![main]()
-
+![main](./linker/src/main/webapp/img/main.png)
+![main2](./linker/src/main/webapp/img/main2.png)
 
 ## Table of Contents
 
 - [식권 구매 및 식자재 관리 시스템]
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
-  - [사용기술]
   - [ERD 다이어그램](#erd-다이어그램)
   - [My Role](#my-role)
   - [Prerequisite](#prerequisite)
@@ -45,11 +44,9 @@ linker(soldesk project)
 |--
 ```
 
-## 사용기술
-
 ## ERD 다이어그램
 
-![ERD]()
+![ERD](./linker/src/main/webapp/img/ERD.png)
 
 ##  My Role
 
@@ -60,7 +57,7 @@ linker(soldesk project)
 ## Prerequisite
 Most team members have no prior coding experience.<br/>
 Therefore, we used only the skills and code languages we had learned over the previous three months from academy to test our knowledges.
-- [Eclipse](https://www.eclipse.org/downloads/): We use Eclipse and its addon(Spring 4) to complete the project.
+- [Eclipse](https://www.eclipse.org/downloads/): We use Eclipse and its addon(aka Spring Tool Suite 4) to complete the project.
   
 ## Development
 ### Install
@@ -85,13 +82,8 @@ $ git push
 - 하승재
 - 김태균
 
-## Demo
-URL:  
-ID :  
-PW :  
-
 ## license
-- [HTML Codex](https://htmlcodex.com/): Template License 
-  
+- [HTML Codex](./TEMPLATE_LICENSE)
+- [MIT license](./LICENSE)
 ## About
 Authored and maintained by **linker**

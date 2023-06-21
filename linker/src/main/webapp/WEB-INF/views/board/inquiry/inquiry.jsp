@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
+<link href="/img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -93,7 +93,7 @@
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -147,6 +147,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	
 	<div class="content-wrapper">
 		<p>
 			<strong>문의사항</strong>

@@ -49,7 +49,7 @@
 	</div>
 	<!-- Topbar End -->
 
-<!-- Navbar Start -->
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -84,29 +84,32 @@
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재 목록</a>
-							<a href="/inventory/inventoryList" class="dropdown-item">재고현황</a> 
-							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> 
-							<a href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용 관리</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/profitChart" class="dropdown-item">요약</a> 
-							<a href="/finance/sales" class="dropdown-item">매출내역</a> 
-							<a href="/finance/expenditure" class="dropdown-item">지출내역</a>
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
-										<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
@@ -119,12 +122,13 @@
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의 정보</div>
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권 구매내역</a> 
-							<a href="/ticketuse/ticketuseform" class="dropdown-item">식권 사용내역</a>
-							<a href="/updateform" class="dropdown-item">회원정보 수정</a> 
-							<a href="/deleteform" class="dropdown-item">회원탈퇴</a>
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
 					</div>
 					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
@@ -134,48 +138,54 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper">
-	<p>
-		<strong>공지사항</strong>
-	</p>
-	<table>
-		<tr>
-			<th>게시글 번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
+		<p>
+			<strong>공지사항</strong>
+		</p>
+		<c:if test="${count != 0 }">
+			<table>
+				<tr>
+					<th>게시글 번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+				</tr>
 
-		<c:forEach items="${nList }" var="notice">
-			<tr>
-				<td>${notice.noticepostid}</td>
-				<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
-				<td>${notice.userid }</td>
-				<td><fmt:formatDate value="${notice.creationdate }"
-						dateStyle="short" /></td>
-			</tr>
-		</c:forEach>
-
-	</table>
-</div>
+				<c:forEach items="${nList }" var="notice">
+					<tr>
+						<td>${notice.noticepostid}</td>
+						<td><a href="content/${notice.noticepostid}">${notice.title }</a></td>
+						<td>${notice.userid }</td>
+						<td><fmt:formatDate value="${notice.creationdate }"
+								dateStyle="short" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<div id="center">
+			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
+		</div>
+	</div>
 	<div id="page">
-		<c:if test="${begin > pageNum}">
-			<a href="notice?p=${begin-1 }">[이전]</a>
-		</c:if>
-		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="notice?p=${i }">${i }</a>
-		</c:forEach>
-		<c:if test="${end < totalPages }">
-			<a href="notice?p=${end+1 }">[다음]</a>
-		</c:if>
+		<c:if test="${count != 0}">
+			<c:if test="${begin > pageNum}">
+				<a href="notice?p=${begin-1 }">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin }" end="${end }" var="i">
+				<a href="notice?p=${i }">${i }</a>
+			</c:forEach>
+			<c:if test="${end < totalPages }">
+				<a href="notice?p=${end+1 }">[다음]</a>
+			</c:if>
 
-		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-			<input type="button" id="write" value="글쓰기"
-				onclick="location.href='write'" />
+			<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+				<input type="button" id="write" value="글쓰기"
+					onclick="location.href='write'" />
+			</c:if>
 		</c:if>
 	</div>
-	<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
+
 
 
 

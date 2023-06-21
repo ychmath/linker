@@ -29,8 +29,18 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
+
+<style>
+.content-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
 
 </head>
+
 
 <body>
 
@@ -146,23 +156,22 @@
 	</nav>
 	<!-- Navbar End -->
 
-
-	<!-- 404 Start -->
-	<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-		<div class="container text-center">
-			<div class="row justify-content-center">
-				<div class="col-lg-6">
-					<i class="bi bi-exclamation-triangle display-1 text-primary"></i>
-					<h1 class="display-1">404</h1>
-					<h1 class="mb-4">찾으시는 페이지가 없습니다.</h1>
-					<p class="mb-4">홈페이지로 돌아가기를 원하시면 아래 버튼을 눌러주세요.</p>
-					<a class="btn btn-primary py-3 px-5" href="/">홈페이지로 돌아가기</a>
+	<div class="content-wrapper">
+		<!-- 404 Start -->
+		<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+			<div class="container text-center">
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<i class="bi bi-exclamation-triangle display-1 text-primary"></i>
+						<h1 class="display-1">404</h1>
+						<h1 class="mb-4">찾으시는 페이지가 없습니다.</h1>
+						<a class="btn btn-primary py-3 px-5" href="/">홈페이지로 돌아가기</a>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 404 End -->
 	</div>
-	<!-- 404 End -->
-
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
