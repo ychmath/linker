@@ -311,15 +311,14 @@ td {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$(function() {
-			// 권한 가져오기
-			var role = $("#role").text();
+		// 권한 가져오기
+		var role = $("#role").text();
 
-			// 열람 권한이 없다면 페이지 이동.
-			if (!(role == 'seller' || role == 'admin')) {
-				alert("열람 권한이 없는 페이지입니다.");
-				location.href = "/main";
-			}
+		// 열람 권한이 없다면 페이지 이동.
+		if (!(role == 'seller' || role == 'admin')) {
+			alert("열람 권한이 없는 페이지입니다.");
+			location.href = "/main";
+		}
 
 		
 		$("#search-name").click(function(){

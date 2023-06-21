@@ -296,7 +296,6 @@ td {
 
 		<!-- Template Javascript -->
 		<script src="/js/main.js"></script>
-	</div>
 
 <div>
 		<!-- JavaScript Libraries -->

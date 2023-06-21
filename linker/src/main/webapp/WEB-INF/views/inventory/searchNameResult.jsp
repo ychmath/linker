@@ -206,7 +206,7 @@ td {
 			<div class="container">
 				<div class="about-text">
 					<h1 class="title">
-						<a href="/inventory/inventoryList">재고 목록</a>
+						<a href="/inventory/inventoryList">재고 현황</a>
 					</h1>
 					<div class="searchController">
 						<form id="searchByName" action="/inventory/searchbyname/result"
@@ -218,12 +218,12 @@ td {
 							<input class="btn btn-primary" type="button" id="search-name" value="검색">
 						</form>
 						&nbsp; &nbsp;
-						<form id="searchByReceive" action="/ingredient/searchbyreceive/result"
+						<form id="searchByReceive" action="/inventory/searchbyreceive/result"
 							method="get" style="display: inline-block;">
 							<p>
 								<b>입고일별 검색</b>
 							</p>
-							<input type="date" name="startDay"> <span>-</span> <input type="date" name="endDay">
+							<input type="date" id="startDay" name="startDay"> <span>-</span> <input type="date" id="endDay" name="endDay">
 							<input class="btn btn-primary" type="button" id="search-receive" value="검색">
 						</form>
 					</div>
@@ -306,15 +306,14 @@ td {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$(function() {
-			// 권한 가져오기
-			var role = $("#role").text();
+		// 권한 가져오기
+		var role = $("#role").text();
 
-			// 열람 권한이 없다면 페이지 이동.
-			if (!(role != 'seller' || role != 'admin')) {
-				alert("열람 권한이 없는 페이지입니다.");
-				location.href = "/main";
-			}
+		// 열람 권한이 없다면 페이지 이동.
+		if (!(role != 'seller' || role != 'admin')) {
+			alert("열람 권한이 없는 페이지입니다.");
+			location.href = "/main";
+		}
 
 		
 		$("#search-name").click(function(){
