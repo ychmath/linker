@@ -125,14 +125,15 @@
 	<div class="searchController">
 		<form id="searchByName" action="/ingredient/searchbyname/result"
 			method="get" style="display: inline-block;">
+			
 			<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
-				class="btn btn-primary" type="button" id="search-name" value="검색">
+				class="search_btn" type="button" id="search-name" value="검색">
 		</form>
 		<form id="searchByDate" action="/ingredient/searchbydate/result"
 			method="get" style="display: inline-block;">
 			<b>유통기한별 검색</b> <input type="date" name="startDay" id="startDay">
 			<span>-</span> <input type="date" name="endDay" id="endDay">
-			<input class="btn btn-primary" type="button" id="search-date"
+			<input class="search_btn" type="button" id="search-date"
 				value="검색">
 		</form>
 	</div>

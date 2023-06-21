@@ -65,9 +65,44 @@ td {
 }
 
 .searchController {
-	text-align: center;
-	margin-top: 1.5em;
+	gap: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin-bottom: 1.5em;
+}
+
+.search_btn {
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 10px;
+	background-color: #4274AB;
+	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+#searchByName input[type="search"],
+#searchByDate input[type="date"],
+#searchByName input[type="button"],
+#searchByDate input[type="button"] {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+#searchByName,
+#searchByDate {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+#startDay,
+#endDay {
+text-align: center;
 }
 
 .menu {
