@@ -19,6 +19,7 @@ public class UseDetailDto {
 	private Date receivedate;
 
 	// 식자재 사용내역
+	private int usedetailid;
 	private int ingredientusage;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date usedate;

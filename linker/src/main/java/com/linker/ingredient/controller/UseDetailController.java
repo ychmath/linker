@@ -189,9 +189,9 @@ public class UseDetailController {
 	}
 
 	// 식자재 사용 내역 삭제
-	@DeleteMapping("/inventory/deleteUse/{inventoryid}")
+	@DeleteMapping("/inventory/deleteUse/{usedetailid}")
 	@ResponseBody
-	public void deleteUseage(@PathVariable int inventoryid) {
-		service.deleteUseage(inventoryid);
+	public void deleteUseage(@PathVariable int usedetailid) {
+		service.deleteUseage(usedetailid);
 	}
 }

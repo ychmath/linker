@@ -13,7 +13,7 @@ public interface UseDetailDao {
 	int useInventory(UseDetailDto dto);
 	
 	// 사용 내역 삭제
-	int deleteUseage(int inventoryid);
+	int deleteUseage(int usedetailid);
 
 	// 식자재 사용 내역
 	int useCount();

@@ -228,17 +228,21 @@
 				// 바로 submit하지 않도록 설정
 				event.preventDefault();
 
-				// 수정 가능 여부 / css 삭제
-				$("div").removeClass("bg-warning");
-				$("div").removeAttr("contenteditable");
+				if(!$('#title').val() || !$('#title').val().trim()){
+					alert('제목을 입력해 주세요.')
+				} else {
+					// 수정 가능 여부 / css 삭제
+					$("div").removeClass("bg-warning");
+					$("div").removeAttr("contenteditable");
 
-				// content에 table html 코드 저장
-				$("#content").val(table.outerHTML);
-				// content의 disabled를 false로 넣어 전송 가능하게 변경
-				$("#content").attr("disabled", false);
+					// content에 table html 코드 저장
+					$("#content").val(table.outerHTML);
+					// content의 disabled를 false로 넣어 전송 가능하게 변경
+					$("#content").attr("disabled", false);
 
-				// 전송
-				$("#updateform").submit();
+					// 전송
+					$("#updateform").submit();
+				}
 
 			});//click
 

@@ -215,6 +215,7 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
 	<script>
 		$(function() {
 			// 권한 가져오기

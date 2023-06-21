@@ -120,6 +120,7 @@
 	</nav>
 	<!-- Navbar End -->
 
+
 	<span id="role" style="display: none;">${ user.role }</span>
 
 		<div class="content-wrapper">
@@ -154,6 +155,7 @@
 						<input class="write" type="button" id="deleteUse"
 							value="선택 내역 삭제" />
 					</div>
+
 				</div>
 					</div>
 				<div id="page">
@@ -182,6 +184,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<!-- Footer End -->
 
@@ -211,8 +214,8 @@
 				location.href = "/main";
 			}
 
-			$("#deleteUse").on("click", function() {
-				// 체크박스에 체크된 식자재 id 번호 값 찾기
+			$("#deleteUse").on("click", function(event) {
+				// 체크박스에 체크된 사용내역 id 번호 값 찾기
 				$(".checkList:checked").each(function(i, item) {
 					// target에 id값 저장
 					var target = item.value;
@@ -221,7 +224,7 @@
 						url : "/inventory/deleteUse/" + target,
 						method : "delete",
 						data : {
-							'inventoryid' : target
+							'usedetailid' : target
 						}
 					}).done(function(result) {
 

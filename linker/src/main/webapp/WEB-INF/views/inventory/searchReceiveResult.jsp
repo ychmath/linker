@@ -181,8 +181,10 @@
 				</c:if>
 			</div>
 		</c:if>
+
 		<div id="center">
 			<c:if test="${ count == 0 }">
+
 							입력된 재고가 존재하지 않습니다.
 						</c:if>
 		</div>

@@ -197,6 +197,7 @@
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<script>
 		$(function() {
 			// 권한 가져오기

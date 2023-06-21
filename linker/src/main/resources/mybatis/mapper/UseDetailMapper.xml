@@ -10,7 +10,7 @@
 	</insert>
 	<!-- 사용 내역 삭제 -->
 	<delete id="deleteUseage" parameterType="int">
-		delete from usedetail where inventoryid = #{inventoryid}
+		delete from usedetail where usedetailid = #{usedetailid}
 	</delete>
 	<!-- 식자재 사용 내역 수 -->
 	<select id="useCount" resultType="int">

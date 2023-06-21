@@ -203,6 +203,7 @@ td {
 	</nav>
 	<!-- Navbar End -->
 
+
 	<span id="role" style="display: none;">${ user.role }</span>
 
 	<div id="fh5co-about" class="fh5co-section">

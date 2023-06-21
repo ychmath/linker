@@ -22,8 +22,8 @@ public class UseDetailService {
 	}
 
 	// 사용 내역 삭제
-	public int deleteUseage(int inventoryid) {
-		return dao.deleteUseage(inventoryid);
+	public int deleteUseage(int usedetailid) {
+		return dao.deleteUseage(usedetailid);
 	}
 
 	// 식자재 사용 내역
