@@ -5,36 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>식권 수정</title>
-<link href="/css/user/ticketupdate.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/basicform.css" rel="stylesheet">
 
 </head>
 <body>
-	<h3 style="text-align: center;">식권 수정</h3>
-	<div class="TicketUpdateController">
-
+<div class="center-wrapper content-wrapper">
 		<form id="updateTickettype" method="post"
 			action="/ticket/update/${ dto.tickettypeid }">
 			<input type="hidden" name="_method" value="put" />
-			<div id="intable">
-				<div class="ticket-info">
+			 <div class="commform">
+			<h2>식권 수정</h2>
+				<div class="comm_field">
 					<span>식권 이름&nbsp; &nbsp; </span><input type="text"
 						name="tickettypename" value=${ dto.tickettypename }>
 				</div>
-				<div class="ticket-info">
+				<div class="comm_field">
 					<span>가격&nbsp; &nbsp; </span><input type="text" name="price"
 						value=${ dto.price }>
 				</div>
 				<br>
-				<div class="frame">
-					<input type="button" id="save" class="custom-btn btn-10" value="수정">
-				</div>
+				<button class="submit" id="save" type="submit" >수정</button>
 			</div>
-
 		</form>
 	</div>
-
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 	<script>
 $(function(){
 		// 기존에 가지고 있던 unit 값을 가져오고 default select 값으로 지정한다.

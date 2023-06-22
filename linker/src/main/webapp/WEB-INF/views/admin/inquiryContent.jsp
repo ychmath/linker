@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="/img/favicon.ico" rel="icon">
+<link href="img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -31,31 +31,157 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/user/content.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
+
 <link href="/css/comm/table.css" rel="stylesheet">
+<title>글 상세보기</title>
 </head>
+
 <body>
-	<div class="main">
-		<table class="content" border="1">
-			<tr>
-				<td>제목</td>
-				<td>${ dto.title }</td>
-			<tr>
-				<td>작성자</td>
-				<td>${ dto.userid }</td>
-			<tr>
-				<td>내용</td>
-				<td>${ dto.content }</td>
-			<tr>
-				<td>등록일</td>
-				<td><fmt:formatDate value="${ dto.creationdate }"
-						dateStyle="long" /></td>
-			<tr>
-				<td colspan="2" align="right"><a id="delete"
-					href="/admin/inquiry/delete/${ dto.inquirypostid }">글 삭제</a> <a
-					href="../inquiry">목록 이동</a></td>
-			</tr>
-		</table>
+	<!-- Topbar Start -->
+	<div class="container-fluid bg-light p-0">
+		<div class="row gx-0 d-none d-lg-flex">
+			<div class="col-lg-7 px-5 text-start">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-map-marker-alt text-primary me-2"></small> <small>서울특별시
+						종로구 종로12길 15 코아빌딩1</small>
+				</div>
+				<div class="h-100 d-inline-flex align-items-center py-3">
+					<small class="far fa-clock text-primary me-2"></small> <small>월
+						- 일 : 09.30 AM - 10.00 PM</small>
+				</div>
+			</div>
+			<div class="col-lg-5 px-5 text-end">
+				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+					<small class="fa fa-phone-alt text-primary me-2"></small> <small>02-6901-7001</small>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!-- Topbar End -->
+
+	<!-- Navbar Start -->
+	<nav
+		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+		<a href="/"
+			class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+			<h2 class="m-0 text-primary">Linker</h2>
+		</a>
+		<button type="button" class="navbar-toggler me-4"
+			data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
+					<a href="/admin/inquiry" class="nav-item nav-link active">문의사항 관리</a>
+					<a href="/admin/user" class="nav-item nav-link">회원 관리</a>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar End -->
+	
+	<div class="content-wrapper" style="background-color: #f5f5f5">
+	<div class="main">
+		<div id="container">
+		<div class="card">
+		<div class="card-view">
+		<div class="title">
+			<h3>${dto.title }</h3>
+		</div>
+		<div class="myinfo">
+			<dl>
+				<dt>작성자</dt>
+				<dd>${dto.userid }</dd>
+			</dl>
+			<dl>
+				<dt>작성일</dt>
+				<dd><fmt:formatDate value="${dto.creationdate }" />
+				</dd>
+			</dl>
+		</div>
+		<div class="cont">${dto.content }</div>
+		</div>
+		<div class="btn-view">
+			<a id="delete" href="/admin/inquiry/delete/${ dto.inquirypostid }">글 삭제</a> 
+			<a href="../inquiry">목록 이동</a></td>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -70,16 +196,31 @@
 		</div>
 	</div>
 	<!-- Footer End -->
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
+
+	<!-- Function JavaScript -->
+	<script src="/js/board/inquiry/content.js"></script>	<!-- Footer Start -->
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			$("#delete").click(function() {
 				// 현재 대상 게시물의 id값을 가져온다.
-				var inquirypostid = $
-				{
-					dto.inquirypostid
-				}
-				;
+				var inquirypostid = ${dto.inquirypostid};
 
 				// ajax로 delete
 				$.ajax({

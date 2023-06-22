@@ -360,7 +360,6 @@ String end_date = request.getParameter("end_date");
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
 					"end-date" : end,
-					"p" : page
 
 				},
 				type : "GET",
