@@ -29,7 +29,7 @@ public class TicketUpdateController {
 	
 	@GetMapping("/ticket/add")
 	public String addTicketForm() {
-		return "ticket/ticketchange";
+		return "ticket/addticket";
 	}
 	
 	@PostMapping("/ticket/insert")
@@ -37,7 +37,7 @@ public class TicketUpdateController {
 		service.addTicket(newList);
 		List<TicketUpdateDto>ticketList = service.getTicket();
 		m.addAttribute("ticketList",ticketList);
-		return "ticket/ticketlist";
+		return "redirect:/ticket/ticketlist";
 	}
 	
 	@GetMapping("/ticket/update/{tickettypeid}")
@@ -51,7 +51,6 @@ public class TicketUpdateController {
 	public String updateTicket(@PathVariable int tickettypeid, TicketUpdateDto dto, Model m) {
 		service.updateTickettype(dto);
 		return "redirect:/ticket/ticketlist";
-		
 	}
 }
 

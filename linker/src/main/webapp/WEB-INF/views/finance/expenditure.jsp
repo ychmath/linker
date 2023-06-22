@@ -37,6 +37,8 @@ String end_date = request.getParameter("end_date");
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/comm/table.css" rel="stylesheet">
+<link href="/css/comm/radio.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -99,6 +101,7 @@ String end_date = request.getParameter("end_date");
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -153,236 +156,90 @@ String end_date = request.getParameter("end_date");
 	</nav>
 	<!-- Navbar End -->
 
-
-	<%-- <form:form> --%>
-	<form
-		action="${pageContext.request.contextPath}/finance/filtered_data_ex"
-		method="get">
-		<div>
-			<!--  id="B" -->
+	<div class="content-wrapper">
+		<%-- <form:form> --%>
+		<form
+			action="${pageContext.request.contextPath}/finance/filtered_data_ex"
+			method="get">
 			<div>
-				<!-- style="display:flex; align-items:center;" -->
+				<!--  id="B" -->
+				<div>
+					<!-- style="display:flex; align-items:center;" -->
 
-				<p style="font-size: 24px; font-weight: bold; text-align: center;">지출내역</p>
+					<p style="font-size: 24px; font-weight: bold; text-align: center;">지출내역</p>
 
-				<table id="data-table">
-					<tr>
-						<th id="C">날짜</th>
-						<td id="I"><label class="test_obj"> <input
-								type="radio" name="date" value="today"> <span>오늘</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1month"> <span>1개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="3month"> <span>3개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1year"> <span>1년</span>
-						</label> <label for="start-date-input"> </label> <input type="date"
-							id="start-date-input" name="start-date" min="2021-01-01" max=""
-							value="" required> <label for="end-date-input"><a
-								id="P">~</a> </label> <input type="date" id="end-date-input"
-							name="end-date" min="" max="" value="" required> <script
-								src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <script>
-									function search() {
-										var start_date = document
-												.getElementById('start-date-input').value;
-										var end_date = document
-												.getElementById('end-date-input').value;
-
-										//window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
-										showSaledResult(start_date, end_date);
-									}
-								</script>
-							<button type="button" id="myButton" onclick="search()">검색
-							</button> <script>
-								function resetSearch() {
-
-									location
-											.assign("${pageContext.request.contextPath}/finance/expenditure");
-
-								}
-
-								$(function() {
-									$("input[type='radio'][name='date']")
-											.on(
-													"change",
-													function() {
-														var dateRange = $(this)
-																.val();
-														var startDate = "";
-														var endDate = "";
-
-														switch (dateRange) {
-														case "today":
-															startDate = new Date();
-															endDate = new Date();
-															break;
-														case "1month":
-															startDate = new Date();
-															startDate
-																	.setMonth(startDate
-																			.getMonth() - 1);
-															endDate = new Date();
-															break;
-														case "3month":
-															startDate = new Date();
-															startDate
-																	.setMonth(startDate
-																			.getMonth() - 3);
-															endDate = new Date();
-															break;
-														case "1year":
-															startDate = new Date();
-															startDate
-																	.setFullYear(startDate
-																			.getFullYear() - 1);
-															endDate = new Date();
-															break;
-														}
-														var startYear = startDate
-																.getFullYear();
-														var startMonth = startDate
-																.getMonth() + 1 < 10 ? "0"
-																+ (startDate
-																		.getMonth() + 1)
-																: startDate
-																		.getMonth() + 1;
-														var startDateNum = startDate
-																.getDate() < 10 ? "0"
-																+ startDate
-																		.getDate()
-																: startDate
-																		.getDate();
-														var endYear = endDate
-																.getFullYear();
-														var endMonth = endDate
-																.getMonth() + 1 < 10 ? "0"
-																+ (endDate
-																		.getMonth() + 1)
-																: endDate
-																		.getMonth() + 1;
-														var endDateNum = endDate
-																.getDate() < 10 ? "0"
-																+ endDate
-																		.getDate()
-																: endDate
-																		.getDate();
-
-														var startDateStr = startYear
-																+ "-"
-																+ startMonth
-																+ "-"
-																+ startDateNum;
-														var endDateStr = endYear
-																+ "-"
-																+ endMonth
-																+ "-"
-																+ endDateNum;
-
-														showSaledResult(
-																startDateStr,
-																endDateStr);
-													});
-								});
-
-								function showSaledResult(start, end) {
-									$.ajax({
-										url : "./filtered_data_ex",
-										data : {
-											"start-date" : start,
-											"end-date" : end
-										},
-										type : "GET",
-										dataType : "json",
-										success : function(data) {
-											updateTableWithNewData(data);
-										},
-										error : function(error) {
-											console.log(error);
-										}
-									});
-								}
-
-								function updateTableWithNewData(data) {
-									var table_data = '';
-									//$.each(data, function (index, expenditure) {
-
-									for (var i = 0; i < data.length; i++) {
-										let expenditure = data[i];
-										table_data += '<tr>';
-										table_data += '<td>'
-												+ expenditure.orderid + '</td>';
-										table_data += '<td>'
-												+ expenditure.ingredientname
-												+ '</td>';
-										table_data += '<td>'
-												+ expenditure.price + '</td>';
-										table_data += "<td>"
-												+ new Date(
-														expenditure.orderdate)
-														.toISOString().split(
-																'T')[0]
-												+ "</td>";
-
-										table_data += '</tr>';
-									}
-									//});
-
-									$("#saled").empty();
-									$("#saled").append(table_data);
-								}
-							</script>
-							<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-					</tr>
-				</table>
-				<br>
-			</div>
-			<div>
-				<table>
-					<thead>
+					<table id="data-table">
 						<tr>
-							<th scope="col">발주 번호</th>
-							<th scope="col">식자재 이름</th>
-							<th scope="col">총 가격</th>
-							<th scope="col">주문 일자</th>
-
+							<th id="C">날짜</th>
+							<td id="I"><label class="test_obj"> <input
+									type="radio" name="date" value="today"> <span>오늘</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1month"> <span>1개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="3month"> <span>3개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1year"> <span>1년</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="total"> <span>전체</span>
+							</label> <label for="start-date-input"></label> <input type="date"
+								id="start-date-input" name="start-date" min="2021-01-01" max=""
+								value="" required oninput="restrictEndDate()"> <label
+								for="end-date-input"><a id="P">~</a></label> <input type="date"
+								id="end-date-input" name="end-date" min="" max="" value=""
+								required oninput="restrictStartDate()">
+								<button type="button" id="myButton" onclick="search()">검색</button>
+								<input type="radio" name="date" value="search"
+								style="display: none">
 						</tr>
-					</thead>
-					<tbody id="saled">
-						<c:forEach items="${elist}" var="expenditure">
+					</table>
+					<br>
+				</div>
+				<div>
+					<table>
+						<thead>
 							<tr>
-								<td>${expenditure.orderid}</td>
-								<td>${expenditure.ingredientname}</td>
-								<td>${expenditure.price}</td>
-								<td><fmt:formatDate value="${expenditure.orderdate}"
-										pattern="yyyy-MM-dd" /></td>
+								<th scope="col">발주 번호</th>
+								<th scope="col">식자재 이름</th>
+								<th scope="col">총 가격</th>
+								<th scope="col">주문 일자</th>
+
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody id="saled">
+							<c:forEach items="${elist}" var="expenditure">
+								<tr>
+									<td>${expenditure.orderid}</td>
+									<td>${expenditure.ingredientname}</td>
+									<td>${expenditure.price}</td>
+									<td><fmt:formatDate value="${expenditure.orderdate}"
+											pattern="yyyy-MM-dd" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
+		</form>
+	</div>
+
+
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+	</div>
+	<!-- Footer End -->
 
-
-		<!-- Back to Top -->
-		<a href="#"
-			class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
-
-	</form>
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -395,5 +252,162 @@ String end_date = request.getParameter("end_date");
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+	<script>
+		function search() {
+			$("#I > input[type=radio]:nth-child(11)").prop('checked', true);
+			var start_date = document.getElementById('start-date-input').value;
+			var end_date = document.getElementById('end-date-input').value;
+			var currentPage = 1;
+
+			//window.location.href = `./finance/filtered_data?start_date=${start_date}&end_date=${end_date}`;}
+			showSaledResult(start_date, end_date, currentPage);
+		}
+		function setMaxDate(elementId) {
+			//var today = new Date();
+			var currentDate = new Date();
+			var currentYear = currentDate.getFullYear();
+			var currentMonth = currentDate.getMonth() + 1 < 10 ? "0"
+					+ (currentDate.getMonth() + 1) : currentDate.getMonth() + 1;
+			var currentDateNum = currentDate.getDate() < 10 ? "0"
+					+ currentDate.getDate() : currentDate.getDate();
+			var currentDateString = currentYear + "-" + currentMonth + "-"
+					+ currentDateNum;
+
+			document.getElementById(elementId).setAttribute("max",
+					currentDateString);
+		}
+
+		function restrictEndDate() {
+			var startDateValue = document.getElementById("start-date-input").value;
+			document.getElementById("end-date-input").setAttribute("min",
+					startDateValue);
+		}
+
+		function restrictStartDate() {
+			var endDateValue = document.getElementById("end-date-input").value;
+			document.getElementById("start-date-input").setAttribute("max",
+					endDateValue);
+		}
+
+		setMaxDate("start-date-input");
+		setMaxDate("end-date-input");
+
+		$(function() {
+			$("input[type='radio'][name='date']").on(
+					"change",
+					function() {
+						var dateRange = $(this).val();
+
+						/* var startDate = LocalDateTime.parse(startDate + "T00:00:00");
+						var endDate = LocalDateTime.parse(endDate + "T23:59:59"); */
+
+						var startDate = "";
+						var endDate = "";
+
+						// dateRange에 따라 startDate와 endDate값을 설정합니다.
+						switch (dateRange) {
+						case "today":
+							startDate = new Date();
+							endDate1 = new Date();
+							endDate = new Date(endDate1.setDate(endDate1
+									.getDate() + 1));
+							break;
+						case "1month":
+							startDate = new Date();
+							startDate.setMonth(startDate.getMonth() - 1);
+							endDate1 = new Date();
+							endDate = new Date(endDate1.setDate(endDate1
+									.getDate() + 1));
+							break;
+						case "3month":
+							startDate = new Date();
+							startDate.setMonth(startDate.getMonth() - 3);
+							endDate1 = new Date();
+							endDate = new Date(endDate1.setDate(endDate1
+									.getDate() + 1));
+							break;
+						case "1year":
+							startDate = new Date();
+							startDate.setFullYear(startDate.getFullYear() - 1);
+							endDate1 = new Date();
+							endDate = new Date(endDate1.setDate(endDate1
+									.getDate() + 1));
+							break;
+						case "total":
+							startDate = new Date("2021-01-01");
+							endDate = new Date();
+							break;
+						}
+
+						var startYear = startDate.getFullYear();
+						var startMonth = startDate.getMonth() + 1 < 10 ? "0"
+								+ (startDate.getMonth() + 1) : startDate
+								.getMonth() + 1;
+						var startDateNum = startDate.getDate() < 10 ? "0"
+								+ startDate.getDate() : startDate.getDate();
+						var endYear = endDate.getFullYear();
+						var endMonth = endDate.getMonth() + 1 < 10 ? "0"
+								+ (endDate.getMonth() + 1)
+								: endDate.getMonth() + 1;
+						var endDateNum = endDate.getDate() < 10 ? "0"
+								+ endDate.getDate() : endDate.getDate();
+
+						var startDateStr = startYear + "-" + startMonth + "-"
+								+ startDateNum;
+						var endDateStr = endYear + "-" + endMonth + "-"
+								+ endDateNum;
+
+						showSaledResult(startDateStr, endDateStr, 1);
+					});
+		});
+
+		function showSaledResult(start, end, page) {
+			$.ajax({
+				url : "./filtered_data_ex",
+				data : { //파라미터 값 받아옴
+					"start-date" : start,
+					"end-date" : end,
+					"p" : page
+
+				},
+				type : "GET",
+				dataType : "json",
+				success : function(data) {
+
+					updateTableWithNewData(data);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		}
+
+		function goToPage(page) {
+			currentPage = page; //지정된 페이지 번호를 현재 페이지로 설정
+			search(); //검색 함수를 호출하여 결과를 가져옴
+		}
+
+		function updateTableWithNewData(data) {
+			var table_data = '';
+			//$.each(data, function (index, expenditure) {
+
+			for (var i = 0; i < data.length; i++) {
+				let expenditure = data[i];
+				table_data += '<tr>';
+				table_data += '<td>' + expenditure.orderid + '</td>';
+				table_data += '<td>' + expenditure.ingredientname + '</td>';
+				table_data += '<td>' + expenditure.price + '</td>';
+				table_data += "<td>"
+						+ new Date(expenditure.orderdate).toISOString().split(
+								'T')[0] + "</td>";
+
+				table_data += '</tr>';
+			}
+			//});
+
+			$("#saled").empty();
+			$("#saled").append(table_data);
+		}
+	</script>
 </body>
 </html>

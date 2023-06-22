@@ -64,13 +64,57 @@ td {
 	text-align: center;
 }
 
+.searchController,
+.UsedetailController {
+	gap: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1.5em;
+}
+
+.search_btn,
+.search-orderDate,
+.search-date {
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 10px;
+	background-color: #4274AB;
+	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+#searchByName input[type="search"],
+#searchByDate input[type="date"],
+#searchByName input[type="button"],
+#searchByDate input[type="button"] {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+#searchByName,
+#searchByDate {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+#startDay,
+#endDay {
+	text-align: center;
+}
+
 .menu {
 	margin-bottom: 30px;
 }
 
 #page {
-
-	margin-bottom: 2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	text-align: center;
 	color: #73685d;
 	position: relative;
@@ -86,7 +130,27 @@ td {
 	vertical-align: middle;
 }
 
-#search {
+.write {
+	height: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	position: absolute;
+	right: 10%;
+	border-radius: 10px;
+	background-color: #4274AB;
+	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.write_ty {
+	text-align: center;
+	width: 100%;
+}
+
+arch {
 	margin-bottom: 2em;
 	text-align: center;
 }
@@ -140,13 +204,14 @@ td {
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: 3px;
+	border-bottom: none;
 	position: absolute;
 	right: 10%;
-	bottom: 0;
 	border-radius: 10px;
 	background-color: #4274AB;
 	color: #fff;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 .write_ty {

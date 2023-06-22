@@ -16,7 +16,7 @@ String end_date = request.getParameter("end_date");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
+<link href="/img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -85,11 +85,12 @@ String end_date = request.getParameter("end_date");
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">나의
-							정보</div>
+						<div class="nav-link dropdown-toggle active"
+							data-bs-toggle="dropdown">나의 정보</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item active">식권
-								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+							<a href="/ticketorder/ticketorderform"
+								class="dropdown-item active">식권 구매내역</a> <a
+								href="/ticketuse/ticketuseform" class="dropdown-item">식권
 								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
 								href="/deleteform" class="dropdown-item">회원탈퇴</a>
 						</div>
@@ -102,74 +103,74 @@ String end_date = request.getParameter("end_date");
 	</nav>
 	<!-- Navbar End -->
 
-<div class ="content-wrapper">
-	<%-- <form:form> --%>
-	<form
-		action="${pageContext.request.contextPath}/finance/filtered_data_t"
-		method="get">
-		<div>
+	<div class="content-wrapper">
+		<%-- <form:form> --%>
+		<form
+			action="${pageContext.request.contextPath}/finance/filtered_data_t"
+			method="get">
 			<div>
-				<p>
-					<strong>식권 구매 내역</strong>
-				</p>
-				<table id="data-table">
-					<tr>
-						<th id="C">날짜</th>
-						<td id="I"><label class="test_obj"> <input
-								type="radio" name="date" value="today"> <span>오늘</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1month"> <span>1개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="3month"> <span>3개월</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="1year"> <span>1년</span>
-						</label> <label class="test_obj"> <input type="radio" name="date"
-								value="total"> <span>전체</span>
-						</label> <label for="start-date-input"></label> <input type="date"
-							id="start-date-input" name="start-date" min="2021-01-01" max=""
-							value="" required oninput="restrictEndDate()"> <label
-							for="end-date-input"><a id="P">~</a></label> <input type="date"
-							id="end-date-input" name="end-date" min="" max="" value=""
-							required oninput="restrictStartDate()">
-							<button type="button" id="myButton" onclick="search()">검색</button>
-							<input type="radio" name="date" value="search"
-							style="display: none">
-					</tr>
-				</table>
-				<br>
-			</div>
-			<div>
-				<table>
-					<thead>
+				<div>
+					<p>
+						<strong>식권 구매 내역</strong>
+					</p>
+					<table id="data-table">
 						<tr>
-							<th scope="col" id="ticketorderid">식권 구매 번호</th>
-							<th scope="col" id="orderdate">구매 일자</th>
-							<th scope="col" id="tickettypename">식권 종류</th>
-							<th scope="col" id="price">식권 가격</th>
-							<th scope="col" id="quantity">수량</th>
-							<th scope="col" id="totalprice">결제 금액</th>
+							<th id="C">날짜</th>
+							<td id="I"><label class="test_obj"> <input
+									type="radio" name="date" value="today"> <span>오늘</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1month"> <span>1개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="3month"> <span>3개월</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="1year"> <span>1년</span>
+							</label> <label class="test_obj"> <input type="radio" name="date"
+									value="total"> <span>전체</span>
+							</label> <label for="start-date-input"></label> <input type="date"
+								id="start-date-input" name="start-date" min="2021-01-01" max=""
+								value="" required oninput="restrictEndDate()"> <label
+								for="end-date-input"><a id="P">~</a></label> <input type="date"
+								id="end-date-input" name="end-date" min="" max="" value=""
+								required oninput="restrictStartDate()">
+								<button type="button" id="myButton" onclick="search()">검색</button>
+								<input type="radio" name="date" value="search"
+								style="display: none">
 						</tr>
-					</thead>
-
-					<tbody id="saled">
-
-						<c:forEach items="${pList}" var="purchase">
+					</table>
+					<br>
+				</div>
+				<div>
+					<table>
+						<thead>
 							<tr>
-								<td>${purchase.ticketorderid}</td>
-								<td><fmt:formatDate value="${purchase.orderdate}"
-										pattern="yyyy-MM-dd" /></td>
-								<td>${purchase.tickettypename}</td>
-								<td><fmt:formatNumber value="${purchase.price}" /></td>
-								<td>${purchase.quantity}</td>
-								<td><fmt:formatNumber value="${purchase.totalprice}" /></td>
+								<th scope="col" id="ticketorderid">식권 구매 번호</th>
+								<th scope="col" id="orderdate">구매 일자</th>
+								<th scope="col" id="tickettypename">식권 종류</th>
+								<th scope="col" id="price">식권 가격</th>
+								<th scope="col" id="quantity">수량</th>
+								<th scope="col" id="totalprice">결제 금액</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+
+						<tbody id="saled">
+							<c:forEach items="${pList}" var="purchase">
+								<tr>
+									<td>${purchase.ticketorderid}</td>
+									<td><fmt:formatDate value="${purchase.orderdate}"
+											pattern="yyyy-MM-dd" /></td>
+									<td>${purchase.tickettypename}</td>
+									<td><fmt:formatNumber value="${purchase.price}" /></td>
+									<td>${purchase.quantity}</td>
+									<td><fmt:formatNumber value="${purchase.totalprice}" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
+
 	<div id="page">
 		<c:if test="${begin > pageNum }">
 			<a href="ticketorderform?p=${begin-1 }">[이전]</a>
@@ -254,13 +255,6 @@ String end_date = request.getParameter("end_date");
 
 		setMaxDate("start-date-input");
 		setMaxDate("end-date-input");
-
-		function resetSearch() {
-
-			location
-					.assign("${pageContext.request.contextPath}/ticket/ticketorderform");
-
-		}
 
 		$(function() {
 			$("input[type='radio'][name='date']").on(

@@ -90,10 +90,11 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -147,20 +148,20 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper">
 		<p>
 			<strong>문의사항</strong>
 		</p>
+		<c:if test="${count > 0 }">
+			<table>
+				<tr>
+					<th>게시글 번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+				</tr>
 
-		<table>
-			<tr>
-				<th>게시글 번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			<c:if test="${count > 0 }">
 				<!-- count 값이 0보다 클 경우에만 아래 내용이 실행됩니다. -->
 
 				<c:forEach items="${iList }" var="inquiry">
@@ -198,32 +199,32 @@
 					</tr>
 
 				</c:forEach>
-
-			</c:if>
-		</table>
-	</div>
-	<div id="page">
-		<!-- 페이지 번호 -->
-		<c:if test="${begin > pageNum}">
-			<a href="inquiry?p=${begin - 1 }">[이전] </a>
+			</table>
 		</c:if>
-
-		<c:forEach begin="${begin }" end="${end }" var="i">
-			<a href="inquiry?p=${i }">${i }</a>
-		</c:forEach>
-
-		<c:if test="${end < totalPages }">
-			<a href="inquiry?p=${end+1}">[다음]</a>
-		</c:if>
-
+		<div id="center">
+			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
+		</div>
 		<c:if test="${ user.role == 'buyer'}">
-
 			<input type="button" id="write" value="글쓰기"
 				onclick="location.href='write'" />
 		</c:if>
 	</div>
 
-	<div id="search">
+	<div id="page">
+		<c:if test="${count != 0}">
+			<c:if test="${begin > pageNum}">
+				<a href="inquiry?p=${begin-1 }">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin }" end="${end }" var="i">
+				<a href="inquiry?p=${i }">${i }</a>
+			</c:forEach>
+			<c:if test="${end < totalPages }">
+				<a href="inquiry?p=${end+1 }">[다음]</a>
+			</c:if>
+		</c:if>
+	</div>
+
+	<div id="center">
 		<form action="search">
 			<select name="searchn" id="searchn">
 				<option value="0">제목</option>

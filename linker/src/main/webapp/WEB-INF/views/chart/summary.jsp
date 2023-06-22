@@ -20,17 +20,17 @@
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
 </head>
 
 <body>
@@ -93,6 +93,7 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -148,31 +149,26 @@
 	<!-- Navbar End -->
 
 	<span id="role" style="display: none;">${ user.role }</span>
-
-	<div id="fh5co-about" class="fh5co-section">
-		<div class="fh5co-cover" style="height: 50px"></div>
+<div class="content-wrapper">
 		<div class="container">
-			<div class="about-text">
 				<form id="searchYear">
 					<h1 class="section-title">비용 관리</h1>
 					<p>*최근 3년간의 결과만 조회 가능합니다.</p>
 					<br> <select name="targetYear" id="targetYear"></select>
-					<button class="btn" type="button" id="search">검색</button>
+					<button class="search_btn" id="search_btn" type="button" >검색</button>
 				</form>
-			</div>
+		
 			<hr>
+			<br>
 			<h1 class="section-title.text-start">연간 요약</h1>
 			<div class="feature-text">
 				<%-- 차트가 들어갈 캔버스 생성 --%>
 				<canvas width="600" height="400" id="myChart"></canvas>
 			</div>
 		</div>
-	</div>
-
+</div>
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
 			<div class="copyright">
 				<div class="row">
@@ -180,22 +176,14 @@
 						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
 						Reserved.
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Footer End -->
 
-	<!-- Back to Top -->
-	<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -208,10 +196,7 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
-
-<!-- 차트스크립트 삭제금지!-->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<script>
 		$(function() {
@@ -312,7 +297,7 @@
 			}); // chart end
 
 			// 검색 버튼 클릭 시
-			$("#search").click(function() {
+			$("#search_btn").click(function() {
 				// 매입/매출에 기본값 0 저장
 				for (var i = 0; i < 12; i++) {
 					// 12칸의 배열을 형성, 각각 0을 배정한다.

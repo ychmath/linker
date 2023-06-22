@@ -80,11 +80,12 @@
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+			<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -166,7 +167,12 @@
 		<div id="center">
 			<c:if test="${count == 0 }"> 아직 입력한 글이 없습니다. </c:if>
 		</div>
+		<c:if test="${ user.role == 'admin' || user.role =='seller' }">
+			<input type="button" id="write" value="글쓰기"
+				onclick="location.href='write'" />
+		</c:if>
 	</div>
+
 	<div id="page">
 		<c:if test="${count != 0}">
 			<c:if test="${begin > pageNum}">
@@ -178,18 +184,10 @@
 			<c:if test="${end < totalPages }">
 				<a href="notice?p=${end+1 }">[다음]</a>
 			</c:if>
-
-			<c:if test="${ user.role == 'admin' || user.role =='seller' }">
-				<input type="button" id="write" value="글쓰기"
-					onclick="location.href='write'" />
-			</c:if>
 		</c:if>
 	</div>
 
-
-
-
-	<div id="search">
+	<div id="center">
 		<form action="search">
 			<select name="searchn" id="searchn">
 				<option value="0">제목</option>
@@ -199,7 +197,6 @@
 				name="search_btn" value="검색" />
 		</form>
 	</div>
-
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

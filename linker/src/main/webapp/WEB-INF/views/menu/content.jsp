@@ -30,7 +30,8 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
-<link href="/css/comm/table.css" rel="stylesheet">
+<link href="/css/menu/menu_write.css" rel="stylesheet">
+<link href="/css/comm/fixedfooter.css" rel="stylesheet">
 </head>
 
 <body>
@@ -79,7 +80,7 @@
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
@@ -89,10 +90,11 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/write" class="nav-item nav-link active">식단표 관리</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -146,7 +148,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-
+	<div class="content-wrapper">
 		<div class="main">
 			<div class="container">
 				<div class="content">
@@ -181,37 +183,38 @@
 			<%-- main > container end --%>
 		</div>
 		<%-- main end --%>
-
-		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Linker</a>, All Right
-							Reserved.
-						</div>
+	</div>
+	</div>
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Linker</a>, All Right
+						Reserved.
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+	</div>
+	<!-- Footer End -->
 
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="/lib/wow/wow.min.js"></script>
-		<script src="/lib/easing/easing.min.js"></script>
-		<script src="/lib/waypoints/waypoints.min.js"></script>
-		<script src="/lib/counterup/counterup.min.js"></script>
-		<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-		<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-		<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
-		<!-- Template Javascript -->
-		<script src="/js/main.js"></script>
-		<script>
+	<!-- Template Javascript -->
+	<script src="/js/main.js"></script>
+	<script>
 	$(function(){
 		$("#delete").click(function(){
 			var menuID = ${ dto.menuID };

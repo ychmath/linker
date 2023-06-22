@@ -1,32 +1,39 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>공지사항 검색결과</title>
+<title>Linker</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Favicon -->
 <link href="img/favicon.ico" rel="icon">
+
+<!-- Icon Font Stylesheet -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
 	rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
 <link href="/lib/animate/animate.min.css" rel="stylesheet">
 <link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/comm/table.css" rel="stylesheet">
 
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/basicform.css" rel="stylesheet">
 </head>
 
 <body>
+
 	<!-- Topbar Start -->
 	<div class="container-fluid bg-light p-0">
 		<div class="row gx-0 d-none d-lg-flex">
@@ -63,24 +70,14 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
-			<c:if test="${ user.role == 'seller' }">
+				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
@@ -116,87 +113,34 @@
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
-							정보</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
-								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
-								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
-								href="/deleteform" class="dropdown-item">회원탈퇴</a>
-						</div>
-					</div>
-					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 			</div>
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	<div class="content-wrapper">
-		<p>
-			<strong>'${search}' 검색결과입니다.</strong>
-		</p>
 
+	<div class="center-wrapper content-wrapper">
+		<form id="addTicket" action="/ticket/insert" method="post">
+			<div id="tickettable" class="commform">
+				<h2>식권 추가</h2>
+				<div id="tname" class="comm_field">
+					<input type="text" id="tickettypename" class="comm_input"
+						name="tickettypename" placeholder="tickettypename" required
+						autocomplete="off"> <label class="floating-label"
+						for="tickettypename">식권 이름</label>
 
-		<c:if test="${count != 0 }">
-			<table>
-				<tr>
-					<th>게시글 번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-				</tr>
-				<c:forEach items="${nList }" var="notice">
-					<tr>
-						<td>${notice.noticepostid }</td>
-						<td><a href="content/${notice.noticepostid }">${notice.title }</a>
-						</td>
-						<td>${notice.userid }</td>
-						<td><fmt:formatDate value="${notice.creationdate }"
-								dateStyle="short" /></td>
-					</tr>
-				</c:forEach>
-			</table>
-
-
-		</c:if>
-
-		<div id="center">
-			<c:if test="${count == 0 }"> 검색 조건에 맞는 글이 없습니다. </c:if>
-		</div>
-	</div>
-	<div id="page">
-		<c:if test="${count != 0}">
-			<c:if test="${begin > pageNum}">
-				<a href="search?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
-			</c:if>
-			<c:forEach begin="${begin}" end="${end}" var="i">
-				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">${i}</a>
-			</c:forEach>
-			<c:if test="${end < totalPages}">
-				<a href="search?p=${end+1}&search=${search}&searchn=${searchn}">[다음]</a>
-			</c:if>
-		</c:if>
-	</div>
-
-	<div id="center">
-		<form action="search">
-			<select name="searchn" id="searchn">
-				<option value="0">제목</option>
-				<option value="1">작성자</option>
-			</select> <input type="text" id="search_text" name="search" size="15"
-				maxlength="40" /> <input type="submit" id="search_btn"
-				name="search_btn" value="검색" />
+				</div>
+				<div id="tprice" class="comm_field">
+					<input type="text" id="price" class="comm_input" name="price"
+						placeholder="아이디" required autocomplete="off"
+						oninput="validatePrice(this)"> <label
+						class="floating-label" for="price">가격</label>
+					<div id="priceError" style="display: none; color: red;">숫자만
+						입력해주세요.</div>
+				</div>
+				<button type="submit" class="submit" id="add">등록</button>
+			</div>
 		</form>
 	</div>
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -226,5 +170,20 @@
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
+
+	<script>
+		function validatePrice(input) {
+			var price = input.value.trim();
+			var priceError = document.getElementById("priceError");
+
+			if (!/^\d+$/.test(price)) {
+				priceError.style.display = "block";
+				input.setCustomValidity("숫자만 입력해주세요.");
+			} else {
+				priceError.style.display = "none";
+				input.setCustomValidity("");
+			}
+		}
+	</script>
 </body>
 </html>
