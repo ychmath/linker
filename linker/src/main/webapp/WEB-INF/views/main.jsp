@@ -78,12 +78,11 @@
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
+					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
+					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
+					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
@@ -92,7 +91,14 @@
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
+								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
+						</div>
+					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -124,9 +130,9 @@
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
@@ -294,21 +300,6 @@
 						<p class="mb-4 pb-2">신선한 식재료와 위생적인 환경, 숙련된 요리사가 만나 최고의 맛과 건강함을
 							선사합니다.</p>
 						<div class="row g-4 mb-4 pb-2">
-							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
-
-								<div class="d-flex align-items-center">
-									<div
-										class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-										style="width: 60px; height: 60px;">
-										<i class="fa fa-users fa-2x text-primary"></i>
-									</div>
-									<div class="ms-3">
-										<h2 id="sellerCount" class="text-primary mb-1"
-											data-toggle="counter-up">0</h2>
-										<p class="fw-medium mb-0">판매자 수</p>
-									</div>
-								</div>
-							</div>
 							<div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
 								<div class="d-flex align-items-center">
 									<div

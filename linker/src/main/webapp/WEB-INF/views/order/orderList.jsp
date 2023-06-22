@@ -130,7 +130,7 @@
 				<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
 					class="search_btn" type="button" id="search-name" value="검색">
 			</form>
-			<form id="searchByDate"
+			<form id="searchByOrderDate"
 				action="/inventory/orderSearchByDate/result" method="get"
 				style="display: inline-block;">
 				<b>주문기간별 검색</b> <input type="date" id="startDay" name="startDay">

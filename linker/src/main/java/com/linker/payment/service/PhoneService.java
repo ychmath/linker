@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.linker.payment.dao.PhoneDao;
 import com.linker.payment.dto.PhoneDto;
+import com.linker.ticket.dto.TicketUseDto;
 
 @Service
 public class PhoneService {
@@ -24,7 +25,19 @@ public class PhoneService {
 			map.put("phone", phone);
 			
 		   int updatedRows = dao.updateTicketQuantityByPhone(map);
-		     if (updatedRows <= 0) {
+		   
+		   //전화번호로 id 값 구하기
+		   String id = dao.getidbyphone(phone);
+		  
+		   TicketUseDto dto = new TicketUseDto(); 
+		   dto.setUserid(id);
+		   dto.setTickettype(tickettypename);
+		   dto.setQuantity(quantity);
+		   
+		   
+		   dao.insertTicketuseByphone(dto);
+		    
+		   if (updatedRows <= 0) {
 		         return false;
 		     }
 		     return true;

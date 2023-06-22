@@ -8,6 +8,14 @@
 		set th.quantity = th.quantity - 1
 		where user.phone = #{phone} and th.tickettypeid = #{tickettypename};
 	</update>
+	
+	<insert id="insertTicketuseByphone" parameterType="com.linker.ticket.dto.TicketUseDto">
+		insert into ticketuse values( #{userid}, #{tickettype}, #{quantity}, now())
+	
+	</insert>
+	
+	
+	
 
 	<select id="tickettypeidList" resultType="Integer">
 		SELECT tickettypeid FROM tickettype
@@ -17,5 +25,9 @@
 		resultType="com.linker.payment.dto.PhoneDto">
 		SELECT tickettypename, tickettypeid FROM tickettype
 	</select>
+	<select id="getidbyphone" parameterType="string" resultType="string">
+		select userid from user where phone = #{phone}
+	</select>
+	
 
 </mapper>

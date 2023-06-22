@@ -39,6 +39,8 @@ String end_date = request.getParameter("end_date");
 <link href="/css/comm/table.css" rel="stylesheet">
 <link href="/css/comm/radio.css" rel="stylesheet">
 
+
+
 </head>
 
 <body>
@@ -85,16 +87,6 @@ String end_date = request.getParameter("end_date");
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
-				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
@@ -369,9 +361,7 @@ String end_date = request.getParameter("end_date");
 				url : "./filtered_data_sa",
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
-					"end-date" : end,
-					"p" : page
-
+					"end-date" : end
 				},
 				type : "GET",
 				dataType : "json",

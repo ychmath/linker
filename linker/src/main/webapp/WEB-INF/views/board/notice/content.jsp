@@ -4,9 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>글 상세보기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -33,7 +31,12 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/user/content.css" rel="stylesheet">
 <link href="/css/comm/fixedfooter.css" rel="stylesheet">
-
+<title>글 상세보기</title>
+<style>
+table {
+	width: 100%;
+}
+</style>
 </head>
 <body>
 
@@ -59,7 +62,7 @@
 	</div>
 	<!-- Topbar End -->
 
-	<!-- Navbar Start -->
+<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -74,8 +77,8 @@
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<c:if test="${ user.role == null }">
 					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/loginform" class="nav-item nav-link">로그인</a>
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
@@ -85,17 +88,17 @@
 					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
+					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
+					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
+					<a href="/admin/user" class="nav-item nav-link">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-			<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -128,8 +131,8 @@
 				</c:if>
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
 					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
@@ -148,40 +151,38 @@
 			</div>
 		</div>
 	</nav>
-	
 	<!-- Navbar End -->
-	<div class="content-wrapper">
-		<div id="container">
-			<div class="card">
-				<div class="card-view">
-					<div class="title">
-						<h3>${dto.title}</h3>
-					</div>
-					<div class="myinfo">
-						<dl>
-							<dt>작성자</dt>
-							<dd>${dto.userid}</dd>
-						</dl>
-						<dl>
-							<dt>작성일</dt>
-							<dd>
-								<fmt:formatDate value="${dto.creationdate }" />
-							</dd>
-						</dl>
-					</div>
-					<div class="cont">${dto.content }</div>
+		<div class="content-wrapper" style="background-color: #f5f5f5">
+	<div id="container">
+		<div class="card">
+			<div class="card-view">
+				<div class="title">
+					<h3>${dto.title}</h3>
 				</div>
-				<div class="btn-view">
-					<c:if test="${user.userid == dto.userid }">
-						<a href="/notice/update/${dto.noticepostid}">수정</a>
-						<a id="${dto.noticepostid}" href="#">삭제</a>
-					</c:if>
-					<a href="../notice">목록 이동</a>
+				<div class="myinfo">
+					<dl>
+						<dt>작성자</dt>
+						<dd>${dto.userid}</dd>
+					</dl>
+					<dl>
+						<dt>작성일</dt>
+						<dd>
+							<fmt:formatDate value="${dto.creationdate }" />
+						</dd>
+					</dl>
 				</div>
+				<div class="cont">${dto.content }</div>
+			</div>
+			<div class="btn-view">
+				<c:if test="${user.userid == dto.userid }">
+					<a href="/notice/update/${dto.noticepostid}">수정</a>
+					<a id="${dto.noticepostid }" href="#">삭제</a>
+				</c:if>
+				<a href="../notice">목록 이동</a>
 			</div>
 		</div>
 	</div>
-	
+</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -201,13 +202,13 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/lib/wow/wow.min.js"></script>
-	<script src="/lib/easing/easing.min.js"></script>
-	<script src="/lib/waypoints/waypoints.min.js"></script>
-	<script src="/lib/counterup/counterup.min.js"></script>
-	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-	<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/counterup/counterup.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="lib/lightbox/js/lightbox.min.js"></script>
 
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
