@@ -39,6 +39,8 @@ String end_date = request.getParameter("end_date");
 <link href="/css/comm/table.css" rel="stylesheet">
 <link href="/css/comm/radio.css" rel="stylesheet">
 
+
+
 </head>
 
 <body>
@@ -359,8 +361,7 @@ String end_date = request.getParameter("end_date");
 				url : "./filtered_data_sa",
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
-					"end-date" : end,
-
+					"end-date" : end
 				},
 				type : "GET",
 				dataType : "json",

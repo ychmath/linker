@@ -145,8 +145,8 @@
 						<p>
 							<b>사용일자별 검색 검색</b>
 						</p>
-						<input type="date" name="startDay"> <span>-</span> <input
-							type="date" name="endDay"> <input class="btn btn-primary"
+						<input type="date" name="startDay" id="startDay"> <span>-</span> <input
+							type="date" name="endDay" id="endDay"> <input class="btn btn-primary"
 							type="button" id="search-useDate" value="검색">
 					</form>
 				</div>
