@@ -186,13 +186,12 @@
 				</c:forEach>
 			</table>
 		</c:if>
-		<div class="center">
-			<c:if test="${ noticeCount == 0 }">
+		<div class="content-wrapper">
+		<c:if test="${ noticeCount == 0 }">
 				아직 올라온 게시물이 없습니다.
 			</c:if>
-		</div>
-	</div> 
-	
+	</div>
+	</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
