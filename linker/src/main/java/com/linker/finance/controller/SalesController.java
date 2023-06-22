@@ -58,8 +58,8 @@ public class SalesController {
 	@RequestMapping("/filtered_data_sa")
 	@ResponseBody
 	public String fetchFilteredData(@RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, Model model) {
-
+			@RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+				
 		List<SalesDto> filteredData = sService.selectByDate(startDate, endDate);
 
 		Gson gson = new Gson();

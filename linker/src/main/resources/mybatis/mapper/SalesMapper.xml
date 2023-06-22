@@ -18,7 +18,7 @@
         SELECT ticketorderid, tt.tickettypeid, tickettypename, quantity, orderdate, price * quantity AS price
         FROM tickettype tt
         INNER JOIN ticketorder tto ON tt.tickettypeid = tto.tickettypeid
-        WHERE orderdate >= #{map.startDate} AND orderdate <= #{map.endDate}
+        WHERE orderdate >= #{startDate} AND orderdate <= #{endDate}
         ORDER BY orderdate DESC;
         ]]>
 	</select>
