@@ -206,106 +206,74 @@
 				location.href = "/main";
 			}
 
-			$("#write").on(
-					"click",
-					function(event) {
-						event.preventDefault();
+			$("#write").on("click", function(event) {
+				  event.preventDefault();
 
-						var isAnyEmpty = false;
+				  var isAnyEmpty = false;
 
-						// input 값 확인
-						$("input[name='inventoryid']:checked").each(
-								function() {
-									var ingredientUsageInput = $(this).closest(
-											"tr").find(
-											"input[name='ingredientusage']");
+				  // input 값 확인
+				  $("input[name='inventoryid']:checked").each(function() {
+				    var ingredientUsageInput = $(this).closest("tr").find("input[name='ingredientusage']");
+				    var ingredientUseDateInput = $(this).closest("tr").find("input[name='usedate']")
+				    
+				    if (!ingredientUsageInput.prop("disabled") && !ingredientUsageInput.val() || 
+				    		!ingredientUseDateInput.prop("disabled") && !ingredientUseDateInput.val()) {
+				      isAnyEmpty = true;
+				      return false; // input 값에 disabled를 제외하고 비어있는 것이 있다면 false return
+				    }
 
-									if (!ingredientUsageInput.prop("disabled")
-											&& !ingredientUsageInput.val()) {
-										isAnyEmpty = true;
-										return false; // input 값에 disabled를 제외하고 비어있는 것이 있다면 false return
-									}
+				  });
 
-								});
+				  if (isAnyEmpty) {
+				    // 비어있다면 경고창
+				    alert("필수 항목을 전부 입력해 주십시오.");
+				  } else if (parseInt($('#ingredientusage').val()) > parseInt($('#ingredientusage').attr('max'))) {
+					  alert('사용할 수 있는 최대값을 초과했습니다.');
+				  } else {
+				    // 비어있지 않다면 전송
+				    alert("등록이 완료되었습니다.");
+				    $("#addUse").submit();
+				  }
+				});
 
-						if (isAnyEmpty) {
-							// 비어있다면 경고창
-							alert("필수 항목을 전부 입력해 주십시오.");
-						} else {
-							// 비어있지 않다면 전송
-							alert("등록이 완료되었습니다.");
-							$("#addUse").submit();
-						}
-					});
+			$("#search").click(function(){
+				  $('#tabledata').empty();
+				  
+				  $.getJSON("/inventory/getInvenIngredient", { ingredientid : $('#ingredientid').val() }, function(data){
+				   
+					  var tabledata = "";	// 테이블 데이터를 저장할 변수
 
-			$("#search")
-					.click(
-							function() {
-								$('#tabledata').empty();
+				    $.each(data, function(index, obj){
+				    	
+				      tabledata += "<tr>";
+				      tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>';
+				      tabledata += '<td>' + obj.ingredientname + '</td>';
+				      tabledata += '<td>' + obj.quantity + '</td>';
+				      tabledata += '<td>' + obj.receivedate + '</td>';
+				      tabledata += '<td><input name="ingredientusage" id="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
+				      tabledata += '<td><input name="usedate" id="usedate" type="date" disabled></td>'
+				      tabledata += '</tr>';
 
-								$
-										.getJSON(
-												"/inventory/getInvenIngredient",
-												{
-													ingredientid : $(
-															'#ingredientid')
-															.val()
-												},
-												function(data) {
+				    });
+					  
+				    $('#tabledata').append(tabledata);
+				    
+				  });
+				  
+				});	// click end
 
-													var tabledata = ""; // 테이블 데이터를 저장할 변수
-
-													$
-															.each(
-																	data,
-																	function(
-																			index,
-																			obj) {
-
-																		tabledata += "<tr>";
-																		tabledata += '<td><input type="radio" name="inventoryid" value="' + obj.inventoryid + '"></td>';
-																		tabledata += '<td>'
-																				+ obj.ingredientname
-																				+ '</td>';
-																		tabledata += '<td>'
-																				+ obj.quantity
-																				+ '</td>';
-																		tabledata += '<td>'
-																				+ obj.receivedate
-																				+ '</td>';
-																		tabledata += '<td><input name="ingredientusage" class="ingredientusage" type="number" min="1" max="' + obj.quantity + '" disabled></td>';
-																		tabledata += '<td><input name="usedate" type="date" disabled></td>'
-																		tabledata += '</tr>';
-
-																	});
-
-													$('#tabledata').append(
-															tabledata);
-
-												});
-
-							}); // click end
-
-			$(document).on(
-					'change',
-					'input[name="inventoryid"]',
-					function() {
-						var selectedValue = $(
-								'input[name="inventoryid"]:checked').val();
-
-						$('input[name="usedate"]').prop('disabled', true);
-						$('input[name="ingredientusage"]').prop('disabled',
-								true);
-
-						if (selectedValue !== 'select') {
-							// 라디오박스로 선택되었다면 사용 수량과 날짜 입력 가능
-							$(this).closest('tr').find(
-									'input[name="ingredientusage"]').prop(
-									'disabled', false);
-							$(this).closest('tr').find('input[name="usedate"]')
-									.prop('disabled', false);
-						}
-					});
+			$(document).on('change', 'input[name="inventoryid"]', function() {
+				  var selectedValue = $('input[name="inventoryid"]:checked').val();
+				  
+				  $('input[name="usedate"]').prop('disabled', true);
+				  $('input[name="ingredientusage"]').prop('disabled', true);
+				  
+				  if (selectedValue !== 'select') {
+					  // 라디오박스로 선택되었다면 사용 수량과 날짜 입력 가능
+				    $(this).closest('tr').find('input[name="ingredientusage"]').prop('disabled', false);
+				    $(this).closest('tr').find('input[name="usedate"]').prop('disabled', false); 
+				  }
+				});
 		}); // ready end
 	</script>
 </body>

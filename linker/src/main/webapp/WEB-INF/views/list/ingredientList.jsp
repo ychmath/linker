@@ -170,7 +170,7 @@
 		</div>
 		<c:if test="${user.role =='seller' }">
 			<input class="search_btn" type="button" id="write" value="목록 추가 / 삭제"
-				onclick="location.href='change'" />
+				onclick="location.href='change;'" />
 		</c:if>
 	</div>
 

@@ -135,15 +135,17 @@
 	<div class="content-wrapper">
 		<div class="main" style="margin-top: 3em;">
 			<div class="container">
+			
+			<span id="role" style="display: none;">${ user.role }</span>
+			
 				<div class="content">
-					<form method="post" id="updateform"
-						action="/menu/update/${ dto.menuID }">
+					<form method="post" id="updateform" action="/menu/update/${ dto.menuID }">
 						<input type="hidden" name="_method" value="put" />
 						<table border="1" style="color: black;">
 							<tr>
 								<td class="orange">제목</td>
 								<td><input name="title" style="background-color: inherit;"
-									value="${ dto.title }" /></td>
+									value="${ dto.title }" id="title" /></td>
 							</tr>
 							<tr>
 								<td class="orange">작성자</td>

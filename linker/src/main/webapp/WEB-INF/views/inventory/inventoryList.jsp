@@ -128,8 +128,10 @@
 			<form id="searchByName" action="/inventory/searchbyname/result"
 				method="get" style="display: inline-block;">
 
-				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="search_btn"
+				<b>이름별 검색</b>
+				<input type="search" name="ingredientname"
+					id="ingredientname">
+				<input class="search_btn"
 					type="button" id="search-name" value="검색">
 			</form>
 			<form id="searchByDate" action="/inventory/searchbyreceive/result"

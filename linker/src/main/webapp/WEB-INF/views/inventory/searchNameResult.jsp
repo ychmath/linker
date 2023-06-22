@@ -133,7 +133,7 @@
 					type="submit" id="search-name" value="검색">
 			</form>
 			<form id="searchByDate"
-				action="/ingredient/searchbyreceive/result" method="get"
+				action="/inventory/searchbyreceive/result" method="get"
 				style="display: inline-block;">
 				<b>입고일별 검색</b> <input type="date" name="startDay" id="startDay">
 			<span>-</span> <input type="date" name="endDay" id="endDay"> <input
