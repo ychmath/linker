@@ -70,19 +70,19 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
-							관리</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
-								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
-						</div>
-					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -127,14 +127,14 @@
 		<div class="searchController">
 			<form id="searchByName" action="/ingredient/searchbyname/result"
 				method="get" style="display: inline-block;">
-				<b>이름별 검색</b> <input type="search" name="name" id="name"> <input
-					type="submit" id="search-date" value="검색">
+				<b>이름별 검색</b> <input type="search" name="name" id="name">
+				<input type="button" id="search-name" class="search_btn" value="검색">
 			</form>
 			<form id="searchByDate" action="/ingredient/searchbydate/result"
 				method="get" style="display: inline-block;">
 				<b>유통기한별 검색</b> <input type="date" name="startDay" id="startDay">
 				- <input type="date" name="endDay" id="endDay"> <input
-					type="submit" id="search-date" value="검색">
+					type="button" id="search-date" class="search_btn" value="검색">
 			</form>
 		</div>
 		<div class="container">

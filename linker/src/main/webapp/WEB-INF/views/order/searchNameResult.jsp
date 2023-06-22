@@ -8,60 +8,6 @@
 <meta charset="utf-8" />
 <title>Linker</title>
 
-<style>
-.content {
-	width: 100%;
-}
-
-.InvenList {
-	width: 100%;
-	border: 1px solid gray;
-	border-collapse: collapse;
-	margin-top: 30px;
-	text-align: center;
-}
-
-th {
-	text-align: center;
-	border-bottom: 1px solid gray;
-}
-
-td {
-	padding: 8px;
-}
-
-.searchController {
-	width: 100%;
-	align-self: flex-start;
-	border: 1px solid gray;
-	padding: 15px;
-}
-
-.title {
-	width: 700px;
-	margin-bottom: 30px;
-}
-
-.pageController {
-	width: 500px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-.content {
-	width: 100%;
-	align-content: center;
-}
-
-#Order {
-	margin-top: 10px;
-}
-
-#UseDetail {
-	margin-top: 10px;
-}
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
@@ -76,16 +22,17 @@ td {
 	rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
 </head>
 
@@ -126,6 +73,24 @@ td {
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'admin' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
+					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
+					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
@@ -185,16 +150,12 @@ td {
 	</nav>
 	<!-- Navbar End -->
 
-
 	<span id="role" style="display: none;">${ user.role }</span>
 
-	<div id="fh5co-about" class="fh5co-section">
-		<div class="fh5co-cover" style="height: 50px"></div>
-		<div class="container">
-			<div class="about-text">
-				<h1 class="title">
-					<a href="/inventory/orderList">발주 내역</a>
-				</h1>
+	<div class="content-wrapper">
+		<h1 class="title">
+			<a href="/inventory/orderList">발주 내역</a>
+		</h1>
 				<div class="searchController">
 					<form id="searchByName"
 						action="/inventory/orderSearchByName/result" method="get"
@@ -219,9 +180,9 @@ td {
 					</form>
 				</div>
 				<div class="container">
-					<h4 class="title">
+					<p>
 						'<%=request.getParameter("name")%>'에 대한 검색 결과입니다.
-					</h4>
+					</p>
 				</div>
 				<c:if test="${ count != 0 }">
 					<table class="InvenList">
@@ -243,7 +204,7 @@ td {
 							</tr>
 						</c:forEach>
 					</table>
-					<div class="pageController">
+					<div class="page">
 						<c:if test="${ begin > end }">
 							<a href="searchNameResult?p=${ begin-1 }">[이전]</a>
 						</c:if>
@@ -256,17 +217,10 @@ td {
 					</div>
 				</c:if>
 				<c:if test="${ count == 0 }">
-						해당 식자재가 존재하지 않습니다.
-					</c:if>
+					해당 식자재가 존재하지 않습니다.
+				</c:if>
 			</div>
 			<%-- main > content end --%>
-		</div>
-		<%-- main > container end --%>
-	</div>
-	<%-- main end --%>
-
-	</div>
-	<%-- page end --%>
 
 	<!-- Footer Start -->
 	<div
@@ -289,15 +243,8 @@ td {
 		</div>
 	</div>
 	<!-- Footer End -->
-
-	<!-- Back to Top -->
-	<a href="#"
-		class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
-		class="bi bi-arrow-up"></i></a>
-
-
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -311,7 +258,6 @@ td {
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -325,11 +271,11 @@ td {
 
 			$("#search-name").click(function() {
 
-				let name = $("#ingredientname").val();
+				let name = $("#name").val();
 
 				if (!name || name.replace(/\s+/g, "") == "") {
 					alert("검색값을 입력해 주세요.");
-					$("#ingredientname").focus();
+					$("#name").focus();
 					return false;
 				}
 

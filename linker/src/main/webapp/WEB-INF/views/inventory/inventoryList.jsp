@@ -72,19 +72,20 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
+				<c:if test="${ user.role == null }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
-							관리</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
-								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
-						</div>
-					</div>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -127,8 +128,10 @@
 			<form id="searchByName" action="/inventory/searchbyname/result"
 				method="get" style="display: inline-block;">
 
-				<b>이름별 검색</b> <input type="search" name="ingredientname"
-					id="ingredientname"> <input class="search_btn"
+				<b>이름별 검색</b>
+				<input type="search" name="ingredientname"
+					id="ingredientname">
+				<input class="search_btn"
 					type="button" id="search-name" value="검색">
 			</form>
 			<form id="searchByDate" action="/inventory/searchbyreceive/result"
