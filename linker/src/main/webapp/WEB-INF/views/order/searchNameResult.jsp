@@ -202,6 +202,8 @@ td {
 		</div>
 	</nav>
 	<!-- Navbar End -->
+	
+	<div>
 
 
 	<span id="role" style="display: none;">${ user.role }</span>
@@ -315,7 +317,7 @@ td {
 
 
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -329,7 +331,6 @@ td {
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
@@ -343,11 +344,11 @@ td {
 
 			$("#search-name").click(function() {
 
-				let name = $("#ingredientname").val();
+				let name = $("#name").val();
 
 				if (!name || name.replace(/\s+/g, "") == "") {
 					alert("검색값을 입력해 주세요.");
-					$("#ingredientname").focus();
+					$("#name").focus();
 					return false;
 				}
 

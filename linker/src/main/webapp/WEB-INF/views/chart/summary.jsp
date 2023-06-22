@@ -155,7 +155,7 @@
 					<h1 class="section-title">비용 관리</h1>
 					<p>*최근 3년간의 결과만 조회 가능합니다.</p>
 					<br> <select name="targetYear" id="targetYear"></select>
-					<button class="search_btn" type="submit" >검색</button>
+					<button class="search_btn" id="search_btn" type="button" >검색</button>
 				</form>
 		
 			<hr>

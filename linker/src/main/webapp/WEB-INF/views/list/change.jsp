@@ -5,8 +5,7 @@
 <html>
 <head>
 <title>Linker</title>
-z
-
+<body>
 		<span id="role" style="display: none;">${ user.role }</span>
 
 		<div id="fh5co-about" class="fh5co-section">
@@ -29,7 +28,7 @@ z
 								<option value="OZ">OZ</option>
 							</select><span>유통기한:&nbsp;</span><input name="exp" type="date"required>
 							<div>
-								<input type="button" id="add" class="button btn btn-primary" value="식자재 등록" />
+								<input type="button" id="add" class="search_btn" value="식자재 등록" />
 							</div>
 						</form>
 					</div>
@@ -54,7 +53,7 @@ z
 									</c:forEach>
 								</table>
 								<div>
-									<input type="button" id="delete" class="button btn btn-primary" value="선택한 식자재 삭제" />
+									<input type="button" id="delete" class="search_btn" value="선택한 식자재 삭제" />
 								</div>
 								</form>
 								<div class="pageController">
@@ -101,7 +100,7 @@ z
 	<%-- page end --%>
 
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/lib/wow/wow.min.js"></script>
@@ -116,7 +115,6 @@ z
 	<script src="../js/main.js"></script>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			// 권한 가져오기
