@@ -25,7 +25,7 @@ public class PhoneController {
 	public String useTicketForm(Model m) {
 		List<PhoneDto> tickettypename = service.gettypename();
 		m.addAttribute("tickettypename", tickettypename);
-		return "ticket/PhoneForm";
+		return "payment/phoneform";
 	}
 
 	@PostMapping("/phone/use") // 식권 사용 내역을 검증 및 업데이트 하는 메서드

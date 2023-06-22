@@ -35,7 +35,10 @@
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/comm/fixedfooter.css" rel="stylesheet">
+<link href="/css/comm/table.css" rel="stylesheet">
 
+<!-- buyticket.css -->
+<link href="/css/user/buyticket.css" rel="stylesheet">
 </head>
 
 <body>
@@ -78,9 +81,9 @@
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link active">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
 							정보</div>
@@ -98,81 +101,105 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
+
 	<div class=" content-wrapper">
-		<h1>식권 구매</h1>
+		<p>식권 구매</p>
 
-		<div>
-			<table>
+		<div id="buyform">
+			<div class="container">
+				<div class="table-section">
+					<table>
+						<thead>
+							<tr>
+								<th id="type" scope="col">A</th>
+								<th id="type" scope="col">B</th>
+							</tr>
+						<tbody>
+							<tr>
+								<td id="won">6000원</td>
+								<td id="won">7000원</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-				<tr>
-					<td><img src="/img/ticketA.png" id="picA" width="50%"></td>
-					<td><img src="/img/ticketB.png" id="picB" width="55%"
-						style="display: none"></td>
-				</tr>
+				<div class="table-section2">
+					<table>
+						<tbody id="main">
+							<tr>
+								<td id="list">식권 종류</td>
+								<td><select id="tickettype" name="tickettype">
+										<option id="a" value="6000">A</option>
+										<option id="b" value="7000">B</option>
+								</select></td>
+							</tr>
 
-				<tr>
-					<td>식권 종류</td>
-					<td><select id="tickettype" name="tickettype">
-							<option id="a" value="6000">A</option>
-							<option id="b" value="7000">B</option>
-					</select></td>
-				</tr>
+							<tr>
+								<td id="list">수량</td>
+								<td><select id="quantity" name="quantity">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+										<option>11</option>
+										<option>12</option>
+										<option>13</option>
+										<option>14</option>
+										<option>15</option>
+										<option>16</option>
+										<option>17</option>
+										<option>18</option>
+										<option>19</option>
+										<option>20</option>
+								</select>개</td>
+							</tr>
 
-				<tr>
-					<td>수량</td>
-					<td><select id="quantity" name="quantity">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>10</option>
-							<option>11</option>
-							<option>12</option>
-							<option>13</option>
-							<option>14</option>
-							<option>15</option>
-							<option>16</option>
-							<option>17</option>
-							<option>18</option>
-							<option>19</option>
-							<option>20</option>
-					</select>개</td>
-				</tr>
+							<tr>
+								<td id="list">합계</td>
+								<td><span id="price">6000</span>원</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-				<tr>
-					<td>합계</td>
-					<td><span id="price">6000</span>원</td>
-				</tr>
+				<div class="button-container">
+					<input type="button" id="add" value="추가">
+				</div>
 
-				<tr>
-					<td><input type="button" id="add" value="추가"></td>
-				</tr>
+				<div class="added-container">
+					<table class="added-table">
+						<tr>
+							<td><span id="A"></span><input type="button" id="delete"
+								value="삭제" style="display: none;"></td>
 
-				<tr>
-					<td><span id="A"></span><input type="button" id="delete"
-						value="삭제" style="display: none;"></td>
+						</tr>
 
-				</tr>
+						<tr>
+							<td><span id="B"></span><input type="button" id="delete2"
+								value="삭제" style="display: none;"></td>
+						</tr>
+					</table>
+				</div>
 
-				<tr>
-					<td><span id="B"></span><input type="button" id="delete2"
-						value="삭제" style="display: none;"></td>
-				</tr>
-
-				<tr>
-					<td>총합계</td>
-					<td><span id="totalprice">0</span>원</td>
-				</tr>
-
-
-
-			</table>
+				<div class="table-section">
+					<table>
+						<tbody id="sub">
+							<tr>
+								<td id="list">총합계</td>
+								<td><span id="totalprice">0</span>원</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
+
 		<form method="get" id="buyTicket" action="/ticket/buyTicket1"
 			name="form">
 			<c:forEach items="${ids}" var="ticketid" varStatus="status">
@@ -182,37 +209,9 @@
 					value="${ticketid}">
 				<input type="hidden" name="ticketOrderDto[${status.index}].quantity"
 					value="0" id="${ticketid}">
-
-
 			</c:forEach>
-
-
-			<button id="kakaopay">
-				<img src="/img/kakaopay.png">
-			</button>
+			<button id="kakaopay">구매</button>
 		</form>
-
-		<p>----------------------------------------------------------------------------------------------------</p>
-
-		<h4>식권 상세 정보</h4>
-		<div>
-			<table>
-				<tr>
-					<td>식권A</td>
-				</tr>
-				<tr>
-					<td>한식, 중식, 양식 코너에서 사용 가능</td>
-				</tr>
-
-				<tr>
-					<td>식권B</td>
-				</tr>
-
-				<tr>
-					<td>프리미엄 코너에서 사용 가능</td>
-				</tr>
-			</table>
-		</div>
 	</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

@@ -72,19 +72,19 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/loginform" class="nav-item nav-link">로그인</a>
-					<a href="/joinform" class="nav-item nav-link">회원가입</a>
-				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
+								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
+						</div>
+					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -123,54 +123,53 @@
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
-		<div class="content-wrapper">
-				<p>
-					<a href="/inventory/useDetailList">사용 내역</a>
-				</p>
-				<p>사용 내역 삭제</p>
-				<div class="deleteController">
-					<table class="InvenList" id="InvenList">
-						<thead>
-							<tr>
-								<th style="width: 5%;"></th>
-								<th>식자재명</th>
-								<th>사용량</th>
-								<th>사용일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${ useList }" var="useList">
-								<tr class="orders">
-									<td><input type="checkbox" name="checkList"
-										class="checkList" value="${ useList.inventoryid }"></td>
-									<td>${ useList.ingredientname }</td>
-									<td>${ useList.ingredientusage }</td>
-									<td><fmt:formatDate dateStyle="long"
-											value="${ useList.usedate }"></fmt:formatDate></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<div>
-						<input class="write" type="button" id="deleteUse"
-							value="선택 내역 삭제" />
-					</div>
-
-				</div>
-					</div>
-				<div id="page">
-					<c:if test="${ begin > end }">
-						<a href="deleteUseDetail?p=${ begin-1 }">[이전]</a>
-					</c:if>
-					<c:forEach begin="${ begin }" end="${ end }" var="i">
-						<a href="deleteUseDetail?p=${ i }">${ i }</a>
+	<div class="content-wrapper">
+		<p>
+			<a href="/inventory/useDetailList">사용 내역</a>
+		</p>
+		<p>사용 내역 삭제</p>
+		<div class="deleteController">
+			<table class="InvenList" id="InvenList">
+				<thead>
+					<tr>
+						<th style="width: 5%;"></th>
+						<th>식자재명</th>
+						<th>사용량</th>
+						<th>사용일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${ useList }" var="useList">
+						<tr class="orders">
+							<td><input type="checkbox" name="checkList"
+								class="checkList" value="${ useList.inventoryid }"></td>
+							<td>${ useList.ingredientname }</td>
+							<td>${ useList.ingredientusage }</td>
+							<td><fmt:formatDate dateStyle="long"
+									value="${ useList.usedate }"></fmt:formatDate></td>
+						</tr>
 					</c:forEach>
-					<c:if test="${ end < totalPages }">
-						<a href="deleteUseDetail?p=${ end + 1 }">[다음]</a>
-					</c:if>
-				</div>
-				<%-- main > content end --%>
-		
+				</tbody>
+			</table>
+			<div>
+				<input class="write" type="button" id="deleteUse" value="선택 내역 삭제" />
+			</div>
+
+		</div>
+	</div>
+	<div id="page">
+		<c:if test="${ begin > end }">
+			<a href="deleteUseDetail?p=${ begin-1 }">[이전]</a>
+		</c:if>
+		<c:forEach begin="${ begin }" end="${ end }" var="i">
+			<a href="deleteUseDetail?p=${ i }">${ i }</a>
+		</c:forEach>
+		<c:if test="${ end < totalPages }">
+			<a href="deleteUseDetail?p=${ end + 1 }">[다음]</a>
+		</c:if>
+	</div>
+	<%-- main > content end --%>
+
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

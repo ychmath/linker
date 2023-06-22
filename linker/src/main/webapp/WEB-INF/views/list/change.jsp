@@ -5,7 +5,6 @@
 <html>
 <head>
 <title>Linker</title>
-z
 
 		<span id="role" style="display: none;">${ user.role }</span>
 
