@@ -72,30 +72,19 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				<c:if test="${ user.role == null }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/loginform" class="nav-item nav-link">로그인</a>
-					<a href="/joinform" class="nav-item nav-link">회원가입</a>
-				</c:if>
-				<c:if test="${ user.role == 'admin' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">게시글 관리</a>
-					<a href="/notice/notice" class="nav-item nav-link">회원 관리</a>
-					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
-					<a href="/logout" class="nav-item nav-link">로그아웃</a>
-				</c:if>
 				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
+								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
+						</div>
+					</div>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -158,8 +147,8 @@
 					<table border="1" style="color: black;">
 						<tr>
 							<td class="orange">제목</td>
-							<td><input name="title" id="title" style="background-color: inherit;"
-								required /></td>
+							<td><input name="title" id="title"
+								style="background-color: inherit;" required /></td>
 							<td class="orange">작성자</td>
 							<td><input name="userID"
 								style="background-color: inherit; color: black;"
@@ -259,15 +248,16 @@
 
 			tbl += "<table class=\'table table-hover'\ id=\'myTable'\>";
 
-			// 반복문으로 테이블 2개 생성
-			for (var i = 0; i < 2; i++) {
+			// 반복문으로 테이블 1개 생성
+			for (var i = 0; i < 1; i++) {
 				// crate table header > start
 				tbl += "<thead>";
 				tbl += "<tr>";
-				tbl += "<th>시간</th>";
+				tbl += "<th>날짜</th>";
 				// 총 5일치가 한 줄이 되므로 <th> 태그 5번 반복
 				for (let i = 0; i < 5; i++) {
-					tbl += "<th><div class=\'row_data'\ edit_type=\'click'\'>날짜를 입력해 주세요.</div></th>";
+					tbl += "<th ><div class=\'row_data'\ edit_type=\'click'\' >날짜 입력 란</div></th>";
+					
 				}
 				tbl += "</tr>";
 				tbl += "</thead>";
@@ -322,8 +312,8 @@
 			$("#save").click(function(event) {
 				// 클릭했을 경우 바로 submit하지 않고 정지
 				event.preventDefault();
-				
-				if(!$('#title').val() || !$('#title').val().trim()){
+
+				if (!$('#title').val() || !$('#title').val().trim()) {
 					alert('제목을 입력해 주세요.')
 				} else {
 					// 수정 가능 여부, css 여부 삭제
@@ -342,6 +332,7 @@
 			});
 
 		}); // ready end
+
 	</script>
 </body>
 </html>

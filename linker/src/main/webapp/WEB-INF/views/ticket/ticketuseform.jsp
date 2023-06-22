@@ -139,7 +139,7 @@ String end_date = request.getParameter("end_date");
 				<table class="results-table">
 					<thead>
 						<tr>
-							<th scope="col" id="usedate">구매 일자</th>
+							<th scope="col" id="usedate">사용 일자</th>
 							<th scope="col" id="tickettypename">식권 종류</th>
 							<th scope="col" id="quantity">수량</th>
 						</tr>
