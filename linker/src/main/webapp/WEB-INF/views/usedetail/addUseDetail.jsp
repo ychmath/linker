@@ -119,8 +119,6 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
-	<div>
 
 	<span id="role" style="display: none;">${ user.role }</span>
 
@@ -159,7 +157,7 @@
 				</tbody>
 			</table>
 			<div>
-				<input type="button" id="write" class=write value="식자재 등록" />
+				<input type="button" id="write" value="식자재 등록" />
 			</div>
 		</form>
 
@@ -226,7 +224,7 @@
 
 				  });
 
-				  if (isAnyEmpty) {
+				  if (isAnyEmpty || !$("input[name='inventoryid']:checked").val()) {
 				    // 비어있다면 경고창
 				    alert("필수 항목을 전부 입력해 주십시오.");
 				  } else if (parseInt($('#ingredientusage').val()) > parseInt($('#ingredientusage').attr('max'))) {
