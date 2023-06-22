@@ -82,11 +82,12 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
-							<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
-					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
+					<a href="/admin/notice" class="nav-item nav-link active">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
@@ -148,56 +149,57 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		
 	</script>
-	
+
 	<div class="content-wrapper" style="background-color: #f5f5f5">
 		<p>
 			<strong>공지사항 관리</strong>
 		</p>
-	<div class="content">
-		<div id="noticeTable">
-			<c:if test="${ noticeCount != 0 }">
-				<table>
-					<tr>
-						<th>글쓴이</th>
-						<th>제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:forEach items="${ noticeList }" var="notice">
+		<div class="content">
+			<div id="noticeTable">
+				<c:if test="${ noticeCount != 0 }">
+					<table>
 						<tr>
-							<td>${ notice.userid }</td>
-							<td><a href="noticeContent/${ notice.noticepostid }">${ notice.title }</a></td>
-							<td><fmt:formatDate value="${ notice.creationdate }"
-									dateStyle="short" /></td>
+							<th>글쓴이</th>
+							<th>제목</th>
+							<th>작성일자</th>
 						</tr>
-					</c:forEach>
-				</table>
-				<div id="page" align="center">
-					<c:if test="${ begin > pageNum }">
-						<a href="notice?p=${ begin - i }" style="text-decoration: none">이전</a>
-					</c:if>
-					<c:forEach begin="${ begin }" end="${ end }" var="i">
-						<a href="notice?p=${ i }" style="text-decoration: none">${ i }</a>
-					</c:forEach>
-					<c:if test="${ end < totalPages }">
-						<a href="notice?p=${ end + 1 }" style="text-decoration: none">[다음]</a>
-					</c:if>
-					<c:if test="${ noticeCount == 0 }">
+						<c:forEach items="${ noticeList }" var="notice">
+							<tr>
+								<td>${ notice.userid }</td>
+								<td><a href="noticeContent/${ notice.noticepostid }">${ notice.title }</a></td>
+								<td><fmt:formatDate value="${ notice.creationdate }"
+										dateStyle="short" /></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<div id="page" align="center">
+						<c:if test="${ begin > pageNum }">
+							<a href="notice?p=${ begin - i }" style="text-decoration: none">이전</a>
+						</c:if>
+						<c:forEach begin="${ begin }" end="${ end }" var="i">
+							<a href="notice?p=${ i }" style="text-decoration: none">${ i }</a>
+						</c:forEach>
+						<c:if test="${ end < totalPages }">
+							<a href="notice?p=${ end + 1 }" style="text-decoration: none">[다음]</a>
+						</c:if>
+						<c:if test="${ noticeCount == 0 }">
 						게시물이 존재하지 않습니다.
 					</c:if>
-				</div>
-			</c:if>
+					</div>
+				</c:if>
+			</div>
 		</div>
-		</div>
-		</div>
-		<p align="center">
-			<!-- <a href="/admin" style="text-decoration: none">관리자 페이지로 돌아가기</a> -->
-		</p>
-	
+	</div>
+	<p align="center">
+		<!-- <a href="/admin" style="text-decoration: none">관리자 페이지로 돌아가기</a> -->
+	</p>
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

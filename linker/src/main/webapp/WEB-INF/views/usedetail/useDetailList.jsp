@@ -158,19 +158,20 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<input type="button" id="write"
-				value="사용 내역 추가" onclick="location.href='/inventory/addUseDetail';" style="right:17%" />
-			<input type="button" id="write"
-				value="사용 내역 삭제"
+			<input type="button" id="write" value="사용 내역 추가"
+				onclick="location.href='/inventory/addUseDetail';"
+				style="right: 17%" />
+			<input type="button" id="write" value="사용 내역 삭제"
 				onclick="location.href='/inventory/deleteUseDetail';" />
 
 		</c:if>
-		<c:if test="${ count == 0 }">
+		<div id="center">
+			<c:if test="${ count == 0 }">
 							입력된 재고가 존재하지 않습니다.
-							<input type="button" id="write"
-				value="사용 내역 추가 / 삭제"
-				onclick="location.href='/inventory/updateUseDetailForm';" />
-		</c:if>
+							<input type="button" id="write" value="사용 내역 추가 / 삭제"
+					onclick="location.href='/inventory/updateUseDetailForm';" />
+			</c:if>
+		</div>
 	</div>
 	<div id="page">
 		<c:if test="${ begin > end }">

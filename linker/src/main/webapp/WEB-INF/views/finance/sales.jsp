@@ -89,7 +89,7 @@ String end_date = request.getParameter("end_date");
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
@@ -105,11 +105,11 @@ String end_date = request.getParameter("end_date");
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">비용
 							관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/profitChart" class="dropdown-item">요약</a> <a
-								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/sales" class="dropdown-item active">매출내역</a> <a
 								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
@@ -379,6 +379,7 @@ String end_date = request.getParameter("end_date");
 			currentPage = page; //지정된 페이지 번호를 현재 페이지로 설정
 			search(); //검색 함수를 호출하여 결과를 가져옴
 		}
+		
 		function updateTableWithNewData(data) {
 			var table_data = '';
 			//$.each(data, function (index, sales) {

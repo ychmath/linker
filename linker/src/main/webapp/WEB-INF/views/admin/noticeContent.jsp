@@ -84,12 +84,12 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/notice/notice" class="nav-item nav-link ">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link active">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
@@ -151,39 +151,37 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper" style="background-color: #f5f5f5">
-	<div class="main">
-		<div id="container">
-		<div class="card">
-		<div class="card-view">
-		<div class="title">
-		<!-- <table class="content" border="1"> -->
-		
-			<h3>${dto.title }</h3>
-		</div>
-		<div class="myinfo">
-			<dl>
-				<dt>작성자</dt>
-				<dd>${dto.userid }</dd>
-			</dl>
-			<dl>
-				<dt>작성일</dt>
-				<dd>
-					<fmt:formatDate value="${dto.creationdate }" />
-				</dd>
-			</dl>
-		</div>	
-		<div class="cont">${dto.content }</div>
-		</div>
-		<div class="btn-view">
-		<a id="delete" href="/admin/notice/delete/${ dto.noticepostid }">글 삭제</a> 
-		<a href="../notice">목록 이동</a>
-		
-		
-		</div>
-		</div>
-		</div>
+		<div class="main">
+			<div id="container">
+				<div class="card">
+					<div class="card-view">
+						<div class="title">
+							<!-- <table class="content" border="1"> -->
+
+							<h3>${dto.title }</h3>
+						</div>
+						<div class="myinfo">
+							<dl>
+								<dt>작성자</dt>
+								<dd>${dto.userid }</dd>
+							</dl>
+							<dl>
+								<dt>작성일</dt>
+								<dd>
+									<fmt:formatDate value="${dto.creationdate }" />
+								</dd>
+							</dl>
+						</div>
+						<div class="cont">${dto.content }</div>
+					</div>
+					<div class="btn-view">
+						<a id="delete" href="/admin/notice/delete/${ dto.noticepostid }">글
+							삭제</a> <a href="../notice">목록 이동</a>
+					</div>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -222,7 +220,11 @@
 	<script>
 		$(function() {
 			$("#delete").click(function() {
-				var noticepostid = ${dto.noticepostid};
+				var noticepostid = $
+				{
+					dto.noticepostid
+				}
+				;
 
 				$.ajax({
 					url : "/admin/notice/delete/" + noticepostid,
@@ -235,7 +237,7 @@
 
 					alert("삭제가 완료되었습니다.");
 					location.replace(result);
-					
+
 				}); // ajax end
 
 				return false;

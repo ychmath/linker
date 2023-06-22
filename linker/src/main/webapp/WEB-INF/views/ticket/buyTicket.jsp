@@ -81,9 +81,9 @@
 				<c:if test="${ user.role == 'buyer' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link ">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표</a>
-					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link active">식권 구매</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
 							정보</div>

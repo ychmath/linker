@@ -88,8 +88,9 @@
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
-					<a href="/admin/inquiry" class="nav-item nav-link active">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link">회원 관리</a>
+					<a href="/admin/inquiry" class="nav-item nav-link active">문의사항
+						관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
@@ -151,37 +152,39 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper" style="background-color: #f5f5f5">
-	<div class="main">
-		<div id="container">
-		<div class="card">
-		<div class="card-view">
-		<div class="title">
-			<h3>${dto.title }</h3>
+		<div class="main">
+			<div id="container">
+				<div class="card">
+					<div class="card-view">
+						<div class="title">
+							<h3>${dto.title }</h3>
+						</div>
+						<div class="myinfo">
+							<dl>
+								<dt>작성자</dt>
+								<dd>${dto.userid }</dd>
+							</dl>
+							<dl>
+								<dt>작성일</dt>
+								<dd>
+									<fmt:formatDate value="${dto.creationdate }" />
+								</dd>
+							</dl>
+						</div>
+						<div class="cont">${dto.content }</div>
+					</div>
+					<div class="btn-view">
+						<a id="delete" href="/admin/inquiry/delete/${ dto.inquirypostid }">글
+							삭제</a> <a href="../inquiry">목록 이동</a>
+						</td>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="myinfo">
-			<dl>
-				<dt>작성자</dt>
-				<dd>${dto.userid }</dd>
-			</dl>
-			<dl>
-				<dt>작성일</dt>
-				<dd><fmt:formatDate value="${dto.creationdate }" />
-				</dd>
-			</dl>
-		</div>
-		<div class="cont">${dto.content }</div>
-		</div>
-		<div class="btn-view">
-			<a id="delete" href="/admin/inquiry/delete/${ dto.inquirypostid }">글 삭제</a> 
-			<a href="../inquiry">목록 이동</a></td>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-	
+	</div>
+
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -213,12 +216,17 @@
 	<script src="/js/main.js"></script>
 
 	<!-- Function JavaScript -->
-	<script src="/js/board/inquiry/content.js"></script>	<!-- Footer Start -->
+	<script src="/js/board/inquiry/content.js"></script>
+	<!-- Footer Start -->
 	<script>
 		$(function() {
 			$("#delete").click(function() {
 				// 현재 대상 게시물의 id값을 가져온다.
-				var inquirypostid = ${dto.inquirypostid};
+				var inquirypostid = $
+				{
+					dto.inquirypostid
+				}
+				;
 
 				// ajax로 delete
 				$.ajax({

@@ -79,16 +79,15 @@
 					<a href="/joinform" class="nav-item nav-link">회원가입</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link ">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+						<div class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">식자재
 							관리</div>
 						<div class="dropdown-menu fade-up m-0">
-							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+							<a href="/ingredient/ingredientList" class="dropdown-item active">식자재
 								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
 							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
 								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>

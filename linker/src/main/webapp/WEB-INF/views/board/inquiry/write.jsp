@@ -55,7 +55,8 @@
 	</div>
 	<!-- Topbar End -->
 
-<	<!-- Navbar Start -->
+	<
+	<!-- Navbar Start -->
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
 		<a href="/"
@@ -78,17 +79,19 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-			<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
@@ -152,30 +155,30 @@
 	</nav>
 	<!-- Navbar End -->
 	<div class="content-wrapper">
-	<form method="post" id="title_validation" action="write"
-		style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
-		<div class="pt-1">
-			<input type="text" name="title" id="title" placeholder="제목을 입력하세요"
-				required style="border-radius: 5px; width: 100%; padding: 5px;">
-		</div>
-		<div class="pt-1">
-			<input name="userid" id="userid" value="${user.userid }"
-				style="border-radius: 5px; width: 100%; padding: 5px;" readonly />
-		</div>
-		<div class="pt-1">
-			<div id="smarteditor">
-				<textarea name="content" id="editorTxt" rows="20" cols="10"
-					placeholder="내용을 입력해주세요" required
-					style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+		<form method="post" id="title_validation" action="write"
+			style="padding-top: 5rem; width: 80%; align-content: center; margin: auto">
+			<div class="pt-1">
+				<input type="text" name="title" id="title" placeholder="제목을 입력하세요"
+					required style="border-radius: 5px; width: 100%; padding: 5px;">
 			</div>
-		</div>
-		<div class="pt-1 text-right" colspan="2" align="right">
-			<!-- colspan: 셀을 가로로 합병 -->
-			<input type="submit" class="upload_btn" id="upload"
-				style="width: 10%; padding: 5px;" value="등록" />
-		</div>
-	</form>
-</div>
+			<div class="pt-1">
+				<input name="userid" id="userid" value="${user.userid }"
+					style="border-radius: 5px; width: 100%; padding: 5px;" readonly />
+			</div>
+			<div class="pt-1">
+				<div id="smarteditor">
+					<textarea name="content" id="editorTxt" rows="20" cols="10"
+						placeholder="내용을 입력해주세요" required
+						style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+				</div>
+			</div>
+			<div class="pt-1 text-right" colspan="2" align="right">
+				<!-- colspan: 셀을 가로로 합병 -->
+				<input type="submit" class="upload_btn" id="upload"
+					style="width: 10%; padding: 5px;" value="등록" />
+			</div>
+		</form>
+	</div>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
