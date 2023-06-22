@@ -5,12 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/admin/adminuser.css">
 
 <title>회원 관리</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link href="/img/favicon.ico" rel="icon">
+<link href="img/favicon.ico" rel="icon">
 
 <!-- Icon Font Stylesheet -->
 <link
@@ -81,6 +82,7 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
@@ -88,56 +90,112 @@
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ingredient/ingredientList" class="dropdown-item">식자재
+								목록</a> <a href="/inventory/inventoryList" class="dropdown-item">재고현황</a>
+							<a href="/inventory/orderList" class="dropdown-item">발주내역</a> <a
+								href="/inventory/useDetailList" class="dropdown-item">사용내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
+							관리</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/profitChart" class="dropdown-item">요약</a> <a
+								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/expenditure" class="dropdown-item">지출내역</a>
+						</div>
+					</div>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 			</div>
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	<div class="title">
-		<h3 align="center">회원 관리</h3>
-	</div>
-	<div class="content">
-		<div id="userTable">
-			<c:if test="${ userCount != 0 }">
-				<table>
-					<tr>
-						<th>사용자명</th>
-						<th>아이디</th>
-						<th>이메일</th>
-						<th>전화번호</th>
-						<th>권한</th>
-						<th>가입일자</th>
-						<th><a>회원정보 삭제</a></th>
-					</tr>
-					<c:forEach items="${ userList }" var="user">
+	<div class="content-wrapper" style="background-color: #f5f5f5">
+		<p>
+			<strong>회원 관리</strong>
+		</p>
+		<div class="content">
+			<div id="userTable">
+				<c:if test="${ userCount != 0 }">
+					<table>
 						<tr>
-							<td>${ user.name }</td>
-							<td>${ user.userid }</td>
-							<td>${ user.email }</td>
-							<td>${ user.phone }</td>
-							<td>${ user.role }</td>
-							<td><fmt:formatDate value="${ user.signupdate }"
-									dateStyle="short" /></td>
-							<%-- a 태그의 id값을 userid 값으로 가져온다. --%>
-							<td><a class="delete"
-								href="/admin/user/delete/${ user.userid }" id=${ user.userid }>삭제</a></td>
+							<th>사용자명</th>
+							<th>아이디</th>
+							<th>이메일</th>
+							<th>전화번호</th>
+							<th>권한</th>
+							<th>가입일자</th>
+							<th><a>회원정보 삭제</a></th>
 						</tr>
-					</c:forEach>
-				</table>
-				<div id="page" align="center">
-					<c:if test="${ begin > pageNum }">
-						<a href="user?p=${ begin - i }" style="text-decoration: none">이전</a>
-					</c:if>
-					<c:forEach begin="${ begin }" end="${ end }" var="i">
-						<a href="user?p=${ i }" style="text-decoration: none">${ i }</a>
-					</c:forEach>
-					<c:if test="${ end < totalPages }">
-						<a href="user?p=${ end + 1 }" style="text-decoration: none">[다음]</a>
-					</c:if>
-					<c:if test="${ userCount == 0 }">
+						<c:forEach items="${ userList }" var="user">
+							<tr>
+								<td>${ user.name }</td>
+								<td>${ user.userid }</td>
+								<td>${ user.email }</td>
+								<td>${ user.phone }</td>
+								<td>${ user.role }</td>
+								<td><fmt:formatDate value="${ user.signupdate }"
+										dateStyle="short" /></td>
+								<%-- a 태그의 id값을 userid 값으로 가져온다. --%>
+								<td><a class="delete"
+									href="/admin/user/delete/${ user.userid }" id=${ user.userid }>삭제</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<div id="page" align="center">
+						<c:if test="${ begin > pageNum }">
+							<a href="user?p=${ begin - i }" style="text-decoration: none">이전</a>
+						</c:if>
+						<c:forEach begin="${ begin }" end="${ end }" var="i">
+							<a href="user?p=${ i }" style="text-decoration: none">${ i }</a>
+						</c:forEach>
+						<c:if test="${ end < totalPages }">
+							<a href="user?p=${ end + 1 }" style="text-decoration: none">[다음]</a>
+						</c:if>
+						<c:if test="${ userCount == 0 }">
 						사용자가 존재하지 않습니다.
 					</c:if>
-				</div>
-			</c:if>
+					</div>
+				</c:if>
+			</div>
 		</div>
 		<p align="center">
 			<!-- <a href="/admin" style="text-decoration: none">관리자 페이지로 돌아가기</a> -->

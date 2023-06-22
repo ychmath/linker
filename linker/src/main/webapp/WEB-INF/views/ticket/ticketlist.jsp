@@ -82,7 +82,7 @@
 							관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
-								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
+								href="/phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
 						</div>
 					</div>
 					<div class="nav-item dropdown">

@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%
-String start_date = request.getParameter("start-date");
-String end_date = request.getParameter("end-date");
+String start_date = request.getParameter("start_date");
+String end_date = request.getParameter("end_date");
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -361,7 +361,7 @@ String end_date = request.getParameter("end-date");
 				url : "./filtered_data_sa",
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
-					"end-date" : end,
+					"end-date" : end
 				},
 				type : "GET",
 				dataType : "json",
