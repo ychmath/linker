@@ -219,7 +219,6 @@
 
 	<!-- Function JavaScript -->
 	<script src="/js/board/inquiry/content.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
 			$("#delete").click(function() {

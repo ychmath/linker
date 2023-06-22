@@ -178,12 +178,6 @@
 		</div>
 	</div>
 	<%-- main > content end --%>
-	</div>
-	<%-- main > container end --%>
-	</div>
-	<%-- main end --%>
-	</div>
-	<!-- about end -->
 
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">

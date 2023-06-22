@@ -44,4 +44,5 @@ public class PhoneController {
 		model.addAttribute("list", list);
 		return "PhoneForm";
 	}
+	
 }
