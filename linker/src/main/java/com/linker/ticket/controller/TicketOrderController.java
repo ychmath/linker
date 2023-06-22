@@ -181,6 +181,6 @@ public class TicketOrderController {
 	}	
 	//dto.setUserid(user.getUserid());
 	//service.buyTicket(dto);
-	return "redirect:/main";
+	return "redirect:/ticketorder/ticketorderform";
 	}
 }
