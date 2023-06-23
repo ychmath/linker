@@ -89,17 +89,18 @@
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/admin" class="nav-item nav-link">관리요약</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/admin" class="nav-item nav-link active">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
-					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link ">문의사항</a>
 					<a href="/menu/write" class="nav-item nav-link">식단표 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
@@ -154,16 +155,16 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper" style="background-color: #f5f5f5">
 		<p>
 			<strong>관리자 페이지</strong>
-		</p>	
+		</p>
 
-	<!-- <div class="title">
+		<!-- <div class="title">
 		<h3 align="center">관리자 페이지</h3>
 	</div> -->
-	<!-- <div class="main">
+		<!-- <div class="main">
 		<div class="menu" align="center">
 			<a href="/admin/user" style="text-decoration: none">회원 관리</a> <a
 				href="/admin/notice" style="text-decoration: none">공지사항 관리</a> <a
@@ -258,7 +259,7 @@
 			</c:if>
 		</div>
 	</div>
-	
+<br>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">

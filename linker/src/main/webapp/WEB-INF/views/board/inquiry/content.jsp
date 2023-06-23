@@ -167,7 +167,9 @@
 							</dd>
 						</dl>
 					</div>
-					<div class="cont">${dto.content }</div>
+					<pre>
+					${dto.content }
+					</pre>
 				</div>
 				<div class="btn-view">
 					<c:if test="${user.userid == dto.userid }">
@@ -177,9 +179,11 @@
 					<a href="../inquiry">목록 이동</a>
 
 					<div>
-						<span> <span id="role" style="display: none;">${user.role}</span>
-							<a href="/inquiry/writeComm?inquirypostid=${dto.inquirypostid}&ref=${dto.ref}&restep=${dto.restep}&relevel=${dto.relevel}">답글쓰기</a>
-						</span>
+						<c:if test="${ user.role == 'admin' || user.role == 'seller'}">
+							<span> <a
+								href="/inquiry/writeComm?inquirypostid=${dto.inquirypostid}&ref=${dto.ref}&restep=${dto.restep}&relevel=${dto.relevel}">답글쓰기</a>
+							</span>
+						</c:if>
 					</div>
 				</div>
 			</div>

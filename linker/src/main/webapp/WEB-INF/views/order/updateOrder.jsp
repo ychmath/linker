@@ -165,15 +165,15 @@
 				</tbody>
 			</table>
 			<div>
-				<input type="button" id="add" class="button btn btn-primary"
-					value="식자재 등록" /> <input class="btn btn-primary" type="button"
+				<input type="button" id="add" class="write" style="right:17.5%"
+					value="식자재 등록" /> <input class="write" type="button"
 					id="deleteOrder" value="선택 내역 삭제" />
 			</div>
 		</div>
 	</div>
-	<p>
+	<div id = "center">
 		<a href="/inventory/orderList">발주 내역으로 돌아가기</a>
-	</p>
+	</div>
 	<div id="page">
 		<c:if test="${ begin > end }">
 			<a href="changeOrder?p=${ begin-1 }">[이전]</a>

@@ -78,16 +78,18 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
 				<c:if test="${ user.role == 'seller' }">
-					<a href="/" class="nav-item nav-link active">Home</a>
-					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link active">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
 					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
@@ -163,8 +165,7 @@
 			<div class="pt-1">
 				<div id="smarteditor">
 					<textarea name="content" id="editorTxt" rows="20" cols="10"
-						placeholder="내용을 입력해주세요" required
-						style="border-radius: 5px; width: 100%; padding: 5px;"></textarea>
+						style="border-radius: 5px; width: 100%; padding: 5px;">${dto.content}</textarea>
 				</div>
 			</div>
 			<div class="pt-1 text-right" colspan="2" align="right">
@@ -207,18 +208,17 @@
 	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"
 		charset="utf-8"></script>
 	<script src="/js/board/title_validation.js">
-		<script>
+		
+	</script>
+	<script>
 		let oEditors = [];
 
 		smartEditor = function() {
+			console.log("Naver SmartEditor");
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
 				elPlaceHolder : "editorTxt",
 				sSkinURI : "/smarteditor/SmartEditor2Skin.html",
-				fOnAppLoad : function() {
-					oEditors.getById["editorTxt"].exec("PASTE_HTML", [
-							"${dto.content}", ]);
-				},
 				fCreator : "createSEditor2",
 			});
 		};
@@ -231,7 +231,7 @@
 							function() {
 								oEditors.getById["editorTxt"].exec(
 										"UPDATE_CONTENTS_FIELD", []);
-								$("#updateform").submit();
+								$("#writenotice").submit();
 							});
 				});
 	</script>

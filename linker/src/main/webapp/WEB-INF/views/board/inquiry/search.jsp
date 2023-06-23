@@ -79,14 +79,16 @@
 				</c:if>
 				<c:if test="${ user.role == 'admin' }">
 					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link active">문의사항</a>
 					<a href="/admin" class="nav-item nav-link">관리요약</a>
 					<a href="/admin/notice" class="nav-item nav-link">공지사항 관리</a>
 					<a href="/admin/inquiry" class="nav-item nav-link">문의사항 관리</a>
-					<a href="/admin/user" class="nav-item nav-link active">회원 관리</a>
+					<a href="/admin/user" class="nav-item nav-link ">회원 관리</a>
 					<span class="nav-item nav-link">${user.userid} 관리자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
-			<c:if test="${ user.role == 'seller' }">
+				<c:if test="${ user.role == 'seller' }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
@@ -152,7 +154,7 @@
 		</div>
 	</nav>
 	<!-- Navbar End -->
-	
+
 	<div class="content-wrapper">
 		<p>
 			<strong>'${search}' 검색결과입니다.</strong>

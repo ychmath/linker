@@ -18,8 +18,4 @@ public class CustomErrorController implements ErrorController {
             return "error/error"; // 기본 에러 페이지
         }
     }
-    
-    public String getErrorPath() {
-        return "/error";
-    }
 }

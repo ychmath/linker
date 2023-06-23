@@ -39,6 +39,8 @@ String end_date = request.getParameter("end_date");
 <link href="/css/comm/table.css" rel="stylesheet">
 <link href="/css/comm/radio.css" rel="stylesheet">
 
+
+
 </head>
 
 <body>
@@ -78,19 +80,20 @@ String end_date = request.getParameter("end_date");
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
-				<c:if test="${ user.role == 'seller' }">
+				<c:if test="${ user.role == null }">
 					<a href="/" class="nav-item nav-link active">Home</a>
 					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
 					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/loginform" class="nav-item nav-link">로그인</a>
+					<a href="/joinform" class="nav-item nav-link">회원가입</a>
+				</c:if>
+				<c:if test="${ user.role == 'seller' }">
+					<a href="/" class="nav-item nav-link ">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
 					<a href="/menu/list" class="nav-item nav-link">식단표 관리</a>
-					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식권
-							관리</div>
-						<div class="dropdown-menu fade-up m-0">
-							<a href="/ticket/ticketlist" class="dropdown-item">식권 목록</a> <a
-								href="phone" class="dropdown-item" target="_blank">구매자 식권 사용</a>
-						</div>
-					</div>
+					<a href="/ticket/ticketlist" class="nav-item nav-link">식권 관리</a>
 					<div class="nav-item dropdown">
 						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">식자재
 							관리</div>
@@ -102,11 +105,11 @@ String end_date = request.getParameter("end_date");
 						</div>
 					</div>
 					<div class="nav-item dropdown">
-						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">비용
-							관리</div>
+						<div class="nav-link dropdown-toggle active"
+							data-bs-toggle="dropdown">비용 관리</div>
 						<div class="dropdown-menu fade-up m-0">
 							<a href="/profitChart" class="dropdown-item">요약</a> <a
-								href="/finance/sales" class="dropdown-item">매출내역</a> <a
+								href="/finance/sales" class="dropdown-item active">매출내역</a> <a
 								href="/finance/expenditure" class="dropdown-item">지출내역</a>
 						</div>
 					</div>
@@ -121,23 +124,46 @@ String end_date = request.getParameter("end_date");
 					<span class="nav-item nav-link">${user.userid} 판매자님 환영합니다.</span>
 					<a href="/logout" class="nav-item nav-link">로그아웃</a>
 				</c:if>
+				<c:if test="${ user.role == 'buyer' }">
+					<a href="/" class="nav-item nav-link active">Home</a>
+					<a href="/notice/notice" class="nav-item nav-link">공지사항</a>
+					<a href="/inquiry/inquiry" class="nav-item nav-link">문의사항</a>
+					<a href="/menu/list" class="nav-item nav-link">식단표</a>
+					<a href="/ticket/buyTicket" class="nav-item nav-link">식권 구매</a>
+					<div class="nav-item dropdown">
+						<div class="nav-link dropdown-toggle" data-bs-toggle="dropdown">나의
+							정보</div>
+						<div class="dropdown-menu fade-up m-0">
+							<a href="/ticketorder/ticketorderform" class="dropdown-item">식권
+								구매내역</a> <a href="/ticketuse/ticketuseform" class="dropdown-item">식권
+								사용내역</a> <a href="/updateform" class="dropdown-item">회원정보 수정</a> <a
+								href="/deleteform" class="dropdown-item">회원탈퇴</a>
+						</div>
+					</div>
+					<span class="nav-item nav-link">${user.userid} 구매자님 환영합니다.</span>
+					<a href="/logout" class="nav-item nav-link">로그아웃</a>
+				</c:if>
 			</div>
 		</div>
 	</nav>
 	<!-- Navbar End -->
 
+
+	<%-- <form:form> --%>
 	<div class="content-wrapper">
 		<%-- <form:form> --%>
 		<form
-			action="${pageContext.request.contextPath}/finance/filtered_data_ex"
+			action="${pageContext.request.contextPath}/finance/filtered_data_sa"
 			method="get">
 			<div>
 				<!--  id="B" -->
 				<div>
 					<!-- style="display:flex; align-items:center;" -->
 
-					<p style="font-size: 24px; font-weight: bold; text-align: center;">지출내역</p>
-
+					<p>
+						<strong>매출 내역</strong>
+					</p>
+					<br>
 					<table id="data-table">
 						<tr>
 							<th id="C">날짜</th>
@@ -191,8 +217,6 @@ String end_date = request.getParameter("end_date");
 			</div>
 		</form>
 	</div>
-
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light footer mt-0 pt-0">
 		<div class="container">
@@ -336,8 +360,7 @@ String end_date = request.getParameter("end_date");
 				url : "./filtered_data_ex",
 				data : { //파라미터 값 받아옴
 					"start-date" : start,
-					"end-date" : end,
-
+					"end-date" : end
 				},
 				type : "GET",
 				dataType : "json",
