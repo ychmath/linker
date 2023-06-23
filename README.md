@@ -5,7 +5,6 @@
 ![spring-boot](https://img.shields.io/badge/springboot-3.1.0-yellow?style=plastic&logo=spring)
 ![html](https://img.shields.io/badge/html-html5-red?style=plastic&logo=html5)
 ![css](https://img.shields.io/badge/css-css3-red?style=plastic&logo=css3)
-![scss](https://img.shields.io/badge/scss-1.63.4-red?style=plastic)
 ![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?style=plastic&logo=javascript)
 ![eclipse](https://img.shields.io/badge/eclipse-blueviolet?style=plastic&logo=eclipseide)
 ![github](https://img.shields.io/badge/github-blueviolet?style=plastic&logo=github)
