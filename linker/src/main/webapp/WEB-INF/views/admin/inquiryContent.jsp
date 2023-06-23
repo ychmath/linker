@@ -222,11 +222,7 @@
 		$(function() {
 			$("#delete").click(function() {
 				// 현재 대상 게시물의 id값을 가져온다.
-				var inquirypostid = $
-				{
-					dto.inquirypostid
-				}
-				;
+				var inquirypostid = ${ dto.inquirypostid };
 
 				// ajax로 delete
 				$.ajax({

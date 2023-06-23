@@ -216,15 +216,10 @@
 	<script src="/js/main.js"></script>
 
 	<!-- Function JavaScript -->
-	<script src="/js/board/inquiry/content.js"></script>
 	<script>
 		$(function() {
 			$("#delete").click(function() {
-				var noticepostid = $
-				{
-					dto.noticepostid
-				}
-				;
+				var noticepostid = ${dto.noticepostid};
 
 				$.ajax({
 					url : "/admin/notice/delete/" + noticepostid,

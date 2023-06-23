@@ -157,7 +157,7 @@
 				</tbody>
 			</table>
 			<div>
-				<input type="button" id="write" value="식자재 등록" />
+				<input type="button" id="write" value="사용 내역 등록" />
 			</div>
 		</form>
 
