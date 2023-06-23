@@ -167,9 +167,9 @@
 		</c:if>
 		<div id="center">
 			<c:if test="${ count == 0 }">
-							입력된 재고가 존재하지 않습니다.
+							입력된 사용내역이 존재하지 않습니다.
 							<input type="button" id="write" value="사용 내역 추가 / 삭제"
-					onclick="location.href='/inventory/updateUseDetailForm';" />
+					onclick="location.href='/inventory/addUseDetail';" />
 			</c:if>
 		</div>
 	</div>
