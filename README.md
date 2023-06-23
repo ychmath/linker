@@ -12,12 +12,9 @@
 
 ---
 ## 메인화면
-
 ![main](./linker/src/main/webapp/img/main.png)
-![main2](./linker/src/main/webapp/img/main2.png)
 
 ## Table of Contents
-
 - [식권 구매 및 식자재 관리 시스템]
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
@@ -31,6 +28,7 @@
   - [Demo](#demo)
   - [license](#license)
   - [About](#about)
+    
 ## Introduction
 ```
 linker(soldesk project)
@@ -45,13 +43,16 @@ linker(soldesk project)
 ```
 
 ## ERD 다이어그램
-
 ![ERD](./linker/src/main/webapp/img/ERD.png)
 
 ##  My Role
-
 ```
-
+프로젝트 기획
+ERD & 데이터베이스 설계
+로그인 & 회원가입 유효성 검사 작성
+게시판 날짜별 필터링 페이징 구현
+css 구현
+모든 페이지 디버깅 처리
 ```
 
 ## Prerequisite
