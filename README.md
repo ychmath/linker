@@ -30,7 +30,7 @@
 ## Introduction
 ```
 linker(soldesk project)
-|-- last commit version
+|-- 12c1871
 |     `-- back
 |		`-- bin
 |		`-- resources
