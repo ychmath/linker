@@ -24,7 +24,6 @@
     - [Install](#install)
     - [Commit](#commit)
   - [Team](#team)
-  - [Demo](#demo)
   - [license](#license)
   - [About](#about)
     
